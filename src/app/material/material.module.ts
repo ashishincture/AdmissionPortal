@@ -1,4 +1,3 @@
-import { MatCardModule } from '@angular/material/card';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -9,7 +8,11 @@ import { MatListModule } from '@angular/material/list';
 import { MatTableModule } from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTabsModule } from '@angular/material/tabs';
-
+import {MatInputModule} from '@angular/material/input';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatCardModule } from '@angular/material/card';
 const materialComponents = [
   MatToolbarModule,
   MatIconModule,
@@ -19,7 +22,11 @@ const materialComponents = [
   MatTableModule,
   MatSelectModule,
   MatTabsModule,
-  MatCardModule,
+  MatInputModule,
+  MatDialogModule,
+  MatMenuModule,
+  MatProgressSpinnerModule,
+  MatCardModule
 ];
 
 @NgModule({
