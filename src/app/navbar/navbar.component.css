@@ -1,0 +1,89 @@
+mat-sidenav-container {
+  height: 100%;
+}
+
+/* mat-sidenav */
+/* mat-sidenav-content {
+  padding: 16px;
+} */
+
+mat-sidenav {
+  background-color: #141414;
+
+  width: 200px;
+}
+
+.navList .mat-list-item {
+  color: #b1b1b1;
+}
+
+.navList .mat-list-item:hover {
+  color: #7e9bb3;
+  background-color: #1b1b1b;
+}
+
+.matToolbar {
+  background: #141414;
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* .DetailPage {
+  background-color: #1b1b1b;
+} */
+
+.example-icon {
+  position: relative;
+  cursor: pointer;
+  background: #25292c;
+  margin: 0 10px 0 0;
+  border-radius: 50px;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  color: rgba(0, 00, 0, 0.7);
+  text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.15);
+  box-shadow: inset 1px 1px 2px rgba(255, 255, 255, 0.3),
+    inset 3px 15px 45px rgba(0, 0, 0, 0.2),
+    inset -1px -1px 2px rgba(0, 0, 0, 0.5),
+    inset -3px -15px 45px rgba(255, 255, 255, 0.1),
+    1px 5px 10px -4px rgba(0, 0, 0, 1);
+
+  -webkit-transition: 0.1s ease-out;
+  -moz-transition: 0.1s ease-out;
+  -o-transition: 0.1s ease-out;
+  transition: 0.1s ease-out;
+}
+
+.example-icon:before {
+  content: "";
+  background: #1a1a1a;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  z-index: -1;
+  border-radius: 100px;
+  box-shadow: inset -1px -1px 2px rgba(255, 255, 255, 0.3),
+    inset -5px -15px 40px rgba(255, 255, 255, 0.1),
+    inset 1px 1px 2px rgba(0, 0, 0, 0.5), inset 5px 15px 40px rgba(0, 0, 0, 0.2),
+    -2px -40px 50px -20px rgba(255, 255, 255, 0.1),
+    2px 35px 50px -10px rgba(0, 0, 0, 0.4), 0px 0px 25px 8px rgba(60, 60, 60, 1);
+}
+
+.example-icon:active {
+  color: #7e9bb3;
+  text-shadow: -1px -1px 0px rgba(255, 255, 255, 0.8),
+    1px 1px 2px rgba(0, 0, 0, 1);
+  box-shadow: inset 1px 1px 2px rgba(255, 255, 255, 0.3),
+    inset 3px 15px 45px rgba(255, 255, 255, 0.1),
+    inset -1px -1px 2px rgba(0, 0, 0, 0.5),
+    inset -3px -15px 45px rgba(0, 0, 0, 0.2), 1px 5px 30px -4px rgba(0, 0, 0, 1);
+}
+
+.example-icon:hover {
+  color: #7e9bb3;
+}

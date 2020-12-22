@@ -1,0 +1,93 @@
+<!-- <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Admission</a>
+  <button
+    class="navbar-toggler d-lg-none"
+    type="button"
+    data-toggle="collapse"
+    data-target="#collapsibleNavId"
+    aria-controls="collapsibleNavId"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  ></button>
+  <div class="collapse navbar-collapse" id="collapsibleNavId">
+    <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="current active" routerLink="/home"
+          >Home
+        </a>
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          routerLinkActive="active current"
+          routerLink="/login"
+          >LogIn</a
+        >
+      </li>
+    </ul>
+  </div>
+</nav> -->
+
+
+  <mat-toolbar class="matToolbar">
+    <button
+      mat-icon-button
+      class="example-icon blob"
+      aria-label="Example icon-button with menu icon"
+    >
+      <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
+    </button>
+    <br /><br />
+    <span>Admission Portal</span>
+    <span class="example-spacer"></span>
+    <div class="ml-auto">
+      <button
+        mat-icon-button
+        class="example-icon blob"
+        aria-label="Example icon-button with share icon"
+      >
+        <mat-icon
+          aria-hidden="false"
+          aria-label="Example home icon"
+          routerLink="/home"
+          >home</mat-icon
+        >
+      </button>
+      <button
+        mat-icon-button
+        class="example-icon blob"
+        aria-label="Example icon-button with login icon"
+      >
+        <mat-icon routerLink="/login">login</mat-icon>
+      </button>
+    </div>
+  </mat-toolbar>
+
+
+<mat-sidenav-container autosize>
+  <mat-sidenav #sidenav mode="side">
+    <mat-nav-list class="navList">
+      <a mat-list-item [routerLink]="'/masterdata'" (click)="goToMasterData()">
+        Master data
+      </a>
+      <a mat-list-item [routerLink]="'/table'" (click)="goToTable()">
+        Seat Matrix
+      </a>
+      <a mat-list-item [routerLink]="'/chart'" (click)="goToChart()">
+        Verification
+      </a>
+      <a mat-list-item [routerLink]="'/clgList'" (click)="goToClgList()">
+        Allotment
+      </a>
+      <a mat-list-item [routerLink]="'/table'" (click)="goToTable()">
+        Announcement
+      </a>
+      <a mat-list-item [routerLink]="'/chart'" (click)="goToChart()"> FAQ </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content class="DetailPage">
+    <div style="height: 88vh" >
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

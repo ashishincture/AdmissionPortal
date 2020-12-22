@@ -1,0 +1,27 @@
+<mat-toolbar class="subHeader">
+  <span>Allocation</span>
+  <div class="ml-auto mt-3">
+    <div class="form-group row">
+      <div class="col col-md-8">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Search College"
+          [(ngModel)]="searchCollege"
+        />
+      </div>
+      <div class="col col-md-4">
+        <button
+          mat-button
+          type="button"
+          class="btnSearch form-control"
+          (click)="onSearchCollege()"
+        >
+          Search
+        </button>
+      </div>
+    </div>
+  </div>
+</mat-toolbar>
+<app-carousel [hidden]="!hideCarousel"></app-carousel>
+<app-round [hidden]="!showRounds"></app-round>

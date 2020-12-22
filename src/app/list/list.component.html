@@ -1,0 +1,52 @@
+<mat-toolbar class="subHeader mb-5">
+  <div class="row">
+    <div class="col col-md-6">
+      <span>Allocation / {{ subjectSelected }}</span>
+    </div>
+  </div>
+</mat-toolbar>
+<div class="container">
+  <table mat-table [dataSource]="this.dataSource" class="mat-elevation-z8">
+    <!--- Note that these columns can be defined in any order.
+                The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>No.</th>
+      <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef>Status</th>
+      <td mat-cell *matCellDef="let element">
+        <div *ngIf="element.status === false">
+          <i class="fa fa-check-circle" style="font-size: 24px; color: red"></i>
+        </div>
+        <div *ngIf="element.status === true">
+          <i
+            class="fa fa-check-circle"
+            style="font-size: 24px; color: green"
+          ></i>
+        </div>
+      </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+
+    <tr mat-header-row *matHeaderRowDef="this.displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: this.displayedColumns"></tr>
+  </table>
+
+  <div>
+    <button type="submit" class="btn btnAllot mt-5" (click)="onSeatAllot()">
+      Allot Seats
+    </button>
+  </div>
+</div>

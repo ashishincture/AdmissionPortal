@@ -1,0 +1,69 @@
+/* Visit https://nicolaskadis.info/posts/pure-css-flip-cards-using-bootstrap-4-and-css-grid-no-js for an explanation */
+
+/* for demo purposes */
+.card {
+  margin: 10px 10px;
+}
+
+/* Flip Cards CSS */
+.card-container {
+  display: grid;
+  perspective: 700px;
+}
+
+.card-flip {
+  display: grid;
+  grid-template: 1fr / 1fr;
+  grid-template-areas: "frontAndBack";
+  transform-style: preserve-3d;
+  transition: all 0.7s ease;
+}
+
+.card-flip div {
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+.front {
+  grid-area: frontAndBack;
+  background-color: #25292c;
+  /* background: #9d50bb; 
+  background: -webkit-linear-gradient(
+    to right,
+    #9d50bb,
+    #6e48aa
+  );
+  background: linear-gradient(to right, #9d50bb, #6e48aa); */
+}
+
+.back {
+  grid-area: frontAndBack;
+  transform: rotateY(-180deg);
+}
+
+.card-container:hover .card-flip {
+  transform: rotateY(180deg);
+}
+
+.text {
+  color: #7b59d0;
+  margin-top: 80px;
+  margin-left: 50px;
+  font-size: 100px;
+  margin-bottom: 80px;
+}
+.round-bg {
+  background-color: #121212;
+  height: 530px;
+}
+.btnRound {
+  background-color: #7b59d0;
+  color: white;
+  margin-top: 80px;
+  margin-left: 50px;
+  margin-bottom: 80px;
+}
+.btnStudent {
+  background-color: #7b59d0;
+  color: white;
+}
