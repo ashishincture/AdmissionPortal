@@ -4,6 +4,7 @@ import { DetailsService } from '../details.service';
 export interface studentDetails {
   id: number;
   name: string;
+  rank: number;
   status: boolean;
 }
 
@@ -23,7 +24,7 @@ export class ListComponent implements OnInit {
   courses;
   subjectSelected;
   dataSource;
-  displayedColumns: string[] = ['id', 'name', 'status'];
+  displayedColumns: string[] = ['id', 'name', 'rank', 'status'];
   ELEMENT_DATA: studentDetails[];
   ngOnInit(): void {
     let params: any = this.activatedRoute.snapshot.params;
@@ -51,7 +52,14 @@ export class ListComponent implements OnInit {
         console.log(this.subject[i].data[i]);
         for (var j = 0; j < this.subject[i].data.length; j++) {
           console.log(this.subject[i].data[j]);
-          this.subject[i].data[j].status = true;
+          if (this.id === 1 && this.subject[i].data[j].rank <= 1000) {
+            this.subject[i].data[j].status = true;
+          } else if (this.id === 2 && this.subject[i].data[j].rank <= 2000) {
+            this.subject[i].data[j].status = true;
+          } else if (this.id === 3 && this.subject[i].data[j].rank <= 3000) {
+            this.subject[i].data[j].status = true;
+          }
+
           this.status = this.subject[i].data;
         }
         break;
