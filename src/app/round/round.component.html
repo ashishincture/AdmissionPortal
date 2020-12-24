@@ -1,5 +1,5 @@
 <!-- Visit https://nicolaskadis.info/posts/pure-css-flip-cards-using-bootstrap-4-and-css-grid-no-js for an explanation -->
-<div class="round-bg">
+<div class="round-bg" [hidden]="!showRounds">
   <div class="container">
     <div class="row">
       <!-- Card 1 -->
@@ -93,7 +93,7 @@
 </div>
 
 <!-- Course Details -->
-<section class="container">
+<section class="container" [hidden]="showRounds">
   <div class="row">
     <!-- CSE -->
     <div class="col col-md-4" *ngFor="let course of this.courses">
