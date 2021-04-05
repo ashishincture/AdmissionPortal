@@ -3,7 +3,10 @@
   <div class="container">
     <div class="row">
       <!-- Card 1 -->
-      <div class="col-md-4 card-container hvr-float-shadow">
+      <div
+        class="col-md-4 card-container hvr-float-shadow"
+        [hidden]="freezeRound[1]"
+      >
         <div class="card-flip">
           <!-- Card 1 Front -->
           <div class="card front p-5 m-5">
@@ -14,10 +17,21 @@
           <!-- End Card 1 Front -->
 
           <!-- Card 1 Back -->
-          <div class="card back p-5 m-5">
-            <div class="card-block">
-              <button type="submit" (click)="goRound1()" class="btn btnRound">
+          <div class="card back p-3 m-5">
+            <div class="card-block justify-content-around">
+              <button
+                type="submit"
+                (click)="goRound1()"
+                class="btn btnRound mr-2"
+              >
                 Go
+              </button>
+              <button
+                type="submit"
+                (click)="goFreeze1()"
+                class="btn btn-danger"
+              >
+                Freeze
               </button>
             </div>
           </div>
@@ -27,7 +41,10 @@
       <!-- End Card 1 -->
 
       <!-- Card 2 -->
-      <div class="col-md-4 card-container hvr-float-shadow">
+      <div
+        class="col-md-4 card-container hvr-float-shadow"
+        [hidden]="freezeRound[2]"
+      >
         <div class="card-flip">
           <!-- Card 2 Front -->
           <div class="card front p-5 m-5">
@@ -38,7 +55,7 @@
           <!-- End Card 2 Front -->
 
           <!-- Card 2 Back -->
-          <div class="card back p-5 m-5">
+          <div class="card back p-3 m-5">
             <!-- <div class="card-header">Featured</div> -->
             <div class="card-block">
               <!-- <h4 class="card-title">Special title treatment</h4> -->
@@ -46,8 +63,19 @@
                 With supporting text below as a natural lead-in to additional
                 content.
               </p> -->
-              <button type="submit" (click)="goRound2()" class="btn btnRound">
+              <button
+                type="submit"
+                (click)="goRound2()"
+                class="btn btnRound mr-2"
+              >
                 Go
+              </button>
+              <button
+                type="submit"
+                (click)="goFreeze2()"
+                class="btn btn-danger"
+              >
+                Freeze
               </button>
             </div>
           </div>
@@ -57,7 +85,10 @@
       <!-- End Card 2 -->
 
       <!-- Card 3 -->
-      <div class="col-md-4 card-container hvr-float-shadow">
+      <div
+        class="col-md-4 card-container hvr-float-shadow"
+        [hidden]="freezeRound[3]"
+      >
         <div class="card-flip">
           <!-- Card 3 Front -->
           <div class="card front p-5 m-5">
@@ -68,11 +99,22 @@
           <!-- End Card 3 Front -->
 
           <!-- Card 3 Back -->
-          <div class="card back text-center p-5 m-5">
+          <div class="card back p-3 m-5">
             <!-- <div class="card-header">Featured</div> -->
             <div class="card-block">
-              <button type="submit" (click)="goRound3()" class="btn btnRound">
+              <button
+                type="submit"
+                (click)="goRound3()"
+                class="btn btnRound mr-2"
+              >
                 Go
+              </button>
+              <button
+                type="submit"
+                (click)="goFreeze3()"
+                class="btn btn-danger"
+              >
+                Freeze
               </button>
               <!-- <h4 class="card-title">Special title treatment</h4>
               <p class="card-text">
@@ -94,7 +136,7 @@
 
 <!-- Course Details -->
 <section class="container" [hidden]="showRounds">
-  <div class="row">
+  <div class="row mb-5">
     <!-- CSE -->
     <div class="col col-md-4" *ngFor="let course of this.courses">
       <div class="card">
@@ -102,6 +144,7 @@
           class="card-img-top p-4"
           src="{{ course.imgURL }}"
           alt="Not Found"
+          height="250px"
         />
         <div class="card-body">
           <h4 class="card-title align-center" style="font-weight: bolder">

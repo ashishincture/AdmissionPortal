@@ -173,4 +173,11 @@ export class DetailsService {
 
     return details;
   }
+  getUserDetails() {
+    let user = [
+      { username: 'ashish', password: 123 },
+      { username: 'niharika', password: 123 },
+    ];
+    return user;
+  }
 }
