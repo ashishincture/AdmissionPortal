@@ -1,0 +1,136 @@
+body {
+  font-family: "Mukta", sans-serif;
+}
+.main {
+  background: url(../images/bg.jpg) no-repeat center;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  -ms-background-size: cover;
+  position: relative;
+  min-height: 100vh;
+}
+.layer {
+  padding: 2em 0;
+}
+.text-center {
+  text-align: center;
+}
+.login-card {
+  padding: 100px;
+  margin-top: 20px;
+}
+.mat-card-bg {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.text-font {
+  font-size: 25px;
+}
+.text-color-bg {
+  background-color: #7b59d0;
+}
+.text-color {
+  color: #7b59d0;
+}
+.content-w3ls {
+  max-width: 500px;
+  margin: 6em auto;
+}
+.content-w3ls ul li {
+  display: inline-block;
+}
+.content-bottom {
+  padding: 0em 4em;
+  margin: 0 1em;
+  position: relative;
+  z-index: 1;
+}
+.field-group label {
+  font-size: 15px;
+}
+form .field-group {
+  background: rgba(255, 255, 255, 0.15);
+  display: flex;
+
+  display: -webkit-box;
+  /* OLD - iOS 6-, Safari 3.1-6 */
+  display: -moz-box;
+  /* OLD - Firefox 19- (buggy but mostly works) */
+  display: -ms-flexbox;
+  /* TWEENER - IE 10 */
+  display: -webkit-flex;
+  /* NEW - Chrome */
+  margin-bottom: 20px;
+  padding: 2px 10px 2px 0;
+  border-radius: 35px;
+  -webkit-border-radius: 35px;
+  -moz-border-radius: 35px;
+  -ms-border-radius: 35px;
+  -o-border-radius: 35px;
+}
+
+form .field-group span {
+  flex: 1;
+  -webkit-box-flex: 1; /* OLD - iOS 6-, Safari 3.1-6 */
+  -moz-box-flex: 1; /* OLD - Firefox 19- */
+  width: 20%; /* For old syntax, otherwise collapses. */
+  -webkit-flex: 1; /* Chrome */
+  -ms-flex: 1; /* IE 10 */
+  color: #fff;
+  background: transparent;
+  line-height: 49px;
+  text-align: right;
+}
+form .field-group .wthree-field {
+  flex: 4 50%;
+  -webkit-box-flex: 4 50%; /* OLD - iOS 6-, Safari 3.1-6 */
+  -moz-box-flex: 4 50%; /* OLD - Firefox 19- */
+  -webkit-flex: 4 50%; /* Chrome */
+  -ms-flex: 4 50%; /* IE 10 */
+}
+form .field-group .wthree-field {
+  flex: 4 50%;
+  -webkit-box-flex: 4 50%; /* OLD - iOS 6-, Safari 3.1-6 */
+  -moz-box-flex: 4 50%; /* OLD - Firefox 19- */
+  -webkit-flex: 4 50%; /* Chrome */
+  -ms-flex: 4 50%; /* IE 10 */
+}
+
+.wthree-field button.btn {
+  background: #fc636b;
+  border: none;
+  color: #fff;
+  padding: 11px 15px;
+  text-transform: uppercase;
+  font-family: "Mukta", sans-serif;
+  font-size: 16px;
+  width: 100%;
+  margin-top: 10px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: 0.5s all;
+  -webkit-transition: 0.5s all;
+  -moz-transition: 0.5s all;
+  -o-transition: 0.5s all;
+  -ms-transition: 0.5s all;
+  border-radius: 35px;
+  -webkit-border-radius: 35px;
+  -moz-border-radius: 35px;
+  -ms-border-radius: 35px;
+  -o-border-radius: 35px;
+}
+
+.wthree-field input {
+  padding: 10px 0 10px 15px;
+  font-size: 17px;
+  font-weight: 300;
+  color: #ddd;
+  letter-spacing: 1px;
+  border: none;
+  background: transparent;
+  box-sizing: border-box;
+  font-family: "Mukta", sans-serif;
+  width: 100%;
+  outline: none;
+}

@@ -1,10 +1,14 @@
-<mat-toolbar class="subHeader mb-5">
-  <div class="row">
-    <div class="col col-md-6">
-      <span>Allocation / {{ subjectSelected }}</span>
+<div class="subHeader mb-5">
+  <div class="d-flex">
+    <div>
+      <button mat-button type="button" (click)="onGoBack()">
+        <i class="fa fa-arrow-left"></i>
+      </button>
     </div>
+    <div class="mr-auto">Allocation / {{ subjectSelected }}</div>
+    <div>Available Seats : {{ availableSeats }}</div>
   </div>
-</mat-toolbar>
+</div>
 <div class="container">
   <table mat-table [dataSource]="this.dataSource" class="mat-elevation-z8">
     <!--- Note that these columns can be defined in any order.
@@ -53,3 +57,5 @@
     </button>
   </div>
 </div>
+
+<app-clg-list [hidden]="!goBack"></app-clg-list>

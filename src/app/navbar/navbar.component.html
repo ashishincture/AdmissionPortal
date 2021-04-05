@@ -28,41 +28,39 @@
   </div>
 </nav> -->
 
-
-  <mat-toolbar class="matToolbar">
+<mat-toolbar class="matToolbar">
+  <button
+    mat-icon-button
+    class="example-icon blob"
+    aria-label="Example icon-button with menu icon"
+  >
+    <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
+  </button>
+  <br /><br />
+  <span>Admission Portal</span>
+  <span class="example-spacer"></span>
+  <div class="ml-auto">
     <button
       mat-icon-button
       class="example-icon blob"
-      aria-label="Example icon-button with menu icon"
+      aria-label="Example icon-button with share icon"
     >
-      <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
+      <mat-icon
+        aria-hidden="false"
+        aria-label="Example home icon"
+        routerLink="/home"
+        >home</mat-icon
+      >
     </button>
-    <br /><br />
-    <span>Admission Portal</span>
-    <span class="example-spacer"></span>
-    <div class="ml-auto">
-      <button
-        mat-icon-button
-        class="example-icon blob"
-        aria-label="Example icon-button with share icon"
-      >
-        <mat-icon
-          aria-hidden="false"
-          aria-label="Example home icon"
-          routerLink="/home"
-          >home</mat-icon
-        >
-      </button>
-      <button
-        mat-icon-button
-        class="example-icon blob"
-        aria-label="Example icon-button with login icon"
-      >
-        <mat-icon routerLink="/login">login</mat-icon>
-      </button>
-    </div>
-  </mat-toolbar>
-
+    <button
+      mat-icon-button
+      class="example-icon blob"
+      aria-label="Example icon-button with login icon"
+    >
+      <mat-icon routerLink="/login">login</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>
 
 <mat-sidenav-container autosize>
   <mat-sidenav #sidenav mode="side">
@@ -86,7 +84,7 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content class="DetailPage">
-    <div style="height: 88vh" >
+    <div style="height: 88vh">
       <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>
