@@ -25,6 +25,7 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {Globals} from './globals';
+import { FaqComponent } from './faq/faq.component';
 
 @NgModule({
   declarations: [
@@ -38,8 +39,8 @@ import {Globals} from './globals';
     CourseListComponent,
     CarouselComponent,
     RoundComponent,
-    ListComponent
-    
+    ListComponent,
+    FaqComponent,
   ],
   imports: [
     BrowserModule,

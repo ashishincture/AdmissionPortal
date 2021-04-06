@@ -9,6 +9,7 @@ import { ClgListComponent } from './clg-list/clg-list.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { RoundComponent } from './round/round.component';
+import { FaqComponent } from './faq/faq.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'list/:id', component: ListComponent },
   { path: 'carousel', component: CarouselComponent },
   { path: 'round', component: RoundComponent },
+  { path: 'faq', component: FaqComponent}
   // {
   //   path: 'home',
   //   component: HomeComponent,
