@@ -26,7 +26,18 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {Globals} from './globals';
 import { FaqComponent } from './faq/faq.component';
+import { SeatmatrixComponent } from './seatmatrix/seatmatrix.component';
+import { DialogNewComponent } from './dialog-new/dialog-new.component';
+import { FusionChartsModule } from 'angular-fusioncharts';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+// Import FusionCharts library and chart modules
+import * as FusionCharts from 'fusioncharts';
+import * as charts from 'fusioncharts/fusioncharts.charts';
+import * as FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
 
+
+// Pass the fusioncharts library and chart modules
+FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,6 +52,8 @@ import { FaqComponent } from './faq/faq.component';
     RoundComponent,
     ListComponent,
     FaqComponent,
+    SeatmatrixComponent,
+    DialogNewComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,7 +67,9 @@ import { FaqComponent } from './faq/faq.component';
     MatGridListModule,
     MatDividerModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatAutocompleteModule,
+    FusionChartsModule
   ],
   providers: [
     MatTabsModule,
@@ -62,8 +77,8 @@ import { FaqComponent } from './faq/faq.component';
     MatGridListModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    Globals
-
+    Globals,
+    FusionChartsModule
   ],
   bootstrap: [AppComponent],
 })

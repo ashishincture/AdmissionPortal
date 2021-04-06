@@ -28,4 +28,7 @@ export class NavbarComponent implements OnInit {
   goToFAQ() {
     this.router.navigate(['/faq']);
   }
+  goToSeatMatrix(){
+    this.router.navigate(['/seatmatrix']);
+  }
 }

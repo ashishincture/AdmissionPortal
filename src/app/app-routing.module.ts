@@ -10,10 +10,12 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { RoundComponent } from './round/round.component';
 import { FaqComponent } from './faq/faq.component';
+import { SeatmatrixComponent } from './seatmatrix/seatmatrix.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
+  { path: 'seatmatrix', component: SeatmatrixComponent },
   { path: 'login', component: LoginComponent },
   { path: 'allotment', component: AllotmentComponent },
   { path: 'masterdata', component: MasterDataComponent },

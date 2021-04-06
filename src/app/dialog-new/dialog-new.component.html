@@ -1,0 +1,89 @@
+<h2 mat-dialog-title>Computer Science and Engineering</h2>
+<div class="row">
+    <div class="col-sm-6">
+        <form class="example-form">
+            <p>
+                <mat-form-field appearance="outline">
+                    <mat-label class="categorylabel">Total seats</mat-label>
+                    <input matInput type="number" class="categoryinput">
+
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field appearance="outline">
+                    <mat-label class="categorylabel">Management seats</mat-label>
+                    <input matInput type="number" class="categoryinput">
+
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field appearance="outline">
+                    <mat-label class="categorylabel">General merit</mat-label>
+                    <input matInput type="number" class="categoryinput">
+
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field appearance="outline">
+                    <mat-label class="categorylabel">Other Backward classes</mat-label>
+                    <input matInput type="number" class="categoryinput">
+
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field appearance="outline" class="categoryinput">
+                    <mat-label class="categorylabel">Scheduled caste and Scheduled Tribe</mat-label>
+                    <input matInput type="number" class="categoryinput">
+
+                </mat-form-field>
+            </p>
+        </form>
+    </div>
+    <div class="col-sm-6">
+        <div>
+            <div class="adddiv">
+                <button mat-button class="Addbutton" (click)="toggle()">Add Quota</button>
+            </div>
+
+            <ng-container *ngIf="show">
+                <div style="text-align: left;">
+                    <form>
+                        <p>
+                            <mat-form-field appearance="outline">
+                                <mat-label class="categorylabel">Category name</mat-label>
+                                <input matInput class="categoryinput">
+
+                            </mat-form-field>
+
+
+                            <mat-form-field appearance="outline" class="categoryinput">
+                                <mat-label class="categorylabel">Number of seats</mat-label>
+                                <input matInput type="number" class="categoryinput">
+
+                            </mat-form-field>
+                        </p>
+                    </form>
+
+                </div>
+            </ng-container>
+        </div>
+
+        <div class="chart">
+            <fusioncharts type='pie3d' 
+            width='400' 
+            height='330' 
+            [dataSource]='dataSource'
+            >
+            </fusioncharts>
+        </div>
+
+
+    </div>
+</div>
+
+
+
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close class="cancelbutton">Cancel</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial class="Addbutton">save</button>
+</mat-dialog-actions>
