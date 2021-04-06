@@ -2,6 +2,7 @@ import { MaterialModule } from './material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {MatFormFieldModule} from '@angular/material/form-field';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 
@@ -17,6 +18,13 @@ import { CourseListComponent } from './course-list/course-list.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { RoundComponent } from './round/round.component';
 import { ListComponent } from './list/list.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatCardModule} from '@angular/material/card';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import {Globals} from './globals';
 
 @NgModule({
   declarations: [
@@ -30,7 +38,8 @@ import { ListComponent } from './list/list.component';
     CourseListComponent,
     CarouselComponent,
     RoundComponent,
-    ListComponent,
+    ListComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -40,8 +49,21 @@ import { ListComponent } from './list/list.component';
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     MaterialModule,
+    MatFormFieldModule,
+    MatGridListModule,
+    MatDividerModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
-  providers: [],
+  providers: [
+    MatTabsModule,
+    MatCardModule,
+    MatGridListModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    Globals
+
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

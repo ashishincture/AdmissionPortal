@@ -11,7 +11,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { RoundComponent } from './round/round.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'allotment', component: AllotmentComponent },
