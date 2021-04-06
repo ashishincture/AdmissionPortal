@@ -17,6 +17,7 @@ import { CourseListComponent } from './course-list/course-list.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { RoundComponent } from './round/round.component';
 import { ListComponent } from './list/list.component';
+import { FaqComponent } from './faq/faq.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { ListComponent } from './list/list.component';
     CarouselComponent,
     RoundComponent,
     ListComponent,
+    FaqComponent,
   ],
   imports: [
     BrowserModule,

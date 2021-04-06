@@ -25,4 +25,7 @@ export class NavbarComponent implements OnInit {
   goToClgList() {
     this.router.navigate(['/clgList']);
   }
+  goToFAQ() {
+    this.router.navigate(['/faq']);
+  }
 }
