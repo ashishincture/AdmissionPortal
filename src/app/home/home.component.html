@@ -32,37 +32,11 @@
           <input matInput placeholder="Placeholder" [(ngModel)]="dataTemplate.collegeCode">
          
         </mat-form-field>
-        
- 
-  <br *ngIf="global.data.InstitutionType=='University(hierarchial)'" >
- 
-  <mat-form-field *ngIf="global.data.InstitutionType=='University(hierarchial)'" appearance="outline">
-    
-    <mat-label>Colleges</mat-label>
-    <mat-select  [(ngModel)]="dataTemplate.colleges">
-      <mat-option value="option1">Single</mat-option>
-      <mat-option value="option2">multiple</mat-option>
-      <mat-option value="option3">None</mat-option>
-    </mat-select>
-  </mat-form-field>
-  
-    
-   
-  <br>
-  
-  <mat-form-field appearance="outline">
-    <mat-label>Departments</mat-label>
-    <mat-select [(ngModel)]="dataTemplate.departments">
-      <mat-option value="option1">Single</mat-option>
-      <mat-option value="option2">multiple</mat-option>
-      <mat-option value="option3">None</mat-option>
-    </mat-select>
-  </mat-form-field>
  
   <br>
   <mat-form-field appearance="outline">
     <mat-label>Template Type</mat-label>
-    <mat-select [(ngModel)]="dataTemplate.TemplateType">
+    <mat-select [(ngModel)]="dataTemplate.courseTemplate">
       <mat-option value="option1">Engineering</mat-option>
       <mat-option value="option2">Management</mat-option>
       <mat-option value="option2">Hierarchical</mat-option>
@@ -112,18 +86,9 @@
   </mat-form-field>
   <mat-form-field appearance="outline" class="paddingInput">
     <mat-label>Template Type</mat-label>
-    <input matInput placeholder="Placeholder"  [(ngModel)]="dataTemplate.TemplateType" >
+    <input matInput placeholder="Placeholder"  [(ngModel)]="dataTemplate.courseTemplate" >
    
   </mat-form-field>
-   
-      <mat-form-field appearance="outline" class="paddingInput">
-        <mat-label>Institution Type</mat-label>
-        <mat-select [(ngModel)]="dataTemplate.InstitutionType" >
-          <mat-option value="University(hierarchial)">University</mat-option>
-          <mat-option value="College(Autonomous)">College(Autonomous)</mat-option>
-         
-        </mat-select>
-        </mat-form-field>
   
         <mat-form-field appearance="outline" class="paddingInput">
           <mat-label>UGC Reg no.</mat-label>
@@ -155,7 +120,7 @@
 
 <!-- <br *ngIf="global.data.InstitutionType=='University(hierarchial)'" > -->
 
-<mat-form-field *ngIf="global.data.InstitutionType=='University(hierarchial)'" class="paddingInput" appearance="outline">
+<!-- <mat-form-field *ngIf="global.data.InstitutionType=='University(hierarchial)'" class="paddingInput" appearance="outline">
 
 <mat-label>Colleges</mat-label>
 <mat-select   [(ngModel)]="dataTemplate.colleges" >
@@ -163,7 +128,7 @@
 <mat-option value="option2">multiple</mat-option>
 <mat-option value="option3">None</mat-option>
 </mat-select>
-</mat-form-field>
+</mat-form-field> -->
 <!-- <br> -->
 
 

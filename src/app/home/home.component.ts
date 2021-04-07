@@ -10,12 +10,9 @@ export class HomeComponent implements OnInit {
   data: string="hello";
   dataTemplate={
     college: "",
-    colleges:"",
     collegeCode:"",
-    departments:"",
-    TemplateType:"",
+    courseTemplate:"",
     Description:"",
-    InstitutionType:"",
     OwnershipType:"",
     collegeStrength:"",
     established:"",
