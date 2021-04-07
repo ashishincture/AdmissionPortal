@@ -1,0 +1,15 @@
+.cardClass{
+    padding: 2% 2% 2% 2% !important;
+}
+/* @media (min-width: 576px) */
+.card-deck {
+    align-items: center !important;
+  
+}
+.mat-card {
+    background: #fbf8ac;
+    color: rgba(0,0,0,.87);
+  }
+  .blackBorder{
+    border: 1.5px solid black;
+  }
