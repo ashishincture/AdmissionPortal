@@ -10,12 +10,7 @@ export class Globals {
     Colleges: "",
     Departments: "",
     Description: "",
-    CollegeDetail: [{
-      college: "School Of Engineering",
-      UGC_Reg_ID: "",
-      AICTE_Reg_ID: "",
-      courseTemplate: "",
-    }
+    CollegeDetail: [
     ],
     CollegeQuotas: [
       {
