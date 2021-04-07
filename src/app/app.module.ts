@@ -5,7 +5,7 @@ import { NgModule } from '@angular/core';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -34,7 +34,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import * as FusionCharts from 'fusioncharts';
 import * as charts from 'fusioncharts/fusioncharts.charts';
 import * as FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
-
+import { DocumentsComponent } from './documents/documents.component';
+import { StatusComponent } from './status/status.component';
 
 // Pass the fusioncharts library and chart modules
 FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
@@ -54,6 +55,8 @@ FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
     FaqComponent,
     SeatmatrixComponent,
     DialogNewComponent,
+    DocumentsComponent,
+    StatusComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,7 +72,8 @@ FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
     MatDatepickerModule,
     MatNativeDateModule,
     MatAutocompleteModule,
-    FusionChartsModule
+    FusionChartsModule,
+    FlexLayoutModule
   ],
   providers: [
     MatTabsModule,

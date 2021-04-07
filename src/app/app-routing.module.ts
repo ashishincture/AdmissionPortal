@@ -11,6 +11,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { RoundComponent } from './round/round.component';
 import { FaqComponent } from './faq/faq.component';
 import { SeatmatrixComponent } from './seatmatrix/seatmatrix.component';
+import { DocumentsComponent } from './documents/documents.component';
+import { StatusComponent } from './status/status.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -24,7 +26,10 @@ const routes: Routes = [
   { path: 'list/:id', component: ListComponent },
   { path: 'carousel', component: CarouselComponent },
   { path: 'round', component: RoundComponent },
-  { path: 'faq', component: FaqComponent}
+  { path: 'documents', component: DocumentsComponent },
+  { path: 'status', component: StatusComponent },
+  { path: 'faq', component: FaqComponent},
+
   // {
   //   path: 'home',
   //   component: HomeComponent,

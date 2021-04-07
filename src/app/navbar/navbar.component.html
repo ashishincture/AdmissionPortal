@@ -71,9 +71,15 @@
       <a mat-list-item [routerLink]="'/seatmatrix'" (click)="goToSeatMatrix()">
         Seat Matrix
       </a>
-      <a mat-list-item [routerLink]="'/chart'" (click)="goToChart()">
-        Verification
+      <a mat-list-item (click)="toggleMenu()">
+        Verification 
+         <mat-icon *ngIf="!showMenu">chevron_right</mat-icon>
+        <mat-icon *ngIf="showMenu">expand_more</mat-icon>
       </a>
+      <mat-nav-list class="sidenav-submenu " *ngIf="showMenu">
+        <a mat-list-item class="subList" [routerLink]="'/Documents'" (click)="goToDocuments()" > Documents</a>
+        <a mat-list-item class="subList" [routerLink]="'/Status'" (click)="goToStatus()"> Status</a>       
+      </mat-nav-list>
       <a mat-list-item [routerLink]="'/clgList'" (click)="goToClgList()">
         Allotment
       </a>
