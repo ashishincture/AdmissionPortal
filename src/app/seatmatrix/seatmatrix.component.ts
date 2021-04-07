@@ -6,6 +6,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogNewComponent } from '../dialog-new/dialog-new.component';
 //dialogRef: MatDialogRef <any> ;
 
+var Quotas =  {
+    name: "",
+    percent: ""
+  };
+
 var college = new Array([
   {
     name: 'R.V College of Engineering',
