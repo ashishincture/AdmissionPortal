@@ -19,21 +19,49 @@ export class HomeComponent implements OnInit {
     UGC_Reg_ID: "",
     AICTE_Reg_ID: ""
   };
+  dataTemplateDep={
+    dept: "",
+    deptCode:"",
+    Description:"",
+    established:"",
+    UGC_Reg_ID: "",
+    AICTE_Reg_ID: ""
+  };
   constructor(public router: Router,public global:Globals) { 
    
    
   }
  
   onPressSubmit(){
-    var sample= this.global.data.CollegeDetail;
-
-    console.log(this.dataTemplate);
-    console.log(this.global.data);
-    console.log(this.data);
+   
     this.global.data.CollegeDetail.push(this.dataTemplate);
+    this.dataTemplate={
+      college: "",
+      collegeCode:"",
+      courseTemplate:"",
+      Description:"",
+      OwnershipType:"",
+      collegeStrength:"",
+      established:"",
+      UGC_Reg_ID: "",
+      AICTE_Reg_ID: ""
+    };
+    
+   
+   }
+   onPressSubmitDept(){
+   
+    this.global.data.DeptDetail.push(this.dataTemplateDep);
+    this.dataTemplateDep={
+      dept: "",
+      deptCode:"",
+      Description:"",
+      established:"",
+      UGC_Reg_ID: "",
+      AICTE_Reg_ID: ""
+    };
     
     
-    console.log(this.global.data.CollegeDetail);
    }
   ngOnInit(): void {
   }

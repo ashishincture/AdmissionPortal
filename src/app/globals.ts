@@ -22,46 +22,7 @@ export class Globals {
         percent: ""
       }
     ],
-    DeptDetail: [{
-      dept: "Photonics",
-      UGC_Reg_ID: "",
-      AICTE_Reg_ID: "",
-      courseTemplate: {
-        sub: "",
-        id: "",
-        Seats: "",
-        Quotas: [
-          {
-            name: "",
-            percent: ""
-          },
-          {
-            name: "",
-            percent: ""
-          }
-        ]
-      }
-    },
-    {
-      dept: "Environmental Studies",
-      UGC_Reg_ID: "",
-      AICTE_Reg_ID: "",
-      courseTemplate: {
-        sub: "",
-        id: "",
-        Seats: "",
-        Quotas: [
-          {
-            name: "",
-            percent: ""
-          },
-          {
-            name: "",
-            percent: ""
-          }
-        ]
-      }
-    }
+    DeptDetail: [
     ],
     CourseTemplates: [
       {
