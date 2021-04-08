@@ -1,7 +1,7 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import{ MatDialog } from '@angular/material/dialog';
-// import { DialogApproveComponent } from '../dialog-approve/dialog-approve.component';
-// import { DialogNotApproveComponent } from '../dialog-not-approve/dialog-not-approve.component';
+import { DialogApproveComponent } from '../dialog-approve/dialog-approve.component';
+import { DialogNotApproveComponent } from '../dialog-not-approve/dialog-not-approve.component';
 import {FormControl} from '@angular/forms';
 
 
@@ -437,9 +437,9 @@ export class DocumentsComponent implements OnInit {
 
 
     if(flag===1 && flag1===1){
-      // this.dialog.open(DialogApproveComponent);
+      this.dialog.open(DialogApproveComponent);
     }else{
-      // this.dialog.open(DialogNotApproveComponent);
+      this.dialog.open(DialogNotApproveComponent);
     }
   
   }

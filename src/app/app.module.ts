@@ -36,6 +36,8 @@ import * as charts from 'fusioncharts/fusioncharts.charts';
 import * as FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
 import { DocumentsComponent } from './documents/documents.component';
 import { StatusComponent } from './status/status.component';
+import { DialogApproveComponent } from './dialog-approve/dialog-approve.component';
+import { DialogNotApproveComponent } from './dialog-not-approve/dialog-not-approve.component';
 
 // Pass the fusioncharts library and chart modules
 FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
@@ -57,6 +59,8 @@ FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
     DialogNewComponent,
     DocumentsComponent,
     StatusComponent,
+    DialogApproveComponent,
+    DialogNotApproveComponent,
   ],
   imports: [
     BrowserModule,
