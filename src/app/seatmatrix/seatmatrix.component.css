@@ -127,6 +127,30 @@ body { background: #ffffff; }
   margin-block-start: 20px;
 
 }
+/* .borderIt{
+  border: 1px solid black;
+} */
+.borderFab{
+  margin-top: 10px;
+}
+.categorylabel{
+  color:#3f3a64 ;
+ 
+}
+.categoryinput{
+  border: #3f3a64;
+  border-width: 2rem;
+  padding-left: 1rem;
+  width:10rem;
+}
+.Addbutton{
+  background:#3f3a64;
+  background: -webkit-gradient(linear, 0 0, 0 0, from( #7b59d0), to(#3f3a64));
+  background: -moz-linear-gradient( #7b59d0,#3f3a64);
+  background: linear-gradient( #7b59d0, #3f3a64);
+  border-top: 1px solid  #7b59d0;
+  color:   #d3d1da;
+}
 .Dropdown{
 
   background:  #d3d1d6;
@@ -135,8 +159,7 @@ body { background: #ffffff; }
  height: 3rem;
  padding-left: 1rem;
  padding-right: 1rem;
- margin-left: 20rem;
- margin-right: 20rem;
+ margin-left: 5rem;
   color: #3f3a64;  }
 
 .listofcourses{
@@ -287,6 +310,11 @@ a.flickr:active {
 /**
  * Using Sprites
  */
+ .adddiv{
+  padding-bottom: 10px;
+  margin-top: 20px;
+  margin-left: 40%;
+}
  .example-icon {
   position:relative;
   cursor: pointer;

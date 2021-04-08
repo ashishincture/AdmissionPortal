@@ -132,6 +132,14 @@ margin-bottom: 1rem;
   flex-shrink: 0;
   /* background-color: #79da77 !important; */
 }
+.Addbutton{
+  background:#3f3a64;
+  background: -webkit-gradient(linear, 0 0, 0 0, from( #7b59d0), to(#3f3a64));
+  background: -moz-linear-gradient( #7b59d0,#3f3a64);
+  background: linear-gradient( #7b59d0, #3f3a64);
+  border-top: 1px solid  #7b59d0;
+  color:   #d3d1da;
+}
   .example-button-container {
     display: flex;
     justify-content: center;
