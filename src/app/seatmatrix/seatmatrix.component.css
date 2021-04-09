@@ -76,7 +76,9 @@
   width: 90%;
   height: 100%;
 }
-
+.bground {
+  background: rgba(80, 78, 78, 0.788);
+}
 .expPanel .mat-expansion-panel-header-title {
   display: contents;
   font-size: x-large;
@@ -123,16 +125,38 @@ body {
   width: 100%;
   margin-block-start: 1 rem;
 }
+
+/* .borderIt{
+  border: 1px solid black;
+} */
+.borderFab {
+  margin-top: 10px;
+}
+.categorylabel {
+  color: #3f3a64;
+}
+.categoryinput {
+  border: #3f3a64;
+  border-width: 2rem;
+  padding-left: 1rem;
+  width: 10rem;
+}
+.Addbutton {
+  background: #3f3a64;
+  background: -webkit-gradient(linear, 0 0, 0 0, from(#7b59d0), to(#3f3a64));
+  background: -moz-linear-gradient(#7b59d0, #3f3a64);
+  background: linear-gradient(#7b59d0, #3f3a64);
+  border-top: 1px solid #7b59d0;
+  color: #d3d1da;
+}
 .Dropdown {
   background: #d3d1d6;
   font-weight: bold;
   border-radius: 10rem;
   height: 3rem;
-
   padding-left: 1rem;
   padding-right: 1rem;
-  margin-left: 20rem;
-  margin-right: 20rem;
+  margin-left: 5rem;
   color: #3f3a64;
 }
 
@@ -297,18 +321,18 @@ a.flickr:active {
 /**
  * Using Sprites
  */
-<<<<<<< HEAD
+
 .example-icon {
   position: relative;
-=======
- .adddiv{
+}
+
+.adddiv {
   padding-bottom: 10px;
   margin-top: 20px;
   margin-left: 40%;
 }
- .example-icon {
-  position:relative;
->>>>>>> 6924e86e079b4e079a69773e8cb282521bcf5bd0
+.example-icon {
+  position: relative;
   cursor: pointer;
   background: #25292c;
   margin: 0 10px 0 0;
