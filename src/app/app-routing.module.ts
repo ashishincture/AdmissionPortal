@@ -13,6 +13,7 @@ import { FaqComponent } from './faq/faq.component';
 import { SeatmatrixComponent } from './seatmatrix/seatmatrix.component';
 import { DocumentsComponent } from './documents/documents.component';
 import { StatusComponent } from './status/status.component';
+import { SubjectComponent } from './subject/subject.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -29,6 +30,7 @@ const routes: Routes = [
   { path: 'documents', component: DocumentsComponent },
   { path: 'status', component: StatusComponent },
   { path: 'faq', component: FaqComponent},
+  { path: 'subject', component: SubjectComponent}
 
   // {
   //   path: 'home',
