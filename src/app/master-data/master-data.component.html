@@ -1,58 +1,77 @@
-<div class="card-deck" style="justify-content: center;">
-    <div  class="cardClass" >
-    <mat-card class="blackBorder">  <mat-card-header>
-        <mat-card-title>Register your Institution</mat-card-title>
-    </mat-card-header>
-    <mat-card-content style="margin-left:1.4rem">
-    <mat-form-field appearance="outline">
-        <mat-label>Institution</mat-label>
-        <input matInput placeholder="Placeholder" [(value)]="global.data.InstitutionName">
-       
-      </mat-form-field>
-      
-     <br>
-     <mat-form-field appearance="outline">
-        <mat-label>Institution Type</mat-label>
-        <mat-select [(value)]="global.data.InstitutionType">
-          <mat-option value="University(hierarchial)">University</mat-option>
-          <mat-option value="College(Autonomous)">College(Autonomous)</mat-option>
-         
-        </mat-select>
-        </mat-form-field>
-        
- 
-  <br *ngIf="global.data.InstitutionType=='University(hierarchial)'" >
- 
-  <mat-form-field *ngIf="global.data.InstitutionType=='University(hierarchial)'" appearance="outline">
-    
-    <mat-label>Colleges</mat-label>
-    <mat-select  [(value)]="global.data.Colleges">
-      <mat-option value="option1">Single</mat-option>
-      <mat-option value="option2">multiple</mat-option>
-      <mat-option value="option3">None</mat-option>
-    </mat-select>
-  </mat-form-field>
-  <br>
-  
-  <mat-form-field appearance="outline">
-    <mat-label>Departments</mat-label>
-    <mat-select [(value)]="global.data.Departments">
-      <mat-option value="option1">Single</mat-option>
-      <mat-option value="option2">multiple</mat-option>
-      <mat-option value="option3">None</mat-option>
-    </mat-select>
-  </mat-form-field>
-  <br>
-  <mat-form-field appearance="outline">
-    <mat-label>Description</mat-label>
-    <textarea [(value)]="global.data.Description" matInput></textarea>
-  </mat-form-field>
-  <br>
-  <button mat-raised-button color="primary" style="align-self: center ;margin-left: 25%;" (click)="onPressSubmit()">Submit</button>
-    </mat-card-content>
-</mat-card>
+<div class="bgmd">
+  <div class="cardbox" style="justify-content: start">
+    <div>
+      <mat-card class="w3_info">
+        <mat-card-header>
+          <mat-card-title
+            ><p class="whitetext">Register your Institution</p></mat-card-title
+          >
+        </mat-card-header>
+        <mat-card-content>
+          <mat-form-field appearance="outline">
+            <mat-label><p class="whitetext">Institution</p></mat-label>
+
+            <input
+              matInput
+              placeholder="Placeholder"
+              [(value)]="global.data.InstitutionName"
+            />
+          </mat-form-field>
+
+          <br />
+          <mat-form-field appearance="outline">
+            <mat-label> <p class="whitetext">Institution Type</p></mat-label>
+            <mat-select [(value)]="global.data.InstitutionType">
+              <mat-option value="University(hierarchial)"
+                >University</mat-option
+              >
+              <mat-option value="College(Autonomous)"
+                >College(Autonomous)</mat-option
+              >
+            </mat-select>
+          </mat-form-field>
+
+          <br
+            *ngIf="global.data.InstitutionType == 'University(hierarchial)'"
+          />
+
+          <mat-form-field
+            *ngIf="global.data.InstitutionType == 'University(hierarchial)'"
+            appearance="outline"
+          >
+            <mat-label><p class="whitetext">Colleges</p></mat-label>
+            <mat-select [(value)]="global.data.Colleges">
+              <mat-option value="option1">Single</mat-option>
+              <mat-option value="option2">multiple</mat-option>
+              <mat-option value="option3">None</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <br />
+
+          <mat-form-field appearance="outline">
+            <mat-label><p class="whitetext">Departments</p></mat-label>
+            <mat-select [(value)]="global.data.Departments">
+              <mat-option value="option1">Single</mat-option>
+              <mat-option value="option2">multiple</mat-option>
+              <mat-option value="option3">None</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <br />
+          <mat-form-field appearance="outline">
+            <mat-label><p class="whitetext">Description</p></mat-label>
+            <textarea [(value)]="global.data.Description" matInput></textarea>
+          </mat-form-field>
+          <br />
+          <button
+            mat-raised-button
+            color="primary"
+            style="align-self: center; margin-left: 25%"
+            (click)="onPressSubmit()"
+          >
+            Submit
+          </button>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
 </div>
-
-</div>
-
-
