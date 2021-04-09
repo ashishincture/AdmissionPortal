@@ -297,8 +297,18 @@ a.flickr:active {
 /**
  * Using Sprites
  */
+<<<<<<< HEAD
 .example-icon {
   position: relative;
+=======
+ .adddiv{
+  padding-bottom: 10px;
+  margin-top: 20px;
+  margin-left: 40%;
+}
+ .example-icon {
+  position:relative;
+>>>>>>> 6924e86e079b4e079a69773e8cb282521bcf5bd0
   cursor: pointer;
   background: #25292c;
   margin: 0 10px 0 0;

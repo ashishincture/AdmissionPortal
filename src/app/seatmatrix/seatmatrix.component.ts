@@ -4,12 +4,10 @@ import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogNewComponent } from '../dialog-new/dialog-new.component';
+import { Globals } from '../globals'
 //dialogRef: MatDialogRef <any> ;
 
-var Quotas =  {
-    name: "",
-    percent: ""
-  };
+
 
 var college = new Array([
   {
@@ -350,24 +348,28 @@ var college = new Array([
     ]
   }
 
-
 ]);
 @Component({
   selector: 'app-seatmatrix',
   templateUrl: './seatmatrix.component.html',
   styleUrls: ['./seatmatrix.component.css']
 })
-
-
 export class SeatmatrixComponent implements OnInit {
 
+  dataTemplate = {
+    name: "",
+    percent: ""
+  };
+  public show: boolean = false;
+  public buttonName: any = 'Show';
   dataSource: any;
   selectedSlice = 'none';
   chart: any;
-  constructor(private zone: NgZone, public dialog: MatDialog) {
+  constructor(private zone: NgZone, public dialog: MatDialog, public global: Globals) {
+    this.global.data
     this.dataSource = {
       "chart": {
-        "caption": "Computer Science and Engineering",
+        "caption": "Seats Division",
         "plottooltext": "<b>$percentValue</b> of web servers run on $label servers",
         "showLegend": "1",
         "showPercentValues": "1",
@@ -378,7 +380,9 @@ export class SeatmatrixComponent implements OnInit {
         "theme": "fusion",
         "bgColor": "#000000",
       },
-      "data": [{
+      "data": 
+      // this.global.data.CollegeQuotas
+      [{
         "label": "General Merit",
         "value": "32647479"
       }, {
@@ -415,7 +419,23 @@ export class SeatmatrixComponent implements OnInit {
 
     return this.options.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
   }
+  onPressAddQuota() {
+    this.global.data.CollegeQuotas.push(this.dataTemplate);
+    this.dataTemplate = {
+      name: "",
+      percent: ""
+    };
+    this.toggle();
+  }
+  toggle() {
+    this.show = !this.show;
 
+    // CHANGE THE NAME OF THE BUTTON.
+    if (this.show)
+      this.buttonName = "Hide";
+    else
+      this.buttonName = "Show";
+  }
   openDialog() {
     var that = this;
     this.dialog.open(DialogNewComponent, {
