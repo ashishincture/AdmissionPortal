@@ -44,7 +44,6 @@ import { SubjectService } from './subject.service';
 import { UpdateDialogComponent } from './update-dialog/update-dialog.component';
 import {MatInputModule} from '@angular/material/input';
 import {MatTableModule} from '@angular/material/table';
-import { MatIconModule } from '@angular/material/icon';
 
 // Pass the fusioncharts library and chart modules
 FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
@@ -89,8 +88,7 @@ FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
     FlexLayoutModule,
     HttpClientModule,
     MatInputModule,
-    MatTableModule,
-    MatIconModule
+    MatTableModule
   ],
   providers: [
     MatTabsModule,
