@@ -14,7 +14,7 @@
     </mat-form-field>
     <mat-form-field >
       <mat-label>Choose an department</mat-label>
-      <mat-select >
+      <mat-select [(ngModel)]="DeptSearchKey" (ngModelChange)="DeptSearch()">
         <mat-option *ngFor="let Department of Departments" value="option1">{{Department.Department_Name}}</mat-option>
         <!-- <mat-option value="option2">ECE</mat-option>
         <mat-option value="option3">EEE</mat-option> -->

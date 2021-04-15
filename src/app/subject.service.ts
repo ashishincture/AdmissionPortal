@@ -24,4 +24,10 @@ export class SubjectService {
   createSubject(data:any){
       return this.http.post(`${this.uri}/Subject/NewSubject`, data);
   }
+
+  updateSubject(subject_ID:string,data:any){
+    return this.http.post(`${this.uri}/Subject/UpdateSubject/`+subject_ID, data);
 }
+ 
+}
+

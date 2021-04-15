@@ -8,6 +8,7 @@ import {
 } from '@angular/material/dialog';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { SubjectService } from '../subject.service';
+// import { debugger } from 'fusioncharts';
 // import {SubjectClass} from "../models/SubjectClass.model";
 // import {Batch} from "../data";
 export interface PeriodicElement {
@@ -53,6 +54,7 @@ export class SubjectComponent implements OnInit {
   dataSource = this.Subjects;
   dummy=this.Subjects;
   SubSearchKey:any;
+  DeptSearchKey:string;
   subjectInstance:Subject={
     Subject_ID: "",
     Subject_Name: "",
@@ -101,9 +103,18 @@ export class SubjectComponent implements OnInit {
       this.table.renderRows();
     });
 }
-onEditSubject(id:any){
-console.log(id);
-const dialogRef = this.dialog.open(UpdateDialogComponent);
+onEditSubject(rowData:any){
+console.log(rowData);
+const dialogRef = this.dialog.open(UpdateDialogComponent, {data :rowData});
+dialogRef.afterClosed().subscribe((result) => {
+  if(result.edited){
+    this.SubjectService.updateSubject(result.data.Subject_ID,result.data).subscribe((data:any)=>{
+      console.log(data.data.msg);
+    });
+  }
+  this.fetchSubjectlist();
+  this.table.renderRows();
+});
 }
 SubSearch(){
 if(this.SubSearchKey == ""){
@@ -128,5 +139,7 @@ reverse:boolean = false;
 SubSort(Subject_Name:any){
 this.key = Subject_Name;
 this.reverse = !this.reverse;
+}
+DeptSearch(){
 }
 }
