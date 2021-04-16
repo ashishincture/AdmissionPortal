@@ -17,6 +17,8 @@ import { CourseListComponent } from './course-list/course-list.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { RoundComponent } from './round/round.component';
 import { ListComponent } from './list/list.component';
+import { SignupComponent } from './signup/signup.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,7 @@ import { ListComponent } from './list/list.component';
     CarouselComponent,
     RoundComponent,
     ListComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,6 +43,7 @@ import { ListComponent } from './list/list.component';
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     MaterialModule,
+    Ng2SearchPipeModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

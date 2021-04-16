@@ -10,28 +10,41 @@
   </div>
 </div>
 <div class="container">
-  <table mat-table [dataSource]="this.dataSource" class="mat-elevation-z8">
+  <table
+    mat-table
+    [dataSource]="this.dataSource"
+    class="mat-elevation-z8"
+    matSort
+  >
     <!--- Note that these columns can be defined in any order.
                 The actual rendered columns are set as a property on the row definition" -->
 
     <!-- Position Column -->
     <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef>No.</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>No.</th>
       <td mat-cell *matCellDef="let element">{{ element.id }}</td>
     </ng-container>
 
     <!-- Name Column -->
     <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
       <td mat-cell *matCellDef="let element">{{ element.name }}</td>
     </ng-container>
     <ng-container matColumnDef="rank">
-      <th mat-header-cell *matHeaderCellDef>Rank</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        Rank
+        <!-- <i
+          class="fa fa-arrow-up"
+          aria-hidden="true"
+          (click)="onRankSort()"
+          style="cursor: pointer"
+        ></i> -->
+      </th>
       <td mat-cell *matCellDef="let element">{{ element.rank }}</td>
     </ng-container>
     <!-- Weight Column -->
     <ng-container matColumnDef="status">
-      <th mat-header-cell *matHeaderCellDef>Status</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
       <td mat-cell *matCellDef="let element">
         <div *ngIf="element.status === false">
           <i class="fa fa-check-circle" style="font-size: 24px; color: red"></i>
@@ -51,10 +64,45 @@
     <tr mat-row *matRowDef="let row; columns: this.displayedColumns"></tr>
   </table>
 
-  <div>
-    <button type="submit" class="btn btnAllot mt-5" (click)="onSeatAllot()">
+  <div class="mt-5 d-flex justify-content-end">
+    <button type="submit" class="btn btn-primary mr-2" (click)="onSeatAllot()">
       Allot Seats
     </button>
+    <button type="submit" class="btn btn-success" (click)="onSaveAllotment()">
+      Save Allotment
+    </button>
+    <!-- <button
+      type="submit"
+      class="btn btn-outline-success"
+      (click)="popup = true"
+    >
+      Save Allotment
+    </button> -->
+  </div>
+
+  <div class="overlay" *ngIf="popup">
+    <div class="popup">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Modal title</h2>
+          <!-- <h2>Here i am</h2> -->
+          <a class="close" (click)="popup = false">&times;</a>
+        </div>
+
+        <!-- <div class="container-fluid">Add rows here</div> -->
+
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            (click)="popup = false"
+          >
+            Close
+          </button>
+          <button type="button" class="btn btn-primary">Save</button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 

@@ -1,3 +1,4 @@
+import { SignupComponent } from './signup/signup.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { ListComponent } from './list/list.component';
 import { AllotmentComponent } from './allotment/allotment.component';
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'list/:id', component: ListComponent },
   { path: 'carousel', component: CarouselComponent },
   { path: 'round', component: RoundComponent },
+  { path: 'signup', component: SignupComponent },
   // {
   //   path: 'home',
   //   component: HomeComponent,

@@ -1,5 +1,5 @@
 <div class="signinform body-bg">
-  <h1 class="adm-form text-white">Login Form</h1>
+  <h1 class="adm-form text-white">SignUp Form</h1>
   <!-- container -->
   <div class="container">
     <!-- main content -->
@@ -14,8 +14,8 @@
               type="text"
               matInput
               placeholder="Admin Username"
-              [(ngModel)]="username"
-              name="username"
+              [(ngModel)]="user"
+              name="user"
               required
             />
           </div>
@@ -25,8 +25,8 @@
               type="password"
               matInput
               placeholder="Password"
-              [(ngModel)]="password"
-              name="password"
+              [(ngModel)]="pass"
+              name="pass"
               required
             />
           </div>
@@ -45,12 +45,12 @@
           <button
             class="btn btn-primary btn-block"
             type="submit"
-            (click)="login()"
+            (click)="signup()"
           >
-            Login
+            SignUp
           </button>
         </form>
-        <p class="continue"><span>or Login with</span></p>
+        <p class="continue"><span>or Signup with</span></p>
         <div class="social-login">
           <a href="#facebook">
             <div class="facebook">
@@ -68,9 +68,7 @@
             </div>
           </a>
         </div>
-        <p class="account">
-          Don't have an account? <a routerLink="/signup">Sign up</a>
-        </p>
+        <p class="account">Have an account! <a routerLink="/login">Login</a></p>
       </div>
     </div>
     <!-- //main content -->
