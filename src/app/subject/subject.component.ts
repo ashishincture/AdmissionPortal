@@ -8,7 +8,8 @@ import {
 } from '@angular/material/dialog';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { SubjectService } from '../subject.service';
-// import { debugger } from 'fusioncharts';
+import * as XLXS from 'xlsx';
+const XLSX = require('xlsx');
 // import {SubjectClass} from "../models/SubjectClass.model";
 // import {Batch} from "../data";
 export interface PeriodicElement {
@@ -52,8 +53,10 @@ export class SubjectComponent implements OnInit {
   Departments:Department[]=[];
   Subjects:Subject[]=[];
   dataSource = this.Subjects;
+  newTablelist:[]=[];
   dummy=this.Subjects;
   SubSearchKey:any;
+  arrayBuffer:any;
   DeptSearchKey:string;
   subjectInstance:Subject={
     Subject_ID: "",
@@ -141,5 +144,26 @@ this.key = Subject_Name;
 this.reverse = !this.reverse;
 }
 DeptSearch(){
+}
+onFileUpload(oEvent){
+  var file= oEvent.target.files[0];     
+  let fileReader = new FileReader();    
+  fileReader.readAsArrayBuffer(file);     
+  fileReader.onload = (e) => {    
+      this.arrayBuffer = fileReader.result;    
+      var data = new Uint8Array(this.arrayBuffer);    
+      var arr = new Array();    
+      for(var i = 0; i != data.length; ++i) arr[i] = String.fromCharCode(data[i]);    
+      var bstr = arr.join("");    
+      var workbook = XLSX.read(bstr, {type:"binary"});    
+      var first_sheet_name = workbook.SheetNames[0];    
+      var worksheet = workbook.Sheets[first_sheet_name];       
+        this.newTablelist = XLSX.utils.sheet_to_json(worksheet,{raw:true});     
+            var filelist = [];    
+            console.log(this.newTablelist)   
+            this.dataSource=this.dataSource.concat(this.newTablelist);
+}
+
+// this.table.renderRows();
 }
 }

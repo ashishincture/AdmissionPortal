@@ -28,3 +28,6 @@
 .table th, .table td {
     vertical-align: middle;
 }
+.file-upload>input {
+	display: none;
+  }
