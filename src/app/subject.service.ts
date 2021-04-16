@@ -26,7 +26,7 @@ export class SubjectService {
   }
 
   updateSubject(subject_ID:string,data:any){
-    return this.http.post(`${this.uri}/Subject/UpdateSubject/`+subject_ID, data);
+    return this.http.put(`${this.uri}/Subject/UpdateSubject/`+subject_ID, data);
 }
  
 }

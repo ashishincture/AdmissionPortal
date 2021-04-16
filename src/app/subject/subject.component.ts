@@ -8,8 +8,8 @@ import {
 } from '@angular/material/dialog';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { SubjectService } from '../subject.service';
-import * as XLXS from 'xlsx';
-const XLSX = require('xlsx');
+import * as XLSX from 'xlsx';
+// const XLSX = require('xlsx');
 // import {SubjectClass} from "../models/SubjectClass.model";
 // import {Batch} from "../data";
 export interface PeriodicElement {
@@ -53,7 +53,6 @@ export class SubjectComponent implements OnInit {
   Departments:Department[]=[];
   Subjects:Subject[]=[];
   dataSource = this.Subjects;
-  newTablelist:[]=[];
   dummy=this.Subjects;
   SubSearchKey:any;
   arrayBuffer:any;
@@ -101,9 +100,10 @@ export class SubjectComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       this.SubjectService.createSubject(result.data).subscribe((data:any)=>{
         console.log(data.data.msg);
-      });
-      this.fetchSubjectlist();
+        this.fetchSubjectlist();
       this.table.renderRows();
+      });
+      
     });
 }
 onEditSubject(rowData:any){
@@ -113,10 +113,11 @@ dialogRef.afterClosed().subscribe((result) => {
   if(result.edited){
     this.SubjectService.updateSubject(result.data.Subject_ID,result.data).subscribe((data:any)=>{
       console.log(data.data.msg);
+      this.fetchSubjectlist();
+      this.table.renderRows();
     });
   }
-  this.fetchSubjectlist();
-  this.table.renderRows();
+  
 });
 }
 SubSearch(){
@@ -158,10 +159,11 @@ onFileUpload(oEvent){
       var workbook = XLSX.read(bstr, {type:"binary"});    
       var first_sheet_name = workbook.SheetNames[0];    
       var worksheet = workbook.Sheets[first_sheet_name];       
-        this.newTablelist = XLSX.utils.sheet_to_json(worksheet,{raw:true});     
-            var filelist = [];    
-            console.log(this.newTablelist)   
-            this.dataSource=this.dataSource.concat(this.newTablelist);
+      var newTablelist = XLSX.utils.sheet_to_json(worksheet,{raw:true});     
+      var filelist =[];    
+      filelist=newTablelist;
+      console.log(newTablelist)   
+      this.dataSource=this.dataSource.concat(filelist);
 }
 
 // this.table.renderRows();
