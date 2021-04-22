@@ -13,9 +13,6 @@
 	text-align:center;
 	box-shadow: 2px 2px 3px #999;
 }
-.ComponentBorderClass{
-	margin:10px;
-}
 .SubUploadBtnClass{
 	width: 48px;
 	float: right;
@@ -27,7 +24,26 @@
 }
 .table th, .table td {
     vertical-align: middle;
+	color: white;
 }
 .file-upload>input {
 	display: none;
+  }
+  .subHeader {
+	background-color: #3f3a64;
+	color: #e9e9e5;
+  }
+  .searchBar{
+	border-radius: 25px;
+	height: 40px;
+	line-height: 40px;
+	width: 100%;
+	  
+  }
+
+  .subjectEditBtn{
+	border: none;
+    background-color: #7b59d0;
+    color: white;
+    border-radius: 10%;
   }

@@ -1,11 +1,13 @@
-<div class="ComponentBorderClass">
-    <div style="background-color: white;">
+<div>
+  <div class="subHeader">
+    <mat-label style="font-size: 1.3rem;margin: 1.2%;">Subjects</mat-label>
+    
       <mat-form-field class="SubSearchIconClass">
         <mat-icon  matPrefix>search</mat-icon>
-        <input matInput type="search" [(ngModel)]="SubSearchKey" (ngModelChange)="SubSearch()" class="search-input">
+        <input matInput type="search" [(ngModel)]="SubSearchKey" (ngModelChange)="SubSearch()" >
     </mat-form-field>
     <mat-form-field >
-      <mat-label>Choose an Regulation</mat-label>
+      <mat-label>Regulation</mat-label>
       <mat-select >
         <mat-option *ngFor="let Regulation of Regulations" value="option1">{{Regulation.Regulation_Name}}</mat-option>
         <!-- <mat-option value="option2">R16</mat-option>
@@ -13,7 +15,7 @@
       </mat-select>
     </mat-form-field>
     <mat-form-field >
-      <mat-label>Choose an department</mat-label>
+      <mat-label>Department</mat-label>
       <mat-select [(ngModel)]="DeptSearchKey" (ngModelChange)="DeptSearch()">
         <mat-option *ngFor="let Department of Departments" value="option1">{{Department.Department_Name}}</mat-option>
         <!-- <mat-option value="option2">ECE</mat-option>
@@ -28,15 +30,8 @@
       <!-- </button> -->
     </div>
     
-    </div>
-    <!-- <mat-card class="example-card">
-      <mat-card-content> -->
-        <div>
-          
-        </div>
-      <!-- </mat-card-content>
-    </mat-card> -->
-    <div class="pt-3" style="padding: 15px;">
+  </div>
+    <div class="pt-3" style="padding: 15px;background-color: #121212;">
       <div class="example-button-container">
         <button class="floatingBtn" mat-fab  aria-label="Add new subjects" (click)="onAddNewSubject()">
           <mat-icon>add</mat-icon>
@@ -46,7 +41,7 @@
       #table
       mat-table
       [dataSource]="dataSource"
-      class="mat-elevation-z8 table" style="width: 100%;"
+      class="mat-elevation-z8 table" style="width: 100%;background-color: #141414;"
     >
       <ng-container matColumnDef="Subject_ID">
         <th mat-header-cell *matHeaderCellDef class="tablecss">Subject Code</th>
@@ -75,7 +70,7 @@
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef class="tablecss">Actions</th>
         <td mat-cell *matCellDef="let element">
-          <button (click)="onEditSubject(element)">
+          <button class="subjectEditBtn" (click)="onEditSubject(element)">
             <mat-icon>edit</mat-icon>
           </button>
         </td>
