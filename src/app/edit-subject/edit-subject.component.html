@@ -1,0 +1,41 @@
+<body style="background-color: #333333;position: absolute;height: 100%;width: 100%;">
+    <div class="EditSubjectMaincontainer">
+        <h3 style="color: white;"> Edit Subject Details</h3>
+        <div class="addSubjecSubcontainer">
+            <form [formGroup]="myEditForm" class="row">
+                <div class="subdetails form-group col">
+                    <mat-form-field appearance="standard" class="formClass">
+                        <mat-label style="color: white;">Subject Name</mat-label>
+                        <input matInput placeholder="Enter Subject Name" style="color: #007bff;" formControlName="subjectName">
+                    </mat-form-field>
+                </div>
+                <div class="subdetails form-group col">
+                    <mat-form-field appearance="standard">
+                        <mat-label style="color: white;">Subject Code</mat-label>
+                        <input matInput placeholder="Enter Subject Code" style="color: #007bff;" formControlName="subjectCode">
+    
+                    </mat-form-field>
+                </div>
+                <div class="subdetails form-group col">
+                    <mat-form-field appearance="standard">
+                        <mat-label style="color: white;">Subject Short Code</mat-label>
+                        <input matInput placeholder="Enter Subject Code" style="color: #007bff;" formControlName="shortCode">
+    
+                    </mat-form-field>
+                </div>
+                <div class="subdetails form-group col">
+                    <mat-form-field appearance="standard">
+                        <mat-label style="color: white;">* Credits</mat-label>
+                        <input matInput placeholder="Enter Credits" style="color: #007bff;" formControlName="credits">
+    
+                    </mat-form-field>
+                </div>
+            </form>
+        </div>
+        <div class="saveBtn">
+            <button mat-raised-button color="warn" (click)="onCancelEdit()">Cancel</button>
+            <button mat-raised-button color="primary" (click)="onSaveEditedDetails()" style="margin-left: 1rem;">Save</button>
+        </div>
+    </div>
+    
+</body>

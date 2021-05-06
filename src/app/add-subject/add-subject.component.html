@@ -1,0 +1,62 @@
+<body style="background-color: #333333;position: absolute;height: 100%;width: 100%;">
+    <h4 style="color: white;" class="addSubjecth3">Add Subject</h4>
+    <!-- <div class="addcontainer">
+        <div class="hoddetails">
+            <mat-form-field appearance="standard" class="formClass">
+                <mat-label style="color: white;">Department Name</mat-label>
+                <input matInput style="color: #007bff;" [value]="departmentName">
+            </mat-form-field>
+        </div>
+        <div class="hoddetails">
+            <mat-form-field appearance="standard">
+                <mat-label style="color: white;">HOD Name</mat-label>
+                <input matInput style="color: #007bff;" [value]="hodName">
+    
+            </mat-form-field>
+        </div>
+    </div> -->
+    <div class="addSubjectMaincontainer">
+        <h3 style="color: white;">Subject Details</h3>
+        <div class="addSubjecSubcontainer">
+            <form [formGroup]="myForm" class="row">
+                <div class="subdetails form-group col">
+                    <mat-form-field appearance="standard" class="formClass">
+                        <mat-label style="color: white;">Subject Name</mat-label>
+                        <input matInput placeholder="Enter Subject Name" style="color: #007bff;" formControlName="subjectName">
+                    </mat-form-field>
+                </div>
+                <div class="subdetails form-group col">
+                    <mat-form-field appearance="standard">
+                        <mat-label style="color: white;">Subject Code</mat-label>
+                        <input matInput placeholder="Enter Subject Code" style="color: #007bff;" formControlName="subjectCode">
+    
+                    </mat-form-field>
+                </div>
+                <div class="subdetails form-group col">
+                    <mat-form-field appearance="standard">
+                        <mat-label style="color: white;">Type</mat-label>
+                        <mat-select class="selectRegdetails" formControlName="type" style="color: white;">
+                            <mat-option value="core">Core</mat-option>
+                            <mat-option value="professional elective">Professional Elective</mat-option>
+                            <mat-option value="optional elective">Optional Elective</mat-option>
+                        </mat-select>
+    
+                    </mat-form-field>
+                </div>
+                <div class="subdetails form-group col">
+                    <mat-form-field appearance="standard">
+                        <mat-label style="color: white;">* Credits</mat-label>
+                        <input matInput placeholder="Enter Credits" style="color: #007bff;" formControlName="credits">
+    
+                    </mat-form-field>
+                </div>
+            </form>
+        </div>
+        <div class="saveBtn">
+            <button mat-raised-button color="warn" (click)="onCancelAdd()">Cancel</button>
+            <button mat-raised-button color="primary" (click)="onSaveSubjectDetails()" style="margin-left: 1rem;">Save</button>
+        </div>
+    </div>
+    
+</body>
+
