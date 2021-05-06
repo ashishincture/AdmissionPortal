@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
 
     if (flag === 1) {
       this.toastr.success('Logged In', 'Success');
-      this.router.navigate(['home']);
+      this.router.navigate(['masterdata']);
     } else {
       this.toastr.error('Invalid Credentials', 'Error');
     }
