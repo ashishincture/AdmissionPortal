@@ -83,7 +83,7 @@ export class CurriculumComponent implements OnInit,AfterViewInit {
       console.log('form invalid');
         return;
     }
-
+//aaaaa
     let Crvalue=this.service.CRData.find(({
       code
     })=>code===this.CRdetails.value.curriculum);
