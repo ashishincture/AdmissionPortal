@@ -424,6 +424,7 @@ export class SeatmatrixComponent implements OnInit {
     this.dataTemplate = {
       name: "",
       percent: ""
+      
     };
     this.toggle();
   }
