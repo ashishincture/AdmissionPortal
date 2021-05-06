@@ -58,17 +58,6 @@
                 [(ngModel)]="dataTemplate.percent"
               />
             </mat-form-field>
-
-            <div class="col-sm-2 borderFab">
-              <button
-                mat-mini-fab
-                color="primary"
-                aria-label="Example"
-                (click)="onPressAddQuota()"
-              >
-                <mat-icon>add</mat-icon>
-              </button>
-            </div>
           </div>
         </div>
       </ng-container>
@@ -80,109 +69,14 @@
             <div id="container">
               <div class="row abcd">
                 <div class="col-sm-7">
-                  <a href="#" class="s3d dribbble">
-                    Computer science and Engineering
+                  <a
+                    (click)="chartchange(courses)"
+                    class="s3d dribbble"
+                    *ngFor="let courses of courselistarray"
+                  >
+                    {{ courses }}
                     <span class="icons dribbble"></span>
                   </a>
-                </div>
-                <div class="col-sm-5">
-                  <button
-                    mat-mini-fab
-                    class="example-icon blob"
-                    (click)="openDialog()"
-                    aria-label="Edit or view"
-                  >
-                    <mat-icon>edit</mat-icon>
-                  </button>
-                </div>
-              </div>
-              <div class="row abcd">
-                <div class="col-sm-7">
-                  <a href="#" class="s3d dribbble">
-                    Information science and Engineering
-                    <span class="icons dribbble"></span>
-                  </a>
-                </div>
-                <div class="col-sm-5">
-                  <button
-                    mat-mini-fab
-                    class="example-icon blob"
-                    aria-label="Edit or view"
-                  >
-                    <mat-icon>edit</mat-icon>
-                  </button>
-                </div>
-              </div>
-
-              <div class="row abcd">
-                <div class="col-sm-7">
-                  <a href="#" class="s3d dribbble">
-                    Electronics and Communication
-                    <span class="icons dribbble"></span>
-                  </a>
-                </div>
-                <div class="col-sm-5">
-                  <button
-                    mat-mini-fab
-                    class="example-icon blob"
-                    aria-label="Edit or view"
-                  >
-                    <mat-icon>edit</mat-icon>
-                  </button>
-                </div>
-              </div>
-
-              <div class="row abcd">
-                <div class="col-sm-7">
-                  <a href="#" class="s3d dribbble">
-                    Mechanical Engineering
-                    <span class="icons dribbble"></span>
-                  </a>
-                </div>
-                <div class="col-sm-5">
-                  <button
-                    mat-mini-fab
-                    class="example-icon blob"
-                    aria-label="Edit or view"
-                  >
-                    <mat-icon>edit</mat-icon>
-                  </button>
-                </div>
-              </div>
-
-              <div class="row abcd">
-                <div class="col-sm-7">
-                  <a href="#" class="s3d dribbble">
-                    Civil Engineering
-                    <span class="icons dribbble"></span>
-                  </a>
-                </div>
-                <div class="col-sm-5">
-                  <button
-                    mat-mini-fab
-                    class="example-icon blob"
-                    aria-label="Edit or view"
-                  >
-                    <mat-icon>edit</mat-icon>
-                  </button>
-                </div>
-              </div>
-
-              <div class="row abcd">
-                <div class="col-sm-7">
-                  <a href="#" class="s3d dribbble">
-                    Electrical and Electronics
-                    <span class="icons dribbble"></span>
-                  </a>
-                </div>
-                <div class="col-sm-5">
-                  <button
-                    mat-mini-fab
-                    class="example-icon blob"
-                    aria-label="Edit or view"
-                  >
-                    <mat-icon>edit</mat-icon>
-                  </button>
                 </div>
               </div>
             </div>
