@@ -1,0 +1,15 @@
+<div>
+    <mat-selection-list #subjList>
+        <mat-list-option *ngFor="let subject of rowData" class="row"> 
+          <div class="col">
+            {{subject.code}}              {{subject.name}}
+          </div>
+        </mat-list-option>
+      </mat-selection-list>
+      <footer style="float: right;">
+          <span></span>
+          <button mat-raised-button color="primary" style="float: inline-end;  margin: 2px;" (click)="saveSub()">Save</button>
+          <button mat-raised-button style="float: inline-end; margin:2px" (click)="cancelDiag()">Cancel</button>
+      </footer>
+</div>
+

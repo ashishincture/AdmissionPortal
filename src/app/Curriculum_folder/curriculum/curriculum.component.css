@@ -1,0 +1,13 @@
+background {
+    background: rgba(17, 17, 17, 0.87);
+}
+.Btn{
+    background: #3f3a64;
+  background: -webkit-gradient(linear, 0 0, 0 0, from(#7b59d0), to(#3f3a64));
+  background: -moz-linear-gradient(#7b59d0, #3f3a64);
+  background: linear-gradient(#7b59d0, #3f3a64);
+  border-top: 1px solid #7b59d0;
+  color: #d3d1da;
+}
+
+

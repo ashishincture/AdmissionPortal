@@ -50,6 +50,10 @@ import { RegulationDetailsComponent } from './regulation-details/regulation-deta
 import { DepartmentDetailsComponent } from './department-details/department-details.component';
 import { AddSubjectComponent } from './add-subject/add-subject.component';
 import { EditSubjectComponent } from './edit-subject/edit-subject.component';
+import { CurriculumComponent } from './Curriculum_folder/curriculum/curriculum.component';
+import { CRcomp1Component } from './Curriculum_folder/crcomp1/crcomp1.component';
+import { CreateCRComponent } from './Curriculum_folder/create-cr/create-cr.component';
+import { SubjDialogComponent } from './Curriculum_folder/subj-dialog/subj-dialog.component';
 
 // Pass the fusioncharts library and chart modules
 FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
@@ -79,7 +83,11 @@ FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
     RegulationDetailsComponent,
     DepartmentDetailsComponent,
     AddSubjectComponent,
-    EditSubjectComponent
+    EditSubjectComponent,
+    CurriculumComponent,
+    CRcomp1Component,
+    CreateCRComponent,
+    SubjDialogComponent
   ],
   imports: [
     BrowserModule,
