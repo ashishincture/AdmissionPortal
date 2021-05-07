@@ -41,6 +41,22 @@ import { DialogNotApproveComponent } from './dialog-not-approve/dialog-not-appro
 import { HttpClientModule } from '@angular/common/http';
 import { DocumentsServiceService } from './documents-service.service';
 
+import { SubjectComponent } from './subject/subject.component';
+
+import { SubjectService } from './subject.service';
+import { UpdateDialogComponent } from './update-dialog/update-dialog.component';
+import {MatInputModule} from '@angular/material/input';
+import {MatTableModule} from '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
+import { RegulationComponent } from './regulation/regulation.component';
+import { RegulationDetailsComponent } from './regulation-details/regulation-details.component';
+import { DepartmentDetailsComponent } from './department-details/department-details.component';
+import { AddSubjectComponent } from './add-subject/add-subject.component';
+import { EditSubjectComponent } from './edit-subject/edit-subject.component';
+import { CurriculumComponent } from './Curriculum_folder/curriculum/curriculum.component';
+import { CRcomp1Component } from './Curriculum_folder/crcomp1/crcomp1.component';
+import { CreateCRComponent } from './Curriculum_folder/create-cr/create-cr.component';
+import { SubjDialogComponent } from './Curriculum_folder/subj-dialog/subj-dialog.component';
 
 // Pass the fusioncharts library and chart modules
 FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
@@ -64,6 +80,17 @@ FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
     StatusComponent,
     DialogApproveComponent,
     DialogNotApproveComponent,
+    SubjectComponent,
+    UpdateDialogComponent,
+    RegulationComponent,
+    RegulationDetailsComponent,
+    DepartmentDetailsComponent,
+    AddSubjectComponent,
+    EditSubjectComponent,
+    CurriculumComponent,
+    CRcomp1Component,
+    CreateCRComponent,
+    SubjDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -81,7 +108,10 @@ FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
     MatAutocompleteModule,
     FusionChartsModule,
     FlexLayoutModule,
-    HttpClientModule
+    HttpClientModule,
+    MatInputModule,
+    MatTableModule,
+    MatIconModule
   ],
   providers: [
     MatTabsModule,
@@ -91,7 +121,8 @@ FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
     MatNativeDateModule,
     Globals,
     FusionChartsModule,
-    DocumentsServiceService
+    DocumentsServiceService,
+    SubjectService
   ],
   bootstrap: [AppComponent],
 })

@@ -1,0 +1,58 @@
+<h4 mat-dialog-title>
+    <mat-toolbar role="toolbar" class="task-header">
+        <span> Add Subject</span>
+        <span style=" flex: 1 1 auto;"></span>
+        <button mat-icon-button>
+            <mat-icon mat-list-icon>close</mat-icon>
+        </button>
+    </mat-toolbar>
+  </h4>
+  <mat-dialog-content class="mat-typography" >
+      <form class="float-left" [formGroup]="myForm">
+        <div>
+          <div style="display: flex;">
+              <mat-form-field appearance="outline" style="width:50%;" class="md-form form-group">
+                <mat-label>Regulation</mat-label>
+                <input matInput formControlName="Regulation_ID"  ([ngModel])='sub.Regulation_ID'>
+              </mat-form-field>
+              <mat-form-field style="width:50%;margin:0px 7px 0px 7px;" appearance="outline" class="md-form form-group">
+                <mat-label>Department</mat-label>
+                <input matInput formControlName="Department_ID"  ([ngModel])='sub.Department_ID'>
+              </mat-form-field>
+          </div>
+            
+              <div style="display: flex;">
+                    <mat-form-field appearance="outline" style="width:50%;">
+                        <mat-label>Subject code</mat-label>
+                        <input matInput placeholder="Ex.R00DD000" formControlName="Subject_ID"  required ([ngModel])='sub.Subject_ID'>
+                      </mat-form-field>
+                      <mat-form-field appearance="outline" style="width:50%;margin:0px 7px 0px 7px;" >
+                        <mat-label>Subject Name</mat-label>
+                        <input matInput placeholder="Enter Subject Name" formControlName="Subject_Name"  required ([ngModel])='sub.Subject_Name'>
+                      </mat-form-field>
+              </div>
+              <div style="display: flex;">
+                  <mat-form-field appearance="outline" style="width:50%;">
+                      <mat-label>Subject Type</mat-label>
+                      <mat-select formControlName="Type" placeholder="Enter Subject Type" required ([ngModel])='sub.Type'>
+                        <mat-option value="core">Core</mat-option>
+                        <mat-option value="PE">Professional Elective</mat-option>
+                        <mat-option value="OE">Open Elective</mat-option>
+                      </mat-select>
+                      <!-- <mat-hint align="end">Here's the dropdown arrow ^</mat-hint> -->
+                    </mat-form-field>
+                <mat-form-field appearance="outline" style="width:50%;margin:0px 10px 0px 10px;">
+                  <mat-label>Credits</mat-label>
+                  <input matInput placeholder="Enter Credits" formControlName="Credit" required ([ngModel])='sub.Credit '>
+                </mat-form-field>
+              </div>
+         
+          </div>
+        </form>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+      <button mat-button [mat-dialog-close]="true"  (click)="onSubmit()" cdkFocusInitial>Save</button>
+      <button mat-button mat-dialog-close>Cancel</button>
+    </mat-dialog-actions>
+   
+  

@@ -1,0 +1,23 @@
+.departmentTableClass{
+    box-shadow: 1px 2px 8px #0b0b0b  !important;
+    margin-left: 1rem;
+    background-color: #333333;
+}
+th.mat-header-cell {
+    font-size: 0.9rem;
+    color: white;
+    border-bottom-color: #007bff;
+}
+td.mat-cell{
+    color: white;
+    border-bottom-color: #007bff;
+}
+.depImageSide{
+    display: inline-flex;
+    padding: 1rem;
+}
+.depImage{
+    height: 5rem;
+    width: 7rem;
+    margin-right: 1rem;
+}

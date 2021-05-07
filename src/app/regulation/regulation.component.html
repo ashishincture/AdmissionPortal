@@ -1,0 +1,12 @@
+<body style="background-color: #333333;position: absolute;height: 100%;width: 100%;">
+    <div>
+        <button mat-raised-button color="primary" class="addRegulationClass" (click)="onAddRegulation()">+ Add</button>
+        <div class="regulationTiles">
+            <div *ngFor="let regulation of regulations;let i=index">
+                <div class="regulationClass" id="regulationId" (click)="onRegulationPress(regulation.Regulation_ID)">
+                    <h4 style="font-weight: bold;color: wheat;">{{regulation.Regulation_Name}}</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

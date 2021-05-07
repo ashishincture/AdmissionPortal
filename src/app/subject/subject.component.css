@@ -1,0 +1,49 @@
+.mat-form-field {
+    margin-left: 20px;
+}
+.floatingBtn{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:40px;
+	right:40px;
+	background-color:#7b59d0;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 2px 2px 3px #999;
+}
+.SubUploadBtnClass{
+	width: 48px;
+	float: right;
+	margin-right: 15px;
+    margin-top: 10px;
+}
+.mat-form-field-prefix{
+	top:5px;
+}
+.table th, .table td {
+    vertical-align: middle;
+	color: white;
+}
+.file-upload>input {
+	display: none;
+  }
+  .subHeader {
+	background-color: #3f3a64;
+	color: #e9e9e5;
+  }
+  .searchBar{
+	border-radius: 25px;
+	height: 40px;
+	line-height: 40px;
+	width: 100%;
+	  
+  }
+
+  .subjectEditBtn{
+	border: none;
+    background-color: #7b59d0;
+    color: white;
+    border-radius: 10%;
+  }

@@ -1,77 +1,27 @@
-<mat-tab-group dynamicHeight class="mat-tab-header" >
-    <mat-tab label="Colleges">
-      <mat-grid-list cols="5" style="margin-bottom: 11rem;margin-top: 11rem;">
-        <mat-grid-tile colspan="2" style="display:block;margin-bottom: 6rem;margin-top: 3rem;">
-      <div  class="cardClass" >
-      <mat-card class="blackBorder mat-card-white" style="width:100%;display: block;">  
-        <mat-card-header>
-        <mat-card-title>Register College</mat-card-title>
-        <br>
-    </mat-card-header>
-    <mat-card-content>
-      <br>
-    <mat-form-field appearance="outline">
-        <mat-label>College Name</mat-label>
-        <input matInput placeholder="Placeholder" [(ngModel)]="dataTemplate.college">
-       
-      </mat-form-field>
-     
-     <br>
-     <!-- <mat-form-field appearance="outline">
+<mat-tab-group dynamicHeight class="mat-tab-header bgclg">
+  <mat-tab label="Colleges" class="tabheader">
+    <mat-grid-list cols="5" style="margin-bottom: 11rem; margin-top: 11rem">
+      <mat-grid-tile colspan="3">
+        <div class="cardClass" style="display: flex; padding-left: 5rem">
+          <mat-card
+            class="blackBorder mat-card-white"
+            style="width: 100%; display: flex; margin-right: 2rem"
+          >
+            <mat-card-header>
+              <mat-card-title>College Details</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <mat-form-field appearance="outline" class="paddingInput">
+                <mat-label>University</mat-label>
+                <input
+                  matInput
+                  placeholder="Placeholder"
+                  value="Delhi University"
+                />
+              </mat-form-field>
 
-      
-        <mat-label>College Code</mat-label>
-        <mat-select [(value)]="global.data.InstitutionType">
-          <mat-option value="University(hierarchial)">University</mat-option>
-          <mat-option value="College(Autonomous)">College(Autonomous)</mat-option>
-         
-        </mat-select>
-        </mat-form-field> -->
-        <mat-form-field appearance="outline">
-          <mat-label>College Code</mat-label>
-          <input matInput placeholder="Placeholder" [(ngModel)]="dataTemplate.collegeCode">
-         
-        </mat-form-field>
- 
-  <br>
-  <mat-form-field appearance="outline">
-    <mat-label>Template Type</mat-label>
-    <mat-select [(ngModel)]="dataTemplate.courseTemplate">
-      <mat-option value="Engineering">Engineering</mat-option>
-      <mat-option value="Management">Management</mat-option>
-      <mat-option value="Hierarchical">Hierarchical</mat-option>
-    </mat-select>
-  </mat-form-field>
-  <br>
-  <mat-form-field appearance="outline">
-    <mat-label>Description</mat-label>
-    <textarea [(ngModel)]="dataTemplate.Description" matInput></textarea>
-  </mat-form-field>
-  <br>
-  <button mat-mini-fab color="primary" aria-label="Example" style="margin-left: -9rem;" (click)="onPressSubmit()">
-    <mat-icon>add</mat-icon>
-  </button>
-  <!-- <button mat-raised-button color="primary" style="align-self: center ;margin-left: 25%;" (click)="onPressSubmit()">Submit</button> -->
-    </mat-card-content>
-</mat-card>
-      </div>
-    </mat-grid-tile>
-
-
-  <mat-grid-tile colspan="3" >
-<div  class="cardClass " style="display: flex;" >
-<mat-card class="blackBorder mat-card-white" style="width:100%;display: flex;margin-right: 2rem;">  <mat-card-header>
-  <mat-card-title>College Details</mat-card-title>
-</mat-card-header>
-<mat-card-content>
-<mat-form-field appearance="outline" class="paddingInput">
-  <mat-label>University</mat-label>
-  <input matInput placeholder="Placeholder"  value="Delhi University" >
- 
-</mat-form-field>
-
-<!-- <br> -->
-<!-- <mat-form-field appearance="outline">
+              <!-- <br> -->
+              <!-- <mat-form-field appearance="outline">
   <mat-label>Institution Type</mat-label>
   <mat-select [(value)]="global.data.InstitutionType">
     <mat-option value="University(hierarchial)">University</mat-option>
@@ -79,48 +29,73 @@
    
   </mat-select>
   </mat-form-field> -->
-  <mat-form-field appearance="outline" class="paddingInput">
-    <mat-label>College Name</mat-label>
-    <input matInput placeholder="Placeholder"  [(ngModel)]="dataTemplate.college" >
-   
-  </mat-form-field>
-  <mat-form-field appearance="outline" class="paddingInput">
-    <mat-label>Template Type</mat-label>
-    <input matInput placeholder="Placeholder"  [(ngModel)]="dataTemplate.courseTemplate" >
-   
-  </mat-form-field>
-  
-        <mat-form-field appearance="outline" class="paddingInput">
-          <mat-label>UGC Reg no.</mat-label>
-          <input matInput placeholder="Placeholder"  [(ngModel)]="dataTemplate.UGC_Reg_ID" >
-         
-        </mat-form-field>
-         
-            <mat-form-field appearance="outline" class="paddingInput">
-              <mat-label>Ownership Type</mat-label>
-              <mat-select  [(ngModel)]="dataTemplate.OwnershipType" >
-                <mat-option value="private">Private</mat-option>
-                <mat-option value="public">Public</mat-option>
-                <mat-option value="public private partnership">public private partnership</mat-option>
-               
-              </mat-select>
+              <mat-form-field appearance="outline" class="paddingInput">
+                <mat-label>College Name</mat-label>
+                <input
+                  matInput
+                  placeholder="Placeholder"
+                  [(ngModel)]="dataTemplate.college"
+                />
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="paddingInput">
+                <mat-label>College Code</mat-label>
+                <input
+                  matInput
+                  placeholder="Placeholder"
+                  [(ngModel)]="dataTemplate.collegeCode"
+                />
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="paddingInput">
+                <mat-label>Template Type</mat-label>
+                <mat-select [(ngModel)]="dataTemplate.courseTemplate">
+                  <mat-option value="Engineering">Engineering</mat-option>
+                  <mat-option value="Management">Management</mat-option>
+                  <mat-option value="Hierarchical">Hierarchical</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="paddingInput">
+                <mat-label>UGC Reg no.</mat-label>
+                <input
+                  matInput
+                  placeholder="Placeholder"
+                  [(ngModel)]="dataTemplate.UGC_Reg_ID"
+                />
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="paddingInput">
+                <mat-label>Ownership Type</mat-label>
+                <mat-select [(ngModel)]="dataTemplate.OwnershipType">
+                  <mat-option value="private">Private</mat-option>
+                  <mat-option value="public">Public</mat-option>
+                  <mat-option value="public private partnership"
+                    >public private partnership</mat-option
+                  >
+                </mat-select>
               </mat-form-field>
 
               <mat-form-field appearance="outline" class="paddingInput">
                 <mat-label>Aicte Reg no.</mat-label>
-                <input matInput placeholder="Placeholder"  [(ngModel)]="dataTemplate.AICTE_Reg_ID" >
-               
+                <input
+                  matInput
+                  placeholder="Placeholder"
+                  [(ngModel)]="dataTemplate.AICTE_Reg_ID"
+                />
               </mat-form-field>
-               
-                  <mat-form-field appearance="outline" class="paddingInput">
-                    <mat-label>College Strength</mat-label>
-                    <input matInput placeholder="Strength"  [(ngModel)]="dataTemplate.collegeStrength" >
-                    </mat-form-field>
-  
 
-<!-- <br *ngIf="global.data.InstitutionType=='University(hierarchial)'" > -->
+              <mat-form-field appearance="outline" class="paddingInput">
+                <mat-label>College Strength</mat-label>
+                <input
+                  matInput
+                  placeholder="Strength"
+                  [(ngModel)]="dataTemplate.collegeStrength"
+                />
+              </mat-form-field>
 
-<!-- <mat-form-field *ngIf="global.data.InstitutionType=='University(hierarchial)'" class="paddingInput" appearance="outline">
+              <!-- <br *ngIf="global.data.InstitutionType=='University(hierarchial)'" > -->
+
+              <!-- <mat-form-field *ngIf="global.data.InstitutionType=='University(hierarchial)'" class="paddingInput" appearance="outline">
 
 <mat-label>Colleges</mat-label>
 <mat-select   [(ngModel)]="dataTemplate.colleges" >
@@ -129,102 +104,138 @@
 <mat-option value="option3">None</mat-option>
 </mat-select>
 </mat-form-field> -->
-<!-- <br> -->
+              <!-- <br> -->
 
+              <mat-form-field
+                appearance="outline"
+                style="width: 14.5rem !important"
+                class="paddingInput SmallDatePicker"
+              >
+                <mat-label>Establishment</mat-label>
+                <input
+                  matInput
+                  [matDatepicker]="picker1"
+                  [(ngModel)]="dataTemplate.established"
+                />
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="picker1"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+              </mat-form-field>
+              <!-- <br> -->
+              <mat-form-field appearance="outline" class="paddingInput">
+                <mat-label>Description</mat-label>
+                <textarea
+                  [(ngModel)]="dataTemplate.Description"
+                  matInput
+                ></textarea>
+              </mat-form-field>
+              <!-- <br> -->
+              <button
+                mat-raised-button
+                color="primary"
+                style="align-self: center; margin-left: 80%"
+                (click)="onPressSubmit()"
+              >
+                Submit
+              </button>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </mat-grid-tile>
+    <mat-grid-tile colspan="2">
+      <div class="col-sm-4">
+        <div class="adddiv">
+          <button mat-button class="Addbutton" (click)="toggle()">
+            Add Subject
+          </button>
+        </div>
+  
+        <ng-container *ngIf="show">
+          <div style="text-align: left">
+            <div class="row borderIt">
+              <mat-form-field appearance="outline" class="categoryinput">
+                <mat-label class="categorylabel">Subject name</mat-label>
+                <input
+                  matInput
+                  class="categoryinput"
+                  [(ngModel)]="dataTemplate2.name"
+                />
+              </mat-form-field>
+  
+              <mat-form-field appearance="outline" class="categoryinput">
+                <mat-label class="categorylabel">Seats</mat-label>
+                <input
+                  matInput
+                  type="number"
+                  class="categoryinput"
+                  [(ngModel)]="dataTemplate2.Seats"
+                />
+              </mat-form-field>
+  
+              <div class="col-sm-2 borderFab">
+                <button
+                  mat-mini-fab
+                  color="primary"
+                  aria-label="Example"
+                  (click)="onPressAddSubject()"
+                >
+                  <mat-icon>add</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+        </div>
 
-
-<mat-form-field appearance="outline" style="width: 14.5rem !important;" class="paddingInput SmallDatePicker">
-  <mat-label>Establishment</mat-label>
-  <input matInput [matDatepicker]="picker1"  [(ngModel)]="dataTemplate.established" >
-  <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-  <mat-datepicker #picker1></mat-datepicker>
-</mat-form-field>
-<!-- <br> -->
-<mat-form-field appearance="outline" class="paddingInput">
-<mat-label>Description</mat-label>
-<textarea  [(ngModel)]="dataTemplate.Description"  matInput></textarea>
-</mat-form-field>
-<!-- <br> -->
-<button mat-raised-button color="primary" style="align-self: center ;margin-left: 80%;" (click)="onPressSubmit()">Submit</button>
-</mat-card-content>
-</mat-card>
-</div>
-</mat-grid-tile>
-</mat-grid-list>
-      <mat-grid-list cols="2" style="border-bottom: 1rem;border-top: 1rem;display: flex;justify-content: space-between;"  rowHeight="100px">
-        <mat-grid-tile class="mat-grid-tile" 
-            *ngFor="let tile of global.data.CollegeDetail" >
-          <!-- {{global.data.InstitutionName}} -->
-           
-           <mat-card class="mat-card blackBorder" style="width:90%">{{tile.college}}</mat-card>
-        </mat-grid-tile>
-      </mat-grid-list>
-   
-    </mat-tab>
-    <mat-tab label="Departments">
-      <mat-grid-list cols="5" style="margin-bottom: 11rem;margin-top: 11rem;">
-        <mat-grid-tile colspan="2" style="display:block;margin-bottom: 6rem;margin-top: 3rem;">
-      <div  class="cardClass" >
-      <mat-card class="blackBorder mat-card-white" style="width:100%;display: block;">  
-        <mat-card-header>
-        <mat-card-title>Register Departments</mat-card-title>
-        <br>
-    </mat-card-header>
-    <mat-card-content>
-      <br>
-    <mat-form-field appearance="outline">
-        <mat-label>Department Name</mat-label>
-        <input matInput placeholder="Placeholder" [(ngModel)]="dataTemplateDep.dept">
-       
-      </mat-form-field>
-     
-     <br>
-     <!-- <mat-form-field appearance="outline">
-
-      
-        <mat-label>College Code</mat-label>
-        <mat-select [(value)]="global.data.InstitutionType">
-          <mat-option value="University(hierarchial)">University</mat-option>
-          <mat-option value="College(Autonomous)">College(Autonomous)</mat-option>
-         
-        </mat-select>
-        </mat-form-field> -->
-        <mat-form-field appearance="outline">
-          <mat-label>Department Code</mat-label>
-          <input matInput placeholder="Placeholder" [(ngModel)]="dataTemplateDep.deptCode">
-         
-        </mat-form-field>
-  <br>
-  <mat-form-field appearance="outline">
-    <mat-label>Description</mat-label>
-    <textarea [(ngModel)]="dataTemplateDep.Description" matInput></textarea>
-  </mat-form-field>
-  <br>
-  <button mat-mini-fab color="primary" aria-label="Example" style="margin-left: -9rem;" (click)="onPressSubmitDept()">
-    <mat-icon>add</mat-icon>
-  </button>
-  <!-- <button mat-raised-button color="primary" style="align-self: center ;margin-left: 25%;" (click)="onPressSubmit()">Submit</button> -->
-    </mat-card-content>
-</mat-card>
-      </div>
     </mat-grid-tile>
+    </mat-grid-list>
+    <mat-grid-list
+      cols="2"
+      style="
+        border-bottom: 1rem;
+        border-top: 1rem;
+        display: flex;
+        justify-content: space-between;
+      "
+      rowHeight="100px"
+    >
+      <mat-grid-tile
+        class="mat-grid-tile"
+        *ngFor="let tile of global.data.CollegeDetail"
+      >
+        <!-- {{global.data.InstitutionName}} -->
 
+        <mat-card class="mat-card blackBorder" style="width: 90%">{{
+          tile.college
+        }}</mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-tab>
+  <mat-tab label="Departments">
+    <mat-grid-list cols="5" style="margin-bottom: 11rem; margin-top: 11rem">
+      <mat-grid-tile colspan="3">
+        <div class="cardClass" style="display: flex; padding-left: 5rem">
+          <mat-card
+            class="blackBorder mat-card-white"
+            style="width: 100%; display: flex; margin-right: 2rem"
+          >
+            <mat-card-header>
+              <mat-card-title>Department Details</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <mat-form-field appearance="outline" class="paddingInput">
+                <mat-label>University</mat-label>
+                <input
+                  matInput
+                  placeholder="Placeholder"
+                  value="Delhi University"
+                />
+              </mat-form-field>
 
-  <mat-grid-tile colspan="3" >
-<div  class="cardClass " style="display: flex;" >
-<mat-card class="blackBorder mat-card-white" style="width:100%;display: flex;margin-right: 2rem;"> 
-   <mat-card-header>
-  <mat-card-title>Department Details</mat-card-title>
-</mat-card-header>
-<mat-card-content>
-<mat-form-field appearance="outline" class="paddingInput">
-  <mat-label>University</mat-label>
-  <input matInput placeholder="Placeholder"  value="Delhi University" >
- 
-</mat-form-field>
-
-<!-- <br> -->
-<!-- <mat-form-field appearance="outline">
+              <!-- <br> -->
+              <!-- <mat-form-field appearance="outline">
   <mat-label>Institution Type</mat-label>
   <mat-select [(value)]="global.data.InstitutionType">
     <mat-option value="University(hierarchial)">University</mat-option>
@@ -232,27 +243,45 @@
    
   </mat-select>
   </mat-form-field> -->
-  <mat-form-field appearance="outline" class="paddingInput">
-    <mat-label>Department Name</mat-label>
-    <input matInput placeholder="Placeholder"  [(ngModel)]="dataTemplateDep.dept" >
-   
-  </mat-form-field>
-  
-        <mat-form-field appearance="outline" class="paddingInput">
-          <mat-label>UGC Reg no.</mat-label>
-          <input matInput placeholder="Placeholder"  [(ngModel)]="dataTemplateDep.UGC_Reg_ID" >
-         
-        </mat-form-field>
+              <mat-form-field appearance="outline" class="paddingInput">
+                <mat-label>Department Name</mat-label>
+                <input
+                  matInput
+                  placeholder="Placeholder"
+                  [(ngModel)]="dataTemplateDep.dept"
+                />
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="paddingInput">
+                <mat-label>Department Code</mat-label>
+                <input
+                  matInput
+                  placeholder="Placeholder"
+                  [(ngModel)]="dataTemplateDep.deptCode"
+                />
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="paddingInput">
+                <mat-label>UGC Reg no.</mat-label>
+                <input
+                  matInput
+                  placeholder="Placeholder"
+                  [(ngModel)]="dataTemplateDep.UGC_Reg_ID"
+                />
+              </mat-form-field>
 
               <mat-form-field appearance="outline" class="paddingInput">
                 <mat-label>Aicte Reg no.</mat-label>
-                <input matInput placeholder="Placeholder"  [(ngModel)]="dataTemplateDep.AICTE_Reg_ID" >
-               
+                <input
+                  matInput
+                  placeholder="Placeholder"
+                  [(ngModel)]="dataTemplateDep.AICTE_Reg_ID"
+                />
               </mat-form-field>
 
-<!-- <br *ngIf="global.data.InstitutionType=='University(hierarchial)'" > -->
+              <!-- <br *ngIf="global.data.InstitutionType=='University(hierarchial)'" > -->
 
-<!-- <mat-form-field *ngIf="global.data.InstitutionType=='University(hierarchial)'" class="paddingInput" appearance="outline">
+              <!-- <mat-form-field *ngIf="global.data.InstitutionType=='University(hierarchial)'" class="paddingInput" appearance="outline">
 
 <mat-label>Colleges</mat-label>
 <mat-select   [(ngModel)]="dataTemplate.colleges" >
@@ -261,31 +290,96 @@
 <mat-option value="option3">None</mat-option>
 </mat-select>
 </mat-form-field> -->
-<!-- <br> -->
+              <!-- <br> -->
 
+              <!-- <br> -->
+              <mat-form-field appearance="outline" class="paddingInput">
+                <mat-label>Description</mat-label>
+                <textarea
+                  [(ngModel)]="dataTemplateDep.Description"
+                  matInput
+                ></textarea>
+              </mat-form-field>
+              <!-- <br> -->
+              <button
+                mat-raised-button
+                color="primary"
+                style="align-self: center; margin-left: 80%"
+                (click)="onPressSubmitDept()"
+              >
+                Submit
+              </button>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile colspan="2">
+        <div class="col-sm-4">
+          <div class="adddiv">
+            <button mat-button class="Addbutton" (click)="toggle2()">
+              Add Subject
+            </button>
+          </div>
+    
+          <ng-container *ngIf="show2">
+            <div style="text-align: left">
+              <div class="row borderIt">
+                <mat-form-field appearance="outline" class="categoryinput">
+                  <mat-label class="categorylabel">Subject name</mat-label>
+                  <input
+                    matInput
+                    class="categoryinput"
+                    [(ngModel)]="dataTemplate2.name"
+                  />
+                </mat-form-field>
+    
+                <mat-form-field appearance="outline" class="categoryinput">
+                  <mat-label class="categorylabel">Seats</mat-label>
+                  <input
+                    matInput
+                    type="number"
+                    class="categoryinput"
+                    [(ngModel)]="dataTemplate2.Seats"
+                  />
+                </mat-form-field>
+    
+                <div class="col-sm-2 borderFab">
+                  <button
+                    mat-mini-fab
+                    color="primary"
+                    aria-label="Example"
+                    (click)="onPressAddSubject2()"
+                  >
+                    <mat-icon>add</mat-icon>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+          </div>
+  
+      </mat-grid-tile>
+    </mat-grid-list>
+    <mat-grid-list
+      cols="2"
+      style="
+        border-bottom: 1rem;
+        border-top: 1rem;
+        display: flex;
+        justify-content: space-between;
+      "
+      rowHeight="100px"
+    >
+      <mat-grid-tile
+        class="mat-grid-tile"
+        *ngFor="let tile of global.data.DeptDetail"
+      >
+        <!-- {{global.data.InstitutionName}} -->
 
-<!-- <br> -->
-<mat-form-field appearance="outline" class="paddingInput">
-<mat-label>Description</mat-label>
-<textarea  [(ngModel)]="dataTemplateDep.Description"  matInput></textarea>
-</mat-form-field>
-<!-- <br> -->
-<button mat-raised-button color="primary" style="align-self: center ;margin-left: 80%;" (click)="onPressSubmitDept()">Submit</button>
-</mat-card-content>
-</mat-card>
-</div>
-</mat-grid-tile>
-</mat-grid-list>
-      <mat-grid-list cols="2" style="border-bottom: 1rem;border-top: 1rem;display: flex;justify-content: space-between;"  rowHeight="100px">
-        <mat-grid-tile class="mat-grid-tile" 
-            *ngFor="let tile of global.data.DeptDetail" >
-          <!-- {{global.data.InstitutionName}} -->
-           
-           <mat-card class="mat-card blackBorder" style="width:90%">{{tile.dept}}</mat-card>
-        </mat-grid-tile>
-      </mat-grid-list>
-     
-     
-    </mat-tab>
-  </mat-tab-group>
-
+        <mat-card class="mat-card blackBorder" style="width: 90%">{{
+          tile.dept
+        }}</mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-tab>
+</mat-tab-group>

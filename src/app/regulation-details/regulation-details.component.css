@@ -1,0 +1,60 @@
+.example-full-width {
+    width: 100%;
+  }
+  .example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  .regulationdetailscontainer{
+      display: inline-flex;
+      margin-top: 0.5rem;
+  }
+  .regdetails{
+      margin-right: 1rem;
+      margin-left: 1rem;
+  }
+  .depTableHeader{
+    display: inline-flex;
+    align-items: baseline;
+  }
+  .department1{
+    width: 20%;
+    display: inline-flex;
+  }
+  .containerDepartments{
+    padding: 20px;
+  }
+  tr.mat-header-row {
+    height: 35px;
+}
+.regulationDetailsTable{
+  box-shadow: 1px 2px 8px #0b0b0b  !important;
+  margin-left: 1rem;
+  background-color: #333333;
+}
+th.mat-header-cell {
+  font-size: 0.8rem;
+  color: white;
+  /* border-bottom-color: #007bff; */
+}
+td.mat-cell{
+  color: white;
+  /* border-bottom-color: #007bff; */
+}
+@media screen and (max-width: 375px) {
+  .department1 {
+    width: auto;
+      display: block;
+  }
+  .regulationDetailsTable{
+    margin-bottom:1rem ;
+  }
+}
+@media screen and (max-width: 768px) {
+  .department1 {
+    width: auto;
+  }
+}
+  
+  

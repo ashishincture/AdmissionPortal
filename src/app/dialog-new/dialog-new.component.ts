@@ -1,4 +1,5 @@
 import { Component, OnInit, NgZone } from '@angular/core';
+import {CdkTextareaAutosize} from '@angular/cdk/text-field';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
@@ -51,13 +52,4 @@ export class DialogNewComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  toggle() {
-    this.show = !this.show;
-
-    // CHANGE THE NAME OF THE BUTTON.
-    if (this.show)
-      this.buttonName = "Hide";
-    else
-      this.buttonName = "Show";
-  }
 }
