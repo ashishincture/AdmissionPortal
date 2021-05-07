@@ -38,6 +38,9 @@ import { DocumentsComponent } from './documents/documents.component';
 import { StatusComponent } from './status/status.component';
 import { DialogApproveComponent } from './dialog-approve/dialog-approve.component';
 import { DialogNotApproveComponent } from './dialog-not-approve/dialog-not-approve.component';
+import { HttpClientModule } from '@angular/common/http';
+import { DocumentsServiceService } from './documents-service.service';
+
 
 // Pass the fusioncharts library and chart modules
 FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
@@ -77,7 +80,8 @@ FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
     MatNativeDateModule,
     MatAutocompleteModule,
     FusionChartsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    HttpClientModule
   ],
   providers: [
     MatTabsModule,
@@ -86,7 +90,8 @@ FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
     MatDatepickerModule,
     MatNativeDateModule,
     Globals,
-    FusionChartsModule
+    FusionChartsModule,
+    DocumentsServiceService
   ],
   bootstrap: [AppComponent],
 })

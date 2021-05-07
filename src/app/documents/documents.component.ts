@@ -3,9 +3,15 @@ import{ MatDialog } from '@angular/material/dialog';
 import { DialogApproveComponent } from '../dialog-approve/dialog-approve.component';
 import { DialogNotApproveComponent } from '../dialog-not-approve/dialog-not-approve.component';
 import {FormControl} from '@angular/forms';
-
+import { DocumentsServiceService } from '../documents-service.service';
 
 // import { Console } from 'console';
+
+export interface studentDetail{
+  // Regulation_ID: string;
+  // Regulation_Name: string;
+  // Academic_Year: Array<any>;
+}
 
 @Component({
   selector: 'app-documents',
@@ -13,6 +19,7 @@ import {FormControl} from '@angular/forms';
   styleUrls: ['./documents.component.css']
 })
 export class DocumentsComponent implements OnInit {
+  studentDetails2: studentDetail[]=[];
   courses = new FormControl();
   courseList: string[] = ['Engineering', 'Medical', 'Management'];
 
@@ -84,10 +91,47 @@ export class DocumentsComponent implements OnInit {
 
   ];
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, private DocumentsServiceService:DocumentsServiceService) { }
 
 
-  ngOnInit(): void { }
+  ngOnInit(): void { 
+    this.fetchStudents();
+    
+  }
+
+  fetchStudents(){
+    this.DocumentsServiceService.getStudents().
+    subscribe((data:any)=>{
+      this.studentDetails2=data.data;
+      console.log(this.studentDetails2);
+    });
+  }
+
+  onSearch(event: any){
+    console.log(event.target.value);
+    var query = event.target.value;
+    if(query===""){
+      this.fetchStudents();
+    }else{
+      this.searchStudents(query);
+    }
+    
+  }
+  
+  searchStudents(sQuery){
+    this.DocumentsServiceService.getStudentsSearch(sQuery).
+    subscribe((data:any)=>{
+      if(data.success===true){
+        this.studentDetails2=data.data;
+        console.log(this.studentDetails2);
+      }else{
+        this.fetchStudents();
+      }
+      
+    });
+  }
+
+  
 
 
   toggle() {

@@ -3,18 +3,19 @@
         <p class="verClass">Documents Verification</p>
         <div class="col col-md-6">
         <div class="searchDiv">   
-        <input placeholder="Search" type="text" class=" bg-white searchBar " />
-        <button mat-icon-button class="example-icon btnSearch blob" aria-label="Example icon-button with search icon">
+        <input placeholder="Search by name" type="text" class=" bg-white searchBar " (keyup)="onSearch($event)"/>
+        <!-- <button mat-icon-button class="example-icon btnSearch blob" aria-label="Example icon-button with search icon">
           <mat-icon>search</mat-icon>
-        </button>
+        </button> -->
       </div>
     </div>
         <div class="dropdown">
           <label class="label">Select Course</label>
           <select class="col col-md-12 dropBar">
-            <option value="1">Engineering</option>
-            <option value="2">Medical</option>
-            <option value="3">Management</option>
+            <option value="1">All</option>
+            <option value="2">Engineering</option>
+            <option value="3">Medical</option>
+            <option value="4">Management</option>
           </select>
         </div>
         
@@ -55,14 +56,15 @@
     <!-- <div class="container-fluid d-flex justify-content-center" style="display: inline-flex;" width="100%">
       <div class="card-deck" *ngFor="let detail of studentDetails;let i=index"> -->
     
+
         <div fxLayout="row wrap" fxLayoutGap="32px grid" class="card-deck">
-          <div fxFlex="33%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let detail of studentDetails;let i=index">
+          <div fxFlex="33%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let detail of studentDetails2;let i=index">
     
         <div class="card">
           <img src="{{detail.profilePic}}"
             class="rounded-circle container-fluid d-flex justify-content-center imgCard card-img-top" alt="...">
           <div class="card-body">
-            <h5 class="card-title container-fluid d-flex justify-content-center"><strong>{{detail.id}} -
+            <h5 class="card-title container-fluid d-flex justify-content-center"><strong>{{detail.student_id}} -
                 {{detail.name}}</strong></h5>
     
             <div class="scrollable">
