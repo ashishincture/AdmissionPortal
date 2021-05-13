@@ -45,6 +45,7 @@ export class DataService {
   oldData;
   rownumber;
   regulationDatabyId;
+  subjectsbyDepid;
   regulationListData: regulationList[] = [
     { regulationName: 'R15' },
     { regulationName: 'R16' },
@@ -89,7 +90,7 @@ export class DataService {
     return this.http.get(`${this.uri}/Regulation`);
   }
   getRegulationDatabyID(rID) {
-    let that=this;
+    let that = this;
     let Regulation_Id = rID;
     let rData = this.http.get(`${this.uri}/Regulation/${Regulation_Id}`);
     rData.subscribe((data: any) => {
@@ -97,6 +98,11 @@ export class DataService {
     }
     );
     // rData.subscribe((data:any)=>console.log(data.data.Department_Details));          
+  }
+  getSubjectsbyId(depId) {
+    let depID = depId;
+    let subData = this.http.get(`${this.uri}/Department/${depID}`);
+    subData.subscribe((data: any) => console.log(data));
   }
   getTableData(): tableData[] {
     return this.tableDisplayData;
