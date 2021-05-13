@@ -38,8 +38,11 @@ import { DocumentsComponent } from './documents/documents.component';
 import { StatusComponent } from './status/status.component';
 import { DialogApproveComponent } from './dialog-approve/dialog-approve.component';
 import { DialogNotApproveComponent } from './dialog-not-approve/dialog-not-approve.component';
-import { SubjectComponent } from './subject/subject.component';
 import { HttpClientModule } from '@angular/common/http';
+import { DocumentsServiceService } from './documents-service.service';
+
+import { SubjectComponent } from './subject/subject.component';
+
 import { SubjectService } from './subject.service';
 import { UpdateDialogComponent } from './update-dialog/update-dialog.component';
 import {MatInputModule} from '@angular/material/input';
@@ -118,6 +121,7 @@ FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
     MatNativeDateModule,
     Globals,
     FusionChartsModule,
+    DocumentsServiceService,
     SubjectService
   ],
   bootstrap: [AppComponent],
