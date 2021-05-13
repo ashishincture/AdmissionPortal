@@ -1,0 +1,67 @@
+
+<mat-expansion-panel [expanded]="false" class="matPanel" style="margin-top: 2rem;background-color: rgb(116 116 134 / 56%);">
+    <mat-expansion-panel-header>
+      <mat-panel-title style="color: white;">
+        {{subType}}
+      </mat-panel-title>
+      
+    </mat-expansion-panel-header>
+    <div>
+      <div class="row">
+          <div class="form-group " style="width: 16rem;">    
+            <div *ngIf="showGroupfield">
+                <mat-label  class="row" style="color:white;margin-right: -32px; margin-left: 1px;">Enter Group Name</mat-label>
+                <input matInput  [(ngModel)]="electiveGrp" placeholder="Group Name"  class="row" style="background-color:#b5b5b5;border-radius: 0.4rem;
+                width: 14rem;
+                height: 2rem;margin-right: -32px; margin-left: 1px;">
+            </div>
+            <div>
+              <mat-label class="row" style="color:white;margin-right: -32px; margin-left: 1px;">Choose an Department</mat-label>
+              <mat-select value="dept" class="row" style="background-color:#b5b5b5;height: 2rem;
+              width: 14rem;
+              border-radius: 0.5rem;margin-right: -32px; margin-left: 1px;" (selectionChange)="openSubDiag($event)" >
+                  <mat-option *ngFor="let dept of deptData" [value]="dept.code">{{dept.code}}</mat-option>
+              </mat-select>
+          </div>
+          </div>
+          <div style="width: 80%;">
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="box-shadow: 0rem 0rem 1rem 0rem #8a8989;background:#333232;width: -webkit-fill-available;">
+
+                <!--- Note that these columns can be defined in any order.
+                      The actual rendered columns are set as a property on the row definition" -->
+                <ng-container *ngFor="let col of displayedColumns" [matColumnDef]="col" class='col'>
+                  <th mat-header-cell *matHeaderCellDef style="color: white;">{{ col }}</th>
+                  <td mat-cell *matCellDef="let row"style="color: white;">{{ row[col] }}</td>
+                </ng-container>
+              
+                <!-- Default Table lines -->
+                <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              
+                <!-- Group header cells-->
+                <ng-container matColumnDef="groupHeader">
+                  <td colspan="999" mat-cell *matCellDef="let group"style="color: white;">
+                    <strong>{{group.groupName}}</strong>
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="groupReducer">
+                  <td colspan="1" mat-cell *matCellDef="let group">
+                    <div fxFill fxLayoutAlign="center center">
+                      <mat-icon *ngIf="!group.reduced">expand_less</mat-icon>
+                      <mat-icon *ngIf="group.reduced">expand_more</mat-icon>
+                    </div>
+                  </td>
+                </ng-container>
+              
+                <!-- Group line -->
+                <tr mat-row  class="clickable"
+                    *matRowDef="let row; columns: ['groupReducer','groupHeader']; when: isGroup" 
+                    (click)="reduceGroup(row)" > 
+                </tr>
+              
+              </table>
+          </div>
+        
+      </div>
+    </div>
+  </mat-expansion-panel> 

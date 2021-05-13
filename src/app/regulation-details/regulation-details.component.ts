@@ -4,19 +4,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { DataService } from '../data.service';
 
-export interface subTypes {
-  sNo: number;
-  Core: number;
-  PE: number;
-  OE: number
-}
-
-export interface regulationDetails {
-  depName: string;
-  sem: number;
-  totalCredits: number;
-  subjects: subTypes[]
-}
 
 @Component({
   selector: 'app-regulation-details',
@@ -44,7 +31,9 @@ export class RegulationDetailsComponent implements OnInit {
       gradeType: ['', [Validators.required,]]
     })
   }
-  onClickTable() {
+  onClickTable(depId) {
+    this.service.getSubjectsbyId(depId);
+    console.log(depId);
     this.router.navigate(['departmentdetail']);
   }
 

@@ -50,4 +50,7 @@ export class NavbarComponent implements OnInit {
  goToRegulation(){
   this.router.navigate(['/regulation']);
  }
+ goToCurriculum(){
+  this.router.navigate(['/Curriculum']);
+ }
 }

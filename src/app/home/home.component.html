@@ -144,6 +144,52 @@
           </mat-card>
         </div>
       </mat-grid-tile>
+    <mat-grid-tile colspan="2">
+      <div class="col-sm-4">
+        <div class="adddiv">
+          <button mat-button class="Addbutton" (click)="toggle()">
+            Add Subject
+          </button>
+        </div>
+  
+        <ng-container *ngIf="show">
+          <div style="text-align: left">
+            <div class="row borderIt">
+              <mat-form-field appearance="outline" class="categoryinput">
+                <mat-label class="categorylabel">Subject name</mat-label>
+                <input
+                  matInput
+                  class="categoryinput"
+                  [(ngModel)]="dataTemplate2.name"
+                />
+              </mat-form-field>
+  
+              <mat-form-field appearance="outline" class="categoryinput">
+                <mat-label class="categorylabel">Seats</mat-label>
+                <input
+                  matInput
+                  type="number"
+                  class="categoryinput"
+                  [(ngModel)]="dataTemplate2.Seats"
+                />
+              </mat-form-field>
+  
+              <div class="col-sm-2 borderFab">
+                <button
+                  mat-mini-fab
+                  color="primary"
+                  aria-label="Example"
+                  (click)="onPressAddSubject()"
+                >
+                  <mat-icon>add</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+        </div>
+
+    </mat-grid-tile>
     </mat-grid-list>
     <mat-grid-list
       cols="2"
@@ -266,6 +312,52 @@
             </mat-card-content>
           </mat-card>
         </div>
+      </mat-grid-tile>
+      <mat-grid-tile colspan="2">
+        <div class="col-sm-4">
+          <div class="adddiv">
+            <button mat-button class="Addbutton" (click)="toggle2()">
+              Add Subject
+            </button>
+          </div>
+    
+          <ng-container *ngIf="show2">
+            <div style="text-align: left">
+              <div class="row borderIt">
+                <mat-form-field appearance="outline" class="categoryinput">
+                  <mat-label class="categorylabel">Subject name</mat-label>
+                  <input
+                    matInput
+                    class="categoryinput"
+                    [(ngModel)]="dataTemplate2.name"
+                  />
+                </mat-form-field>
+    
+                <mat-form-field appearance="outline" class="categoryinput">
+                  <mat-label class="categorylabel">Seats</mat-label>
+                  <input
+                    matInput
+                    type="number"
+                    class="categoryinput"
+                    [(ngModel)]="dataTemplate2.Seats"
+                  />
+                </mat-form-field>
+    
+                <div class="col-sm-2 borderFab">
+                  <button
+                    mat-mini-fab
+                    color="primary"
+                    aria-label="Example"
+                    (click)="onPressAddSubject2()"
+                  >
+                    <mat-icon>add</mat-icon>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+          </div>
+  
       </mat-grid-tile>
     </mat-grid-list>
     <mat-grid-list
