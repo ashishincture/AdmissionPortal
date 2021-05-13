@@ -20,6 +20,7 @@ import { DepartmentDetailsComponent } from './department-details/department-deta
 import { AddSubjectComponent } from './add-subject/add-subject.component';
 import { EditSubjectComponent } from './edit-subject/edit-subject.component';
 import { CurriculumComponent } from './Curriculum_folder/curriculum/curriculum.component';
+import { NewRegulationComponent } from './new-regulation/new-regulation.component';
 // import { Crcomp1Component } from './Curriculum_folder/crcomp1/crcomp1.component';
 // import { CreateCrComponent } from './Curriculum_folder/create-cr/create-cr.component';
 // import { SubjDialogComponent } from './Curriculum_folder/subj-dialog/subj-dialog.component';
@@ -45,6 +46,7 @@ const routes: Routes = [
   { path: 'departmentdetail', component: DepartmentDetailsComponent},
   { path: 'addsubject', component: AddSubjectComponent},
   { path: 'editsubject', component: EditSubjectComponent},
+  { path: 'add', component: NewRegulationComponent},
   {path:'Curriculum',component:CurriculumComponent},
   // {
   //   path: 'home',

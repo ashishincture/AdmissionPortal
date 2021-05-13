@@ -36,5 +36,9 @@ export class RegulationDetailsComponent implements OnInit {
     console.log(depId);
     this.router.navigate(['departmentdetail']);
   }
+  onEditReg(){
+    this.service.eidtFlag = true;
+    this.router.navigate(['add']);
+  }
 
 }

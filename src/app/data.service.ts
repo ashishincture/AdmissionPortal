@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { FormArray } from '@angular/forms';
+import { Data } from './data.model';
 
 
 
@@ -44,8 +46,12 @@ export class DataService {
 
   oldData;
   rownumber;
+  data;
   regulationDatabyId;
   subjectsbyDepid;
+  DataAddReg;
+  eidtFlag = false;
+
   regulationListData: regulationList[] = [
     { regulationName: 'R15' },
     { regulationName: 'R16' },
@@ -130,5 +136,41 @@ export class DataService {
     this.tableDisplayData[this.rownumber].subjectCode = changedData.subjectCode;
     this.tableDisplayData[this.rownumber].shortCode = changedData.subjectName;
     this.tableDisplayData[this.rownumber].credits = changedData.credits;
+  }
+  getAddRegData() {
+    return this.data = [1];
+  }
+  getAddRegTableData(sem) {
+    var finalData = [];
+    var sub = [];
+    var dep = ["ECE", "CSE", "MECH", "IT" ];
+    
+    for (var i = 1; i <= sem; i++) {
+      var subobj = { sNo: i, Core: 0, OE: 0, PE: 0};
+      sub.push(subobj);
+    }
+    for(var j=0;j<dep.length;j++){
+    var dataobj = {
+      Department_ID: dep[j],
+      Department_Name:dep[j],
+      total_Credit:28,
+      Semester_Count: sem,
+      Credit_Details: sub
+    }
+    finalData.push(dataobj);
+  }
+    
+    return finalData;
+  }
+  getAllAsFormArray(Subjects:any){
+  
+    let nArry=new FormArray([]);
+    let arry=Subjects.map((subject: any) => {
+      // Maps all the albums into a formGroup defined in
+      const fgs = Data.asFormGroup(subject);
+      nArry.controls.push(fgs);
+      return nArry;
+    });
+    return nArry;
   }
 }

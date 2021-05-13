@@ -42,12 +42,6 @@ td.mat-cell{
   color: white;
   /* border-bottom-color: #007bff; */
 }
-.addRegulationClass{
-  float: right;
-  margin-top: 1.5rem;
-  margin-right: 2rem;
-
-}
 @media screen and (max-width: 375px) {
   .department1 {
     width: auto;

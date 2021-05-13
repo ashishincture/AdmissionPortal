@@ -31,6 +31,8 @@ export class RegulationComponent implements OnInit {
     console.log(data);
   }
   onAddRegulation(){
+    this.service.eidtFlag = false;
+    this.router.navigate(['add']);
     console.log("add");
   }
 

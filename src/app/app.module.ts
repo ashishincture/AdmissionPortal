@@ -57,6 +57,8 @@ import { CurriculumComponent } from './Curriculum_folder/curriculum/curriculum.c
 import { CRcomp1Component } from './Curriculum_folder/crcomp1/crcomp1.component';
 import { CreateCRComponent } from './Curriculum_folder/create-cr/create-cr.component';
 import { SubjDialogComponent } from './Curriculum_folder/subj-dialog/subj-dialog.component';
+import { NewRegulationComponent } from './new-regulation/new-regulation.component';
+import { NewregTableComponent } from './newreg-table/newreg-table.component';
 
 // Pass the fusioncharts library and chart modules
 FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
@@ -90,7 +92,9 @@ FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
     CurriculumComponent,
     CRcomp1Component,
     CreateCRComponent,
-    SubjDialogComponent
+    SubjDialogComponent,
+    NewRegulationComponent,
+    NewregTableComponent
   ],
   imports: [
     BrowserModule,
