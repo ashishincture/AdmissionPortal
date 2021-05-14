@@ -17,6 +17,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { MatExpansionModule } from '@angular/material/expansion';
 import {MatBadgeModule} from '@angular/material/badge';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 const materialComponents = [
   MatToolbarModule,
@@ -35,7 +36,8 @@ const materialComponents = [
   MatProgressBarModule,
   MatExpansionModule,
   MatBadgeModule,
-  MatAutocompleteModule
+  MatAutocompleteModule,
+  MatFormFieldModule
 ];
 
 @NgModule({

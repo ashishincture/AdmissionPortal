@@ -1,19 +1,3 @@
-// import { Component, OnInit } from '@angular/core';
-
-// @Component({
-//   selector: 'app-department',
-//   templateUrl: './department.component.html',
-//   styleUrls: ['./department.component.css']
-// })
-// export class DepartmentComponent implements OnInit {
-
-//   constructor() { }
-
-//   ngOnInit(): void {
-//   }
-
-// }
-
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
@@ -29,6 +13,7 @@ export class DepartmentComponent implements OnInit {
   ngOnInit(): void {
     this.fetchRegulation();
   }
+
   fetchRegulation() {
     this.departments = [
       { dept: 'CSE' },

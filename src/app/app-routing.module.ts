@@ -1,4 +1,3 @@
-import { DepartmentComponent } from './department/department.component';
 import { SignupComponent } from './signup/signup.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { ListComponent } from './list/list.component';
@@ -16,6 +15,17 @@ import { SeatmatrixComponent } from './seatmatrix/seatmatrix.component';
 import { DocumentsComponent } from './documents/documents.component';
 import { StatusComponent } from './status/status.component';
 import { SubjectComponent } from './subject/subject.component';
+import { RegulationComponent } from './regulation/regulation.component';
+import { RegulationDetailsComponent } from './regulation-details/regulation-details.component';
+import { DepartmentDetailsComponent } from './department-details/department-details.component';
+import { AddSubjectComponent } from './add-subject/add-subject.component';
+import { EditSubjectComponent } from './edit-subject/edit-subject.component';
+import { CurriculumComponent } from './Curriculum_folder/curriculum/curriculum.component';
+import { NewRegulationComponent } from './new-regulation/new-regulation.component';
+import { DepartmentComponent } from './department/department.component';
+// import { Crcomp1Component } from './Curriculum_folder/crcomp1/crcomp1.component';
+// import { CreateCrComponent } from './Curriculum_folder/create-cr/create-cr.component';
+// import { SubjDialogComponent } from './Curriculum_folder/subj-dialog/subj-dialog.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -32,8 +42,16 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'documents', component: DocumentsComponent },
   { path: 'status', component: StatusComponent },
+
   { path: 'faq', component: FaqComponent },
   { path: 'subject', component: SubjectComponent },
+  { path: 'regulation', component: RegulationComponent },
+  { path: 'regulationdetail', component: RegulationDetailsComponent },
+  { path: 'departmentdetail', component: DepartmentDetailsComponent },
+  { path: 'addsubject', component: AddSubjectComponent },
+  { path: 'editsubject', component: EditSubjectComponent },
+  { path: 'add', component: NewRegulationComponent },
+  { path: 'Curriculum', component: CurriculumComponent },
   { path: 'department', component: DepartmentComponent },
 
   // {

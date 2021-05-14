@@ -13,14 +13,6 @@ export class Globals {
     CollegeDetail: [
     ],
     CollegeQuotas: [
-      {
-        name: "",
-        percent: ""
-      },
-      {
-        name: "",
-        percent: ""
-      }
     ],
     DeptDetail: [
     ],

@@ -1,0 +1,21 @@
+.EditSubjectMaincontainer{
+    box-shadow: 1px 2px 8px #0b0b0b  !important;
+    margin-top: 1rem;
+    background-color: #333333;
+    padding: 1rem;
+    margin-left: 1rem;
+    /* height: 70%; */
+    width: 97%;
+}
+.addSubjecSubcontainer{
+    display: inline-flex;
+}
+.subdetails{
+    margin-right: 1.5rem;
+    margin-left: 1.5rem;
+}
+.saveBtn{
+    display: flex;
+    justify-content: flex-end;
+    padding: 1rem;
+}

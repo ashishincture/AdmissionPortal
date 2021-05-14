@@ -1,0 +1,42 @@
+.addSubjecth3{
+    padding: 0.5rem;
+    padding-bottom: 0 !important;
+    margin: 0 !important;
+}
+.addcontainer{
+    display: inline-flex;
+}
+.hoddetails{
+    margin-right: 1rem;
+    margin-left: 1rem;
+}
+.addSubjectMaincontainer{
+    box-shadow: 1px 2px 8px #0b0b0b  !important;
+    background-color: #333333;
+    margin-top: 1rem;
+    padding: 1rem;
+    margin-left: 1rem;
+    /* height: 70%; */
+    width: 97%;
+}
+.EditSubjectMaincontainer{
+    box-shadow: 1px 2px 8px #0b0b0b  !important;
+    margin-top: 1rem;
+    background-color: #333333;
+    padding: 1rem;
+    margin-left: 1rem;
+    /* height: 70%; */
+    width: 97%;
+}
+.addSubjecSubcontainer{
+    display: inline-flex;
+}
+.subdetails{
+    margin-right: 1.5rem;
+    margin-left: 1.5rem;
+}
+.saveBtn{
+    display: flex;
+    justify-content: flex-end;
+    padding: 1rem;
+}

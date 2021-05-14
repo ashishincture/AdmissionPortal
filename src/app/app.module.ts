@@ -42,13 +42,26 @@ import { DocumentsComponent } from './documents/documents.component';
 import { StatusComponent } from './status/status.component';
 import { DialogApproveComponent } from './dialog-approve/dialog-approve.component';
 import { DialogNotApproveComponent } from './dialog-not-approve/dialog-not-approve.component';
-import { SubjectComponent } from './subject/subject.component';
 import { HttpClientModule } from '@angular/common/http';
+import { DocumentsServiceService } from './documents-service.service';
+
+import { SubjectComponent } from './subject/subject.component';
 import { SubjectService } from './subject.service';
 import { UpdateDialogComponent } from './update-dialog/update-dialog.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
+import { RegulationComponent } from './regulation/regulation.component';
+import { RegulationDetailsComponent } from './regulation-details/regulation-details.component';
+import { DepartmentDetailsComponent } from './department-details/department-details.component';
+import { AddSubjectComponent } from './add-subject/add-subject.component';
+import { EditSubjectComponent } from './edit-subject/edit-subject.component';
+import { CurriculumComponent } from './Curriculum_folder/curriculum/curriculum.component';
+import { CRcomp1Component } from './Curriculum_folder/crcomp1/crcomp1.component';
+import { CreateCRComponent } from './Curriculum_folder/create-cr/create-cr.component';
+import { SubjDialogComponent } from './Curriculum_folder/subj-dialog/subj-dialog.component';
+import { NewRegulationComponent } from './new-regulation/new-regulation.component';
+import { NewregTableComponent } from './newreg-table/newreg-table.component';
 import { DepartmentComponent } from './department/department.component';
 
 // Pass the fusioncharts library and chart modules
@@ -78,7 +91,20 @@ FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
     DialogNotApproveComponent,
     SubjectComponent,
     UpdateDialogComponent,
+
     DepartmentComponent,
+
+    RegulationComponent,
+    RegulationDetailsComponent,
+    DepartmentDetailsComponent,
+    AddSubjectComponent,
+    EditSubjectComponent,
+    CurriculumComponent,
+    CRcomp1Component,
+    CreateCRComponent,
+    SubjDialogComponent,
+    NewRegulationComponent,
+    NewregTableComponent,
   ],
   imports: [
     BrowserModule,
@@ -112,7 +138,10 @@ FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
     MatNativeDateModule,
     Globals,
     FusionChartsModule,
+
     SubjectService,
+
+    DocumentsServiceService,
   ],
   bootstrap: [AppComponent],
 })
