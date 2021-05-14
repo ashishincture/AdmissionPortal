@@ -1,0 +1,204 @@
+<mat-toolbar class="subHeader">
+  <span>Seat Matrix</span>
+</mat-toolbar>
+<div class="bground">
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="panelArea">
+        <div class="Dropdown">
+          <form class="example-form">
+            <mat-form-field class="example-full-width">
+              <input
+                type="text"
+                placeholder="Enter College Name"
+                aria-label="Number"
+                matInput
+                [formControl]="myControl"
+                [matAutocomplete]="auto"
+              />
+              <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                <mat-option
+                  *ngFor="let option of filteredOptions | async"
+                  [value]="option"
+                >
+                  {{ option }}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-4">
+      <div class="adddiv">
+        <button mat-button class="Addbutton" (click)="toggle()">
+          Add Quota
+        </button>
+      </div>
+
+      <ng-container *ngIf="show">
+        <div style="text-align: left">
+          <div class="row borderIt">
+            <mat-form-field appearance="outline" class="categoryinput">
+              <mat-label class="categorylabel">Category name</mat-label>
+              <input
+                matInput
+                class="categoryinput"
+                [(ngModel)]="dataTemplate.name"
+              />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="categoryinput">
+              <mat-label class="categorylabel">Percentage</mat-label>
+              <input
+                matInput
+                type="number"
+                class="categoryinput"
+                [(ngModel)]="dataTemplate.percent"
+              />
+            </mat-form-field>
+
+            <div class="col-sm-2 borderFab">
+              <button
+                mat-mini-fab
+                color="primary"
+                aria-label="Example"
+                (click)="onPressAddQuota()"
+              >
+                <mat-icon>add</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+    <div class="col-sm-12">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="listofcourses">
+            <div id="container">
+              <div class="row abcd">
+                <div class="col-sm-7">
+                  <a href="#" class="s3d dribbble">
+                    Computer science and Engineering
+                    <span class="icons dribbble"></span>
+                  </a>
+                </div>
+                <div class="col-sm-5">
+                  <button
+                    mat-mini-fab
+                    class="example-icon blob"
+                    (click)="openDialog()"
+                    aria-label="Edit or view"
+                  >
+                    <mat-icon>edit</mat-icon>
+                  </button>
+                </div>
+              </div>
+              <div class="row abcd">
+                <div class="col-sm-7">
+                  <a href="#" class="s3d dribbble">
+                    Information science and Engineering
+                    <span class="icons dribbble"></span>
+                  </a>
+                </div>
+                <div class="col-sm-5">
+                  <button
+                    mat-mini-fab
+                    class="example-icon blob"
+                    aria-label="Edit or view"
+                  >
+                    <mat-icon>edit</mat-icon>
+                  </button>
+                </div>
+              </div>
+
+              <div class="row abcd">
+                <div class="col-sm-7">
+                  <a href="#" class="s3d dribbble">
+                    Electronics and Communication
+                    <span class="icons dribbble"></span>
+                  </a>
+                </div>
+                <div class="col-sm-5">
+                  <button
+                    mat-mini-fab
+                    class="example-icon blob"
+                    aria-label="Edit or view"
+                  >
+                    <mat-icon>edit</mat-icon>
+                  </button>
+                </div>
+              </div>
+
+              <div class="row abcd">
+                <div class="col-sm-7">
+                  <a href="#" class="s3d dribbble">
+                    Mechanical Engineering
+                    <span class="icons dribbble"></span>
+                  </a>
+                </div>
+                <div class="col-sm-5">
+                  <button
+                    mat-mini-fab
+                    class="example-icon blob"
+                    aria-label="Edit or view"
+                  >
+                    <mat-icon>edit</mat-icon>
+                  </button>
+                </div>
+              </div>
+
+              <div class="row abcd">
+                <div class="col-sm-7">
+                  <a href="#" class="s3d dribbble">
+                    Civil Engineering
+                    <span class="icons dribbble"></span>
+                  </a>
+                </div>
+                <div class="col-sm-5">
+                  <button
+                    mat-mini-fab
+                    class="example-icon blob"
+                    aria-label="Edit or view"
+                  >
+                    <mat-icon>edit</mat-icon>
+                  </button>
+                </div>
+              </div>
+
+              <div class="row abcd">
+                <div class="col-sm-7">
+                  <a href="#" class="s3d dribbble">
+                    Electrical and Electronics
+                    <span class="icons dribbble"></span>
+                  </a>
+                </div>
+                <div class="col-sm-5">
+                  <button
+                    mat-mini-fab
+                    class="example-icon blob"
+                    aria-label="Edit or view"
+                  >
+                    <mat-icon>edit</mat-icon>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 chart">
+          <fusioncharts
+            type="pie3d"
+            width="600"
+            height="330"
+            [dataSource]="dataSource"
+          >
+          </fusioncharts>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

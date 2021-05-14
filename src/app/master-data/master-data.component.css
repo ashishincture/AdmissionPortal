@@ -1,0 +1,240 @@
+.cardClass {
+  padding: 2% 2% 2% 2% !important;
+}
+/* @media (min-width: 576px) */
+.card-deck {
+  align-items: center !important;
+}
+.mat-card {
+  background: #fbf8ac;
+  color: rgba(0, 0, 0, 0.781);
+}
+.blackBorder {
+  background-color: rgba(34, 31, 31, 0.5);
+}
+.w3_info h2 {
+  display: inline-block;
+  font-size: 25px;
+  line-height: 35px;
+  margin-bottom: 20px;
+  font-weight: 600;
+  color: #3b3663;
+}
+.cardbox {
+  padding-top: 3rem;
+  padding-left: 3rem;
+}
+.w3_info h4 {
+  display: inline-block;
+  font-size: 15px;
+  padding: 8px 0px;
+  color: #444;
+  text-transform: capitalize;
+}
+.input-group {
+  margin-bottom: 25px;
+  padding: 0px 0px;
+  border-bottom: 1px solid #e5e5e5;
+  position: relative;
+}
+.inputbox {
+  border-color: blanchedalmond;
+}
+.w3_info {
+  box-sizing: border-box;
+  padding: 3.5em 3.5em;
+  width: 400px;
+
+  background: rgba(22, 22, 22, 0.295);
+  box-shadow: 2px 9px 49px -17px rgba(0, 0, 0, 0.1);
+}
+
+.w3l-form-info {
+  margin: 40px 0;
+}
+
+.w3_info p {
+  padding-bottom: 30px;
+  text-align: center;
+}
+
+.bgmd {
+  background: url(/assets/img/bgbook.jpg) no-repeat center;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  -ms-background-size: cover;
+  position: relative;
+  min-height: 100vh;
+  /* background-color: #923cb5;
+    background-image: linear-gradient(147deg, #923cb5 0%, #000000 75%); */
+}
+
+@media screen and (max-width: 1440px) {
+}
+
+@media screen and (max-width: 991px) {
+  .w3_info h2 {
+    font-size: 24px;
+  }
+
+  h1 {
+    font-size: 35px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+}
+
+@media screen and (max-width: 800px) {
+  .w3_info h2 {
+    font-size: 23px;
+  }
+
+  .w3l-form-info {
+    flex-direction: column;
+  }
+
+  .w3l_form {
+    order: 2;
+  }
+
+  .container {
+    max-width: 550px;
+  }
+}
+.container {
+  max-width: 890px;
+  margin: 0 auto;
+}
+.whitetext {
+  color: #fff;
+}
+@media screen and (max-width: 736px) {
+  .w3_info h2 {
+    font-size: 22px;
+  }
+}
+
+@media screen and (max-width: 667px) {
+  .w3_info {
+    padding: 3em 3em;
+  }
+
+  .w3l-form-info {
+    margin: 20px 0 30px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  h1 {
+    font-size: 37px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .w3l_form {
+    padding: 0em;
+  }
+
+  .w3_info {
+    padding: 2em 2em;
+    width: 430px;
+  }
+
+  h1 {
+    font-size: 34px;
+  }
+}
+
+@media screen and (max-width: 415px) {
+  h1 {
+    font-size: 30px;
+  }
+
+  .w3_info {
+    width: 380px;
+  }
+  .signinform {
+    padding: 40px 20px;
+  }
+}
+
+@media screen and (max-width: 384px) {
+  .signinform {
+    padding: 30px 15px;
+  }
+  .w3_info {
+    width: 350px;
+  }
+  .twitter,
+  .google,
+  .facebook {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 13px;
+  }
+  span.fab {
+    line-height: 40px;
+  }
+  .social-login {
+    grid-gap: 10px;
+  }
+  a.forgot,
+  .form-row .form-check input[type="checkbox"] + label {
+    font-size: 15px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .w3_info {
+    width: 335px;
+    padding: 2em 1.5em;
+  }
+  .footer p {
+    font-size: 17px;
+  }
+  input[type="text"],
+  input[type="email"],
+  input[type="Password"] {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  h1 {
+    font-size: 25px;
+  }
+
+  .w3_info h2 {
+    font-size: 18px;
+  }
+
+  .btn-primary {
+    padding: 13px 12px;
+    font-size: 13px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    font-size: 13px;
+  }
+
+  .footer p {
+    font-size: 13px;
+  }
+
+  .footer p a {
+    font-size: 13px;
+  }
+}
+.w3l-form-info {
+  margin: 40px 0;
+}
+
+.w3l-form-info {
+  flex-direction: column;
+}

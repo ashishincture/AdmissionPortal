@@ -1,0 +1,50 @@
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+  
+  .Addbutton{
+    background:#3f3a64;
+    background: -webkit-gradient(linear, 0 0, 0 0, from( #7b59d0), to(#3f3a64));
+    background: -moz-linear-gradient( #7b59d0,#3f3a64);
+    background: linear-gradient( #7b59d0, #3f3a64);
+    border-top: 1px solid  #7b59d0;
+    color:   #d3d1da;
+  }
+  .SmallDatePicker .mat-form-field-infix {
+    display: block;
+    position: relative;
+    flex: auto;
+    min-width: 0;
+    width: 90px;
+}
+  .categorylabel{
+      color:#3f3a64 ;
+     
+  }
+
+  .categoryinput{
+      border: #3f3a64;
+      border-width: 2rem;
+  }
+
+  .cancelbutton{
+    background:#990000;
+    background: -webkit-gradient(linear, 0 0, 0 0, from( #ff8080), to(#990000));
+    background: -moz-linear-gradient( #ff8080,#990000);
+    background: linear-gradient(#ff8080, #990000);
+    border-top: 1px solid #ff8080;
+    color:   #d3d1da;
+  }
+  .chart{
+    margin-block-start: 30px;
+  }
+
+  .adddiv{
+      padding-bottom: 10px;
+  }

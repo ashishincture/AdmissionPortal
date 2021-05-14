@@ -1,3 +1,4 @@
+import { DepartmentComponent } from './department/department.component';
 import { SignupComponent } from './signup/signup.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { ListComponent } from './list/list.component';
@@ -10,10 +11,16 @@ import { ClgListComponent } from './clg-list/clg-list.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { RoundComponent } from './round/round.component';
+import { FaqComponent } from './faq/faq.component';
+import { SeatmatrixComponent } from './seatmatrix/seatmatrix.component';
+import { DocumentsComponent } from './documents/documents.component';
+import { StatusComponent } from './status/status.component';
+import { SubjectComponent } from './subject/subject.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
+  { path: 'seatmatrix', component: SeatmatrixComponent },
   { path: 'login', component: LoginComponent },
   { path: 'allotment', component: AllotmentComponent },
   { path: 'masterdata', component: MasterDataComponent },
@@ -23,6 +30,12 @@ const routes: Routes = [
   { path: 'carousel', component: CarouselComponent },
   { path: 'round', component: RoundComponent },
   { path: 'signup', component: SignupComponent },
+  { path: 'documents', component: DocumentsComponent },
+  { path: 'status', component: StatusComponent },
+  { path: 'faq', component: FaqComponent },
+  { path: 'subject', component: SubjectComponent },
+  { path: 'department', component: DepartmentComponent },
+
   // {
   //   path: 'home',
   //   component: HomeComponent,

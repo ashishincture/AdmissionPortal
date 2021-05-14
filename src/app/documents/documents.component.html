@@ -1,0 +1,205 @@
+<!-- <p> -->
+    <mat-toolbar class="matToolbar">
+        <p class="verClass">Documents Verification</p>
+        <div class="col col-md-6">
+        <div class="searchDiv">   
+        <input placeholder="Search" type="text" class=" bg-white searchBar " />
+        <button mat-icon-button class="example-icon btnSearch blob" aria-label="Example icon-button with search icon">
+          <mat-icon>search</mat-icon>
+        </button>
+      </div>
+    </div>
+        <div class="dropdown">
+          <label class="label">Select Course</label>
+          <select class="col col-md-12 dropBar">
+            <option value="1">Engineering</option>
+            <option value="2">Medical</option>
+            <option value="3">Management</option>
+          </select>
+        </div>
+        
+        
+        
+         <!-- <mat-form-field appearance="fill" class="comboBox">
+          <mat-label>Select Course</mat-label>
+          <mat-select [formControl]="courses" multiple>
+            <mat-option *ngFor="let course of courseList" [value]="course">{{course}}</mat-option>
+          </mat-select>
+        </mat-form-field> -->
+    
+    
+        <!-- <div class="Dropdown">
+          <form class="example-form">
+              <mat-form-field class="example-full-width">
+                  <input type="text" placeholder="Enter College Name" aria-label="Number" matInput
+                      [formControl]="myControl" [matAutocomplete]="auto">
+                  <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                          {{option}}
+                      </mat-option>
+                  </mat-autocomplete>
+              </mat-form-field>
+          </form>
+        </div> -->
+    
+       
+    
+      </mat-toolbar>
+    <!-- </p> -->
+    
+    
+    
+    
+    
+    
+    <!-- <div class="container-fluid d-flex justify-content-center" style="display: inline-flex;" width="100%">
+      <div class="card-deck" *ngFor="let detail of studentDetails;let i=index"> -->
+    
+        <div fxLayout="row wrap" fxLayoutGap="32px grid" class="card-deck">
+          <div fxFlex="33%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let detail of studentDetails;let i=index">
+    
+        <div class="card">
+          <img src="{{detail.profilePic}}"
+            class="rounded-circle container-fluid d-flex justify-content-center imgCard card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title container-fluid d-flex justify-content-center"><strong>{{detail.id}} -
+                {{detail.name}}</strong></h5>
+    
+            <div class="scrollable">
+    
+              <mat-accordion class="panelCss">
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      Show form Details
+                    </mat-panel-title>
+    
+                  </mat-expansion-panel-header>
+    
+    
+    
+                  <div>
+                    <div style="float:left;width:50%;">
+                      <p>Xth Percentage</p>
+    
+    
+    
+                    </div>
+                    <div style="float:left;width:5%;" class="container-fluid d-flex justify-content-center">
+                      <p>:</p>
+    
+                    </div>
+    
+                    <div style="float:right;width:30%;" class="container-fluid d-flex justify-content-center">
+                      <span><strong>{{detail.Xpercent}}</strong></span>
+    
+                    </div>
+                    <div style="clear:both; font-size:1px;"></div>
+                  </div>
+    
+                  <div>
+                    <div style="float:left;width:50%;">
+    
+                      <p>XIIth Percentage</p>
+    
+    
+                    </div>
+                    <div style="float:left;width:5%;" class="container-fluid d-flex justify-content-center">
+                      <p>:</p>
+    
+                    </div>
+    
+                    <div style="float:right;width:30%;" class="container-fluid d-flex justify-content-center">
+                      <span><strong>{{detail.XIIpercent}}</strong></span>
+    
+                    </div>
+                    <div style="clear:both; font-size:1px;"></div>
+                  </div>
+    
+                  <div>
+                    <div style="float:left;width:50%;">
+    
+                      <p>Category</p>
+    
+    
+                    </div>
+                    <div style="float:left;width:5%;" class="container-fluid d-flex justify-content-center">
+                      <p>:</p>
+    
+                    </div>
+    
+                    <div style="float:right;width:30%;" class="container-fluid d-flex justify-content-center">
+                      <span><strong>{{detail.category}}</strong></span>
+    
+                    </div>
+                    <div style="clear:both; font-size:1px;"></div>
+                  </div>
+                </mat-expansion-panel>
+              </mat-accordion>
+    
+              <h4 class="container-fluid d-flex justify-content-center docHead"><strong>Documents Uploaded</strong></h4>
+              <div>
+                <a href="" style="float:left;width:50%;" class="docLink">Xth_Marksheet</a>
+                <div>
+                  <button mat-icon-button class="example-icon blob" aria-label="Example icon-button with done icon"
+                    class="BtnRight BtnRight1" (click)="onPressRightX(i)">
+                    <mat-icon aria-hidden="false" aria-label="Example done icon">done</mat-icon>
+                  </button>
+                  <button mat-icon-button class="example-icon blob" aria-label="Example icon-button with pause icon"
+                    class="BtnPause BtnHold1" (click)="onPressHoldX(i)">
+                    <mat-icon aria-hidden="false" aria-label="Example pause icon">pause</mat-icon>
+                  </button>
+    
+                  <!-- <div  style="float:right;width:30%;"  class="switch switch--dark"> -->
+                  <!-- <label> -->
+                  <!-- <span class="switch__label">Disable:</span> -->
+                  <!-- <input class="switch__state" type="checkbox" name="switch" checked> -->
+                  <!-- <span class="switch__control switch__control--rounded"></span> -->
+                  <!-- <span class="switch__indicator"></span> -->
+                  <!-- </label> -->
+                </div>
+    
+                <div style="clear:both; font-size:1px;"></div>
+              </div>
+    
+              <div class="docDetails">
+                <a href="" style="float:left;width:50%;" class="docLink">XIIth_Marksheet</a>
+    
+                <div>
+                  <button mat-icon-button class="example-icon blob" aria-label="Example icon-button with done icon"
+                    class="BtnRight BtnRight2 " (click)="onPressRightXII(i)">
+                    <mat-icon aria-hidden="false" aria-label="Example done icon">done</mat-icon>
+                  </button>
+                  <button mat-icon-button class="example-icon blob" aria-label="Example icon-button with pause icon"
+                    class="BtnPause BtnHold2" (click)="onPressHoldXII(i)">
+                    <mat-icon aria-hidden="false" aria-label="Example pause icon">pause</mat-icon>
+                  </button>
+                </div>
+    
+                <div style="clear:both; font-size:1px;"></div>
+              </div>
+    
+            </div>
+            <div class="card-footer">
+              <button type="button" class=" BtnApprove btn btn-outline-success" (click)="onPressApprove(i)">Approve</button>
+              <!-- <button type="button" class=" BtnReject btn btn-outline-danger">Reject</button> -->
+              <!-- <button mat-raised-button color="warn" class=" BtnReject">Reject</button> -->
+    
+              <button type="button" class=" BtnHold btn btn-outline-warning float-right">Hold</button>
+            </div>
+    
+          </div>
+        </div>
+    
+    
+    
+    
+    
+      </div>
+    
+    </div>
+    
+    
+    <!-- </mat-tab>
+                  
+                </mat-tab-group> -->

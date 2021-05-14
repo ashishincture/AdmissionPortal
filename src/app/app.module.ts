@@ -2,9 +2,10 @@ import { MaterialModule } from './material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -17,9 +18,41 @@ import { CourseListComponent } from './course-list/course-list.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { RoundComponent } from './round/round.component';
 import { ListComponent } from './list/list.component';
+
 import { SignupComponent } from './signup/signup.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatCardModule } from '@angular/material/card';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { Globals } from './globals';
+import { FaqComponent } from './faq/faq.component';
+import { SeatmatrixComponent } from './seatmatrix/seatmatrix.component';
+import { DialogNewComponent } from './dialog-new/dialog-new.component';
+import { FusionChartsModule } from 'angular-fusioncharts';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+// Import FusionCharts library and chart modules
+import * as FusionCharts from 'fusioncharts';
+import * as charts from 'fusioncharts/fusioncharts.charts';
+import * as FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
+import { DocumentsComponent } from './documents/documents.component';
+import { StatusComponent } from './status/status.component';
+import { DialogApproveComponent } from './dialog-approve/dialog-approve.component';
+import { DialogNotApproveComponent } from './dialog-not-approve/dialog-not-approve.component';
+import { SubjectComponent } from './subject/subject.component';
+import { HttpClientModule } from '@angular/common/http';
+import { SubjectService } from './subject.service';
+import { UpdateDialogComponent } from './update-dialog/update-dialog.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatTableModule } from '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
+import { DepartmentComponent } from './department/department.component';
+
+// Pass the fusioncharts library and chart modules
+FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +66,19 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     CarouselComponent,
     RoundComponent,
     ListComponent,
+
     SignupComponent,
+
+    FaqComponent,
+    SeatmatrixComponent,
+    DialogNewComponent,
+    DocumentsComponent,
+    StatusComponent,
+    DialogApproveComponent,
+    DialogNotApproveComponent,
+    SubjectComponent,
+    UpdateDialogComponent,
+    DepartmentComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,9 +88,32 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     MaterialModule,
+
     Ng2SearchPipeModule,
+
+    MatFormFieldModule,
+    MatGridListModule,
+    MatDividerModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatAutocompleteModule,
+    FusionChartsModule,
+    FlexLayoutModule,
+    HttpClientModule,
+    MatInputModule,
+    MatTableModule,
+    MatIconModule,
   ],
-  providers: [],
+  providers: [
+    MatTabsModule,
+    MatCardModule,
+    MatGridListModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    Globals,
+    FusionChartsModule,
+    SubjectService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

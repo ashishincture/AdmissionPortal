@@ -7,6 +7,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
+  events: string[] = [];
+  opened: boolean;
+  showMenu = false;
+
   constructor(public router: Router) {}
 
   ngOnInit(): void {}
@@ -24,5 +28,26 @@ export class NavbarComponent implements OnInit {
   }
   goToClgList() {
     this.router.navigate(['/clgList']);
+  }
+  goToFAQ() {
+    this.router.navigate(['/faq']);
+  }
+  goToSeatMatrix() {
+    this.router.navigate(['/seatmatrix']);
+  }
+  goToDocuments() {
+    this.router.navigate(['/documents']);
+  }
+  goToStatus() {
+    this.router.navigate(['/status']);
+  }
+  goToDepartment() {
+    this.router.navigate(['/department']);
+  }
+  toggleMenu() {
+    this.showMenu = !this.showMenu;
+  }
+  goTosub() {
+    this.router.navigate(['/subject']);
   }
 }

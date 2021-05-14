@@ -68,19 +68,45 @@
       <a mat-list-item [routerLink]="'/masterdata'" (click)="goToMasterData()">
         Master data
       </a>
-      <a mat-list-item [routerLink]="'/table'" (click)="goToTable()">
+      <a mat-list-item [routerLink]="'/seatmatrix'" (click)="goToSeatMatrix()">
         Seat Matrix
       </a>
-      <a mat-list-item [routerLink]="'/chart'" (click)="goToChart()">
+      <a mat-list-item (click)="toggleMenu()">
         Verification
+        <mat-icon *ngIf="!showMenu">chevron_right</mat-icon>
+        <mat-icon *ngIf="showMenu">expand_more</mat-icon>
       </a>
+      <mat-nav-list class="sidenav-submenu" *ngIf="showMenu">
+        <a
+          mat-list-item
+          class="subList"
+          [routerLink]="'/Documents'"
+          (click)="goToDocuments()"
+        >
+          Documents</a
+        >
+        <a
+          mat-list-item
+          class="subList"
+          [routerLink]="'/Status'"
+          (click)="goToStatus()"
+        >
+          Status</a
+        >
+      </mat-nav-list>
       <a mat-list-item [routerLink]="'/clgList'" (click)="goToClgList()">
         Allotment
+      </a>
+      <a mat-list-item [routerLink]="'/subject'" (click)="goTosub()">
+        Subject
+      </a>
+      <a mat-list-item [routerLink]="'/department'" (click)="goToDepartment()">
+        Department
       </a>
       <a mat-list-item [routerLink]="'/table'" (click)="goToTable()">
         Announcement
       </a>
-      <a mat-list-item [routerLink]="'/chart'" (click)="goToChart()"> FAQ </a>
+      <a mat-list-item [routerLink]="'/faq'" (click)="goToFAQ()"> FAQ </a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content class="DetailPage">

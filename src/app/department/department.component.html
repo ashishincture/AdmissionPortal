@@ -1,0 +1,20 @@
+<body
+  style="
+    background-color: #333333;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+  "
+>
+  <div>
+    <div class="departmentCards">
+      <div *ngFor="let department of departments; let i = index">
+        <div class="departmentClass" id="regulationId">
+          <h4 style="font-weight: bold; color: wheat">
+            {{ department.dept }}
+          </h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
