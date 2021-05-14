@@ -6,7 +6,7 @@
 ">
     <div class="departmentCards">
       <div *ngFor="let department of departments; let i = index">
-        <div class="departmentClass" id="regulationId">
+        <div class="departmentClass" (click)="onDeptPress(department.Department_Name)">
           <h4 style="font-weight: bold; color: wheat">
             {{ department.Department_Name }}
           </h4>

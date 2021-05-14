@@ -9,6 +9,7 @@ import {
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { SubjectService } from '../subject.service';
 import * as XLSX from 'xlsx';
+import { ToastrService} from 'ngx-toastr';
 // import { debugger } from 'fusioncharts';
 // const XLSX = require('xlsx');
 // import {SubjectClass} from "../models/SubjectClass.model";
@@ -69,10 +70,10 @@ export class SubjectComponent implements OnInit {
     Regulation_ID: "",
     Credit: "",
   };
-  displayedColumns: string[] = ['Subject_ID', 'Subject_Name', 'Type', 'Credit', 'active', 'actions'];
+  displayedColumns: string[] = ['Subject_ID', 'Subject_Name', 'Type', 'Credit', 'actions'];
   @ViewChild(MatTable)
   table!: MatTable<any>;
-  constructor(public dialog: MatDialog, private SubjectService: SubjectService) { }
+  constructor(public dialog: MatDialog, private SubjectService: SubjectService,private toastr: ToastrService) { }
   ngOnInit(): void {
     this.fetchRegulation();
     // this.fetchDepartment();
@@ -216,15 +217,16 @@ export class SubjectComponent implements OnInit {
      (err) => {console.log(err)});
         }
       }
-      console.log(crctArray);
-      console.log(errArray);
       if (errArray.length) {
+        this.toastr.error('Out of '+this.newTablelist.length+ ' Subjects uploaded, '+ errArray.length+ ' records contain Invalid Data.' , 'Error',{
+     timeOut: 10000,
+     extendedTimeOut: 0
+});
         var ws = XLSX.utils.json_to_sheet(errArray);
         var wb = XLSX.utils.book_new();
         XLSX.utils.book_append_sheet(wb, ws, "Error");
-        XLSX.writeFile(wb, "sheetjs.xlsx");
+        XLSX.writeFile(wb, "InvalidSubjectRecords.xlsx");
       }
-      // this.dataSource=this.dataSource.concat(filelist);
 
     }
 
