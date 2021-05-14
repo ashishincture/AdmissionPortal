@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { SubjectService } from '../subject.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-
 @Component({
   selector: 'app-department',
   templateUrl: './department.component.html',
@@ -8,18 +8,24 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 })
 export class DepartmentComponent implements OnInit {
   departments: any;
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
+  constructor(
+    private SubjectService: SubjectService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.fetchRegulation();
   }
 
   fetchRegulation() {
-    this.departments = [
-      { dept: 'CSE' },
-      { dept: 'ECE' },
-      { dept: 'EEE' },
-      { dept: 'MECH' },
-    ];
+    this.SubjectService.getDepartment().subscribe((data: any) => {
+      console.log(data);
+      this.departments = data.data;
+    });
+  }
+  onDeptPress(data) {
+    this.router.navigate(['subject']);
+    console.log(data);
   }
 }

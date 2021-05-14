@@ -1,4 +1,4 @@
-<body
+<div
   style="
     background-color: #333333;
     position: absolute;
@@ -6,15 +6,16 @@
     width: 100%;
   "
 >
-  <div>
-    <div class="departmentCards">
-      <div *ngFor="let department of departments; let i = index">
-        <div class="departmentClass" id="regulationId">
-          <h4 style="font-weight: bold; color: wheat">
-            {{ department.dept }}
-          </h4>
-        </div>
+  <div class="departmentCards">
+    <div *ngFor="let department of departments; let i = index">
+      <div
+        class="departmentClass"
+        (click)="onDeptPress(department.Department_Name)"
+      >
+        <h4 style="font-weight: bold; color: wheat">
+          {{ department.Department_Name }}
+        </h4>
       </div>
     </div>
   </div>
-</body>
+</div>
