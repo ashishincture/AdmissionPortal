@@ -7,17 +7,15 @@
         <input matInput type="search" [(ngModel)]="SubSearchKey" (ngModelChange)="SubSearch()" >
     </mat-form-field>
     <mat-form-field >
-      <mat-label>Regulation</mat-label>
-      <mat-select >
-        <mat-option *ngFor="let Regulation of Regulations" value="option1">{{Regulation.Regulation_Name}}</mat-option>
-        <!-- <mat-option value="option2">R16</mat-option>
-        <mat-option value="option3">R17</mat-option> -->
+      <mat-label class="whitetext">Regulation</mat-label>
+      <mat-select  [(value)]="Regulations[0].Regulation_Name" (selectionChange)="RegulationSearch($event)">
+        <mat-option *ngFor="let Regulation of Regulations" [value]="Regulation.Regulation_Name">{{Regulation.Regulation_Name}}</mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field >
-      <mat-label>Department</mat-label>
-      <mat-select [(ngModel)]="DeptSearchKey" (ngModelChange)="DeptSearch()">
-        <mat-option *ngFor="let Department of Departments" value="option1">{{Department.Department_Name}}</mat-option>
+      <mat-label class="whitetext">Department</mat-label>
+      <mat-select  [(value)]="Departments[0].Department_Name" (selectionChange)="DeptSearch($event)">
+        <mat-option *ngFor="let Department of Departments" [value]="Department.Department_Name" >{{Department.Department_Name}}</mat-option>
         <!-- <mat-option value="option2">ECE</mat-option>
         <mat-option value="option3">EEE</mat-option> -->
       </mat-select>

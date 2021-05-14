@@ -59,6 +59,7 @@ export class SubjectComponent implements OnInit {
   SubSearchKey: any;
   arrayBuffer: any;
   DeptSearchKey: string;
+  RegulationSearchKey:string;
   subjectInstance: Subject = {
     Subject_ID: "",
     Subject_Name: "",
@@ -74,20 +75,30 @@ export class SubjectComponent implements OnInit {
   constructor(public dialog: MatDialog, private SubjectService: SubjectService) { }
   ngOnInit(): void {
     this.fetchRegulation();
-    this.fetchDepartment();
+    // this.fetchDepartment();
     this.fetchSubjectlist();
   }
   fetchRegulation() {
     this.SubjectService.getRegulation().
       subscribe((data: any) => {
         this.Regulations = data.data;
+        this.RegulationSearchKey = this.Regulations[0].Regulation_Name;
+        this.fetchDepartmentByRegId(this.RegulationSearchKey);
       });
   }
   fetchDepartment() {
     this.SubjectService.getDepartment().
       subscribe((data: any) => {
-        this.Departments = data.data;
+        console.log(data);
+        // this.Departments = data.data;
+        // this.DeptSearchKey=this.Departments[0].Department_Name;
       });
+  }
+  fetchDepartmentByRegId(ID){
+    this.SubjectService.getDepartmentByRegId(ID).subscribe((data: any) => {
+      this.Departments = data.data.Department_Details;
+      this.DeptSearchKey=this.Departments[0].Department_Name;
+    });
   }
   fetchSubjectlist() {
     this.SubjectService.getSubjectList().
@@ -98,8 +109,21 @@ export class SubjectComponent implements OnInit {
       });
   }
   onAddNewSubject() {
-    const dialogRef = this.dialog.open(UpdateDialogComponent);
+    const dialogRef = this.dialog.open(UpdateDialogComponent,{data: {type:"Create",data:{
+      Subject_ID: "",
+      Subject_Name: "",
+      isActive: false,
+      Type: "",
+      Department_ID: this.DeptSearchKey,
+      Regulation_ID: this.RegulationSearchKey,
+      Credit: "",
+    }} });
     dialogRef.afterClosed().subscribe((result) => {
+      for(var i=0;i<this.Departments.length;i++){
+        if(result.data.Department_ID ==this.Departments[i].Department_Name)
+        result.data.Department_ID=this.Departments[i].Department_ID;
+        break;
+      }
       this.SubjectService.createSubject(result.data).subscribe((data: any) => {
         console.log(data.data.msg);
         this.fetchSubjectlist();
@@ -146,7 +170,14 @@ export class SubjectComponent implements OnInit {
     this.key = Subject_Name;
     this.reverse = !this.reverse;
   }
-  DeptSearch() {
+  DeptSearch(oEvent) {
+    console.log(oEvent.value);
+    this.DeptSearchKey=oEvent.value;
+  }
+  RegulationSearch(oEvent){
+    console.log(oEvent.value);
+    this.RegulationSearchKey=oEvent.value;
+    this.fetchDepartmentByRegId(this.RegulationSearchKey);
   }
   onFileUpload(oEvent) {
     var file = oEvent.target.files[0];
