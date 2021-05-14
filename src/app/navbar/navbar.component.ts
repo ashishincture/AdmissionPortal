@@ -47,6 +47,9 @@ export class NavbarComponent implements OnInit {
  goTosub(){
   this.router.navigate(['/subject']);
  }
+ goToDept(){
+  this.router.navigate(['/department']);
+ }
  goToRegulation(){
   this.router.navigate(['/regulation']);
  }

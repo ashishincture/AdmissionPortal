@@ -59,6 +59,7 @@ import { CreateCRComponent } from './Curriculum_folder/create-cr/create-cr.compo
 import { SubjDialogComponent } from './Curriculum_folder/subj-dialog/subj-dialog.component';
 import { NewRegulationComponent } from './new-regulation/new-regulation.component';
 import { NewregTableComponent } from './newreg-table/newreg-table.component';
+import { DepartmentComponent } from './department/department.component';
 
 // Pass the fusioncharts library and chart modules
 FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
@@ -94,7 +95,8 @@ FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
     CreateCRComponent,
     SubjDialogComponent,
     NewRegulationComponent,
-    NewregTableComponent
+    NewregTableComponent,
+    DepartmentComponent
   ],
   imports: [
     BrowserModule,
