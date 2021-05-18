@@ -60,6 +60,8 @@ import { SubjDialogComponent } from './Curriculum_folder/subj-dialog/subj-dialog
 import { NewRegulationComponent } from './new-regulation/new-regulation.component';
 import { NewregTableComponent } from './newreg-table/newreg-table.component';
 import { DepartmentComponent } from './department/department.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSortModule} from '@angular/material/sort';
 
 // Pass the fusioncharts library and chart modules
 FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
@@ -117,8 +119,9 @@ FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
     HttpClientModule,
     MatInputModule,
     MatTableModule,
-    MatIconModule
-  ],
+    MatIconModule,
+    MatPaginatorModule,
+    MatSortModule ],
   providers: [
     MatTabsModule,
     MatCardModule,
