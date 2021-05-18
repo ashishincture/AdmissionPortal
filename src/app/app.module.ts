@@ -19,7 +19,6 @@ import { CarouselComponent } from './carousel/carousel.component';
 import { RoundComponent } from './round/round.component';
 import { ListComponent } from './list/list.component';
 import { SignupComponent } from './signup/signup.component';
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -110,7 +109,6 @@ FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     MaterialModule,
-    Ng2SearchPipeModule,
     MatFormFieldModule,
     MatGridListModule,
     MatDividerModule,
