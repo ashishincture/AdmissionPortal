@@ -51,7 +51,7 @@ export class CRcomp1Component{
     debugger;
     this.displayedColumns =['code','id','name','type','description','credits'];
     this.initialData = this.localservice.coreData;
-    if(this.initialData[0].type!=="core"){
+    if(this.initialData[0].type!=="Core"){
       this.groupingColumn="groupNme";
     }
     return true;

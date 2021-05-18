@@ -9,7 +9,9 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { DataServiceService,CrClass,ADyear,Department,SubjectClass, DeptCr,RegulationClass, CRSubjectClass } from '../../data-service.service';
 import {LocalDataService} from '../../local-data.service';
 import { SubjDialogComponent } from '../subj-dialog/subj-dialog.component';
-import { ValueConverter } from '@angular/compiler/src/render3/view/template';
+import { SubjectService } from '../../subject.service';
+
+
 
 @Component({
   selector: 'app-create-cr',
@@ -17,9 +19,9 @@ import { ValueConverter } from '@angular/compiler/src/render3/view/template';
   styleUrls: ['./create-cr.component.css']
 })
 export class CreateCRComponent implements OnInit {
-  @Input() subType:string="";
+  @Input() subType:string=""; semNo=1;
   regulation:RegulationClass[]=this.service.RegulationData;
-  deptData: Department[] = this.service.getDeptData();
+  deptData;
   CRData!: string;
   ADyears:ADyear[]=[];
   CRdetails:any;
@@ -29,6 +31,7 @@ export class CreateCRComponent implements OnInit {
   semData: { name: string; }[] | undefined;
   showGroupfield: boolean=false;
   electiveGrp:string="";
+  deptSubj;
   constructor(
     private route:Router,
     private activatedRoute:ActivatedRoute,
@@ -36,12 +39,25 @@ export class CreateCRComponent implements OnInit {
     private componentFactoryResolver:ComponentFactoryResolver,
     private fBuilder:FormBuilder,
     private localservice:LocalDataService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private SubjectService: SubjectService
   ) {
     this.subjecttypes=this.service.subjecttypes;
-    this.deptData=this.service.getDeptData();
+    this.service.getDeptSData().subscribe((data:any)=>{
+      this.deptData=data.data;
+      //console.log(this.deptData);
+    });
+
+    this.SubjectService.getSubjectList().
+      subscribe((data: any) => {
+        //this.Subjects = data.data;
+        //this.data = data.data;
+        this.deptSubj=data.data;
+        //console.log(data.data);
+        
+      });
     let inputData = this.localservice.coreData;
-    if(this.localservice.subType!=='core'){
+    if(this.localservice.subType!=='Core'){
       this.showGroupfield=true;
       this.groupingColumn="groupNme";
     }
@@ -72,7 +88,7 @@ export class CreateCRComponent implements OnInit {
     });
     //this.semData=this.service.semData;
     //this.subjecttypes=this.service.subjecttypes;
-    this.deptData=this.service.getDeptData();
+    //this.deptData=this.service.getDeptData();
     let semsubj=this.service.RegulationData.find(({
       semid
     })=>semid===this.localservice.semid);
@@ -83,46 +99,88 @@ export class CreateCRComponent implements OnInit {
   }
   openSubDiag(oEvent:any){
     //debugger;
+    if(this.subType!=="Core" && this.electiveGrp===""){
+      return;
+    }
+
     let selectDept=oEvent.value;
-    const deptSubj=this.service.departmentData;
     let Subjects=[];
-    for(var i=0;i<deptSubj.length;i++){
-      if(deptSubj[i].code===selectDept){
-       
-        for(var j=0;j<deptSubj[i].Subjects.length;j++){
-          if(deptSubj[i].Subjects[j].type===this.subType){
-            Subjects.push(deptSubj[i].Subjects[j])
-          }
+    for(var i=0;i<this.deptSubj.length;i++){
+      if(this.deptSubj[i].Department_ID===selectDept){
+               
+          if(this.deptSubj[i].Type===this.subType){
+            Subjects.push(this.deptSubj[i])
+         
         }
       }
     }
+
+    //
+    // this.SubjectService.getSubjectList().
+    //   subscribe((data: any) => {
+    //     //this.Subjects = data.data;
+    //     //this.data = data.data;
+    //     deptSubj=data.data;
+    //     for(var i=0;i<deptSubj.length;i++){
+    //       if(deptSubj[i].Department_ID===selectDept){
+           
+            
+    //           if(deptSubj[i].Type===this.subType){
+    //             Subjects.push(deptSubj[i])
+              
+    //         }
+    //       }
+    //     }
+    //     console.log(data.data);
+        
+    //   });
+    //
     this.data=Subjects;
 
     // let subjs=this.service.departmentData.filter((value,key)=>{
     //   if(value.code===oEvent.value){let subjects=value?.Subjects}})
     // let sellectDept=oEvent.
-    const dialogRef = this.dialog.open(SubjDialogComponent, {
+    if(this.data.length>0){
+      const dialogRef = this.dialog.open(SubjDialogComponent, {
       width:"25rem",
       data:this.data 
     });
+  
+    let that =this;
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      debugger;
-      for(var i=0;i<result.length;i++){
-        result[i].groupNme=this.electiveGrp;
-      }
-      this.initialData=this.initialData.concat(result);
-      this.buildDataSource();
-
+      if(result){
+          let semsub=this.service.newCRData.semData.find(({
+            sem
+          })=>sem===that.semNo).subjects;
+          
+          for(var i=0;i<result.length;i++){
+            result[i].groupNme=this.electiveGrp;
+            let num=semsub.findIndex((subj)=>{
+              if(subj.Subject_ID===result[i].Subject_ID){
+              return true
+              }
+              })
+            if(num !== -1){
+             
+              result=result.splice(i,0);
+              continue;
+            }
+          }
+          
+          this.initialData=this.initialData.concat(result);
+          this.buildDataSource();
+        }
       });
+    }
       
     
   }
   initData(data: {}[]){
     if(!data) return false;
     //debugger;
-    this.displayedColumns =['code','id','name','type','credits'];
+    this.displayedColumns =['Subject_ID','Subject_Name','Type','Credit'];
     this.initialData = this.localservice.coreData;
     // if(this.initialData[0]?.type!=="core"&&this.initialData[0]?.type!==undefined){
     //   this.showGroupfield=true;
@@ -131,11 +189,12 @@ export class CreateCRComponent implements OnInit {
     return true;
   }
 
-  /**
-   * Rebuilds the datasource after any change to the criterions
-   */
+  // /**
+  //  * Rebuilds the datasource after any change to the criterions
+  //  */
   buildDataSource(){
     this.dataSource = this.groupBy(this.groupingColumn,this.initialData,this.reducedGroups);
+    this.service.updateCRData(this.initialData,this.semNo);
   }
   
   /**

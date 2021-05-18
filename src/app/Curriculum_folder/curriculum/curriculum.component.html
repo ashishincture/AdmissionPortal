@@ -35,7 +35,7 @@
                 </div>
                 <div class="col form-group">
                     <mat-form-field appearance="fill">
-                        <mat-label  style="color:white; font-size: 1rem;">Choose an semester</mat-label>
+                        <mat-label>Choose an semester</mat-label>
                         <mat-select formControlName="semNo" [class.is-invalid]="CRdetails.get('semNo').invalid && CRdetails.get('semNo').touched">
                             <mat-option *ngFor="let sem of semData" [value]="sem.name">{{sem.name}}</mat-option>
                         </mat-select>
@@ -99,19 +99,16 @@
                         <small class="text-danger" [class.d-none]="CreateCRdetails.get('adYear').valid || CreateCRdetails.get('adYear').untouched">academic Year is required</small>
                     </mat-form-field>                  
                 </div>
-                <div class="col form-group">
-                    <mat-form-field appearance="fill">
-                        <mat-label style="color:white;">Choose an semester</mat-label>
-                        <mat-select formControlName="semNo" [class.is-invalid]="CreateCRdetails.get('semNo').invalid && CreateCRdetails.get('semNo').touched">
-                            <mat-option *ngFor="let sem of semData" [value]="sem.name">{{sem.name}}</mat-option>
-                        </mat-select>
-                        <small class="text-danger" [class.d-none]="CreateCRdetails.get('semNo').valid || CreateCRdetails.get('semNo').untouched">academic Year is required</small>
-                    </mat-form-field>                 
-                </div>
+                <div class="col form-group" *ngIf="showForm.createCR && showForm.ViewFooter">
+                    
+                    <mat-label style="color:white;">Semester No</mat-label>
+                    <p style="color:white;">{{CreateCRdetails.value.semNo}}</p>
+                             
+            </div>
             </div>  
               
         </form> 
-        <button mat-raised-button *ngIf="showForm.createCR" (click)="CreateCRinReg()" class="Btn">Create CR</button>
+        <button mat-raised-button *ngIf="showForm.createCR && !showForm.ViewFooter" (click)="CreateCRinReg()" class="Btn">Create CR</button>
     </div>
     
       
@@ -144,4 +141,8 @@
         
 
     <!-- </div> -->
+    <footer *ngIf="showForm.ViewFooter" class="footer">
+        <button mat-raised-button *ngIf="showForm.createCR" (click)="NextSem()">Next</button> 
+    </footer>
+
 </div>
