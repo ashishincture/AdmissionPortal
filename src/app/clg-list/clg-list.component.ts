@@ -25,9 +25,18 @@ export class ClgListComponent implements OnInit {
   goToCourseList() {
     this.router.navigate(['/courseList']);
   }
+  onChangeCollege(e) {
+    this.searchCollege = e.target.value;
+  }
   onSearchCollege() {
     let flag = 0;
-    if (this.searchCollege === 'undefined' || this.hideCarousel === '') {
+    console.log(this.searchCollege);
+
+    if (
+      this.searchCollege === 'undefined' ||
+      this.searchCollege === '' ||
+      this.searchCollege === 'None'
+    ) {
       this.hideCarousel = true;
     } else {
       for (var i in this.collegeList) {
@@ -42,6 +51,7 @@ export class ClgListComponent implements OnInit {
           // console.log('Found');
           this.hideCarousel = false;
           this.showRounds = true;
+          flag = 0;
           break;
         }
       }

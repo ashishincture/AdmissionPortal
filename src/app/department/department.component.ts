@@ -4,25 +4,27 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 @Component({
   selector: 'app-department',
   templateUrl: './department.component.html',
-  styleUrls: ['./department.component.css']
+  styleUrls: ['./department.component.css'],
 })
 export class DepartmentComponent implements OnInit {
   departments: any;
-  constructor(private SubjectService: SubjectService, private router: Router,
-    private activatedRoute: ActivatedRoute,) { }
+  constructor(
+    private SubjectService: SubjectService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.fetchRegulation();
   }
 
   fetchRegulation() {
-    this.SubjectService.getDepartment().
-      subscribe((data: any) => {
-        console.log(data);
-        this.departments = data.data;
-      });
+    this.SubjectService.getDepartment().subscribe((data: any) => {
+      console.log(data);
+      this.departments = data.data;
+    });
   }
-  onDeptPress(data){
+  onDeptPress(data) {
     this.router.navigate(['subject']);
     console.log(data);
   }

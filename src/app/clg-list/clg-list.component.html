@@ -1,14 +1,28 @@
 <mat-toolbar class="subHeader">
   <span>Allocation</span>
-  <div class="ml-auto mt-3">
+  <div class="ml-auto mt-3 mr-5">
     <div class="form-group row">
       <div class="col col-md-8">
-        <input
+        <!-- <input
           type="text"
           class="form-control searchBar"
           placeholder="Search College"
           [(ngModel)]="searchCollege"
-        />
+        /> -->
+        <select
+          class="form-control selectCollege"
+          (change)="onChangeCollege($event)"
+        >
+          <!-- <option disabled>Select Website</option> -->
+          <option>None</option>
+          <option *ngFor="let clg of collegeList">{{ clg.name }}</option>
+        </select>
+        <!-- *ngFor="let clg of collegeList | filter: searchCollege" -->
+        <!-- <div *ngFor="let clg of collegeList | filter: searchCollege">
+          <p>
+            {{ clg.name }}
+          </p>
+        </div> -->
       </div>
       <div class="col col-md-4">
         <button

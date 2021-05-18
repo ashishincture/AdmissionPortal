@@ -72,13 +72,27 @@
         Seat Matrix
       </a>
       <a mat-list-item (click)="toggleMenu()">
-        Verification 
-         <mat-icon *ngIf="!showMenu">chevron_right</mat-icon>
+        Verification
+        <mat-icon *ngIf="!showMenu">chevron_right</mat-icon>
         <mat-icon *ngIf="showMenu">expand_more</mat-icon>
       </a>
-      <mat-nav-list class="sidenav-submenu " *ngIf="showMenu">
-        <a mat-list-item class="subList" [routerLink]="'/Documents'" (click)="goToDocuments()" > Documents</a>
-        <a mat-list-item class="subList" [routerLink]="'/Status'" (click)="goToStatus()"> Status</a>       
+      <mat-nav-list class="sidenav-submenu" *ngIf="showMenu">
+        <a
+          mat-list-item
+          class="subList"
+          [routerLink]="'/Documents'"
+          (click)="goToDocuments()"
+        >
+          Documents</a
+        >
+        <a
+          mat-list-item
+          class="subList"
+          [routerLink]="'/Status'"
+          (click)="goToStatus()"
+        >
+          Status</a
+        >
       </mat-nav-list>
       <a mat-list-item [routerLink]="'/clgList'" (click)="goToClgList()">
         Allotment
@@ -86,11 +100,13 @@
       <a mat-list-item [routerLink]="'/regulation'" (click)="goToRegulation()">
         Regulation
       </a>
-      <a mat-list-item [routerLink]="'/department'" (click)="goToDept()">
-        Department
-      </a>
+
       <a mat-list-item [routerLink]="'/subject'" (click)="goTosub()">
         Subject
+      </a>
+
+      <a mat-list-item [routerLink]="'/department'" (click)="goToDepartment()">
+        Department
       </a>
       <a mat-list-item [routerLink]="'/Curriculum'" (click)="goToCurriculum()">
         Curriculum

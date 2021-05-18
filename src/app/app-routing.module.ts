@@ -1,3 +1,4 @@
+import { SignupComponent } from './signup/signup.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { ListComponent } from './list/list.component';
 import { AllotmentComponent } from './allotment/allotment.component';
@@ -38,18 +39,21 @@ const routes: Routes = [
   { path: 'list/:id', component: ListComponent },
   { path: 'carousel', component: CarouselComponent },
   { path: 'round', component: RoundComponent },
+  { path: 'signup', component: SignupComponent },
   { path: 'documents', component: DocumentsComponent },
   { path: 'status', component: StatusComponent },
-  { path: 'faq', component: FaqComponent},
-  { path: 'subject', component: SubjectComponent},
-  { path: 'regulation', component: RegulationComponent},
-  { path: 'regulationdetail', component: RegulationDetailsComponent},
-  { path: 'departmentdetail', component: DepartmentDetailsComponent},
-  { path: 'addsubject', component: AddSubjectComponent},
-  { path: 'editsubject', component: EditSubjectComponent},
-  { path: 'add', component: NewRegulationComponent},
-  {path:'Curriculum',component:CurriculumComponent},
-  {path:'department',component:DepartmentComponent}
+
+  { path: 'faq', component: FaqComponent },
+  { path: 'subject', component: SubjectComponent },
+  { path: 'regulation', component: RegulationComponent },
+  { path: 'regulationdetail', component: RegulationDetailsComponent },
+  { path: 'departmentdetail', component: DepartmentDetailsComponent },
+  { path: 'addsubject', component: AddSubjectComponent },
+  { path: 'editsubject', component: EditSubjectComponent },
+  { path: 'add', component: NewRegulationComponent },
+  { path: 'Curriculum', component: CurriculumComponent },
+  { path: 'department', component: DepartmentComponent },
+
   // {
   //   path: 'home',
   //   component: HomeComponent,
