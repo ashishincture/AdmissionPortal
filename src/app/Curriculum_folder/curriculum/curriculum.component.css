@@ -10,4 +10,21 @@ background {
   color: #d3d1da;
 }
 
+.footer {
+  z-index: 1;
+  position: fixed;
+  right: 0;
+  bottom: 9px;
+  left: -25%;
+  padding: 1rem;
+  
+  text-align: right;
+  height: 4em;
+  left: 0;
+  font-size: small;
+  width: 100%;
+}
 
+.mat-toolbar-row, .mat-toolbar-single-row {
+  height: 44px;
+}

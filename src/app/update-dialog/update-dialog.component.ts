@@ -40,8 +40,8 @@ export class UpdateDialogComponent implements OnInit {
       ) { }
   
     ngOnInit(): void {
-      if(!this.data)
-    { this.createForm();}
+      if(this.data.type==="Create")
+    { this.createForm(this.data.data);}
     else{
       this.myForm = this.fBuilder.group({
         Subject_ID: [this.data.Subject_ID,[Validators.required]],
@@ -54,14 +54,14 @@ export class UpdateDialogComponent implements OnInit {
       });
     }
     }
-    createForm(): void {
+    createForm(data): void {
       this.myForm = this.fBuilder.group({
         Subject_ID: ['',[Validators.required]],
       Subject_Name:  ['',[Validators.required]],
       isActive: [true,[Validators.required]],
       Type: ['',[Validators.required]],
-      Department_ID: ['',[Validators.required]],
-      Regulation_ID: ['R2',[Validators.required]],
+      Department_ID: [data.Department_ID,[Validators.required]],
+      Regulation_ID: [data.Regulation_ID,[Validators.required]],
       Credit: ['',[Validators.required]],
       });
     }

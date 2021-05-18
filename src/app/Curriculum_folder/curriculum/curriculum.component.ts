@@ -37,7 +37,8 @@ export class CurriculumComponent implements OnInit,AfterViewInit {
   semData=this.service.semData;;
   showForm={
     viewCR:true,
-    createCR:false
+    createCR:false,
+    ViewFooter:false
   }
   
   constructor(
@@ -125,7 +126,7 @@ export class CurriculumComponent implements OnInit,AfterViewInit {
       curriculum:['',[Validators.required]],
       CRid:['',[Validators.required]],
       adYear:[,[Validators.required]],
-      semNo:['',[Validators.required]],
+      semNo:[1,[Validators.required]],
     });
     this.showForm.createCR=true;
     this.showForm.viewCR=false;
@@ -134,17 +135,48 @@ export class CurriculumComponent implements OnInit,AfterViewInit {
   }
   CreateCRinReg(){
     
+    if(this.CreateCRdetails.invalid){
+      console.log("form invalid");
+      return;
+    }
+
     this.container.clear();
     this.localservice.coreData=[];
     this.localservice.adStyear=this.CreateCRdetails.value.adYear;
     this.localservice.dept=this.CreateCRdetails.value.dept;
     this.localservice.semid=this.CreateCRdetails.value.semNo;
+    this.service.newCRData.regulationId=this.CreateCRdetails.value.Regulation;
+    this.service.newCRData.deptId=this.CreateCRdetails.value.dept;
+    this.service.newCRData.batchYear=this.CreateCRdetails.value.adYear;
+    this.service.newCRData.code=this.CreateCRdetails.value.curriculum;
+    this.service.newCRData.id=this.CreateCRdetails.value.CRid;
+
     for(var i=0;i<this.subjecttypes.length;i++){
       this.localservice.subType=this.service.subjecttypes[i];
       let crViewfactory=this.componentFactoryResolver.resolveComponentFactory(CreateCRComponent);
       let panel=this.container.createComponent(crViewfactory);
       panel.instance.subType=this.service.subjecttypes[i]; 
-    }            
+      panel.instance.semNo=this.CreateCRdetails.value.semNo;
+    }  
+    this.showForm.ViewFooter=true;           
+  }
+  NextSem(){
+    this.CreateCRdetails.value.semNo++;
+    let semlength=this.service.RegulationData.length;
+    if(this.CreateCRdetails.value.semNo<semlength){
+      this.service.newCRData.semData.push({
+        sem:this.CreateCRdetails.value.semNo,
+        subjects:[]
+      });
+      
+      this.CreateCRinReg();
+      console.log(this.service.newCRData);
+    }
+    else {
+      console.log("submit CR");
+      console.log(this.service.newCRData);
+    }
+    
   }
 
 }

@@ -20,7 +20,7 @@
               <mat-select value="dept" class="row" style="background-color:#b5b5b5;height: 2rem;
               width: 14rem;
               border-radius: 0.5rem;margin-right: -32px; margin-left: 1px;" (selectionChange)="openSubDiag($event)" >
-                  <mat-option *ngFor="let dept of deptData" [value]="dept.code">{{dept.code}}</mat-option>
+                  <mat-option *ngFor="let dept of deptData" [value]="dept.Department_ID">{{dept.Department_Name}}</mat-option>
               </mat-select>
           </div>
           </div>

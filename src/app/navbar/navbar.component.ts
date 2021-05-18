@@ -32,7 +32,7 @@ export class NavbarComponent implements OnInit {
   goToFAQ() {
     this.router.navigate(['/faq']);
   }
-  goToSeatMatrix(){
+  goToSeatMatrix() {
     this.router.navigate(['/seatmatrix']);
   }
   goToDocuments() {
@@ -41,16 +41,23 @@ export class NavbarComponent implements OnInit {
   goToStatus() {
     this.router.navigate(['/status']);
   }
+  goToDepartment() {
+    this.router.navigate(['/department']);
+  }
   toggleMenu() {
     this.showMenu = !this.showMenu;
- }
- goTosub(){
-  this.router.navigate(['/subject']);
- }
- goToRegulation(){
-  this.router.navigate(['/regulation']);
- }
- goToCurriculum(){
-  this.router.navigate(['/Curriculum']);
- }
+  }
+  goTosub() {
+    this.router.navigate(['/subject']);
+  }
+
+  goToDept() {
+    this.router.navigate(['/department']);
+  }
+  goToRegulation() {
+    this.router.navigate(['/regulation']);
+  }
+  goToCurriculum() {
+    this.router.navigate(['/Curriculum']);
+  }
 }
