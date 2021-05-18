@@ -4,9 +4,13 @@ import {Globals} from '../globals'
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
+
+
+  ngOnInit(): void {}
+
   data: string="hello";
   public show: boolean = false;
   public show2: boolean = false;
@@ -112,7 +116,5 @@ export class HomeComponent implements OnInit {
     
     
    }
-  ngOnInit(): void {
-  }
 
 }

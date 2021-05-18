@@ -31,8 +31,14 @@ export class RegulationDetailsComponent implements OnInit {
       gradeType: ['', [Validators.required,]]
     })
   }
-  onClickTable() {
+  onClickTable(depId) {
+    this.service.getSubjectsbyId(depId);
+    console.log(depId);
     this.router.navigate(['departmentdetail']);
+  }
+  onEditReg(){
+    this.service.eidtFlag = true;
+    this.router.navigate(['add']);
   }
 
 }
