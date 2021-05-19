@@ -208,8 +208,8 @@ dataSource: MatTableDataSource<Subject>;
       console.log(this.newTablelist)
       var j, crctArray = [], errArray = [], flag = 0;
       for (var i = 0; i < this.newTablelist.length; i++, flag = 0) {
-        for (j = 0; j < this.dataSource.length; j++) {
-          if (this.newTablelist[i].Subject_ID === this.dataSource[j].Subject_ID) {
+        for (j = 0; j < this.dataSource.data.length; j++) {
+          if (this.newTablelist[i].Subject_ID === this.dataSource.data[j].Subject_ID) {
             flag = 1;
           }
         }
@@ -241,4 +241,16 @@ dataSource: MatTableDataSource<Subject>;
 
     // this.table.renderRows();
   }
+
+
+  ///template download
+templateDownloadFn(){
+  var Heading = [
+    ["FirstName", "Last Name", "Email"],
+  ];
+  
+  //Had to create a new workbook and then add the header
+  const ws = XLSX.utils.book_new();
+  XLSX.utils.sheet_add_aoa(ws, Heading);
+}
 }
