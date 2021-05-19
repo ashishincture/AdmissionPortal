@@ -27,9 +27,11 @@ export class CurriculumComponent implements OnInit,AfterViewInit {
  
   @ViewChild('container', { read: ViewContainerRef, static: false })
   container!: ViewContainerRef;
-  deptData: Department[] = this.service.getDeptData();
+  deptData;
   CRData:CrClass[]=this.service.getCRData();
   RegulationData=this.service.regwithCR;
+  RegSData;
+  RegsDataDetails;
   ADyears:ADyear[]=[];
   CRdetails:any;
   CreateCRdetails:any;
@@ -49,7 +51,15 @@ export class CurriculumComponent implements OnInit,AfterViewInit {
     private fBuilder:FormBuilder,
     private localservice:LocalDataService
   ) {
-    
+    this.service.getDeptSData().subscribe((data:any)=>{
+      this.deptData=data.data;
+      //console.log(this.deptData);
+    });
+    this.service.getRegData().subscribe((data:any)=>{
+      this.RegSData=data.data;
+      console.log(this.RegSData);
+    });
+
    }
 
   ngOnInit(): void {
@@ -151,6 +161,15 @@ export class CurriculumComponent implements OnInit,AfterViewInit {
     this.service.newCRData.code=this.CreateCRdetails.value.curriculum;
     this.service.newCRData.id=this.CreateCRdetails.value.CRid;
 
+    if(!this.RegsDataDetails){
+      this.service.getRegsDetails(this.CreateCRdetails.value.Regulation).subscribe((data:any)=>{
+        let regData=data.data;
+        this.RegsDataDetails=regData.Department_Details.find(({
+          Department_ID
+        })=>Department_ID===this.CreateCRdetails.value.dept);
+      });
+    }
+
     for(var i=0;i<this.subjecttypes.length;i++){
       this.localservice.subType=this.service.subjecttypes[i];
       let crViewfactory=this.componentFactoryResolver.resolveComponentFactory(CreateCRComponent);
@@ -161,9 +180,10 @@ export class CurriculumComponent implements OnInit,AfterViewInit {
     this.showForm.ViewFooter=true;           
   }
   NextSem(){
-    this.CreateCRdetails.value.semNo++;
-    let semlength=this.service.RegulationData.length;
+    //this.CreateCRdetails.value.semNo++;
+    let semlength=parseInt(this.RegsDataDetails.Semester_Count);
     if(this.CreateCRdetails.value.semNo<semlength){
+      this.CreateCRdetails.value.semNo++;
       this.service.newCRData.semData.push({
         sem:this.CreateCRdetails.value.semNo,
         subjects:[]
