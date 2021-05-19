@@ -621,6 +621,12 @@ export class DataServiceService {
   getDeptSData(){
     return this.http.get(`${this.uri}/Department`);
   }
+  getRegData(){
+    return this.http.get(`${this.uri}/Regulation`);
+  }
+  getRegsDetails(reg_ID){
+    return this.http.get(`${this.uri}/Regulation/${reg_ID}`);
+  }
   getCRData():CrClass[]{
     return this.CRData;
   }
