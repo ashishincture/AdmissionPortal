@@ -18,10 +18,7 @@ import { CourseListComponent } from './course-list/course-list.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { RoundComponent } from './round/round.component';
 import { ListComponent } from './list/list.component';
-
 import { SignupComponent } from './signup/signup.component';
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
-
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -63,6 +60,8 @@ import { SubjDialogComponent } from './Curriculum_folder/subj-dialog/subj-dialog
 import { NewRegulationComponent } from './new-regulation/new-regulation.component';
 import { NewregTableComponent } from './newreg-table/newreg-table.component';
 import { DepartmentComponent } from './department/department.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSortModule} from '@angular/material/sort';
 
 // Pass the fusioncharts library and chart modules
 FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
@@ -79,9 +78,7 @@ FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
     CarouselComponent,
     RoundComponent,
     ListComponent,
-
     SignupComponent,
-
     FaqComponent,
     SeatmatrixComponent,
     DialogNewComponent,
@@ -91,9 +88,7 @@ FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
     DialogNotApproveComponent,
     SubjectComponent,
     UpdateDialogComponent,
-
     DepartmentComponent,
-
     RegulationComponent,
     RegulationDetailsComponent,
     DepartmentDetailsComponent,
@@ -114,9 +109,6 @@ FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     MaterialModule,
-
-    Ng2SearchPipeModule,
-
     MatFormFieldModule,
     MatGridListModule,
     MatDividerModule,
@@ -129,6 +121,8 @@ FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
     MatInputModule,
     MatTableModule,
     MatIconModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   providers: [
     MatTabsModule,
@@ -138,9 +132,7 @@ FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
     MatNativeDateModule,
     Globals,
     FusionChartsModule,
-
     SubjectService,
-
     DocumentsServiceService,
   ],
   bootstrap: [AppComponent],

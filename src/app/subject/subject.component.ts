@@ -6,7 +6,9 @@ import {
   MatDialogRef,
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
-import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { MatTable, MatTableDataSource} from '@angular/material/table';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatSort} from '@angular/material/sort';
 import { SubjectService } from '../subject.service';
 import * as XLSX from 'xlsx';
 import { ToastrService} from 'ngx-toastr';
@@ -54,7 +56,6 @@ export class SubjectComponent implements OnInit {
   Regulations: Regulation[] = [];
   Departments: Department[] = [];
   Subjects: Subject[] = [];
-  dataSource = this.Subjects;
   newTablelist: Subject[] = [];
   dummy = this.Subjects;
   SubSearchKey: any;
@@ -71,8 +72,14 @@ export class SubjectComponent implements OnInit {
     Credit: "",
   };
   displayedColumns: string[] = ['Subject_ID', 'Subject_Name', 'Type', 'Credit', 'actions'];
-  @ViewChild(MatTable)
-  table!: MatTable<any>;
+  @ViewChild(MatTable)table!: MatTable<any>;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+pageIndex = 0;
+pageSize = 10;
+pageSizeOptions = [10, 15, 20];
+dataSource: MatTableDataSource<Subject>;
+@ViewChild(MatSort, { static: true }) sort: MatSort;
+  
   constructor(public dialog: MatDialog, private SubjectService: SubjectService,private toastr: ToastrService) { }
   ngOnInit(): void {
     this.fetchRegulation();
@@ -105,7 +112,9 @@ export class SubjectComponent implements OnInit {
     this.SubjectService.getSubjectList().
       subscribe((data: any) => {
         this.Subjects = data.data;
-        this.dataSource = data.data;
+        this.dataSource = new MatTableDataSource(data.data);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
         console.log(this.Subjects);
       });
   }
@@ -147,24 +156,24 @@ export class SubjectComponent implements OnInit {
 
     });
   }
-  SubSearch() {
-    if (this.SubSearchKey == "") {
-      this.ngOnInit();
-    }
-    else {
-      this.dataSource = this.Subjects.filter(res => {
-        // const array =[];
-        // const SubName = res.Subject_Name.toLocaleLowerCase().match(this.SubSearchKey.toLocaleLowerCase());
-        // const SubCode = res.Subject_ID.toLocaleLowerCase().match(this.SubSearchKey.toLocaleLowerCase());
-        // const subType = res.Type.toLocaleLowerCase().match(this.SubSearchKey.toLocaleLowerCase());
-        // array.push(SubName);
-        // array.push(SubCode);
-        // array.push(subType);
-        // return array;
-        return res.Subject_Name.toLocaleLowerCase().match(this.SubSearchKey.toLocaleLowerCase());
-      });
-    }
+  // SubSearch() {
+  //   if (this.SubSearchKey == "") {
+  //     this.ngOnInit();
+  //   }
+  //   else {
+  //     this.dataSource = this.Subjects.filter(res => {
+  //       return res.Subject_Name.toLocaleLowerCase().match(this.SubSearchKey.toLocaleLowerCase());
+  //     });
+  //   }
+  // }
+
+
+  SubSearch(filterValue: string) {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
+    this.dataSource.filter = filterValue;
   }
+
   key = "Subject_Name";
   reverse: boolean = false;
   SubSort(Subject_Name: any) {

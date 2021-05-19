@@ -24,7 +24,8 @@ export class NewRegulationComponent implements OnInit {
   myTable;
   form: FormGroup;
   formfield: MatFormFieldModule;
-  tableData = this.service.getRegulationDetailsData();
+  rid = this.service.RId;
+  tableData = this.service.getRegulationDetailsData(this.rid);
   tableRow = [1,2,3,4,5];
   tableVisibility= true;
   eflag = this.service.eidtFlag;
@@ -47,12 +48,13 @@ export class NewRegulationComponent implements OnInit {
   ngOnInit(): void {
     if(this.eflag === true){
       this.myForm = this.fBuilder.group({
-        regulationName: ["R15", [Validators.required,]],
-        regulationId: ["R15", [Validators.required,]],
+        regulationName: ['', [Validators.required,]],
+        regulationId: ['', [Validators.required,]],
         semesters:[3, [Validators.required,]],
         academicyear:[2020, [Validators.required,]],
         gradeType: ["Grading", [Validators.required,]]
       })
+      this.onConfirm();
     }
     else{
       this.myForm = this.fBuilder.group({
@@ -63,14 +65,15 @@ export class NewRegulationComponent implements OnInit {
         gradeType: ['', [Validators.required,]]
       })
     }
-    this.service.eidtFlag = false;
   }
   onConfirm(){
     // var curData = this.tableRow;
     // curData.push(this.tableRow.length+1);
     // this.service.data=curData;
     this.tableVisibility =false;
+    debugger;
     this.dataSource = this.service.getAddRegTableData(this.myForm.value.semesters);
+
     this.service.DataAddReg=this.dataSource;
     for(var i=0;i<this.dataSource.length;i++){
       

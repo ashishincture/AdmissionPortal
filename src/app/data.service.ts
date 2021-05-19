@@ -47,7 +47,9 @@ export class DataService {
   oldData;
   rownumber;
   data;
+  RId;
   regulationDatabyId;
+  regulationDataTable;
   subjectsbyDepid;
   DataAddReg;
   eidtFlag = false;
@@ -96,11 +98,13 @@ export class DataService {
     return this.http.get(`${this.uri}/Regulation`);
   }
   getRegulationDatabyID(rID) {
-    let that = this;
     let Regulation_Id = rID;
     let rData = this.http.get(`${this.uri}/Regulation/${Regulation_Id}`);
     rData.subscribe((data: any) => {
-      that.regulationDatabyId = data.data.Department_Details;
+      this.regulationDatabyId = data.data;
+      this.regulationDataTable = data.data.Department_Details;
+      console.log(this.regulationDataTable);
+      console.log(this.regulationDatabyId);
     }
     );
     // rData.subscribe((data:any)=>console.log(data.data.Department_Details));          
@@ -113,9 +117,29 @@ export class DataService {
   getTableData(): tableData[] {
     return this.tableDisplayData;
   }
-  getRegulationDetailsData() {
-    console.log(this.regulationDatabyId);
-    return this.regulationDatabyId;
+  getRegulationDetailsData(rID) {
+    // console.log(this.regulationDatabyId);
+    // return this.regulationDatabyId;
+    let Regulation_Id = rID;
+    return this.http.get(`${this.uri}/Regulation/${Regulation_Id}`);
+    // return rData.subscribe((data: any) => {
+    //   // complete(){
+    //   //   this.regulationDatabyId = data.data;
+    //   // this.regulationDataTable = data.data.Department_Details;
+    //   // console.log(this.regulationDataTable);
+    //   // console.log(this.regulationDatabyId);
+    //   // }
+    //   this.regulationDatabyId = data.data;
+    //   this.regulationDataTable = data.data.Department_Details;
+    //   console.log(this.regulationDataTable);
+    //   console.log(this.regulationDatabyId);
+    //   // return this.regulationDatabyId;
+    // }
+    // );
+    // return serData;
+  }
+  getRegulationDataTable(){
+    return this.regulationDataTable;
   }
   add(newdata: tableData) {
     var data = {
