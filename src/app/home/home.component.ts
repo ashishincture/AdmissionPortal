@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 import {Globals} from '../globals'
 @Component({
   selector: 'app-home',
@@ -7,7 +8,7 @@ import {Globals} from '../globals'
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-
+uri: string=' https://university-app-2021.herokuapp.com/institute/add';
 
   ngOnInit(): void {}
 
@@ -17,8 +18,14 @@ export class HomeComponent implements OnInit {
   public buttonName: any = 'Show';
   public buttonName2: any = 'Show2';
   dataTemplate2 = {
-    name: "",
-    Seats: ""
+    Course_id: "",
+    Course_name:"",
+    Course_description:"",
+    AICTE_Reg_ID:"",
+    UGC_Reg_ID:"",
+    Course_type:"",
+    Seats: "",
+    Course_duration:""
   };
   dataTemplate={
     college: "",
@@ -35,23 +42,32 @@ export class HomeComponent implements OnInit {
   };
   dataTemplateDep={
     dept: "",
-    deptCode:"",
-    Description:"",
-    established:"",
-    UGC_Reg_ID: "",
-    AICTE_Reg_ID: "",
-    SubjectListDept: [
-    ]
+      deptCode:"",
+      courseTemplate:"",
+      Description:"",
+      OwnershipType:"",
+      deptStrength:"",
+      established:"",
+      UGC_Reg_ID: "",
+      AICTE_Reg_ID: "",
+      SubjectListDept: [
+      ]
   };
-  constructor(public router: Router,public global:Globals) { 
+  constructor(public router: Router,public global:Globals, public http:HttpClient) { 
    
    
   }
   onPressAddSubject() {
     this.dataTemplate.SubjectListCollege.push(this.dataTemplate2);
     this.dataTemplate2 = {
-      name: "",
-      Seats: ""
+        Course_id: "",
+        Course_name:"",
+        Course_description:"",
+        AICTE_Reg_ID:"",
+        UGC_Reg_ID:"",
+        Course_type:"",
+        Seats: "",
+        Course_duration:""
     };
     this.toggle();
   }
@@ -67,8 +83,14 @@ export class HomeComponent implements OnInit {
   onPressAddSubject2() {
     this.dataTemplateDep.SubjectListDept.push(this.dataTemplate2);
     this.dataTemplate2 = {
-      name: "",
-      Seats: ""
+      Course_id: "",
+      Course_name:"",
+      Course_description:"",
+      AICTE_Reg_ID:"",
+      UGC_Reg_ID:"",
+      Course_type:"",
+      Seats: "",
+      Course_duration:""
     };
     this.toggle2();
   }
@@ -84,6 +106,20 @@ export class HomeComponent implements OnInit {
   onPressSubmit(){
     
     this.global.data.CollegeDetail.push(this.dataTemplate);
+    let univ =this.http.post(`${this.uri}`,{
+      Institution_id:this.dataTemplate.collegeCode,
+      Institution_name:this.dataTemplate.college,
+      Institution_strength:this.dataTemplate.collegeStrength,
+      AICTE_Reg_ID:this.dataTemplate.AICTE_Reg_ID,
+      UGC_Reg_ID:this.dataTemplate.UGC_Reg_ID,
+      Institution_description:this.dataTemplate.Description,
+      Institution_type:"College",
+      Institution_template:this.dataTemplate.courseTemplate,
+      Institution_established:this.dataTemplate.established,
+      ownershipType:this.dataTemplate.OwnershipType,
+      courseDetails:this.dataTemplate.SubjectListCollege
+  });
+  univ.subscribe((data: any) => console.log(data));
     this.dataTemplate={
       college: "",
       collegeCode:"",
@@ -103,10 +139,27 @@ export class HomeComponent implements OnInit {
    onPressSubmitDept(){
    
     this.global.data.DeptDetail.push(this.dataTemplateDep);
+    let univ =this.http.post(`${this.uri}`,{
+      Institution_id:this.dataTemplateDep.deptCode,
+      Institution_name:this.dataTemplateDep.dept,
+      Institution_strength:this.dataTemplateDep.deptStrength,
+      AICTE_Reg_ID:this.dataTemplateDep.AICTE_Reg_ID,
+      UGC_Reg_ID:this.dataTemplateDep.UGC_Reg_ID,
+      Institution_description:this.dataTemplateDep.Description,
+      Institution_type:"College",
+      Institution_template:this.dataTemplateDep.courseTemplate,
+      Institution_established:this.dataTemplateDep.established,
+      ownershipType:this.dataTemplateDep.OwnershipType,
+      courseDetails:this.dataTemplateDep.SubjectListDept
+  });
+  univ.subscribe((data: any) => console.log(data));
     this.dataTemplateDep={
       dept: "",
       deptCode:"",
+      courseTemplate:"",
       Description:"",
+      OwnershipType:"",
+      deptStrength:"",
       established:"",
       UGC_Reg_ID: "",
       AICTE_Reg_ID: "",

@@ -16,7 +16,7 @@
                 <input
                   matInput
                   placeholder="Placeholder"
-                  value="Delhi University"
+                  [(ngModel)]="global.data.InstitutionName"
                 />
               </mat-form-field>
 
@@ -156,14 +156,45 @@
           <div style="text-align: left">
             <div class="row borderIt">
               <mat-form-field appearance="outline" class="categoryinput">
-                <mat-label class="categorylabel">Subject name</mat-label>
+                <mat-label class="categorylabel">Course ID</mat-label>
                 <input
                   matInput
                   class="categoryinput"
-                  [(ngModel)]="dataTemplate2.name"
+                  [(ngModel)]="dataTemplate2.Course_id"
                 />
               </mat-form-field>
-  
+              <mat-form-field appearance="outline" class="categoryinput">
+                <mat-label class="categorylabel">Course Type</mat-label>
+                <input
+                  matInput
+                  class="categoryinput"
+                  [(ngModel)]="dataTemplate2.Course_type"
+                />
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="categoryinput">
+                <mat-label class="categorylabel">Course name</mat-label>
+                <input
+                  matInput
+                  class="categoryinput"
+                  [(ngModel)]="dataTemplate2.Course_name"
+                />
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="categoryinput">
+                <mat-label class="categorylabel">Course Description</mat-label>
+                <input
+                  matInput
+                  class="categoryinput"
+                  [(ngModel)]="dataTemplate2.Course_description"
+                />
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="categoryinput">
+                <mat-label class="categorylabel">Course Duration</mat-label>
+                <input
+                  matInput
+                  class="categoryinput"
+                  [(ngModel)]="dataTemplate2.Course_duration"
+                />
+              </mat-form-field>
               <mat-form-field appearance="outline" class="categoryinput">
                 <mat-label class="categorylabel">Seats</mat-label>
                 <input
@@ -230,7 +261,7 @@
                 <input
                   matInput
                   placeholder="Placeholder"
-                  value="Delhi University"
+                  [(ngModel)]="global.data.InstitutionName"
                 />
               </mat-form-field>
 
@@ -260,7 +291,47 @@
                   [(ngModel)]="dataTemplateDep.deptCode"
                 />
               </mat-form-field>
-
+              <mat-form-field
+              appearance="outline"
+              style="width: 14.5rem !important"
+              class="paddingInput SmallDatePicker"
+            >
+              <mat-label>Establishment</mat-label>
+              <input
+                matInput
+                [matDatepicker]="picker1"
+                [(ngModel)]="dataTemplate.established"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="picker1"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+              <mat-form-field appearance="outline" class="paddingInput">
+                <mat-label>Department Template</mat-label>
+                <input
+                  matInput
+                  placeholder="Placeholder"
+                  [(ngModel)]="dataTemplateDep.courseTemplate"
+                />
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="paddingInput">
+                <mat-label>Ownership Type</mat-label>
+                <input
+                  matInput
+                  placeholder="Placeholder"
+                  [(ngModel)]="dataTemplateDep.OwnershipType"
+                />
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="paddingInput">
+                <mat-label>Department Strength</mat-label>
+                <input
+                  matInput
+                  placeholder="Placeholder"
+                  [(ngModel)]="dataTemplateDep.deptStrength"
+                />
+              </mat-form-field>
               <mat-form-field appearance="outline" class="paddingInput">
                 <mat-label>UGC Reg no.</mat-label>
                 <input
@@ -325,14 +396,45 @@
             <div style="text-align: left">
               <div class="row borderIt">
                 <mat-form-field appearance="outline" class="categoryinput">
-                  <mat-label class="categorylabel">Subject name</mat-label>
+                  <mat-label class="categorylabel">Course ID</mat-label>
                   <input
                     matInput
                     class="categoryinput"
-                    [(ngModel)]="dataTemplate2.name"
+                    [(ngModel)]="dataTemplate2.Course_id"
                   />
                 </mat-form-field>
-    
+                <mat-form-field appearance="outline" class="categoryinput">
+                  <mat-label class="categorylabel">Course Type</mat-label>
+                  <input
+                    matInput
+                    class="categoryinput"
+                    [(ngModel)]="dataTemplate2.Course_type"
+                  />
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="categoryinput">
+                  <mat-label class="categorylabel">Course name</mat-label>
+                  <input
+                    matInput
+                    class="categoryinput"
+                    [(ngModel)]="dataTemplate2.Course_name"
+                  />
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="categoryinput">
+                  <mat-label class="categorylabel">Course Description</mat-label>
+                  <input
+                    matInput
+                    class="categoryinput"
+                    [(ngModel)]="dataTemplate2.Course_description"
+                  />
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="categoryinput">
+                  <mat-label class="categorylabel">Course Duration</mat-label>
+                  <input
+                    matInput
+                    class="categoryinput"
+                    [(ngModel)]="dataTemplate2.Course_duration"
+                  />
+                </mat-form-field>
                 <mat-form-field appearance="outline" class="categoryinput">
                   <mat-label class="categorylabel">Seats</mat-label>
                   <input

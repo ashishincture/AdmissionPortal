@@ -4,23 +4,34 @@
       <mat-card class="w3_info">
         <mat-card-header>
           <mat-card-title
-            ><p class="whitetext">Register your Institution</p></mat-card-title
+            ><p class="whitetext">Register your University</p></mat-card-title
           >
         </mat-card-header>
         <mat-card-content>
           <mat-form-field appearance="outline">
-            <mat-label><p class="whitetext">Institution</p></mat-label>
+            <mat-label><p class="whitetext">University ID</p></mat-label>
 
             <input
               matInput
               placeholder="Placeholder"
-              [(value)]="global.data.InstitutionName"
+              [(ngModel)]="global.data.InstitutionId"
             />
           </mat-form-field>
 
           <br />
           <mat-form-field appearance="outline">
-            <mat-label> <p class="whitetext">Institution Type</p></mat-label>
+            <mat-label><p class="whitetext">University</p></mat-label>
+
+            <input
+              matInput
+              placeholder="Placeholder"
+              [(ngModel)]="global.data.InstitutionName"
+            />
+          </mat-form-field>
+
+          <br />
+          <mat-form-field appearance="outline">
+            <mat-label> <p class="whitetext">University Type</p></mat-label>
             <mat-select [(value)]="global.data.InstitutionType">
               <mat-option value="University(hierarchial)"
                 >University</mat-option
@@ -40,7 +51,7 @@
             appearance="outline"
           >
             <mat-label><p class="whitetext">Colleges</p></mat-label>
-            <mat-select [(value)]="global.data.Colleges">
+            <mat-select [(ngModel)]="global.data.Colleges">
               <mat-option value="option1">Single</mat-option>
               <mat-option value="option2">multiple</mat-option>
               <mat-option value="option3">None</mat-option>
@@ -50,7 +61,7 @@
 
           <mat-form-field appearance="outline">
             <mat-label><p class="whitetext">Departments</p></mat-label>
-            <mat-select [(value)]="global.data.Departments">
+            <mat-select [(ngModel)]="global.data.Departments">
               <mat-option value="option1">Single</mat-option>
               <mat-option value="option2">multiple</mat-option>
               <mat-option value="option3">None</mat-option>
@@ -59,7 +70,7 @@
           <br />
           <mat-form-field appearance="outline">
             <mat-label><p class="whitetext">Description</p></mat-label>
-            <textarea [(value)]="global.data.Description" matInput></textarea>
+            <textarea [(ngModel)]="global.data.Description" matInput></textarea>
           </mat-form-field>
           <br />
           <button
