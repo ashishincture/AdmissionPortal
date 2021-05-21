@@ -5,8 +5,8 @@
 	position:fixed;
 	width:60px;
 	height:60px;
-	bottom:40px;
-	right:40px;
+	bottom:80px;
+	right:60px;
 	background-color:#7b59d0;
 	color:#FFF;
 	border-radius:50px;
@@ -22,7 +22,7 @@
 .mat-form-field-prefix{
 	top:5px;
 }
-.table th, .table td {
+.table mat-header-cell, .table mat-cell {
     vertical-align: middle;
 	color: white;
 }
@@ -47,3 +47,20 @@
     color: white;
     border-radius: 10%;
   }
+
+  .mat-select-content{
+    width:2000px;
+    background-color: red;
+    font-size: 10px;
+}
+.whitetext {
+	color: #fff;
+  }
+  
+  .mat-select-value {
+    color: rgba(0,0,0,.87);
+}
+
+.mat-icon-button.mat-button-disabled.mat-button-disabled{
+	color: rgb(244 244 244 / 26%) !important;
+}

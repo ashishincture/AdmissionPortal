@@ -26,11 +26,14 @@ export class RegulationComponent implements OnInit {
     });
   }
   onRegulationPress(data){
-    this.service.getRegulationDatabyID(data);
+    this.service.RId = data;
+    // this.service.getRegulationDatabyID(data);
     this.router.navigate(['regulationdetail']);
     console.log(data);
   }
   onAddRegulation(){
+    this.service.eidtFlag = false;
+    this.router.navigate(['add']);
     console.log("add");
   }
 

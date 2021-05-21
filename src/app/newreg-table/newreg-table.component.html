@@ -1,0 +1,59 @@
+<div style="width: 20%;">
+    <form [formGroup]="form">
+        <ng-container formArrayName="Credit_Details">
+            <mat-table [dataSource]="form.controls.Credit_Details.controls" class="mat-elevation-z8">
+
+                <ng-container matColumnDef="header-row-first-group">
+                    <mat-header-cell *matHeaderCellDef [attr.colspan]="1" style="border-bottom: none;">
+                        <input matInput placeholder="Dep Name" [value]="depName">
+                    </mat-header-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="header-row-second-group">
+                    <mat-header-cell *matHeaderCellDef [attr.colspan]="1" style="border-bottom: none;">
+                        <input matInput placeholder="Semesters" [value]="semNo">
+                    </mat-header-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="sNo">
+                    <mat-header-cell *matHeaderCellDef> sNo </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.get('sNo').value}}. </mat-cell>
+                </ng-container>
+
+
+                <ng-container matColumnDef="Core">
+                    <mat-header-cell *matHeaderCellDef> Core </mat-header-cell>
+                    <mat-cell *matCellDef="let element" [formGroup]="element">
+                        <mat-form-field>
+                            <input matInput type="number" formControlName="Core" (change)="inputChange($event,depName)">
+                        </mat-form-field>
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="OE">
+                    <mat-header-cell *matHeaderCellDef> OE </mat-header-cell>
+                    <mat-cell *matCellDef="let element" [formGroup]="element">
+                        <mat-form-field>
+                            <input matInput type="number" formControlName="OE" (change)="inputChange($event,depName)">
+                        </mat-form-field>
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="PE">
+                    <mat-header-cell *matHeaderCellDef> PE </mat-header-cell>
+                    <mat-cell *matCellDef="let element" [formGroup]="element">
+                        <mat-form-field>
+                            <input matInput type="number" formControlName="PE" (change)="inputChange($event,depName)">
+                        </mat-form-field>
+                    </mat-cell>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="['header-row-first-group', 'header-row-second-group']">
+                </mat-header-row>
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+            </mat-table>
+        </ng-container>
+    </form>
+</div>

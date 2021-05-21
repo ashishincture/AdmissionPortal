@@ -16,7 +16,7 @@
 
                 </mat-form-field>
             </div>
-            <div class="regdetails form-group col">
+            <!-- <div class="regdetails form-group col">
                 <mat-form-field appearance="standard">
                     <mat-label style="color: white;">Subject Type</mat-label>
                     <input matInput placeholder="Enter Subject Type" style="color: #007bff;" formControlName="subType">
@@ -34,13 +34,15 @@
                     </mat-select>
 
                 </mat-form-field>
-            </div>
+            </div> -->
         </form>
+
     </div>
+    <button mat-raised-button class="addRegulationClass" color="primary" (click)="onEditReg()">Edit</button>
     <div class="containerDepartments">
         <div class="department1" *ngFor="let data of tableData">
             <table mat-table [dataSource]="data.Credits_Details" class="mat-elevation-z8 regulationDetailsTable"
-                style="width: 97%;" (click)="onClickTable()">
+                style="width: 97%;" (click)="onClickTable(data.Department_ID)">
                 <ng-container matColumnDef="header-row-first-group">
                     <th mat-header-cell *matHeaderCellDef [attr.colspan]="1" style="border-bottom: none;">
                         {{data.Department_ID}}

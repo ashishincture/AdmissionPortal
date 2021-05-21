@@ -4,6 +4,7 @@ import { Injectable } from "@angular/core";
 export class Globals {
 
   data = {
+    InstitutionId:"",
     InstitutionName: "",
     InstitutionType: "",
     TemplateType: "",

@@ -27,9 +27,11 @@ export class CurriculumComponent implements OnInit,AfterViewInit {
  
   @ViewChild('container', { read: ViewContainerRef, static: false })
   container!: ViewContainerRef;
-  deptData: Department[] = this.service.getDeptData();
+  deptData;
   CRData:CrClass[]=this.service.getCRData();
   RegulationData=this.service.regwithCR;
+  RegSData;
+  RegsDataDetails;
   ADyears:ADyear[]=[];
   CRdetails:any;
   CreateCRdetails:any;
@@ -37,7 +39,8 @@ export class CurriculumComponent implements OnInit,AfterViewInit {
   semData=this.service.semData;;
   showForm={
     viewCR:true,
-    createCR:false
+    createCR:false,
+    ViewFooter:false
   }
   
   constructor(
@@ -48,7 +51,15 @@ export class CurriculumComponent implements OnInit,AfterViewInit {
     private fBuilder:FormBuilder,
     private localservice:LocalDataService
   ) {
-    
+    this.service.getDeptSData().subscribe((data:any)=>{
+      this.deptData=data.data;
+      //console.log(this.deptData);
+    });
+    this.service.getRegData().subscribe((data:any)=>{
+      this.RegSData=data.data;
+      console.log(this.RegSData);
+    });
+
    }
 
   ngOnInit(): void {
@@ -125,7 +136,7 @@ export class CurriculumComponent implements OnInit,AfterViewInit {
       curriculum:['',[Validators.required]],
       CRid:['',[Validators.required]],
       adYear:[,[Validators.required]],
-      semNo:['',[Validators.required]],
+      semNo:[1,[Validators.required]],
     });
     this.showForm.createCR=true;
     this.showForm.viewCR=false;
@@ -134,17 +145,58 @@ export class CurriculumComponent implements OnInit,AfterViewInit {
   }
   CreateCRinReg(){
     
+    if(this.CreateCRdetails.invalid){
+      console.log("form invalid");
+      return;
+    }
+
     this.container.clear();
     this.localservice.coreData=[];
     this.localservice.adStyear=this.CreateCRdetails.value.adYear;
     this.localservice.dept=this.CreateCRdetails.value.dept;
     this.localservice.semid=this.CreateCRdetails.value.semNo;
+    this.service.newCRData.regulationId=this.CreateCRdetails.value.Regulation;
+    this.service.newCRData.deptId=this.CreateCRdetails.value.dept;
+    this.service.newCRData.batchYear=this.CreateCRdetails.value.adYear;
+    this.service.newCRData.code=this.CreateCRdetails.value.curriculum;
+    this.service.newCRData.id=this.CreateCRdetails.value.CRid;
+
+    if(!this.RegsDataDetails){
+      this.service.getRegsDetails(this.CreateCRdetails.value.Regulation).subscribe((data:any)=>{
+        let regData=data.data;
+        this.RegsDataDetails=regData.Department_Details.find(({
+          Department_ID
+        })=>Department_ID===this.CreateCRdetails.value.dept);
+      });
+    }
+
     for(var i=0;i<this.subjecttypes.length;i++){
       this.localservice.subType=this.service.subjecttypes[i];
       let crViewfactory=this.componentFactoryResolver.resolveComponentFactory(CreateCRComponent);
       let panel=this.container.createComponent(crViewfactory);
       panel.instance.subType=this.service.subjecttypes[i]; 
-    }            
+      panel.instance.semNo=this.CreateCRdetails.value.semNo;
+    }  
+    this.showForm.ViewFooter=true;           
+  }
+  NextSem(){
+    //this.CreateCRdetails.value.semNo++;
+    let semlength=parseInt(this.RegsDataDetails.Semester_Count);
+    if(this.CreateCRdetails.value.semNo<semlength){
+      this.CreateCRdetails.value.semNo++;
+      this.service.newCRData.semData.push({
+        sem:this.CreateCRdetails.value.semNo,
+        subjects:[]
+      });
+      
+      this.CreateCRinReg();
+      console.log(this.service.newCRData);
+    }
+    else {
+      console.log("submit CR");
+      console.log(this.service.newCRData);
+    }
+    
   }
 
 }

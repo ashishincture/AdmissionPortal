@@ -2,7 +2,7 @@ import { MaterialModule } from './material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -18,13 +18,14 @@ import { CourseListComponent } from './course-list/course-list.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { RoundComponent } from './round/round.component';
 import { ListComponent } from './list/list.component';
-import {MatTabsModule} from '@angular/material/tabs';
-import {MatCardModule} from '@angular/material/card';
-import {MatGridListModule} from '@angular/material/grid-list';
-import {MatDividerModule} from '@angular/material/divider';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { SignupComponent } from './signup/signup.component';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatCardModule } from '@angular/material/card';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import {Globals} from './globals';
+import { Globals } from './globals';
 import { FaqComponent } from './faq/faq.component';
 import { SeatmatrixComponent } from './seatmatrix/seatmatrix.component';
 import { DialogNewComponent } from './dialog-new/dialog-new.component';
@@ -42,11 +43,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { DocumentsServiceService } from './documents-service.service';
 
 import { SubjectComponent } from './subject/subject.component';
-
 import { SubjectService } from './subject.service';
 import { UpdateDialogComponent } from './update-dialog/update-dialog.component';
-import {MatInputModule} from '@angular/material/input';
-import {MatTableModule} from '@angular/material/table';
+import { MatInputModule } from '@angular/material/input';
+import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { RegulationComponent } from './regulation/regulation.component';
 import { RegulationDetailsComponent } from './regulation-details/regulation-details.component';
@@ -57,6 +57,11 @@ import { CurriculumComponent } from './Curriculum_folder/curriculum/curriculum.c
 import { CRcomp1Component } from './Curriculum_folder/crcomp1/crcomp1.component';
 import { CreateCRComponent } from './Curriculum_folder/create-cr/create-cr.component';
 import { SubjDialogComponent } from './Curriculum_folder/subj-dialog/subj-dialog.component';
+import { NewRegulationComponent } from './new-regulation/new-regulation.component';
+import { NewregTableComponent } from './newreg-table/newreg-table.component';
+import { DepartmentComponent } from './department/department.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSortModule} from '@angular/material/sort';
 
 // Pass the fusioncharts library and chart modules
 FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
@@ -73,6 +78,7 @@ FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
     CarouselComponent,
     RoundComponent,
     ListComponent,
+    SignupComponent,
     FaqComponent,
     SeatmatrixComponent,
     DialogNewComponent,
@@ -82,6 +88,7 @@ FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
     DialogNotApproveComponent,
     SubjectComponent,
     UpdateDialogComponent,
+    DepartmentComponent,
     RegulationComponent,
     RegulationDetailsComponent,
     DepartmentDetailsComponent,
@@ -90,7 +97,9 @@ FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
     CurriculumComponent,
     CRcomp1Component,
     CreateCRComponent,
-    SubjDialogComponent
+    SubjDialogComponent,
+    NewRegulationComponent,
+    NewregTableComponent,
   ],
   imports: [
     BrowserModule,
@@ -111,7 +120,9 @@ FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
     HttpClientModule,
     MatInputModule,
     MatTableModule,
-    MatIconModule
+    MatIconModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   providers: [
     MatTabsModule,
@@ -121,8 +132,8 @@ FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
     MatNativeDateModule,
     Globals,
     FusionChartsModule,
+    SubjectService,
     DocumentsServiceService,
-    SubjectService
   ],
   bootstrap: [AppComponent],
 })

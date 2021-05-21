@@ -17,6 +17,10 @@ export class SubjectService {
     return this.http.get(`${this.uri}/Department`);
   }
 
+  getDepartmentByRegId(ID:any){
+    return this.http.get(`${this.uri}/Regulation/`+ID);
+  }
+
   getSubjectList() {
     return this.http.get(`${this.uri}/Subject`);
   }

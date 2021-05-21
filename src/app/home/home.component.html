@@ -1,6 +1,6 @@
 <mat-tab-group dynamicHeight class="mat-tab-header bgclg">
   <mat-tab label="Colleges" class="tabheader">
-    <mat-grid-list cols="5" style="margin-bottom: 11rem; margin-top: 11rem">
+    <mat-grid-list cols="3" style="margin-bottom: 8rem; margin-top: 12rem">
       <mat-grid-tile colspan="3">
         <div class="cardClass" style="display: flex; padding-left: 5rem">
           <mat-card
@@ -16,7 +16,7 @@
                 <input
                   matInput
                   placeholder="Placeholder"
-                  value="Delhi University"
+                  [(ngModel)]="global.data.InstitutionName"
                 />
               </mat-form-field>
 
@@ -131,10 +131,84 @@
                   matInput
                 ></textarea>
               </mat-form-field>
+              <div class="col-sm-4">
+                <div class="adddiv">
+                  <button mat-button class="Addbutton" (click)="toggle()">
+                    Add Subject
+                  </button>
+                </div>
+          
+                <ng-container *ngIf="show">
+                  <div style="text-align: left">
+                    <div class="row borderIt">
+                      <mat-form-field appearance="outline" class="paddingInput">
+                        <mat-label class="categorylabel">Course ID</mat-label>
+                        <input
+                          matInput
+                          class="categoryinput"
+                          [(ngModel)]="dataTemplate2.Course_id"
+                        />
+                      </mat-form-field>
+                      <mat-form-field appearance="outline" class="paddingInput">
+                        <mat-label class="categorylabel">Course Type</mat-label>
+                        <input
+                          matInput
+                          class="categoryinput"
+                          [(ngModel)]="dataTemplate2.Course_type"
+                        />
+                      </mat-form-field>
+                      <mat-form-field appearance="outline" class="paddingInput">
+                        <mat-label class="categorylabel">Course name</mat-label>
+                        <input
+                          matInput
+                          class="categoryinput"
+                          [(ngModel)]="dataTemplate2.Course_name"
+                        />
+                      </mat-form-field>
+                      <mat-form-field appearance="outline" class="paddingInput">
+                        <mat-label class="categorylabel">Course Description</mat-label>
+                        <input
+                          matInput
+                          class="categoryinput"
+                          [(ngModel)]="dataTemplate2.Course_description"
+                        />
+                      </mat-form-field>
+                      <mat-form-field appearance="outline" class="paddingInput">
+                        <mat-label class="categorylabel">Course Duration</mat-label>
+                        <input
+                          matInput
+                          class="categoryinput"
+                          [(ngModel)]="dataTemplate2.Course_duration"
+                        />
+                      </mat-form-field>
+                      <mat-form-field appearance="outline" class="paddingInput">
+                        <mat-label class="categorylabel">Seats</mat-label>
+                        <input
+                          matInput
+                          type="number"
+                          class="categoryinput"
+                          [(ngModel)]="dataTemplate2.Seats"
+                        />
+                      </mat-form-field>
+          
+                      <div class="col-sm-2 borderFab">
+                        <button
+                          mat-mini-fab
+                          class="Addbutton"
+                          aria-label="Example"
+                          (click)="onPressAddSubject()"
+                        >
+                          <mat-icon>add</mat-icon>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </ng-container>
+                </div>
               <!-- <br> -->
               <button
                 mat-raised-button
-                color="primary"
+                class="Addbutton"
                 style="align-self: center; margin-left: 80%"
                 (click)="onPressSubmit()"
               >
@@ -144,52 +218,10 @@
           </mat-card>
         </div>
       </mat-grid-tile>
-    <mat-grid-tile colspan="2">
-      <div class="col-sm-4">
-        <div class="adddiv">
-          <button mat-button class="Addbutton" (click)="toggle()">
-            Add Subject
-          </button>
-        </div>
-  
-        <ng-container *ngIf="show">
-          <div style="text-align: left">
-            <div class="row borderIt">
-              <mat-form-field appearance="outline" class="categoryinput">
-                <mat-label class="categorylabel">Subject name</mat-label>
-                <input
-                  matInput
-                  class="categoryinput"
-                  [(ngModel)]="dataTemplate2.name"
-                />
-              </mat-form-field>
-  
-              <mat-form-field appearance="outline" class="categoryinput">
-                <mat-label class="categorylabel">Seats</mat-label>
-                <input
-                  matInput
-                  type="number"
-                  class="categoryinput"
-                  [(ngModel)]="dataTemplate2.Seats"
-                />
-              </mat-form-field>
-  
-              <div class="col-sm-2 borderFab">
-                <button
-                  mat-mini-fab
-                  color="primary"
-                  aria-label="Example"
-                  (click)="onPressAddSubject()"
-                >
-                  <mat-icon>add</mat-icon>
-                </button>
-              </div>
-            </div>
-          </div>
-        </ng-container>
-        </div>
+    <!-- <mat-grid-tile colspan="2">
+     
 
-    </mat-grid-tile>
+    </mat-grid-tile> -->
     </mat-grid-list>
     <mat-grid-list
       cols="2"
@@ -214,7 +246,7 @@
     </mat-grid-list>
   </mat-tab>
   <mat-tab label="Departments">
-    <mat-grid-list cols="5" style="margin-bottom: 11rem; margin-top: 11rem">
+    <mat-grid-list cols="3" style="margin-bottom: 8rem; margin-top: 12rem">
       <mat-grid-tile colspan="3">
         <div class="cardClass" style="display: flex; padding-left: 5rem">
           <mat-card
@@ -230,7 +262,7 @@
                 <input
                   matInput
                   placeholder="Placeholder"
-                  value="Delhi University"
+                  [(ngModel)]="global.data.InstitutionName"
                 />
               </mat-form-field>
 
@@ -260,7 +292,47 @@
                   [(ngModel)]="dataTemplateDep.deptCode"
                 />
               </mat-form-field>
-
+              <mat-form-field
+              appearance="outline"
+              style="width: 14.5rem !important"
+              class="paddingInput SmallDatePicker"
+            >
+              <mat-label>Establishment</mat-label>
+              <input
+                matInput
+                [matDatepicker]="picker1"
+                [(ngModel)]="dataTemplate.established"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="picker1"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+              <mat-form-field appearance="outline" class="paddingInput">
+                <mat-label>Department Template</mat-label>
+                <input
+                  matInput
+                  placeholder="Placeholder"
+                  [(ngModel)]="dataTemplateDep.courseTemplate"
+                />
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="paddingInput">
+                <mat-label>Ownership Type</mat-label>
+                <input
+                  matInput
+                  placeholder="Placeholder"
+                  [(ngModel)]="dataTemplateDep.OwnershipType"
+                />
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="paddingInput">
+                <mat-label>Department Strength</mat-label>
+                <input
+                  matInput
+                  placeholder="Placeholder"
+                  [(ngModel)]="dataTemplateDep.deptStrength"
+                />
+              </mat-form-field>
               <mat-form-field appearance="outline" class="paddingInput">
                 <mat-label>UGC Reg no.</mat-label>
                 <input
@@ -301,9 +373,83 @@
                 ></textarea>
               </mat-form-field>
               <!-- <br> -->
+              <div class="col-sm-4">
+                <div class="adddiv">
+                  <button mat-button class="Addbutton" (click)="toggle2()">
+                    Add Subject
+                  </button>
+                </div>
+          
+                <ng-container *ngIf="show2">
+                  <div style="text-align: left">
+                    <div class="row borderIt">
+                      <mat-form-field appearance="outline" class="paddingInput">
+                        <mat-label class="categorylabel">Course ID</mat-label>
+                        <input
+                          matInput
+                          class="categoryinput"
+                          [(ngModel)]="dataTemplate2.Course_id"
+                        />
+                      </mat-form-field>
+                      <mat-form-field appearance="outline" class="paddingInput">
+                        <mat-label class="categorylabel">Course Type</mat-label>
+                        <input
+                          matInput
+                          class="categoryinput"
+                          [(ngModel)]="dataTemplate2.Course_type"
+                        />
+                      </mat-form-field>
+                      <mat-form-field appearance="outline" class="paddingInput">
+                        <mat-label class="categorylabel">Course name</mat-label>
+                        <input
+                          matInput
+                          class="categoryinput"
+                          [(ngModel)]="dataTemplate2.Course_name"
+                        />
+                      </mat-form-field>
+                      <mat-form-field appearance="outline" class="paddingInput">
+                        <mat-label class="categorylabel">Course Description</mat-label>
+                        <input
+                          matInput
+                          class="categoryinput"
+                          [(ngModel)]="dataTemplate2.Course_description"
+                        />
+                      </mat-form-field>
+                      <mat-form-field appearance="outline" class="paddingInput">
+                        <mat-label class="categorylabel">Course Duration</mat-label>
+                        <input
+                          matInput
+                          class="categoryinput"
+                          [(ngModel)]="dataTemplate2.Course_duration"
+                        />
+                      </mat-form-field>
+                      <mat-form-field appearance="outline" class="paddingInput">
+                        <mat-label class="categorylabel">Seats</mat-label>
+                        <input
+                          matInput
+                          type="number"
+                          class="categoryinput"
+                          [(ngModel)]="dataTemplate2.Seats"
+                        />
+                      </mat-form-field>
+          
+                      <div class="col-sm-2 borderFab">
+                        <button
+                          mat-mini-fab
+                          class="Addbutton"
+                          aria-label="Example"
+                          (click)="onPressAddSubject2()"
+                        >
+                          <mat-icon>add</mat-icon>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </ng-container>
+                </div>
               <button
                 mat-raised-button
-                color="primary"
+                class="Addbutton"
                 style="align-self: center; margin-left: 80%"
                 (click)="onPressSubmitDept()"
               >
@@ -313,52 +459,10 @@
           </mat-card>
         </div>
       </mat-grid-tile>
-      <mat-grid-tile colspan="2">
-        <div class="col-sm-4">
-          <div class="adddiv">
-            <button mat-button class="Addbutton" (click)="toggle2()">
-              Add Subject
-            </button>
-          </div>
-    
-          <ng-container *ngIf="show2">
-            <div style="text-align: left">
-              <div class="row borderIt">
-                <mat-form-field appearance="outline" class="categoryinput">
-                  <mat-label class="categorylabel">Subject name</mat-label>
-                  <input
-                    matInput
-                    class="categoryinput"
-                    [(ngModel)]="dataTemplate2.name"
-                  />
-                </mat-form-field>
-    
-                <mat-form-field appearance="outline" class="categoryinput">
-                  <mat-label class="categorylabel">Seats</mat-label>
-                  <input
-                    matInput
-                    type="number"
-                    class="categoryinput"
-                    [(ngModel)]="dataTemplate2.Seats"
-                  />
-                </mat-form-field>
-    
-                <div class="col-sm-2 borderFab">
-                  <button
-                    mat-mini-fab
-                    color="primary"
-                    aria-label="Example"
-                    (click)="onPressAddSubject2()"
-                  >
-                    <mat-icon>add</mat-icon>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </ng-container>
-          </div>
+      <!-- <mat-grid-tile colspan="2">
+      
   
-      </mat-grid-tile>
+      </mat-grid-tile> -->
     </mat-grid-list>
     <mat-grid-list
       cols="2"

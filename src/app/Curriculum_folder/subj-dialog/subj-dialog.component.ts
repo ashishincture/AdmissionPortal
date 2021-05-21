@@ -21,18 +21,16 @@ export class SubjDialogComponent implements OnInit {
   ngOnInit(): void {
   }
   saveSub(){
-    debugger;
-    let selectedsubs:CRSubjectClass[]=[];
+    
+    let selectedsubs=[];
     let selected=this.list.selectedOptions.selected;
     for(var i=0;i<selected.length;i++){
       let item=selected[i].__ngContext__[8].$implicit;
-      let obj:CRSubjectClass={
-        code:item.code,
-        id:item.id,
-        name:item.name,
-        type:item.type,
-        description:item.description,
-        credits:item.credits,
+      let obj={
+        Subject_ID:item.Subject_ID,
+        Subject_Name:item.Subject_Name,
+        Type:item.Type,
+        Credit:item.Credit,
         groupNme:""
       }
       selectedsubs.push(obj);

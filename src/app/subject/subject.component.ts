@@ -6,9 +6,12 @@ import {
   MatDialogRef,
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
-import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { MatTable, MatTableDataSource} from '@angular/material/table';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatSort} from '@angular/material/sort';
 import { SubjectService } from '../subject.service';
 import * as XLSX from 'xlsx';
+import { ToastrService} from 'ngx-toastr';
 // import { debugger } from 'fusioncharts';
 // const XLSX = require('xlsx');
 // import {SubjectClass} from "../models/SubjectClass.model";
@@ -53,12 +56,12 @@ export class SubjectComponent implements OnInit {
   Regulations: Regulation[] = [];
   Departments: Department[] = [];
   Subjects: Subject[] = [];
-  dataSource = this.Subjects;
   newTablelist: Subject[] = [];
   dummy = this.Subjects;
   SubSearchKey: any;
   arrayBuffer: any;
   DeptSearchKey: string;
+  RegulationSearchKey:string;
   subjectInstance: Subject = {
     Subject_ID: "",
     Subject_Name: "",
@@ -68,38 +71,69 @@ export class SubjectComponent implements OnInit {
     Regulation_ID: "",
     Credit: "",
   };
-  displayedColumns: string[] = ['Subject_ID', 'Subject_Name', 'Type', 'Credit', 'active', 'actions'];
-  @ViewChild(MatTable)
-  table!: MatTable<any>;
-  constructor(public dialog: MatDialog, private SubjectService: SubjectService) { }
+  displayedColumns: string[] = ['Subject_ID', 'Subject_Name', 'Type', 'Credit', 'actions'];
+  @ViewChild(MatTable)table!: MatTable<any>;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+pageIndex = 0;
+pageSize = 10;
+pageSizeOptions = [10, 15, 20];
+dataSource: MatTableDataSource<Subject>;
+@ViewChild(MatSort, { static: true }) sort: MatSort;
+  
+  constructor(public dialog: MatDialog, private SubjectService: SubjectService,private toastr: ToastrService) { }
   ngOnInit(): void {
     this.fetchRegulation();
-    this.fetchDepartment();
+    // this.fetchDepartment();
     this.fetchSubjectlist();
   }
   fetchRegulation() {
     this.SubjectService.getRegulation().
       subscribe((data: any) => {
         this.Regulations = data.data;
+        this.RegulationSearchKey = this.Regulations[0].Regulation_Name;
+        this.fetchDepartmentByRegId(this.RegulationSearchKey);
       });
   }
   fetchDepartment() {
     this.SubjectService.getDepartment().
       subscribe((data: any) => {
-        this.Departments = data.data;
+        console.log(data);
+        // this.Departments = data.data;
+        // this.DeptSearchKey=this.Departments[0].Department_Name;
       });
+  }
+  fetchDepartmentByRegId(ID){
+    this.SubjectService.getDepartmentByRegId(ID).subscribe((data: any) => {
+      this.Departments = data.data.Department_Details;
+      this.DeptSearchKey=this.Departments[0].Department_Name;
+    });
   }
   fetchSubjectlist() {
     this.SubjectService.getSubjectList().
       subscribe((data: any) => {
         this.Subjects = data.data;
-        this.dataSource = data.data;
+        this.dataSource = new MatTableDataSource(data.data);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
         console.log(this.Subjects);
       });
   }
   onAddNewSubject() {
-    const dialogRef = this.dialog.open(UpdateDialogComponent);
+    const dialogRef = this.dialog.open(UpdateDialogComponent,{data: {type:"Create",data:{
+      Subject_ID: "",
+      Subject_Name: "",
+      isActive: false,
+      Type: "",
+      Department_ID: this.DeptSearchKey,
+      Regulation_ID: this.RegulationSearchKey,
+      Credit: "",
+    }} });
     dialogRef.afterClosed().subscribe((result) => {
+      for(var i=0;i<this.Departments.length;i++){
+        if(result.data.Department_ID ==this.Departments[i].Department_Name)
+        result.data.Department_ID=this.Departments[i].Department_ID;
+        break;
+      }
       this.SubjectService.createSubject(result.data).subscribe((data: any) => {
         console.log(data.data.msg);
         this.fetchSubjectlist();
@@ -122,31 +156,38 @@ export class SubjectComponent implements OnInit {
 
     });
   }
-  SubSearch() {
-    if (this.SubSearchKey == "") {
-      this.ngOnInit();
-    }
-    else {
-      this.dataSource = this.Subjects.filter(res => {
-        // const array =[];
-        // const SubName = res.Subject_Name.toLocaleLowerCase().match(this.SubSearchKey.toLocaleLowerCase());
-        // const SubCode = res.Subject_ID.toLocaleLowerCase().match(this.SubSearchKey.toLocaleLowerCase());
-        // const subType = res.Type.toLocaleLowerCase().match(this.SubSearchKey.toLocaleLowerCase());
-        // array.push(SubName);
-        // array.push(SubCode);
-        // array.push(subType);
-        // return array;
-        return res.Subject_Name.toLocaleLowerCase().match(this.SubSearchKey.toLocaleLowerCase());
-      });
-    }
+  // SubSearch() {
+  //   if (this.SubSearchKey == "") {
+  //     this.ngOnInit();
+  //   }
+  //   else {
+  //     this.dataSource = this.Subjects.filter(res => {
+  //       return res.Subject_Name.toLocaleLowerCase().match(this.SubSearchKey.toLocaleLowerCase());
+  //     });
+  //   }
+  // }
+
+
+  SubSearch(filterValue: string) {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
+    this.dataSource.filter = filterValue;
   }
+
   key = "Subject_Name";
   reverse: boolean = false;
   SubSort(Subject_Name: any) {
     this.key = Subject_Name;
     this.reverse = !this.reverse;
   }
-  DeptSearch() {
+  DeptSearch(oEvent) {
+    console.log(oEvent.value);
+    this.DeptSearchKey=oEvent.value;
+  }
+  RegulationSearch(oEvent){
+    console.log(oEvent.value);
+    this.RegulationSearchKey=oEvent.value;
+    this.fetchDepartmentByRegId(this.RegulationSearchKey);
   }
   onFileUpload(oEvent) {
     var file = oEvent.target.files[0];
@@ -167,8 +208,8 @@ export class SubjectComponent implements OnInit {
       console.log(this.newTablelist)
       var j, crctArray = [], errArray = [], flag = 0;
       for (var i = 0; i < this.newTablelist.length; i++, flag = 0) {
-        for (j = 0; j < this.dataSource.length; j++) {
-          if (this.newTablelist[i].Subject_ID === this.dataSource[j].Subject_ID) {
+        for (j = 0; j < this.dataSource.data.length; j++) {
+          if (this.newTablelist[i].Subject_ID === this.dataSource.data[j].Subject_ID) {
             flag = 1;
           }
         }
@@ -185,18 +226,31 @@ export class SubjectComponent implements OnInit {
      (err) => {console.log(err)});
         }
       }
-      console.log(crctArray);
-      console.log(errArray);
       if (errArray.length) {
+        this.toastr.error('Out of '+this.newTablelist.length+ ' Subjects uploaded, '+ errArray.length+ ' records contain Invalid Data.' , 'Error',{
+     timeOut: 10000,
+     extendedTimeOut: 0
+});
         var ws = XLSX.utils.json_to_sheet(errArray);
         var wb = XLSX.utils.book_new();
         XLSX.utils.book_append_sheet(wb, ws, "Error");
-        XLSX.writeFile(wb, "sheetjs.xlsx");
+        XLSX.writeFile(wb, "InvalidSubjectRecords.xlsx");
       }
-      // this.dataSource=this.dataSource.concat(filelist);
 
     }
 
     // this.table.renderRows();
   }
+
+
+  ///template download
+templateDownloadFn(){
+  var Heading = [
+    ["FirstName", "Last Name", "Email"],
+  ];
+  
+  //Had to create a new workbook and then add the header
+  const ws = XLSX.utils.book_new();
+  XLSX.utils.sheet_add_aoa(ws, Heading);
+}
 }

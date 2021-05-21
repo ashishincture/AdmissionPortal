@@ -58,6 +58,11 @@
                 [(ngModel)]="dataTemplate.percent"
               />
             </mat-form-field>
+            <div class="adddiv">
+              <button mat-button class="Addbutton" (click)="onPressAddQuota()">
+                +
+              </button>
+            </div>
           </div>
         </div>
       </ng-container>
@@ -88,6 +93,7 @@
             type="pie3d"
             width="600"
             height="330"
+            #chartid
             [dataSource]="dataSource"
           >
           </fusioncharts>
