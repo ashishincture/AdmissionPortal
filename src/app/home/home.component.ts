@@ -25,7 +25,8 @@ uri: string=' https://university-app-2021.herokuapp.com/institute/add';
     UGC_Reg_ID:"",
     Course_type:"",
     Seats: "",
-    Course_duration:""
+    Course_duration:"",
+    SeatAlloted:[]
   };
   dataTemplate={
     college: "",
@@ -67,7 +68,8 @@ uri: string=' https://university-app-2021.herokuapp.com/institute/add';
         UGC_Reg_ID:"",
         Course_type:"",
         Seats: "",
-        Course_duration:""
+        Course_duration:"",
+        SeatAlloted:[]
     };
     this.toggle();
   }
@@ -90,7 +92,8 @@ uri: string=' https://university-app-2021.herokuapp.com/institute/add';
       UGC_Reg_ID:"",
       Course_type:"",
       Seats: "",
-      Course_duration:""
+      Course_duration:"",
+      SeatAlloted:[]
     };
     this.toggle2();
   }

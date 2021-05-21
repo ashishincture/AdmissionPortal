@@ -169,7 +169,7 @@ export class SeatmatrixComponent implements OnInit {
             n++
           ) {
             if (
-              i == this.global.data.CollegeDetail[m].SubjectListCollege[n].name
+              i == this.global.data.CollegeDetail[m].SubjectListCollege[n].Course_name
             ) {
               console.log(this.global.data.CollegeDetail[m].SubjectListCollege);
               for (
@@ -224,7 +224,7 @@ export class SeatmatrixComponent implements OnInit {
             n < this.global.data.DeptDetail[m].SubjectListDept.length;
             n++
           ) {
-            if (i == this.global.data.DeptDetail[m].SubjectListDept[n].name) {
+            if (i == this.global.data.DeptDetail[m].SubjectListDept[n].Course_name) {
               console.log(this.global.data.DeptDetail[m].SubjectListDept);
               for (
                 var k = l;
