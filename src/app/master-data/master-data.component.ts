@@ -9,19 +9,22 @@ import {Globals} from '../globals'
   styleUrls: ['./master-data.component.css']
 })
 export class MasterDataComponent implements OnInit {
-  uri: string ='https://university-app-2021.herokuapp.com/university/add';
+  uri: string ='https://university-app-2021.herokuapp.com/university';
   
   
   
   constructor(public router: Router,public global:Globals,public http:HttpClient) { }
   onPressSubmit(){
-    var data={
+    var data2={
       University_id: this.global.data.InstitutionId,
       University_name: this.global.data.InstitutionName,
       University_type: this.global.data.InstitutionType,
       University_description: this.global.data.Description
   };
-    let univ =this.http.post(`${this.uri}`,data);
+  // var universities;
+  // let univ2 =this.http.get(`${this.uri}`+'/view');
+  // univ2.subscribe((data: any) => universities = data);
+    let univ =this.http.post(`${this.uri}`+'/add',data2);
   console.log({
     University_id: this.global.data.InstitutionId,
     University_name: this.global.data.InstitutionName,

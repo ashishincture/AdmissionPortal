@@ -400,3 +400,13 @@ a.flickr:active {
 .panelArea {
   margin-block-start: 1rem;
 }
+.bground {
+  background: url(/assets/img/seatmatrixbg2.png) no-repeat center;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  -ms-background-size: cover;
+  position: relative;
+  min-height: 100vh;
+}
