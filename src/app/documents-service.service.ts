@@ -5,7 +5,9 @@ import { HttpClient } from '@angular/common/http';
 })
 export class DocumentsServiceService {
  
-  uri:string = 'https://university-mean.herokuapp.com';
+  randomdata;
+
+  uri:string =  'https://university-app-2021.herokuapp.com';
 
  
   constructor(private http: HttpClient) { }
@@ -19,6 +21,11 @@ export class DocumentsServiceService {
     
     return this.http.get(`${this.uri}/student/search/` + sQuery);   
   }
+
+  approveStudentUpdate(sId: String, data:any){
+    return this.http.put(`${this.uri}/student/update/`+sId, data);
+  }
+
  
 
 }

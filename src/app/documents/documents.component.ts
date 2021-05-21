@@ -8,9 +8,15 @@ import { DocumentsServiceService } from '../documents-service.service';
 // import { Console } from 'console';
 
 export interface studentDetail{
-  // Regulation_ID: string;
-  // Regulation_Name: string;
-  // Academic_Year: Array<any>;
+  XIIpercent: string;
+  Xpercent: number;
+  course: number;
+  name: string;
+  student_id: string;
+  __v: number;
+  _id: string;
+  profilePic: string;
+  status: string;
 }
 
 @Component({
@@ -20,6 +26,7 @@ export interface studentDetail{
 })
 export class DocumentsComponent implements OnInit {
   studentDetails2: studentDetail[]=[];
+  randomData= this.DocumentsServiceService.randomdata=[];
   courses = new FormControl();
   courseList: string[] = ['Engineering', 'Medical', 'Management'];
 
@@ -105,8 +112,26 @@ export class DocumentsComponent implements OnInit {
     subscribe((data:any)=>{
       this.studentDetails2=data.data;
       console.log(this.studentDetails2);
+      for(var i=0;i<this.studentDetails2.length;i++){
+        if(this.studentDetails2[i].status!=="approved"){
+          // this.studentDetails2.splice(i, 1);
+          this.randomData.push(this.studentDetails2[i]);
+          // this.studentDetails2.splice(i, 1);
+        }
+      }
+      // this.randomData= this.studentDetails2;
+      console.log(this.randomData);
     });
   }
+
+
+  // onPressApproveOkay(){
+  //   for(var i=0;i<this.studentDetails2.length;i++){
+  //     if(this.studentDetails2[i].status==="Approved"){
+  //       this.studentDetails2.splice(i, 1);
+  //     }
+  //   }
+  // }
 
   onSearch(event: any){
     console.log(event.target.value);
@@ -123,7 +148,7 @@ export class DocumentsComponent implements OnInit {
     this.DocumentsServiceService.getStudentsSearch(sQuery).
     subscribe((data:any)=>{
       if(data.success===true){
-        this.studentDetails2=data.data;
+        this.randomData=data.data;
         console.log(this.studentDetails2);
       }else{
         this.fetchStudents();
@@ -459,12 +484,27 @@ export class DocumentsComponent implements OnInit {
 
   onPressApprove(oEvent){
 
+     console.log(this.randomData[oEvent].student_id);
+     var studentId = this.randomData[oEvent].student_id;
+     var studentStatus = {
+      "status":"approved"
+     }
+
+    // this.DocumentsServiceService.approveStudentUpdate(studentId, studentStatus).
+    // subscribe((data:any)=>{
+    //  console.log(data);
+      
+    // });
+     
+    
+
     var flag;
     var flag1;
 
     for (var i = 0; i < this.arrRightBtn10.length; i++) {
      if(this.arrRightBtn10[i]===oEvent){
        flag=1;
+       break;
      }else{
        flag=0;
      }
@@ -474,6 +514,7 @@ export class DocumentsComponent implements OnInit {
     for (var j = 0; j < this.arrRightBtn12.length; j++) {
       if(this.arrRightBtn12[j]===oEvent){
         flag1=1;
+        break;
       }else{
         flag1=0;
       }
@@ -483,10 +524,19 @@ export class DocumentsComponent implements OnInit {
 
     if(flag===1 && flag1===1){
       this.dialog.open(DialogApproveComponent);
+      this.randomData.splice(oEvent,1);
+      this.DocumentsServiceService.approveStudentUpdate(studentId, studentStatus).
+      subscribe((data:any)=>{
+       console.log(data);
+        
+      });
+      this.arrRightBtn10 =[];
+      this.arrRightBtn12 =[];
     }else{
       this.dialog.open(DialogNotApproveComponent);
     }
-  
+      
+    // this.fetchStudents();   
   }
 
 
