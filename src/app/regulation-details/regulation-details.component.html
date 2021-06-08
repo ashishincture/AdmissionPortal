@@ -38,14 +38,14 @@
         </form>
 
     </div>
-    <button mat-raised-button class="addRegulationClass" color="primary" (click)="onEditReg()">Edit</button>
+    <button mat-raised-button class="addRegulationClass" color="primary" (click)="onEditReg()">Delete</button>
     <div class="containerDepartments">
         <div class="department1" *ngFor="let data of tableData">
             <table mat-table [dataSource]="data.Credits_Details" class="mat-elevation-z8 regulationDetailsTable"
-                style="width: 97%;" (click)="onClickTable(data.Department_ID)">
+                style="width: 97%;">
                 <ng-container matColumnDef="header-row-first-group">
                     <th mat-header-cell *matHeaderCellDef [attr.colspan]="1" style="border-bottom: none;">
-                        {{data.Department_ID}}
+                        {{data.Department_Name}}
                     </th>
                 </ng-container>
 

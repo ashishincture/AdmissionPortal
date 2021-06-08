@@ -28,8 +28,8 @@ export class RegulationDetailsComponent implements OnInit {
     private fBuilder: FormBuilder,
     private service:DataService) {
       this.service.getRegulationDetailsData(this.rid).subscribe((data: any) => {
-        this.RegData = data.data;
-        this.tableData = data.data.Department_Details;
+        this.RegData = data.data.Regulation[0];
+        this.tableData = data.data.Regulation[0].Department_Details;
         this.dataSource=this.tableData;
         console.log(this.RegData);
         console.log(this.tableData);

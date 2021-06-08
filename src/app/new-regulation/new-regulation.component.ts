@@ -92,12 +92,50 @@ export class NewRegulationComponent implements OnInit {
     var depobj = this.service.DataAddReg;
     console.log(depobj);
     var addRegFinalObj = {
-    Regulation_Name:this.myForm.value.regulationName,
+    Active:true,
     Regulation_Id:this.myForm.value.regulationId,
+    Regulation_Name:this.myForm.value.regulationName,
     Academic_Year:[parseInt(this.myForm.value.academicyear),parseInt(this.myForm.value.academicyear) + 4],
+    Grading:{
+      GradeType:"Points",
+      RangeLow:5,
+      RangeHigh:8,
+      GradingDetails:[
+        {
+          point:10,
+          grade:"O",
+          description:"Excellent",
+          percentage:95
+        },
+        {
+          point:9,
+          grade:"A+",
+          description:"Very Good",
+          percentage:85
+        },
+        {
+          point:8,
+          grade:"A",
+          description:"Good",
+          percentage:75
+        },
+        {
+          point:7,
+          grade:"B+",
+          description:"Bad",
+          percentage:65
+        }
+      ]
+    },
     Department_Details:depobj
     }
     console.log(addRegFinalObj);
+    var addRegFinalArray = [];
+    addRegFinalArray.push(addRegFinalObj);
+    var finalObj = {
+      Regulation:addRegFinalArray
+    }
+    this.service.postAddRegData(finalObj);
   }
 
 }
