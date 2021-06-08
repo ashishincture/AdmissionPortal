@@ -181,6 +181,7 @@ export class CurriculumComponent implements OnInit,AfterViewInit {
   }
   NextSem(){
     //this.CreateCRdetails.value.semNo++;
+    
     let semlength=parseInt(this.RegsDataDetails.Semester_Count);
     if(this.CreateCRdetails.value.semNo<semlength){
       this.CreateCRdetails.value.semNo++;

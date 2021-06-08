@@ -650,8 +650,12 @@ export class DataServiceService {
       }
     }
     
-
-    //console.log(this.newCRData.semData);
-    
+  }
+  verifyCRwithReg(semNo){
+      let semData=this.newCRData.semData.find(({sem})=>sem===semNo);
+      let coreCount,PEcount,OEcount;
+      for(var i=0;i<semData.subjects.length;i++){
+        
+      }
   }
 }

@@ -32,6 +32,7 @@ export class CreateCRComponent implements OnInit {
   showGroupfield: boolean=false;
   electiveGrp:string="";
   deptSubj;
+  RegSemDetails;
   constructor(
     private route:Router,
     private activatedRoute:ActivatedRoute,
@@ -64,6 +65,13 @@ export class CreateCRComponent implements OnInit {
     if(!this.initData(inputData)) return;
 
     this.buildDataSource();
+    this.service.getRegsDetails(this.service.newCRData.regulationId).subscribe((data:any)=>{
+      let regData=data.data;
+      let deptDataDetails=regData.Department_Details.find(({
+        Department_ID
+      })=>Department_ID===this.service.newCRData.deptId);
+      this.RegSemDetails=deptDataDetails.Credits_Details.find(({sNo})=>sNo===this.semNo);
+    });
 
    }
    displayedColumns: string[] = [];
@@ -102,7 +110,11 @@ export class CreateCRComponent implements OnInit {
     if(this.subType!=="Core" && this.electiveGrp===""){
       return;
     }
-
+    if(this.subType==="Core"){
+      if(this.dataSource.length===this.RegSemDetails.Core)
+      return;
+    }
+    
     let selectDept=oEvent.value;
     let Subjects=[];
     for(var i=0;i<this.deptSubj.length;i++){
