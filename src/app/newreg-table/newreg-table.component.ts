@@ -32,18 +32,18 @@ export class NewregTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this._formBuilder.group({
-      Credit_Details: this._formBuilder.array([])
+      Credits_Details: this._formBuilder.array([])
     });
     // this.DataService.getAllAsFormArray(this.tableSource).subscribe(subjects => {
     //   this.form.setControl('subjects', subjects);
     // });
     let forArry = this.DataService.getAllAsFormArray(this.tableSource);
-    this.form.setControl('Credit_Details', forArry);
+    this.form.setControl('Credits_Details', forArry);
   }
   inputChange(oEvent:any,depname) {
     let tableData = [];
-    debugger;
-    let formData = this.form.controls.Credit_Details.controls;
+    // debugger;
+    let formData = this.form.controls.Credits_Details.controls;
     for (var i = 0; i < formData.length; i++) {
       tableData.push(formData[i].value);
     }
@@ -54,7 +54,7 @@ export class NewregTableComponent implements OnInit {
     let reqData = this.DataforAdd;
     for(var j=0; j<reqData.length;j++){
       if(reqData[j].Department_ID === depname){
-        reqData[j].Credit_Details = this.tableSource;
+        reqData[j].Credits_Details = this.tableSource;
       }
     }
     console.log(reqData);

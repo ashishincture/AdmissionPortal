@@ -196,7 +196,7 @@ export class DataService {
       Department_Name:dep[j].coursename,
       total_Credit:28,
       Semester_Count: sem,
-      Credit_Details: sub
+      Credits_Details: sub
     }
     finalData.push(dataobj);
   }
