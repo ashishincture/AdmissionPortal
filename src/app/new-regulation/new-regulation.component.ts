@@ -4,6 +4,7 @@ import { FormGroup, FormControl, FormBuilder, Validators, AbstractControl, FormA
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { DataService } from '../data.service';
+import { HttpClient } from '@angular/common/http';
 import { NewregTableComponent } from '../newreg-table/newreg-table.component';
 
 export interface subTypes {
@@ -32,6 +33,8 @@ export class NewRegulationComponent implements OnInit {
 
   displayedColumns: string[] = ['semNo', 'core', 'pe', 'oe'];
   dataSource ;
+  uri: string = 'https://university-app-2021.herokuapp.com';
+  instid = "IN0010";
 
   @ViewChild('tableId', { read: ViewContainerRef, static: false })
 
@@ -43,6 +46,7 @@ export class NewRegulationComponent implements OnInit {
     private fBuilder: FormBuilder,
     private service:DataService,
     private componentFactoryResolver:ComponentFactoryResolver,
+    private http: HttpClient
   ) { }
 
   ngOnInit(): void {
@@ -79,7 +83,7 @@ export class NewRegulationComponent implements OnInit {
       
       let crViewfactory=this.componentFactoryResolver.resolveComponentFactory(NewregTableComponent);
       let panel=this.container.createComponent(crViewfactory);
-      panel.instance.tableSource=this.dataSource[i].Credit_Details;
+      panel.instance.tableSource=this.dataSource[i].Credits_Details;
       panel.instance.depName=this.dataSource[i].Department_ID; 
       panel.instance.semNo=this.dataSource[i].Semester_Count; 
       panel.instance.totalCredits=this.dataSource[i].total_Credit;
@@ -93,7 +97,7 @@ export class NewRegulationComponent implements OnInit {
     console.log(depobj);
     var addRegFinalObj = {
     Active:true,
-    Regulation_Id:this.myForm.value.regulationId,
+    Regulation_ID:this.myForm.value.regulationId,
     Regulation_Name:this.myForm.value.regulationName,
     Academic_Year:[parseInt(this.myForm.value.academicyear),parseInt(this.myForm.value.academicyear) + 4],
     Grading:{
@@ -135,7 +139,16 @@ export class NewRegulationComponent implements OnInit {
     var finalObj = {
       Regulation:addRegFinalArray
     }
-    this.service.postAddRegData(finalObj);
+    var a = this.http.post(`${this.uri}/Regulation/newregulation/${this.instid}`,finalObj);
+    a.subscribe((data:any)=>{
+      console.log(data);
+      if(data.msg === "Success"){
+        alert("New Regulation Added Successfully");
+        this.router.navigate(['regulation']);
+      }
+    });
+    console.log(a);
+    // this.service.postAddRegData(finalObj);
   }
 
 }
