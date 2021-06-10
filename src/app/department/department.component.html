@@ -10,7 +10,7 @@
     <div *ngFor="let department of departments; let i = index">
       <div
         class="departmentClass"
-        (click)="onDeptPress(department.Department_Name)"
+        (click)="onDeptPress(department)"
       >
         <h4 style="font-weight: bold; color: wheat">
           {{ department.Department_Name }}
