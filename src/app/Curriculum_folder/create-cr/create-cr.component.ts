@@ -124,7 +124,7 @@ export class CreateCRComponent implements OnInit {
       if(this.dataSource.length===this.RegSemDetails.Core)
       return;
     }
-    if(!this.service.verifyCRwithReg(this.semNo)){
+    if(!this.service.verifyCRCreatewithReg(this.semNo,this.subType)){
       return;
     }
     
@@ -198,7 +198,7 @@ export class CreateCRComponent implements OnInit {
           for(var i=0;i<result.length;i++){
             result[i].Group_Name=this.electiveGrp;
             let num=semsub.findIndex((subj)=>{
-              if(subj.Subject_ID===result[i].Subject_ID){
+              if(subj.Subject_Code===result[i].Subject_Code){
               return true
               }
               })
