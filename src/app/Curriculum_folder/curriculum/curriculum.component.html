@@ -55,7 +55,7 @@
                 <div class="col form-group">
                     <mat-form-field appearance="fill">
                         <mat-label style="color:white;">Choose an Regulation</mat-label>
-                        <mat-select formControlName="Regulation" [class.is-invalid]="CreateCRdetails.get('Regulation').invalid && CreateCRdetails.get('Regulation').touched">
+                        <mat-select formControlName="Regulation" [class.is-invalid]="CreateCRdetails.get('Regulation').invalid && CreateCRdetails.get('Regulation').touched" (selectionChange)="onSelectReg()">
                             <mat-option *ngFor="let Regulation of RegSData" [value]="Regulation.Regulation_Name">{{Regulation.Regulation_Name}}</mat-option>
                         </mat-select>
                         <small class="text-danger" [class.d-none]="CreateCRdetails.get('Regulation').valid || CreateCRdetails.get('Regulation').untouched">Regulation is required</small>

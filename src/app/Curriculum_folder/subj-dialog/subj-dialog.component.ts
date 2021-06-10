@@ -27,11 +27,12 @@ export class SubjDialogComponent implements OnInit {
     for(var i=0;i<selected.length;i++){
       let item=selected[i].__ngContext__[8].$implicit;
       let obj={
-        Subject_ID:item.Subject_ID,
+        Subject_Code:item.Subject_ID,
         Subject_Name:item.Subject_Name,
         Type:item.Type,
-        Credit:item.Credit,
-        groupNme:""
+        Credits:item.Credit,
+        Description:"",
+        Group_Name:""
       }
       selectedsubs.push(obj);
     }
