@@ -8,9 +8,18 @@
         <form [formGroup]="CRdetails" > 
             <div class="row">
                 <div class="col form-group">
+                    <mat-form-field appearance="fill">
+                        <mat-label style="color:white;">Choose an Regulation</mat-label>
+                        <mat-select formControlName="Regulation" [class.is-invalid]="CRdetails.get('Regulation').invalid && CRdetails.get('Regulation').touched" (selectionChange)="onSelectVReg()">
+                            <mat-option *ngFor="let Regulation of RegSData" [value]="Regulation.Regulation_Name">{{Regulation.Regulation_Name}}</mat-option>
+                        </mat-select>
+                        <small class="text-danger" [class.d-none]="CRdetails.get('Regulation').valid || CRdetails.get('Regulation').untouched">Regulation is required</small>
+                    </mat-form-field> 
+                </div>
+                <div class="col form-group">
                     <mat-form-field appearance="fill" >
                         <mat-label style="color:white; font-size: 1rem;">Choose an Department</mat-label>
-                        <mat-select  class="dropdown" style="color:white"formControlName="dept" [class.is-invalid]="CRdetails.get('dept').invalid && CRdetails.get('dept').touched">
+                        <mat-select  class="dropdown" style="color:white"formControlName="dept" [class.is-invalid]="CRdetails.get('dept').invalid && CRdetails.get('dept').touched" (selectionChange)="onSelectVDept()">
                             <mat-option *ngFor="let dept of deptData" [value]="dept.Department_ID">{{dept.Department_Name}}</mat-option>
                         </mat-select>
                         <small class="text-danger" [class.d-none]="CRdetails.get('dept').valid || CRdetails.get('dept').untouched">Department is required</small>
@@ -18,14 +27,14 @@
                 </div>
                 <div class="col form-group">
                     <mat-form-field appearance="fill">
-                        <mat-label  style="color:white; font-size: 1rem;">Choose an curriculum</mat-label>
+                        <mat-label  style="color:white; font-size: 1rem;">Choose an Batch year</mat-label>
                         <mat-select (selectionChange)="onSelectCR($event)" formControlName="curriculum" [class.is-invalid]="CRdetails.get('curriculum').invalid && CRdetails.get('curriculum').touched">
-                            <mat-option *ngFor="let CR of CRData" [value]="CR.code">{{CR.code}}</mat-option>
+                            <mat-option *ngFor="let CR of CRData" [value]="CR.Batch_Year">{{CR.Batch_Year}}</mat-option>
                         </mat-select>
                         <small class="text-danger" [class.d-none]="CRdetails.get('curriculum').valid || CRdetails.get('curriculum').untouched">curriculum is required</small>
                     </mat-form-field>                 
                 </div>
-                <div class="col form-group">
+                <!-- <div class="col form-group">
                     <mat-form-field appearance="fill">
                         <mat-label  style="color:white; font-size: 1rem;">Choose an Academic year</mat-label>
                         <mat-select formControlName="adYear" [class.is-invalid]="CRdetails.get('adYear').invalid && CRdetails.get('adYear').touched">
@@ -33,12 +42,12 @@
                         </mat-select>
                         <small class="text-danger" [class.d-none]="CRdetails.get('adYear').valid || CRdetails.get('adYear').untouched">academic Year is required</small>
                     </mat-form-field>                  
-                </div>
+                </div> -->
                 <div class="col form-group">
                     <mat-form-field appearance="fill">
-                        <mat-label>Choose an semester</mat-label>
+                        <mat-label style="color:white; font-size: 1rem;">Choose an semester</mat-label>
                         <mat-select formControlName="semNo" [class.is-invalid]="CRdetails.get('semNo').invalid && CRdetails.get('semNo').touched">
-                            <mat-option *ngFor="let sem of semData" [value]="sem.name">{{sem.name}}</mat-option>
+                            <mat-option *ngFor="let sem of semData" [value]="sem.sNo">{{sem.sNo}}</mat-option>
                         </mat-select>
                         <small class="text-danger" [class.d-none]="CRdetails.get('semNo').valid || CRdetails.get('semNo').untouched">academic Year is required</small>
                     </mat-form-field>                 
@@ -55,7 +64,7 @@
                 <div class="col form-group">
                     <mat-form-field appearance="fill">
                         <mat-label style="color:white;">Choose an Regulation</mat-label>
-                        <mat-select formControlName="Regulation" [class.is-invalid]="CreateCRdetails.get('Regulation').invalid && CreateCRdetails.get('Regulation').touched">
+                        <mat-select formControlName="Regulation" [class.is-invalid]="CreateCRdetails.get('Regulation').invalid && CreateCRdetails.get('Regulation').touched" (selectionChange)="onSelectReg()">
                             <mat-option *ngFor="let Regulation of RegSData" [value]="Regulation.Regulation_Name">{{Regulation.Regulation_Name}}</mat-option>
                         </mat-select>
                         <small class="text-danger" [class.d-none]="CreateCRdetails.get('Regulation').valid || CreateCRdetails.get('Regulation').untouched">Regulation is required</small>
