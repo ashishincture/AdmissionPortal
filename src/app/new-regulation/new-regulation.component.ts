@@ -84,7 +84,7 @@ export class NewRegulationComponent implements OnInit {
       let crViewfactory=this.componentFactoryResolver.resolveComponentFactory(NewregTableComponent);
       let panel=this.container.createComponent(crViewfactory);
       panel.instance.tableSource=this.dataSource[i].Credits_Details;
-      panel.instance.depName=this.dataSource[i].Department_ID; 
+      panel.instance.depName=this.dataSource[i].Department_Name; 
       panel.instance.semNo=this.dataSource[i].Semester_Count; 
       panel.instance.totalCredits=this.dataSource[i].total_Credit;
 

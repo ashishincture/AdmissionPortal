@@ -42,10 +42,18 @@
                 </mat-form-field>
             </div>
         </form>
-        
+
     </div>
-    <button mat-raised-button class="addRegulationClass" color="primary" (click)="onConfirm()">Confirm</button>
-    <ng-container class="col" #tableId></ng-container>
+    <div>
+        <button mat-raised-button class="addRegulationClass" color="primary" (click)="onConfirm()">Confirm</button>
+    </div>
+    <div class="row" style="width: 100%;">
+        <div class="col" style="display: inline-flex;overflow: scroll;">
+            <ng-container class="col" #tableId></ng-container>
+        </div>
+    </div>
+
+
 
     <div class="containerDepartments" [hidden]="tableVisibility">
         <!-- <div *ngFor="let eler of tableRow"> -->

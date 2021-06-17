@@ -1,16 +1,16 @@
-<div style="width: 20%;">
+<div style="width: 40%;">
     <form [formGroup]="form">
         <ng-container formArrayName="Credits_Details">
             <mat-table [dataSource]="form.controls.Credits_Details.controls" class="mat-elevation-z8">
 
                 <ng-container matColumnDef="header-row-first-group">
-                    <mat-header-cell *matHeaderCellDef [attr.colspan]="1" style="border-bottom: none;">
+                    <mat-header-cell *matHeaderCellDef [attr.colspan]="2" style="border-bottom: none;">
                         <input matInput placeholder="Dep Name" [value]="depName">
                     </mat-header-cell>
                 </ng-container>
 
                 <ng-container matColumnDef="header-row-second-group">
-                    <mat-header-cell *matHeaderCellDef [attr.colspan]="1" style="border-bottom: none;">
+                    <mat-header-cell *matHeaderCellDef [attr.colspan]="2" style="border-bottom: none;">
                         <input matInput placeholder="Semesters" [value]="semNo">
                     </mat-header-cell>
                 </ng-container>
