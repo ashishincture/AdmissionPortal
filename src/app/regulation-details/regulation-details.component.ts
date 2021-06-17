@@ -58,9 +58,14 @@ export class RegulationDetailsComponent implements OnInit {
     console.log(depId);
     this.router.navigate(['departmentdetail']);
   }
-  onEditReg(){
-    this.service.eidtFlag = true;
-    this.router.navigate(['add']);
+  onDeleteReg(){
+    this.service.onDelete().subscribe((data:any)=>{
+      console.log(data);
+      if(data.msg === "success"){
+        alert("Regulation Deleted Successfully");
+        this.router.navigate(['regulation']);
+      }
+    })
   }
 
 }
