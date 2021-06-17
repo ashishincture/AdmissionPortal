@@ -25,10 +25,10 @@
                         <small class="text-danger" [class.d-none]="CRdetails.get('curriculum').valid || CRdetails.get('curriculum').untouched">curriculum is required</small>
                     </mat-form-field>                 
                 </div>
-                <div class="col form-group">
-                    <mat-form-field appearance="fill">
+                <div class="col form-group ">
+                    <mat-form-field appearance="fill" style="width:80%;" class="styleComboBox">
                         <mat-label  style="color:white; font-size: 1rem;">Choose an Academic year</mat-label>
-                        <mat-select formControlName="adYear" [class.is-invalid]="CRdetails.get('adYear').invalid && CRdetails.get('adYear').touched">
+                        <mat-select formControlName="adYear" [class.is-invalid]="CRdetails.get('adYear').invalid && CRdetails.get('adYear').touched" class="styleSelect">
                             <mat-option *ngFor="let Year of ADyears" [value]="Year.startYear">{{Year.startYear}}-{{Year.endYear}}</mat-option>
                         </mat-select>
                         <small class="text-danger" [class.d-none]="CRdetails.get('adYear').valid || CRdetails.get('adYear').untouched">academic Year is required</small>
@@ -36,7 +36,7 @@
                 </div>
                 <div class="col form-group">
                     <mat-form-field appearance="fill">
-                        <mat-label>Choose an semester</mat-label>
+                        <mat-label style="color:white; font-size: 1rem;">Choose an semester</mat-label>
                         <mat-select formControlName="semNo" [class.is-invalid]="CRdetails.get('semNo').invalid && CRdetails.get('semNo').touched">
                             <mat-option *ngFor="let sem of semData" [value]="sem.name">{{sem.name}}</mat-option>
                         </mat-select>
