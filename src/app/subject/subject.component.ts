@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { UpdateDialogComponent } from '../update-dialog/update-dialog.component';
-
+import { ActivatedRoute,Router} from '@angular/router';
 import {
   MatDialog,
   MatDialogRef,
@@ -61,6 +61,7 @@ export class SubjectComponent implements OnInit {
   SubSearchKey: any;
   arrayBuffer: any;
   DeptSearchKey: string;
+  DeptIdKey:string;
   RegulationSearchKey:string;
   subjectInstance: Subject = {
     Subject_ID: "",
@@ -80,16 +81,17 @@ pageSizeOptions = [10, 15, 20];
 dataSource: MatTableDataSource<Subject>;
 @ViewChild(MatSort, { static: true }) sort: MatSort;
   
-  constructor(public dialog: MatDialog, private SubjectService: SubjectService,private toastr: ToastrService) { }
+  constructor(public dialog: MatDialog, private SubjectService: SubjectService,private toastr: ToastrService, private route:ActivatedRoute,private router:Router) { }
   ngOnInit(): void {
+    this.DeptIdKey=history.state.data.Department_ID;
     this.fetchRegulation();
-    // this.fetchDepartment();
-    this.fetchSubjectlist();
+    this.fetchDepartment();
+    this.fetchSubjectlist(this.DeptIdKey);
   }
   fetchRegulation() {
     this.SubjectService.getRegulation().
       subscribe((data: any) => {
-        this.Regulations = data.data;
+        this.Regulations = data.data.Regulation;
         this.RegulationSearchKey = this.Regulations[0].Regulation_Name;
         this.fetchDepartmentByRegId(this.RegulationSearchKey);
       });
@@ -98,7 +100,7 @@ dataSource: MatTableDataSource<Subject>;
     this.SubjectService.getDepartment().
       subscribe((data: any) => {
         console.log(data);
-        // this.Departments = data.data;
+        this.Departments = data.data.Regulation[0].Department_Details;
         // this.DeptSearchKey=this.Departments[0].Department_Name;
       });
   }
@@ -108,8 +110,8 @@ dataSource: MatTableDataSource<Subject>;
       this.DeptSearchKey=this.Departments[0].Department_Name;
     });
   }
-  fetchSubjectlist() {
-    this.SubjectService.getSubjectList().
+  fetchSubjectlist(ID) {
+    this.SubjectService.getSubjectList(ID).
       subscribe((data: any) => {
         this.Subjects = data.data;
         this.dataSource = new MatTableDataSource(data.data);
@@ -136,7 +138,7 @@ dataSource: MatTableDataSource<Subject>;
       }
       this.SubjectService.createSubject(result.data).subscribe((data: any) => {
         console.log(data.data.msg);
-        this.fetchSubjectlist();
+        this.fetchSubjectlist(this.DeptIdKey);
         this.table.renderRows();
       });
 
@@ -149,7 +151,7 @@ dataSource: MatTableDataSource<Subject>;
       if (result.edited) {
         this.SubjectService.updateSubject(result.data.Subject_ID, result.data).subscribe((data: any) => {
           console.log(data.data.msg);
-          this.fetchSubjectlist();
+          this.fetchSubjectlist(this.DeptIdKey);
           this.table.renderRows();
         });
       }
@@ -181,6 +183,9 @@ dataSource: MatTableDataSource<Subject>;
     this.reverse = !this.reverse;
   }
   DeptSearch(oEvent) {
+   var deptOption = parseInt(oEvent.source.selected.id.split("-")[2],10);
+   this.DeptIdKey = this.Departments[deptOption-1].Department_ID;
+   this.fetchSubjectlist(this.DeptIdKey);
     console.log(oEvent.value);
     this.DeptSearchKey=oEvent.value;
   }
@@ -218,14 +223,14 @@ dataSource: MatTableDataSource<Subject>;
         }
         else {
           crctArray.push(this.newTablelist[i]);
-          this.SubjectService.createSubjectBulkUpload(crctArray).subscribe((data:any)=>{
-       console.log(data.data.msg);
-       this.fetchSubjectlist();
-     this.table.renderRows();
-     },
-     (err) => {console.log(err)});
         }
       }
+        this.SubjectService.createSubjectBulkUpload(crctArray).subscribe((data:any)=>{
+          console.log(data.data.msg);
+          this.fetchSubjectlist(this.DeptIdKey);
+        this.table.renderRows();
+        },
+        (err) => {console.log(err)});
       if (errArray.length) {
         this.toastr.error('Out of '+this.newTablelist.length+ ' Subjects uploaded, '+ errArray.length+ ' records contain Invalid Data.' , 'Error',{
      timeOut: 10000,
@@ -237,20 +242,26 @@ dataSource: MatTableDataSource<Subject>;
         XLSX.writeFile(wb, "InvalidSubjectRecords.xlsx");
       }
 
-    }
+    
 
     // this.table.renderRows();
   }
+}
 
 
   ///template download
-templateDownloadFn(){
-  var Heading = [
-    ["FirstName", "Last Name", "Email"],
-  ];
+  templateDownloadFn(){
+    var Heading = [
+      ["Subject_ID", "Subject_Name", "isActive","Type","Credit"],
+    ];
+    var Data = [];
+    
+    var wb = XLSX.utils.book_new();
+    var ws = XLSX.utils.json_to_sheet(Data);
+    XLSX.utils.sheet_add_aoa(ws, Heading); //heading: array of arrays
+    XLSX.utils.book_append_sheet(wb, ws,"template");
   
-  //Had to create a new workbook and then add the header
-  const ws = XLSX.utils.book_new();
-  XLSX.utils.sheet_add_aoa(ws, Heading);
-}
+    XLSX.writeFile(wb, 'dummy.xlsx') 
+  }
+  
 }

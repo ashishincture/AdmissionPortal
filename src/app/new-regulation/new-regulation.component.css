@@ -46,6 +46,7 @@ td.mat-cell{
   float: right;
   /* margin-top: 1.5rem; */
   margin-right: 2rem;
+  margin-bottom: 1rem;
 
 }
 @media screen and (max-width: 375px) {

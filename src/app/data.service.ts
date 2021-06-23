@@ -180,6 +180,10 @@ export class DataService {
    var a = this.http.post(`${this.uri}/Regulation/newregulations/${this.instid}`,data);
    return a;
   }
+  onDelete(){
+    var rId = this.RId;
+    return this.http.put(`${this.uri}/Regulation/deleteregulation/${this.instid}/${rId}`,"");
+  }
   getAddRegTableData(sem) {
     var finalData = [];
     var sub = [];

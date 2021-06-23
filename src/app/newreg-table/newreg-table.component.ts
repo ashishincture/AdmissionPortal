@@ -44,6 +44,7 @@ export class NewregTableComponent implements OnInit {
     let tableData = [];
     // debugger;
     let formData = this.form.controls.Credits_Details.controls;
+    console.log(formData);
     for (var i = 0; i < formData.length; i++) {
       tableData.push(formData[i].value);
     }
@@ -53,7 +54,7 @@ export class NewregTableComponent implements OnInit {
     // console.log(this.DataforAdd);
     let reqData = this.DataforAdd;
     for(var j=0; j<reqData.length;j++){
-      if(reqData[j].Department_ID === depname){
+      if(reqData[j].Department_Name === depname){
         reqData[j].Credits_Details = this.tableSource;
       }
     }

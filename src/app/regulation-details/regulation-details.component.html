@@ -38,11 +38,11 @@
         </form>
 
     </div>
-    <button mat-raised-button class="addRegulationClass" color="primary" (click)="onEditReg()">Delete</button>
+    <button mat-raised-button class="addRegulationClass" color="primary" (click)="onDeleteReg()">Delete</button>
     <div class="containerDepartments">
         <div class="department1" *ngFor="let data of tableData">
             <table mat-table [dataSource]="data.Credits_Details" class="mat-elevation-z8 regulationDetailsTable"
-                style="width: 97%;">
+                style="width: 97%;margin-bottom: 1rem;">
                 <ng-container matColumnDef="header-row-first-group">
                     <th mat-header-cell *matHeaderCellDef [attr.colspan]="1" style="border-bottom: none;">
                         {{data.Department_Name}}
