@@ -244,6 +244,7 @@ export class CurriculumComponent implements OnInit,AfterViewInit {
           //this.RegSData.pop();
           //debugger;
           //console.log(this.RegSData);
+          //console.log(this.RegSData);
           this.service.RegSData=this.RegSData;
         });
         
