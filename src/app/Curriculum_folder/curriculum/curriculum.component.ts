@@ -216,7 +216,7 @@ export class CurriculumComponent implements OnInit,AfterViewInit {
       });
       
       this.CreateCRinReg();
-      console.log(this.service.newCRData);
+      //console.log(this.service.newCRData);
     }
     else {
       console.log("submit CR");

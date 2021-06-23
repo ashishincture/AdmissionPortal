@@ -149,13 +149,16 @@ export class DataServiceService {
       let deptDetails=this.RegSData.find(({Regulation_ID})=>Regulation_ID===this.newCRData.Regulation_ID).Department_Details;
       let CreditDetails= deptDetails.find(({Department_ID})=>Department_ID===this.newCRData.Department_ID);
       let RegSemDetails=CreditDetails.Credits_Details.find(({sNo})=>sNo===semNo);
-      if(RegSemDetails.Core<this.coreCount||RegSemDetails.Core===0){
+      if(RegSemDetails.Core<this.coreCount||RegSemDetails.Core===0||RegSemDetails.Core>this.coreCount){
+        alert("Select appropriate number of CORE subjects");
         return false;
       }
-      if(RegSemDetails.PE<this.PEcount){
+      if(RegSemDetails.PE<this.PEcount||RegSemDetails.PE>this.PEcount){
+        alert("Select appropriate number of PE subjects");
         return false;
       }
-      if(RegSemDetails.OE<this.OEcount){
+      if(RegSemDetails.OE<this.OEcount||RegSemDetails.OE>this.OEcount){
+        alert("Select appropriate number of OE subjects");
         return false;
       }
       return true;
@@ -167,18 +170,21 @@ export class DataServiceService {
       let RegSemDetails=CreditDetails.Credits_Details.find(({sNo})=>sNo===semNo);
       if(subtype==="CORE"){
         if(RegSemDetails.Core<this.coreCount||RegSemDetails.Core===0){
+          alert("The required number of subjects are already selected");
           return false;
         }
         return true;
       }
       if(subtype==="PE"){
         if(RegSemDetails.PE<this.PEcount||RegSemDetails.PE===0){
+          alert("The required number of subjects are already selected");
           return false;
         }
         return true;
       }
       if(subtype==="OE"){
         if(RegSemDetails.OE<this.OEcount||RegSemDetails===0){
+          alert("The required number of subjects are already selected");
           return false;
         }
         return true;

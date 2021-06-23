@@ -118,6 +118,7 @@ export class CreateCRComponent implements OnInit {
   openSubDiag(oEvent:any){
     //debugger;
     if(this.subType!=="CORE" && this.electiveGrp===""){
+      alert("Please select a GroupName of the elective");
       return;
     }
     if(this.subType==="CORE"){
@@ -205,6 +206,7 @@ export class CreateCRComponent implements OnInit {
             if(num !== -1){
              
               result=result.splice(i,0);
+              //alert(S)
               continue;
             }
           }
