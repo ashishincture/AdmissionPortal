@@ -50,20 +50,7 @@
                                 is required</small>
                         </mat-form-field>
                     </div>
-                    <div class="col form-group">
-                        <mat-form-field appearance="fill" style="width:80%;" class="styleComboBox">
-                            <mat-label style="color:white; font-size: 1rem;">Choose an Academic year</mat-label>
-                            <mat-select formControlName="adYear"
-                                [class.is-invalid]="CRdetails.get('adYear').invalid && CRdetails.get('adYear').touched"
-                                class="styleSelect">
-                                <mat-option *ngFor="let Year of ADyears" [value]="Year.startYear">
-                                    {{Year.startYear}}-{{Year.endYear}}</mat-option>
-                            </mat-select>
-                            <small class="text-danger"
-                                [class.d-none]="CRdetails.get('adYear').valid || CRdetails.get('adYear').untouched">academic
-                                Year is required</small>
-                        </mat-form-field>
-                    </div>
+                    
                     <div class="col form-group">
                         <mat-form-field appearance="fill">
                             <mat-label style="color:white; font-size: 1rem;">Choose an semester</mat-label>
@@ -163,40 +150,35 @@
             <button mat-raised-button *ngIf="showForm.createCR && !showForm.ViewFooter" (click)="CreateCRinReg()"
                 class="Btn">Create CR</button>
         </div>
+        
+        <mat-horizontal-stepper linear #stepper *ngIf="showForm.ViewFooter">
+            
+            <mat-step *ngFor="let sem of CRCountModel">
+                <ng-template matStepLabel>
+                    
+                        <div class="row" style="color: white; margin-left: 0px;">
+                            Core : {{sem.subjCount.CoreCount}}
+                        </div>
+                        <div class="row" style="color: white; margin-left: 0px;">
+                            PE : {{sem.subjCount.PECount}}
+                        </div>
+                        <div class="row" style="color: white; margin-left: 0px;">
+                            OE : {{sem.subjCount.OECount}}
+                        </div>
+                    
+                </ng-template>
+                
 
+                <footer *ngIf="showForm.ViewFooter" class="footer">
+                    <button mat-raised-button matStepperNext *ngIf="showForm.createCR"  (click)="NextSem()">Next</button>
+                </footer>
+            </mat-step>
+          </mat-horizontal-stepper>
+        
 
         <ng-container #container style="height: fit-content;"></ng-container>
-        <!-- <div *ngFor="let subj of subjects">
-        <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                Personal data
-              </mat-panel-title>
-              <mat-panel-description>
-                Type your name and age
-                <mat-icon>account_circle</mat-icon>
-              </mat-panel-description>
-            </mat-expansion-panel-header>
         
-            <mat-form-field>
-              <mat-label>First name</mat-label>
-              <input matInput>
-            </mat-form-field>
         
-            <mat-form-field>
-              <mat-label>Age</mat-label>
-              <input matInput type="number" min="1">
-            </mat-form-field>
-            <mat-action-row>
-              <button mat-button color="primary" (click)="nextStep()">Next</button>
-            </mat-action-row>
-          </mat-expansion-panel> -->
-
-
-
-        <footer *ngIf="showForm.ViewFooter" class="footer">
-            <button mat-raised-button *ngIf="showForm.createCR" (click)="NextSem()">Next</button>
-        </footer>
 
     </div>
 </div>

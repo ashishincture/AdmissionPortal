@@ -213,6 +213,7 @@ export class CreateCRComponent implements OnInit {
           
           this.initialData=this.initialData.concat(result);
           this.buildDataSource();
+          this.service.updateCRCountModel(this.semNo,this.subType);
         }
       });
     }
@@ -244,6 +245,7 @@ export class CreateCRComponent implements OnInit {
         nGrps++;
         }
       }
+      
       if(this.subType==="PE"){
         this.service.PEcount=nGrps;
       }
@@ -254,6 +256,7 @@ export class CreateCRComponent implements OnInit {
     else{
       this.service.coreCount=this.dataSource.length;
     }
+    
   }
   
   /**

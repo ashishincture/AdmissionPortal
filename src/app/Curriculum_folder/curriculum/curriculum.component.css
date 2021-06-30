@@ -38,3 +38,6 @@ background {
 .mat-select-value {
   color: rgb(255 255 255);
 }
+.mat-stepper-vertical, .mat-stepper-horizontal {
+  display: contents;
+}

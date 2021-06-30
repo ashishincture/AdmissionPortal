@@ -18,6 +18,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import {MatBadgeModule} from '@angular/material/badge';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatStepperModule} from '@angular/material/stepper';
 
 const materialComponents = [
   MatToolbarModule,
@@ -37,7 +38,8 @@ const materialComponents = [
   MatExpansionModule,
   MatBadgeModule,
   MatAutocompleteModule,
-  MatFormFieldModule
+  MatFormFieldModule,
+  MatStepperModule
 ];
 
 @NgModule({
