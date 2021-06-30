@@ -191,4 +191,32 @@ export class DataServiceService {
       }
 
     }
+    CRCountModel;
+    CRdataModelCreate(semCount){
+      let subjCount={
+        CoreCount:0,
+        PECount:0,
+        OECount:0
+      }
+      if(this.CRCountModel===undefined||this.CRCountModel===null){
+        this.CRCountModel=[];
+        for(let i=0;i<semCount;i++){
+          let semSubj={
+            sem:i+1,
+            status:"created",
+            subjCount:subjCount
+          }
+          this.CRCountModel.push(semSubj);
+        }
+      }
+    }
+    updateCRCountModel(semNo,subType){
+      //let SemCount=this.CRCountModel.find(({sem})=>sem===semNo).semSubj;
+      let subjCount={
+        CoreCount:this.coreCount,
+        PECount:this.PEcount,
+        OECount:this.OEcount
+      }
+      this.CRCountModel[semNo-1].subjCount=subjCount;
+    }
 }

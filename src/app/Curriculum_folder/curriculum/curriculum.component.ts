@@ -13,6 +13,7 @@ import { HttpClient } from '@angular/common/http';
 
 
 
+
 export interface CrDetailsClass{
   dept:string;
   curriculum:string;
@@ -45,8 +46,8 @@ export class CurriculumComponent implements OnInit,AfterViewInit {
     viewCR:true,
     createCR:false,
     ViewFooter:false
-  }
-  
+  };
+  CRCountModel;
   constructor(
     private route:Router,
     private activatedRoute:ActivatedRoute,
@@ -82,6 +83,7 @@ export class CurriculumComponent implements OnInit,AfterViewInit {
     this.subjecttypes=this.service.subjecttypes;
     // this.deptData=this.service.getDeptData();
     // this.CRData=this.service.getCRData();
+    
   }
   ngAfterViewInit(){
     
@@ -199,7 +201,9 @@ export class CurriculumComponent implements OnInit,AfterViewInit {
       panel.instance.subType=this.service.subjecttypes[i]; 
       panel.instance.semNo=this.CreateCRdetails.value.semNo;
     }  
-    this.showForm.ViewFooter=true;           
+    this.showForm.ViewFooter=true;   
+    this.service.CRdataModelCreate(this.RegsDataDetails.Semester_Count);
+    this.CRCountModel=this.service.CRCountModel;
   }
   NextSem(){
     //this.CreateCRdetails.value.semNo++;
@@ -214,6 +218,7 @@ export class CurriculumComponent implements OnInit,AfterViewInit {
         Semester_NO:this.CreateCRdetails.value.semNo,
         Subjects:[]
       });
+      this.service.CRCountModel[this.CreateCRdetails.value.semNo-1].status="submitted";
       
       this.CreateCRinReg();
       //console.log(this.service.newCRData);
