@@ -35,6 +35,6 @@ background {
   border-bottom: 1px solid white !important;
 }
 
-.mat-select-value {
-  color: rgb(255 255 255);
+.mat-select-value-text {
+  color: rgb(255 255 255) !important;
 }
