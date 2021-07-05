@@ -38,7 +38,7 @@
         </form>
 
     </div>
-    <button mat-raised-button class="addRegulationClass" color="primary" (click)="onDeleteReg()">Delete</button>
+    <button mat-raised-button class="addRegulationClass" (click)="onDeleteReg()">Delete</button>
     <div class="containerDepartments">
         <div class="department1" *ngFor="let data of tableData">
             <table mat-table [dataSource]="data.Credits_Details" class="mat-elevation-z8 regulationDetailsTable"
