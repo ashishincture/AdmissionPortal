@@ -28,3 +28,51 @@ background {
 .mat-toolbar-row, .mat-toolbar-single-row {
   height: 44px;
 }
+
+.mat-form-field-flex ng-tns-c127-3 .mat-form-field-appearance-fill .mat-form-field-flex {
+  border-radius: 4px 4px 0 0;
+  padding: .75em .75em 0 .75em;
+  border-bottom: 1px solid white !important;
+}
+.mat-select-value-text {
+  color: rgb(255 255 255) !important;
+}
+.mat-select-value {
+  color: rgb(255 255 255);
+}
+.mat-stepper-vertical, .mat-stepper-horizontal {
+  display: contents;
+}
+
+.blueBtn {
+  position:relative;
+  cursor: pointer;
+  background: #7eb38d;
+  border-radius: 10px;
+  width: 140px;
+  height: 40px;
+  line-height: 40px;
+  color: rgb(0,0,0,0.7);
+  text-shadow: 1px 1px 0px rgba(255,255,255,0.15);
+  box-shadow: inset 1px 1px 2px rgba(255,255,255,0.3), 
+              inset 3px 15px 45px rgba(0,0,0,0.2),
+              inset -1px -1px 2px rgba(0,0,0,0.5), 
+              inset -3px -15px 45px rgba(255,255,255,0.1),
+              1px 5px 10px -4px rgba(0,0,0,1);
+  
+  -webkit-transition: 0.1s ease-out;
+  -moz-transition:    0.1s ease-out;
+  -o-transition:      0.1s ease-out;
+  transition:         0.1s ease-out;
+    
+}
+
+.styleSelect{
+  background: #b5b5b5;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.styleSelect.mat-select-value {
+  color: #f8f9fa !important;
+}

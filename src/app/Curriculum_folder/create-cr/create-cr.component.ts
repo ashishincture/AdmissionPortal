@@ -118,6 +118,7 @@ export class CreateCRComponent implements OnInit {
   openSubDiag(oEvent:any){
     //debugger;
     if(this.subType!=="CORE" && this.electiveGrp===""){
+      alert("Please select a GroupName of the elective");
       return;
     }
     if(this.subType==="CORE"){
@@ -205,12 +206,14 @@ export class CreateCRComponent implements OnInit {
             if(num !== -1){
              
               result=result.splice(i,0);
+              //alert(S)
               continue;
             }
           }
           
           this.initialData=this.initialData.concat(result);
           this.buildDataSource();
+          this.service.updateCRCountModel(this.semNo,this.subType);
         }
       });
     }
@@ -242,6 +245,7 @@ export class CreateCRComponent implements OnInit {
         nGrps++;
         }
       }
+      
       if(this.subType==="PE"){
         this.service.PEcount=nGrps;
       }
@@ -252,6 +256,7 @@ export class CreateCRComponent implements OnInit {
     else{
       this.service.coreCount=this.dataSource.length;
     }
+    
   }
   
   /**
