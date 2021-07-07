@@ -84,6 +84,18 @@ td.mat-cell{
 .addRegulationClass:hover {
   color: #3f3a64;
 }
+
+.matToolbar {
+  background:#3f3a64;
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+.verClass{
+  margin-top: 0.5rem;
+    /* margin-left: 3.2rem; */
+}
 @media screen and (max-width: 375px) {
   .department1 {
     width: auto;
