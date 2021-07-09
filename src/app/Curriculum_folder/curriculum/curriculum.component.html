@@ -1,7 +1,8 @@
 <div style="background-color:  rgb(0 0 0 / 93%);position: absolute;height: 100%;width: 100%;">
-    <mat-toolbar style="justify-content: right; float: right; background-color: rgba(17, 17, 17, 0.87);">
+    <mat-toolbar
+        style="justify-content: right; float: right; background-color: rgba(17, 17, 17, 0.87); margin-top: 0.5rem;">
         <span style="width: inherit;"></span>
-        <button class="Btn" mat-raised-button *ngIf="showForm.viewCR" (click)="createCR()" color="primary"
+        <button class="btnSearch" mat-raised-button *ngIf="showForm.viewCR" (click)="createCR()" color="primary"
             style="float: inline-end; width:7rem; font-size: 1.2rem;">Create</button>
     </mat-toolbar>
     <div class="container-fluid"
@@ -67,8 +68,7 @@
                 </div>
 
             </form>
-            <button class="Btn" style="font-size: 1.2rem; width: 6rem;" mat-raised-button *ngIf="showForm.viewCR"
-                (click)="ViewCR()">Submit</button>
+            <button class="example-icon" mat-raised-button *ngIf="showForm.viewCR" (click)="ViewCR()">Submit</button>
         </div>
 
         <div *ngIf="showForm.createCR">
@@ -150,33 +150,32 @@
             <button mat-raised-button *ngIf="showForm.createCR && !showForm.ViewFooter" (click)="CreateCRinReg()"
                 class="Btn">Create CR</button>
         </div>
+        <div style="margin-left:20px;margin-right:20px">
+            <mat-horizontal-stepper linear #stepper *ngIf="showForm.ViewFooter" class="styleStepper">
 
-        <mat-horizontal-stepper linear #stepper *ngIf="showForm.ViewFooter">
+                <mat-step *ngFor="let sem of CRCountModel" class="styleStep">
 
-            <mat-step *ngFor="let sem of CRCountModel">
-                <ng-template matStepLabel>
+                    <ng-template matStepLabel>
+                        <div class="row" style="color: white; margin-left: 0px;">
+                            Core : {{sem.subjCount.CoreCount}}
+                        </div>
+                        <div class="row" style="color: white; margin-left: 0px;">
+                            PE : {{sem.subjCount.PECount}}
+                        </div>
+                        <div class="row" style="color: white; margin-left: 0px;">
+                            OE : {{sem.subjCount.OECount}}
+                        </div>
 
-                    <div class="row" style="color: white; margin-left: 0px;">
-                        Core : {{sem.subjCount.CoreCount}}
-                    </div>
-                    <div class="row" style="color: white; margin-left: 0px;">
-                        PE : {{sem.subjCount.PECount}}
-                    </div>
-                    <div class="row" style="color: white; margin-left: 0px;">
-                        OE : {{sem.subjCount.OECount}}
-                    </div>
+                    </ng-template>
 
-                </ng-template>
+                    <footer *ngIf="showForm.ViewFooter" class="footer">
+                        <button mat-raised-button matStepperNext *ngIf="showForm.createCR" (click)="NextSem()"
+                            class="Btn">Next</button>
+                    </footer>
+                </mat-step>
+            </mat-horizontal-stepper>
 
-
-                <footer *ngIf="showForm.ViewFooter" class="footer">
-                    <button mat-raised-button matStepperNext *ngIf="showForm.createCR" (click)="NextSem()"
-                        class="Btn">Next</button>
-                </footer>
-            </mat-step>
-        </mat-horizontal-stepper>
-
-
+        </div>
         <ng-container #container style="height: fit-content;"></ng-container>
 
 
