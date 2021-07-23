@@ -71,8 +71,136 @@ background {
   background: #b5b5b5;
   padding: 0.5rem;
   border-radius: 0.5rem;
+  width: 100%;
 }
 
 .styleSelect.mat-select-value {
   color: #f8f9fa !important;
+}
+
+
+/*button styling*/
+
+.example-icon {
+  position: relative;
+  cursor: pointer;
+  background: #25292c;
+  margin: 0 10px 0 0;
+  border-radius: 50px;
+  width: 100px;
+  height: 40px;
+  line-height: 40px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: medium;
+  text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.15);
+  box-shadow: inset 1px 1px 2px rgba(255, 255, 255, 0.3),
+    inset 3px 15px 45px rgba(0, 0, 0, 0.2),
+    inset -1px -1px 2px rgba(0, 0, 0, 0.5),
+    inset -3px -15px 45px rgba(255, 255, 255, 0.1),
+    1px 5px 10px -4px rgba(0, 0, 0, 1);
+
+  -webkit-transition: 0.1s ease-out;
+  -moz-transition: 0.1s ease-out;
+  -o-transition: 0.1s ease-out;
+  transition: 0.1s ease-out;
+}
+
+/* .example-icon:before {
+  content: "";
+  background: #1a1a1a;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  z-index: -1;
+  border-radius: 100px;
+  box-shadow: inset -1px -1px 2px rgba(255, 255, 255, 0.3),
+    inset -5px -15px 40px rgba(255, 255, 255, 0.1),
+    inset 1px 1px 2px rgba(0, 0, 0, 0.5), inset 5px 15px 40px rgba(0, 0, 0, 0.2),
+    -2px -40px 50px -20px rgba(255, 255, 255, 0.1),
+    2px 35px 50px -10px rgba(0, 0, 0, 0.4), 0px 0px 25px 8px rgba(60, 60, 60, 1);
+} */
+
+.example-icon:active {
+  color:#3f3a64;
+  text-shadow: -1px -1px 0px rgba(255, 255, 255, 0.8),
+    1px 1px 2px rgba(0, 0, 0, 1);
+  box-shadow: inset 1px 1px 2px rgba(255, 255, 255, 0.3),
+    inset 3px 15px 45px rgba(255, 255, 255, 0.1),
+    inset -1px -1px 2px rgba(0, 0, 0, 0.5),
+    inset -3px -15px 45px rgba(0, 0, 0, 0.2), 1px 5px 30px -4px rgba(0, 0, 0, 1);
+}
+
+.example-icon:hover {
+  color: #3f3a64;
+}
+
+/*blue Button*/
+.btnSearch {
+  
+  position: relative;
+  cursor: pointer;
+  background:#7b59d0;
+  border-radius: 10px;
+  width: 120px;
+  height: 40px;
+  line-height: 40px;
+  color: rgb(0, 0, 0, 0.7);
+  text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.15);
+  box-shadow: inset 1px 1px 2px rgba(255, 255, 255, 0.3),
+    inset 3px 15px 45px rgba(0, 0, 0, 0.2),
+    inset -1px -1px 2px rgba(0, 0, 0, 0.5),
+    inset -3px -15px 45px rgba(255, 255, 255, 0.1),
+    1px 5px 10px -4px rgba(0, 0, 0, 1);
+
+  -webkit-transition: 0.1s ease-out;
+  -moz-transition: 0.1s ease-out;
+  -o-transition: 0.1s ease-out;
+  transition: 0.1s ease-out;
+  margin-right: 20px;
+}
+
+.btnSearch:active {
+  text-shadow: -1px -1px 0px rgba(255, 255, 255, 0.8),
+    1px 1px 2px rgba(0, 0, 0, 1);
+  box-shadow: inset 1px 1px 2px rgba(255, 255, 255, 0.3),
+    inset 3px 15px 45px rgba(255, 255, 255, 0.1),
+    inset -1px -1px 2px rgba(0, 0, 0, 0.5),
+    inset -3px -15px 45px rgba(0, 0, 0, 0.2), 1px 5px 30px -4px rgba(0, 0, 0, 1);
+}
+
+/*Stepper Styling*/
+.styleStep.mat-step-header{
+  background: #1a1a1a;
+  border-radius: 10px;
+  box-shadow: inset 1px 1px 2px rgba(255, 255, 255, 0.3),
+  inset 3px 15px 45px rgba(0, 0, 0, 0.2),
+  inset -1px -1px 2px rgba(0, 0, 0, 0.5),
+  inset -3px -15px 45px rgba(255, 255, 255, 0.1),
+  1px 5px 10px -4px rgba(0, 0, 0, 1);
+  /* margin-left: 4rem; */
+  /* display: grid; */
+}
+
+/* .mat-horizontal-stepper-header{
+  background: #1a1a1a;
+  border-radius: 10px;
+} */
+
+.styleStepper .mat-horizontal-stepper-header-container{
+  display:grid;
+  background-color:rgb(17 17 17);
+  grid-template-columns: 3fr 1fr;
+  grid-gap: 30px;
+}
+
+.styleStepper .mat-stepper-horizontal-line {
+  border-top-width: 1px;
+  border-top-style: solid;
+  flex: auto;
+  height: 2px;
+  margin: 0 -16px;
+  min-width: 32px;
+  background-color: whitesmoke;
 }
