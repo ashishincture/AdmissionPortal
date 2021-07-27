@@ -62,6 +62,7 @@ import { NewregTableComponent } from './newreg-table/newreg-table.component';
 import { DepartmentComponent } from './department/department.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
+import { DialogGradingComponent } from './dialog-grading/dialog-grading.component';
 
 // Pass the fusioncharts library and chart modules
 FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
@@ -100,6 +101,7 @@ FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
     SubjDialogComponent,
     NewRegulationComponent,
     NewregTableComponent,
+    DialogGradingComponent,
   ],
   imports: [
     BrowserModule,

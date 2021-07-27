@@ -97,6 +97,10 @@ td.mat-cell{
   margin-top: 0.5rem;
     /* margin-left: 3.2rem; */
 }
+.dialogBackgroundClass{
+background-color: #333333 !important;
+}
+
 
 @media screen and (max-width: 375px) {
   .department1 {
