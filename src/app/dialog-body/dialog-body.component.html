@@ -1,0 +1,58 @@
+<div class="dialogContent">
+<h2 mat-dialog-title>Details</h2>
+
+<mat-dialog-content style="background-color: #333333;" >
+
+<!-- <p> Place content here {{data.name}}</p> -->
+<table mat-table [dataSource]="dataSources" multiTemplateDataRows class="mat-elevation-z8 departmentTableClass">
+
+    <ng-container matColumnDef="semesterNo">
+        <th mat-header-cell *matHeaderCellDef> Semester No. </th>
+        <td mat-cell *matCellDef="let element"> {{element.semesterNo}} </td>
+      </ng-container>
+
+      
+    <ng-container matColumnDef="SGPA">
+      <th mat-header-cell *matHeaderCellDef> SGPA </th>
+      <td mat-cell *matCellDef="let element"> {{element.SGPA}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="Action">
+      <th mat-header-cell *matHeaderCellDef> Actions </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-button href="javascript:void()" (click)="element.isExpanded = !element.isExpanded" class="Btn">View Details</button>
+      </td>
+    </ng-container>
+
+
+    <!-- Template for details row -->
+    <ng-container matColumnDef="expandedDetail">
+      <td mat-cell *matCellDef="let element" [attr.colspan]="3">
+        <div class="row student-element-detail" [@detailExpand]="element.isExpanded ?  'expanded' :'collapsed' ">
+          <mat-list>
+            <div mat-subheader>{{element.subject1.name}} Marks: {{element.subject1.marks}}</div>
+            <div mat-subheader>{{element.subject2.name}} Marks: {{element.subject2.marks}}</div>
+            <div mat-subheader>{{element.subject3.name}} Marks: {{element.subject3.marks}}</div>
+          </mat-list>
+        </div>
+
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedStudentsFragmentList"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedStudentsFragmentList;" class="student-element-row" ></tr>
+
+      <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="student-detail-row"></tr>
+  </table>
+</mat-dialog-content>
+
+
+<mat-dialog-actions>
+    
+<div style="width: 100%;">
+  <button mat-button class="mat-raised-button float-right" color="warn" (click)="close()" >Close</button>
+</div>
+ 
+</mat-dialog-actions>
+</div>

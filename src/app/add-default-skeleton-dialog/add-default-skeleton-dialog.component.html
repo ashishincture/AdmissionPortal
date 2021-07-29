@@ -1,0 +1,24 @@
+<h1 mat-dialog-title>Add Skeleton Pattern</h1>
+
+<mat-dialog-content style="width:100%;">
+
+    <mat-form-field>
+        <input matInput style="width:100%;" placeholder="Pattern Name" [(ngModel)]="local_data.pattern_name">
+        <span class="error" *ngIf="local_data.pattern_name == '' ">Pattern Name cannot be empty! </span>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput style="width:100%;" placeholder="Passing Percentage" type="number"
+            [(ngModel)]="local_data.passing_percentage">
+        <span class="error" *ngIf="local_data.passing_percentage <= this.minTotal"> Passing percentage should be greater
+            than {{this.minTotal}}! </span>
+        <span class="error" *ngIf="local_data.passing_percentage == '' "> Passing percentage cannot be empty! </span>
+    </mat-form-field>
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <div>
+        <button mat-button (click)="saveAddDefaultDialog()">Save</button>
+        <button mat-button mat-flat-button color="warn" (click)="closeAddDefaultDialog()">Close</button>
+    </div>
+</mat-dialog-actions>

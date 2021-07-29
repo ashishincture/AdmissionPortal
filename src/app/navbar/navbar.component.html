@@ -111,6 +111,33 @@
       <a mat-list-item [routerLink]="'/Curriculum'" (click)="goToCurriculum()">
         Curriculum
       </a>
+      <a mat-list-item (click)="toggleSkeletonMenu()">
+        Marks Skeleton
+        <mat-icon *ngIf="!showSkeletonMenu">chevron_right</mat-icon>
+        <mat-icon *ngIf="showSkeletonMenu">expand_more</mat-icon>
+      </a>
+      <mat-nav-list class="sidenav-submenu" *ngIf="showSkeletonMenu">
+        <a
+          mat-list-item
+          class="subList"
+          [routerLink]="'/skeletonView'"
+          (click)="goToSkeletonView()"
+        >
+          Marks Skeleton View</a>
+        <a
+          mat-list-item
+          class="subList"
+          [routerLink]="'/skeletonDefaults'"
+          (click)="goToSkeletonDefaults()"
+        >
+          Marks Skeleton Defaults</a>
+      </mat-nav-list>
+      <a mat-list-item [routerLink]="'/marksview'" (click)="goToMarksView()">
+        Marks View
+      </a>
+      <a mat-list-item [routerLink]="'/marksinsertion'" (click)="goToMarksInsertion()">
+        Marks Insertion
+      </a>
       <a mat-list-item [routerLink]="'/table'" (click)="goToTable()">
         Announcement
       </a>
