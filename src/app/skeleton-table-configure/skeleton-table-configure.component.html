@@ -1,8 +1,14 @@
-<div>
+<div style="
+background-color: #262626;
+position: absolute;
+height: 100%;
+width: 100%;
+">
     <div class="filterSection">
         <mat-form-field appearance="fill" style="margin:20px">
             <mat-label style="color: white;">Select Institute</mat-label>
-            <mat-select [(value)]="selectedInstitute" required (valueChange)="onChangeInstitute($event)" class="styleSelect">
+            <mat-select [(value)]="selectedInstitute" required (valueChange)="onChangeInstitute($event)"
+                class="styleSelect">
                 <mat-option [value]="institute.instituteID" *ngFor="let institute of institutes">{{
                     institute.instituteName
                     }}</mat-option>
@@ -11,7 +17,8 @@
 
         <mat-form-field appearance="fill" style="margin:20px">
             <mat-label style="color: white;">Select Regulation</mat-label>
-            <mat-select [(value)]="selectedRegulation" required (valueChange)="onChangeRegulation($event)" class="styleSelect">
+            <mat-select [(value)]="selectedRegulation" required (valueChange)="onChangeRegulation($event)"
+                class="styleSelect">
                 <mat-option [value]="regulation.regulationId" *ngFor="let regulation of regulations">{{
                     regulation.regulationName
                     }}</mat-option>
@@ -29,7 +36,8 @@
 
         <mat-form-field appearance="fill" style="margin:20px">
             <mat-label style="color: white;">Select Curriculums</mat-label>
-            <mat-select [(value)]="selectedCurriculum" required (valueChange)="onChangeCurriculum($event)" class="styleSelect">
+            <mat-select [(value)]="selectedCurriculum" required (valueChange)="onChangeCurriculum($event)"
+                class="styleSelect">
                 <mat-option [value]="curriculum.curriculumId" *ngFor="let curriculum of curriculums">{{
                     curriculum.curriculumName
                     }}</mat-option>
@@ -38,7 +46,8 @@
 
         <mat-form-field appearance="fill" style="margin:20px">
             <mat-label style="color: white;">Select Semester</mat-label>
-            <mat-select [(value)]="selectedSemester" required (valueChange)="onChangeSemester($event)" class="styleSelect">
+            <mat-select [(value)]="selectedSemester" required (valueChange)="onChangeSemester($event)"
+                class="styleSelect">
                 <mat-option [value]="sem.semesterNo" *ngFor="let sem of semesters">{{ sem.semesterNo
                     }}</mat-option>
             </mat-select>
@@ -53,11 +62,12 @@
         </mat-form-field> -->
 
 
-        <button class="customButton" mat-raised-button color="primary" id="switchSubjectButton" (click)="switchSubject()">Search</button>
+        <button class="customButton" mat-raised-button color="primary" id="switchSubjectButton"
+            (click)="switchSubject()">Search</button>
     </div>
 
-    <div  *ngIf="showData == true">
-       
+    <div *ngIf="showData == true">
+
         <!-- <mat-toolbar style="margin-left: 3rem;
         width: 90%;
         margin-bottom: -2rem;
@@ -68,7 +78,7 @@
             class="mat-elevation-z8 customTable">
 
             <ng-container matColumnDef="id">
-                <th mat-header-cell  *matHeaderCellDef [style.display]="'none'"> ID. </th>
+                <th mat-header-cell *matHeaderCellDef [style.display]="'none'"> ID. </th>
                 <td mat-cell *matCellDef="let subject" [style.display]="'none'"> {{subject._id}} </td>
             </ng-container>
 
@@ -90,7 +100,7 @@
 
             <ng-container matColumnDef="credits">
                 <th mat-header-cell *matHeaderCellDef> Credits </th>
-                
+
                 <td mat-cell *matCellDef="let subject"> {{subject.Credits}} </td>
             </ng-container>
 
@@ -104,8 +114,8 @@
                 <th mat-header-cell *matHeaderCellDef> Assign Pattern </th>
                 <td mat-cell *matCellDef="let subject">
                     <mat-form-field appearance="fill">
-                        <mat-select appearance="fill" required
-                            (valueChange)="onChangeSubject($event)" class="styleSelect">
+                        <mat-select appearance="fill" required (valueChange)="onChangeSubject($event)"
+                            class="styleSelect">
                             <mat-option [value]="subject.subject_type" *ngFor="let subject of defaultSubjects">{{
                                 subject.subject_type
                                 }}</mat-option>
