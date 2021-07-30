@@ -27,16 +27,18 @@ export class DialogGradingComponent implements OnInit {
       console.log(this.data);
       this.dataSource = this.data.GradingDetails.slice(); // copy by value
       this.gradingForm = this.fb.group({
-        points : [''],
-        grade : [''],
-        percentage : [''],
-        description : ['']
+        points : ['',Validators.required],
+        grade : ['',Validators.required],
+        percentage : ['',Validators.required],
+        description : ['',Validators.required]
       });
+      this.gradetype = this.fetchToppingsWithoutAction();
       this.selectedToppings = this.fetchToppingsWithoutAction();
       this.displayedColumns = this.fetchtoppings();
     }
     onGradeChange(event : any){
       this.gradetype = event.source.value;
+      this.setDisableState();
       // this.toppingList = this.gradetype.slice(); //cpoy by value
       this.displayedColumns = event.source.value;
       this.displayedColumns.push("action");
@@ -133,6 +135,31 @@ export class DialogGradingComponent implements OnInit {
         //     }
         //   }
         // }  
+    }
+
+    setDisableState(){
+      var arr = this.gradetype.slice();
+      var index;
+      if(arr.indexOf('Points') === -1){
+        this.gradingForm.get('points').disable();
+      }else{
+        this.gradingForm.get('points').enable();
+      }
+      if(arr.indexOf('Grade') === -1){
+        this.gradingForm.get('grade').disable();
+      }else{
+        this.gradingForm.get('grade').enable();
+      }
+      if(arr.indexOf('Percentage') === -1){
+        this.gradingForm.get('percentage').disable();
+      }else{
+        this.gradingForm.get('percentage').enable();
+      }
+      if(arr.indexOf('Description') === -1){
+        this.gradingForm.get('description').disable();
+      }else{
+        this.gradingForm.get('description').enable();
+      }
     }
   
 
