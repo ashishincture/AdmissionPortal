@@ -91,6 +91,7 @@ import { TimetableViewComponent } from './timetable-view/timetable-view.componen
 import { DialogBodyComponent } from './dialog-body/dialog-body.component';
 import { DialogMarksUploadComponent } from './dialog-marks-upload/dialog-marks-upload.component';
 import { AddDefaultSkeletonDialogComponent } from './add-default-skeleton-dialog/add-default-skeleton-dialog.component';
+import { DialogExampleComponent } from './dialog-example/dialog-example.component';
 
 // Pass the fusioncharts library and chart modules
 FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
@@ -142,6 +143,7 @@ FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
     DialogBodyComponent,
     DialogMarksUploadComponent,
     AddDefaultSkeletonDialogComponent,
+    DialogExampleComponent,
   ],
   imports: [
     BrowserModule,

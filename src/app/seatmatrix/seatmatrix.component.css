@@ -1,3 +1,14 @@
+.styleSelect {
+  background: #d3d1d6;
+
+  padding: 0.5rem;
+
+  border-radius: 10rem;
+  height: 3rem;
+  width: 100%;
+}
+
+
 .redBtn {
   background-image: linear-gradient(to top, #c47f74 0%, #ad2c17 25%);
   color: white;
@@ -76,9 +87,7 @@
   width: 90%;
   height: 100%;
 }
-.bground {
-  background: rgba(17, 17, 17, 0.87);
-}
+
 .expPanel .mat-expansion-panel-header-title {
   display: contents;
   font-size: x-large;
@@ -95,7 +104,16 @@
   margin: 15px;
   box-shadow: -2px -2px 10px 1px #626a9e;
 }
-
+.bground {
+  background: url(/assets/img/seatmnew.png) no-repeat center;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  -ms-background-size: cover;
+  position: relative;
+  min-height: 100vh;
+}
 .subHeader {
   background-color: #3f3a64;
   color: #eaebf3;
@@ -142,6 +160,20 @@ body {
   width: 10rem;
 }
 .Addbutton {
+  position: relative;
+    cursor: pointer;
+    background: #7b59d0;
+    border-radius: 10px;
+    width: 120px;
+    height: 40px;
+    line-height: 40px;
+    color: rgb(0, 0, 0, 0.7);
+    text-shadow: 1px 1px 0px rgb(255 255 255 / 15%);
+    box-shadow: inset 1px 1px 2px rgb(255 255 255 / 30%), inset 3px 15px 45px rgb(0 0 0 / 20%), inset -1px -1px 2px rgb(0 0 0 / 50%), inset -3px -15px 45px rgb(255 255 255 / 10%), 1px 5px 10px -4px rgb(0 0 0);
+    transition: 0.1s ease-out;
+    margin-right: 20px;
+}
+.Addbuttonnew {
   background: #3f3a64;
   background: -webkit-gradient(linear, 0 0, 0 0, from(#7b59d0), to(#3f3a64));
   background: -moz-linear-gradient(#7b59d0, #3f3a64);
@@ -399,14 +431,4 @@ a.flickr:active {
 }
 .panelArea {
   margin-block-start: 1rem;
-}
-.bground {
-  background: url(/assets/img/seatmatrixbg2.png) no-repeat center;
-  background-size: cover;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  -ms-background-size: cover;
-  position: relative;
-  min-height: 100vh;
 }
