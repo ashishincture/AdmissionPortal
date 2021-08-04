@@ -1,0 +1,47 @@
+::ng-deep .mat-dialog-container{
+    background-image:linear-gradient(45deg, #262626, #4d4d4d);
+    color: #e6e6e6;
+    box-shadow:  inset 1px 1px 2px rgba(255,255,255,0.3),
+    5px 5px 10px -4px rgba(0,0,0,1) !important;
+
+}
+
+.download-button, .action-button{
+  background: #3f3a64;
+  background: -webkit-gradient(linear, 0 0, 0 0, from(#7b59d0), to(#3f3a64));
+  background: -moz-linear-gradient(#7b59d0, #3f3a64);
+  background: linear-gradient(#7b59d0, #3f3a64);
+  border-top: 1px solid #7b59d0;
+  color: #d9d9d9;
+}
+
+.download-button:hover , .action-button:hover {
+    opacity: 0.9;
+    color: #f2f2f2;
+  }
+
+.dialog-footer{
+    display:flex;
+    justify-content:flex-end;
+}
+.dialog-footer button{
+    margin-left:1em;
+}
+
+.mat-raised-button.mat-button-disabled{
+    color: #8c8c8c;
+ }
+
+ .custom-file-upload{
+  margin-block: 0.5em 1em;
+  margin-right: 1em;
+  background: #bfbfbf;
+  color: black;
+  padding: 0.3em 1rem;
+  border-radius: 0.3em;
+  cursor: pointer;
+ }
+
+input[type="file"]{
+  display: none;
+}
