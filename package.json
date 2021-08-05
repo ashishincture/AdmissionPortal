@@ -27,6 +27,7 @@
     "angular-calendar": "^0.28.22",
     "angular-fusioncharts": "^3.1.0",
     "angularx-flatpickr": "^6.5.2",
+    "axios": "^0.21.1",
     "bootstrap": "^4.5.3",
     "date-fns": "^2.21.3",
     "flatpickr": "^4.6.9",

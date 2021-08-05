@@ -3,16 +3,26 @@ import {
   OnInit,
   NgZone,
   ViewChild,
-  ViewContainerRef,
+  ViewContainerRef,Inject
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog,MAT_DIALOG_DATA ,MatDialogRef} from '@angular/material/dialog';
 import { DialogNewComponent } from '../dialog-new/dialog-new.component';
 import { Globals } from '../globals';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { DialogExampleComponent } from '../dialog-example/dialog-example.component';
 
 //dialogRef: MatDialogRef <any> ;
+
+export interface DialogData {
+ 
+    Quota_name: '',
+    Quota_percentage: '',
+   
+}
 
 @Component({
   selector: 'app-seatmatrix',
@@ -23,20 +33,30 @@ export class SeatmatrixComponent implements OnInit {
   @ViewChild('chartid', { read: ViewContainerRef, static: false })
   container!: ViewContainerRef;
   dataTemplate = {
-    name: '',
-    percent: '',
-    allotedseats: '',
+    Quota_name: '',
+    Quota_percentage: '',
+    Quota_allocation: '',
   };
+  uri = 'https://university-app-2021.herokuapp.com/institute/quota/';
+
+  courseID = '';
   public show: boolean = false;
   public buttonName: any = 'Show';
   public colname: String;
+  public isInputShown: boolean;
+  public Quota_name: string;
+  public Quota_percentage: string;
+
+
   dataSource: any;
   selectedSlice = 'none';
   chart: any;
   constructor(
     private zone: NgZone,
     public dialog: MatDialog,
-    public global: Globals
+    public global: Globals,
+    public http: HttpClient,
+ 
   ) {
     this.global.data;
     this.dataSource = {
@@ -66,7 +86,9 @@ export class SeatmatrixComponent implements OnInit {
     label: '',
     value: '',
   };
+  sum = 0;
   courselistarray = [];
+  courseIDarray = [];
   filteredOptions: Observable<String[]>;
   ngOnInit(): void {
     this.filteredOptions = this.myControl.valueChanges.pipe(
@@ -82,7 +104,8 @@ export class SeatmatrixComponent implements OnInit {
     for (var i = 0; i < this.global.data.DeptDetail.length; i++) {
       this.options.push(this.global.data.DeptDetail[i].dept);
     }
-
+    //this.coursedisable = false;
+    this.isInputShown = false;
     // this.dialogRef.updateSize('80%', '80%');
   }
 
@@ -96,17 +119,24 @@ export class SeatmatrixComponent implements OnInit {
     for (var i = 0; i < this.global.data.CollegeDetail.length; i++) {
       if (filterValue == this.global.data.CollegeDetail[i].college) {
         this.code = 1;
-        console.log(
-          'subject value' +
-            this.global.data.CollegeDetail[i].SubjectListCollege.length
-        );
         for (
           var j = 0;
           j < this.global.data.CollegeDetail[i].SubjectListCollege.length;
           j++
         ) {
           this.courselistarray.push(
-            this.global.data.CollegeDetail[i].SubjectListCollege[j].Course_name
+            this.global.data.CollegeDetail[i].SubjectListCollege[j].Course_id +
+              ' ' +
+              ':' +
+              ' ' +
+              this.global.data.CollegeDetail[i].SubjectListCollege[j]
+                .Course_name +
+              ' ' +
+              this.global.data.CollegeDetail[i].SubjectListCollege[j]
+                .Course_type
+          );
+          this.courseIDarray.push(
+            this.global.data.CollegeDetail[i].SubjectListCollege[j].Course_id
           );
         }
       }
@@ -120,7 +150,16 @@ export class SeatmatrixComponent implements OnInit {
           j++
         ) {
           this.courselistarray.push(
-            this.global.data.DeptDetail[i].SubjectListDept[j].name
+            this.global.data.DeptDetail[i].SubjectListDept[j].Course_id +
+              ' ' +
+              ':' +
+              ' ' +
+              this.global.data.DeptDetail[i].SubjectListDept[j].Course_name +
+              ' ' +
+              this.global.data.DeptDetail[i].SubjectListDept[j].Course_type
+          );
+          this.courseIDarray.push(
+            this.global.data.DeptDetail[i].SubjectListDept[j].Course_id
           );
         }
       }
@@ -148,6 +187,9 @@ export class SeatmatrixComponent implements OnInit {
     // this.container.clear();
     // this.chart.update();
     // console.log(temp);
+    this.isInputShown = false;
+    this.courseID = '';
+    this.sum = 0;
     console.log(i);
     console.log(this.colname);
     while (this.dataSource.data.length > 0) {
@@ -169,39 +211,36 @@ export class SeatmatrixComponent implements OnInit {
             n++
           ) {
             if (
-              i == this.global.data.CollegeDetail[m].SubjectListCollege[n].Course_name
+              i ==
+              this.global.data.CollegeDetail[m].SubjectListCollege[n]
+                .Course_id +
+                ' ' +
+                ':' +
+                ' ' +
+                this.global.data.CollegeDetail[m].SubjectListCollege[n]
+                  .Course_name +
+                ' ' +
+                this.global.data.CollegeDetail[m].SubjectListCollege[n]
+                  .Course_type
             ) {
-              console.log(this.global.data.CollegeDetail[m].SubjectListCollege);
               for (
-                var k = l;
+                var k = 0;
                 k <
                 this.global.data.CollegeDetail[m].SubjectListCollege[n]
                   .SeatAlloted.length;
                 k++
               ) {
-                this.global.data.CollegeDetail[m].SubjectListCollege[
-                  n
-                ].SeatAlloted[k].allotedseats =
-                  (parseInt(
-                    this.global.data.CollegeDetail[m].SubjectListCollege[n]
-                      .SeatAlloted[k].percent
-                  ) *
-                    parseInt(
-                      this.global.data.CollegeDetail[m].SubjectListCollege[n]
-                        .Seats
-                    )) /
-                  100;
                 this.graphvalue.label = '';
                 this.graphvalue.label =
                   this.global.data.CollegeDetail[m].SubjectListCollege[
                     n
-                  ].SeatAlloted[k].name;
+                  ].SeatAlloted[k].Quota_name;
                 this.graphvalue.value = '';
                 this.graphvalue.value =
                   '' +
                   Math.round(
                     this.global.data.CollegeDetail[m].SubjectListCollege[n]
-                      .SeatAlloted[k].allotedseats
+                      .SeatAlloted[k].Quota_allocation
                   );
                 graphdata = {
                   Value: this.graphvalue.value,
@@ -224,37 +263,35 @@ export class SeatmatrixComponent implements OnInit {
             n < this.global.data.DeptDetail[m].SubjectListDept.length;
             n++
           ) {
-            if (i == this.global.data.DeptDetail[m].SubjectListDept[n].Course_name) {
-              console.log(this.global.data.DeptDetail[m].SubjectListDept);
+            if (
+              i ==
+              this.global.data.DeptDetail[m].SubjectListDept[n].Course_id +
+                ' ' +
+                ':' +
+                ' ' +
+                this.global.data.DeptDetail[m].SubjectListDept[n].Course_name +
+                ' ' +
+                this.global.data.DeptDetail[m].SubjectListDept[n].Course_type
+            ) {
+              //console.log(this.global.data.DeptDetail[m].SubjectListDept);
               for (
-                var k = l;
+                var k = 0;
                 k <
                 this.global.data.DeptDetail[m].SubjectListDept[n].SeatAlloted
                   .length;
                 k++
               ) {
-                this.global.data.DeptDetail[m].SubjectListDept[n].SeatAlloted[
-                  k
-                ].allotedseats =
-                  (parseInt(
-                    this.global.data.DeptDetail[m].SubjectListDept[n]
-                      .SeatAlloted[k].percent
-                  ) *
-                    parseInt(
-                      this.global.data.DeptDetail[m].SubjectListDept[n].Seats
-                    )) /
-                  100;
                 this.graphvalue.label = '';
                 this.graphvalue.label =
                   this.global.data.DeptDetail[m].SubjectListDept[n].SeatAlloted[
                     k
-                  ].name;
+                  ].Quota_name;
                 this.graphvalue.value = '';
                 this.graphvalue.value =
                   '' +
                   Math.round(
                     this.global.data.DeptDetail[m].SubjectListDept[n]
-                      .SeatAlloted[k].allotedseats
+                      .SeatAlloted[k].Quota_allocation
                   );
                 graphdata = {
                   Value: this.graphvalue.value,
@@ -262,7 +299,6 @@ export class SeatmatrixComponent implements OnInit {
                 };
                 this.dataSource.data.push(graphdata);
                 console.log(this.dataSource.data);
-                l++;
               }
               //this.dataSource.data = [];
             }
@@ -272,6 +308,10 @@ export class SeatmatrixComponent implements OnInit {
     }
   }
   onPressAddQuota() {
+    var collegecode;
+    console.log(this.courseID);
+    this.dataTemplate.Quota_name=this.Quota_name;
+    this.dataTemplate.Quota_percentage=this.Quota_percentage;
     this.global.data.CollegeQuotas.push(this.dataTemplate);
     if (this.code == 1) {
       for (var i = 0; i < this.global.data.CollegeDetail.length; i++) {
@@ -280,9 +320,24 @@ export class SeatmatrixComponent implements OnInit {
           j < this.global.data.CollegeDetail[i].SubjectListCollege.length;
           j++
         ) {
-          this.global.data.CollegeDetail[i].SubjectListCollege[
-            j
-          ].SeatAlloted.push(this.dataTemplate);
+          if (
+            this.courseID ==
+            this.global.data.CollegeDetail[i].SubjectListCollege[j].Course_id
+          ) {
+            this.dataTemplate.Quota_allocation =
+              '' +
+              Math.round(
+                (parseInt(this.dataTemplate.Quota_percentage) *
+                  parseInt(
+                    this.global.data.CollegeDetail[i].SubjectListCollege[j]
+                      .Seats
+                  )) /
+                  100
+              );
+            this.global.data.CollegeDetail[i].SubjectListCollege[
+              j
+            ].SeatAlloted.push(this.dataTemplate);
+          }
         }
       }
     } else if (this.code == 2) {
@@ -291,26 +346,81 @@ export class SeatmatrixComponent implements OnInit {
           var j = 0;
           j < this.global.data.DeptDetail[i].SubjectListDept.length;
           j++
-        ) {
-          this.global.data.DeptDetail[i].SubjectListDept[j].SeatAlloted.push(
-            this.dataTemplate
-          );
-        }
+        )
+          if (
+            this.courseID ==
+            this.global.data.DeptDetail[i].SubjectListCollege[j].Course_id
+          ) {
+            this.dataTemplate.Quota_allocation =
+              '' +
+              Math.round(
+                (parseInt(this.dataTemplate.Quota_percentage) *
+                  parseInt(
+                    this.global.data.DeptDetail[i].SubjectListCollege[j].Seats
+                  )) /
+                  100
+              );
+            this.global.data.DeptDetail[i].SubjectListCollege[
+              j
+            ].SeatAlloted.push(this.dataTemplate);
+          }
       }
     }
-    this.dataTemplate = {
-      name: '',
-      percent: '',
-      allotedseats: '',
-    };
 
+    this.show = false;
+    for (var i = 0; i < this.global.data.CollegeDetail.length; i++) {
+      if (this.colname == this.global.data.CollegeDetail[i].college) {
+        collegecode = this.global.data.CollegeDetail[i].collegeCode;
+      }
+    }
+    this.sum = this.sum + parseInt(this.dataTemplate.Quota_percentage);
+
+    console.log('sum' + ' ' + this.sum);
+    if (this.sum == 100) {
+      var data2 = {
+        Course_id: this.courseID,
+        Quotas: this.global.data.CollegeQuotas,
+      };
+      console.log('data2' + ' ' + data2);
+      let univ = this.http.put(`${this.uri}` + collegecode, data2);
+      univ.subscribe((data: any) => console.log(data));
+      console.log('data2 next' + ' ' + data2);
+      console.log(this.global.data.CollegeQuotas);
+      this.global.data.CollegeQuotas = [];
+    }
+    this.dataTemplate = {
+      Quota_name: '',
+      Quota_percentage: '',
+      Quota_allocation: '',
+    };
     this.toggle();
+  }
+  OnClickAddQuota(){
+    this.openDialog();
   }
   toggle() {
     this.show = !this.show;
-
+    this.isInputShown = true;
+    //this.sum = 0;
     // CHANGE THE NAME OF THE BUTTON.
     if (this.show) this.buttonName = 'Hide';
     else this.buttonName = 'Show';
+  }
+  openDialog(){
+    var that = this;
+   let dialogRef = this.dialog.open(DialogExampleComponent, {data: {Quota_name : this.Quota_name,Quota_percentage:this.Quota_percentage}});
+   dialogRef.afterClosed().subscribe(result => {
+    console.log('The dialog was closed');
+    this.Quota_name = result.Quota_name;
+    this.Quota_percentage=result.Quota_percentage;
+   this.onPressAddQuota();
+    
+  });
+
+  console.log(this.Quota_name);
+    console.log(this.Quota_percentage);
+
+  
+  
   }
 }

@@ -1,5 +1,5 @@
 <div class="bgmd">
-  <div class="cardbox" style="justify-content: start">
+  <div class="cardbox" >
     <div>
       <mat-card class="w3_info">
         <mat-card-header>
@@ -7,8 +7,8 @@
             ><p class="whitetext">Register your University</p></mat-card-title
           >
         </mat-card-header>
-        <mat-card-content>
-          <mat-form-field appearance="outline">
+        <mat-card-content style="align-content: center;">
+          <mat-form-field appearance="outline" style="margin-left: 15%;">
             <mat-label><p class="whitetext">University ID</p></mat-label>
 
             <input
@@ -19,7 +19,7 @@
           </mat-form-field>
 
           <br />
-          <mat-form-field appearance="outline">
+          <mat-form-field appearance="outline" style="margin-left: 15%;">
             <mat-label><p class="whitetext">University</p></mat-label>
 
             <input
@@ -30,7 +30,7 @@
           </mat-form-field>
 
           <br />
-          <mat-form-field appearance="outline">
+          <mat-form-field appearance="outline" style="margin-left: 15%;">
             <mat-label> <p class="whitetext">University Type</p></mat-label>
             <mat-select [(value)]="global.data.InstitutionType">
               <mat-option value="University(hierarchial)"
@@ -48,7 +48,7 @@
 
           <mat-form-field
             *ngIf="global.data.InstitutionType == 'University(hierarchial)'"
-            appearance="outline"
+            appearance="outline" style="margin-left: 15%;"
           >
             <mat-label><p class="whitetext">Colleges</p></mat-label>
             <mat-select [(ngModel)]="global.data.Colleges">
@@ -59,7 +59,7 @@
           </mat-form-field>
           <br />
 
-          <mat-form-field appearance="outline">
+          <mat-form-field appearance="outline" style="margin-left: 15%;">
             <mat-label><p class="whitetext">Departments</p></mat-label>
             <mat-select [(ngModel)]="global.data.Departments">
               <mat-option value="option1">Single</mat-option>
@@ -68,7 +68,7 @@
             </mat-select>
           </mat-form-field>
           <br />
-          <mat-form-field appearance="outline">
+          <mat-form-field appearance="outline" style="margin-left: 15%;">
             <mat-label><p class="whitetext">Description</p></mat-label>
             <textarea [(ngModel)]="global.data.Description" matInput></textarea>
           </mat-form-field>
@@ -76,8 +76,10 @@
           <button
             mat-raised-button
             color="primary"
-            style="align-self: center; margin-left: 25%"
+            style="align-self: center; margin-left: 30%"
             (click)="onPressSubmit()"
+            class="Addbutton"
+
           >
             Submit
           </button>

@@ -1,0 +1,42 @@
+
+<h2 mat-dialog-title>Add Quota and percentage allocated</h2>
+<mat-dialog-content>
+    <div style="text-align: left">
+        <div class="row borderIt">
+          <mat-form-field appearance="outline" class="categoryinput">
+            <mat-label class="categorylabel">Category name</mat-label>
+            <input
+              matInput
+              class="categoryinput"
+              [(ngModel)]="Quota_name"
+            />
+          </mat-form-field>
+    
+          <mat-form-field appearance="outline" class="categoryinput">
+            <mat-label class="categorylabel">Percentage</mat-label>
+            <input
+              matInput
+              type="number"
+              class="categoryinput"
+              [(ngModel)]="Quota_percentage"
+            />
+          </mat-form-field>
+          
+        </div>
+      </div>
+</mat-dialog-content>
+<mat-dialog-actions style="margin-left: 50%;">
+    
+   
+        <button mat-button mat-button  class="Addbutton" (click)="onPressAddQuota()">
+          +
+        </button>
+   
+   
+        <button mat-button mat-button mat-dialog-close class="redBtn" (click)="onPressCloseDialog()">
+          close
+        </button>
+    
+</mat-dialog-actions>
+
+

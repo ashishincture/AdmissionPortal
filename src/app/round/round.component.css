@@ -1,6 +1,17 @@
 /* Visit https://nicolaskadis.info/posts/pure-css-flip-cards-using-bootstrap-4-and-css-grid-no-js for an explanation */
 
 /* for demo purposes */
+
+table {
+  width: 100%;
+}
+th {
+  font-size: medium;
+  font-weight: bold;
+}
+td {
+  font-size: medium;
+}
 .card {
   margin: 10px 10px;
 }
@@ -29,8 +40,7 @@
   background-color: #141414;
   box-shadow: inset 1px 1px 2px rgba(255, 255, 255, 0.3),
     inset 3px 15px 45px rgba(0, 0, 0, 0.2),
-    inset -1px -1px 2px rgba(0, 0, 0, 0.5),
-    inset -3px -15px 45px #212121,
+    inset -1px -1px 2px rgba(0, 0, 0, 0.5), inset -3px -15px 45px #212121,
     1px 5px 10px -4px rgba(0, 0, 0, 1);
   /* background: #9d50bb; 
   background: -webkit-linear-gradient(
@@ -65,7 +75,7 @@
 .btnRound {
   position: relative;
   cursor: pointer;
-  background:#7b59d0;
+  background: #7b59d0;
   border-radius: 10px;
   width: 50px;
   height: 40px;
@@ -97,7 +107,6 @@
   margin: 10px auto;
   max-width: 100%;
   max-height: 250px;
-  
 }
 
 .circle {
@@ -106,7 +115,6 @@
   stroke-width: 2.8;
   stroke-linecap: round;
   animation: progress 1s ease-out forwards;
-
 }
 
 .circle-bg {
@@ -119,10 +127,9 @@
   font-family: sans-serif;
   font-size: 1em;
   text-anchor: middle;
-  -webkit-filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7));
-  filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7)); 
+  -webkit-filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.7));
+  filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.7));
 }
-
 
 @keyframes progress {
   0% {
