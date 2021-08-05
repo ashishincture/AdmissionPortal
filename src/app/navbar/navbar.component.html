@@ -111,6 +111,9 @@
       <a mat-list-item [routerLink]="'/Curriculum'" (click)="goToCurriculum()">
         Curriculum
       </a>
+      <a mat-list-item [routerLink]="'/calendar'" (click)="goToTable()">
+        Calendar
+      </a>
       <a mat-list-item (click)="toggleSkeletonMenu()">
         Marks Skeleton
         <mat-icon *ngIf="!showSkeletonMenu">chevron_right</mat-icon>

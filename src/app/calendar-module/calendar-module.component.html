@@ -1,0 +1,20 @@
+<mat-card class="cal-card">
+    <mat-card-header>
+        <mat-card-title>Calendar</mat-card-title>
+        <mat-card-subtitle>Event Calendar</mat-card-subtitle>
+        <div class="customCardActions">
+            <mat-card-actions>
+                <button class="customButton float-right" mat-stroked-button (click)="goToCal();">EDIT EVENTS</button>
+                <button class="customButton float-right" mat-stroked-button (click)="goToTimetable();">VIEW
+                    TIMETABLE</button>
+            </mat-card-actions>
+        </div>
+    </mat-card-header>
+    <mat-card-content>
+        <div>
+            <mwl-calendar-month-view [viewDate]="viewDate" [refresh]="refresh">
+            </mwl-calendar-month-view>
+        </div>
+    </mat-card-content>
+
+</mat-card>

@@ -32,6 +32,7 @@ import { SkeletonTableConfigureComponent } from './skeleton-table-configure/skel
 import { SkeletonTableDefaultComponent } from './skeleton-table-default/skeleton-table-default.component'
 import { CalendarViewComponent } from './calendar-view/calendar-view.component';
 import { TimetableViewComponent} from './timetable-view/timetable-view.component';
+import { CalendarModuleComponent} from './calendar-module/calendar-module.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -63,7 +64,8 @@ const routes: Routes = [
   { path: 'skeletonDefaults', component: SkeletonTableDefaultComponent },
   { path: 'marksView', component: MarksViewComponent },
   { path: 'marksInsertion', component: MarksInsertionComponent },
-  { path: 'calendar', component: CalendarViewComponent },
+  { path: 'calendarView', component: CalendarViewComponent },
+  { path: 'calendar', component: CalendarModuleComponent },
   { path: 'timetable', component:  TimetableViewComponent}
 
   // {

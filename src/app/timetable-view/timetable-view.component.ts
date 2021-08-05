@@ -143,7 +143,7 @@ export class TimetableViewComponent implements OnInit {
     }
 
   ];
-
+  newFlag: boolean;
   currentId: number;
   currentStart: string;
   currentEnd: string;
@@ -239,6 +239,7 @@ export class TimetableViewComponent implements OnInit {
         break;
       }
     }
+    this.newFlag = false;
     this.modal.open(this.modalContent, { size: 'lg' });
 
 
@@ -247,21 +248,28 @@ export class TimetableViewComponent implements OnInit {
   }
 
   addEvent() {
-    
 
-    const event:  CalendarEvent = {
-        id: this.events.length,
-        start: new Date(2021, 7, 29, 10, 30, 0, 0),
-        end: new Date(2021, 7, 29, 11, 30, 0, 0),
-        title: "newEvent",
-        meta: {
-          tmpEvent: true
+    let pipe = new DatePipe('en-US');
 
-        }
+    this.currentStart = pipe.transform(new Date(), 'shortTime');
+    this.currentEnd = pipe.transform(addMinutes(new Date(), 45), 'shortTime');
+    this.newFlag = true;
+    this.modal.open(this.modalContent, { size: 'lg' });
 
-      }
+    // const event: CalendarEvent = {
+    //   id: this.events.length,
+    //   start: start,
+    //   end: end,
+    //   title: "newEvent",
+    //   meta: {
+    //     tmpEvent: true
+    //   }
 
-      this.events = [...this.events, event];
+    // }
+
+    // this.events = [...this.events, event];
+
+    // this.refresh();
   }
 
   deleteEvent() {
@@ -332,72 +340,111 @@ export class TimetableViewComponent implements OnInit {
 
     // this.modal.dismissAll();
     // console.log(this.details_data);
+    var start = this.convertToHoursMinutesIn24HourFormats(this.currentStart);
+    var end = this.convertToHoursMinutesIn24HourFormats(this.currentEnd);
 
-    this.p[0].eventId = this.currentId;
-    this.p[0].start = this.currentStart;
-    this.p[0].end = this.currentEnd;
+    if (this.newFlag) {
+      var newTimeTableEvent: CalendarEvent = {
+        id: this.events.length,
+        title: 'New Subject',
+        start: new Date(),
+        end: addMinutes(new Date(), 45),
+        meta: {
+          tmpEvent: true,
+        },
+      };
 
-    console.log(this.p[0]);
-    let index = 0;
-
-    for (var i = 0; i < this.events.length; i++) {
-      if (this.events[i].id == this.currentId) {
-        this.events[i].title = this.p[0].subject_name + " " + this.p[0].venue;
-        // this.events[i].start = new Date();
-        // this.events[i].end = new Date();
-
-        this.events[i].start = new Date(this.p[0].start);
-
-
-
-        break;
-      }
-    }
-
-    for (var i = 0; i < this.details_data.length; i++) {
-      if (this.details_data[i].eventId == this.currentId) {
-        index = i;
-        this.eventExists = true;
-        break;
-
-      }
-    }
-
-    if (this.eventExists) {
-      this.details_data[index] = this.p[0];
-      this.eventExists = false;
+      newTimeTableEvent.start.setHours(start.hrs, start.min, start.sec);
+      newTimeTableEvent.end.setHours(end.hrs, end.min, end.sec);
+      this.events = [...this.events, newTimeTableEvent];
     }
     else {
-      // this.events[index].title = this.p[0].subject_name + " " + this.p[0].venue;
-      this.details_data.push(this.p[0]);
+      this.p[0].eventId = this.currentId;
+      console.log(this.p[0]);
+      let index = 0;
 
-    }
-    this.p[0] = {
-      eventId: 0,
-      subject_name: "",
-      subject_code: 0,
-      venue: "",
-      facultyName: "",
-      subFacultyName: "",
-      start: "",
-      end: ""
-    }
+      for (var i = 0; i < this.events.length; i++) {
+        if (this.events[i].id == this.currentId) {
+          this.events[i].title = this.p[0].subject_name + " " + this.p[0].venue;
+          // this.events[i].start = new Date();
+          // this.events[i].end = new Date();
 
-    this.selectedEvent[0] = {
-      eventId: 0,
-      subject_name: "",
-      subject_code: 0,
-      venue: "",
-      facultyName: "",
-      subFacultyName: "",
-      start: "",
-      end: ""
-    }
+          this.events[i].start.setHours(start.hrs, start.min, start.sec);
+          this.events[i].end.setHours(end.hrs, end.min, end.sec);
 
+          // this.events[i].start = new Date(this.p[0].start);
+
+
+
+          break;
+        }
+      }
+
+      for (var i = 0; i < this.details_data.length; i++) {
+        if (this.details_data[i].eventId == this.currentId) {
+          index = i;
+          this.eventExists = true;
+          break;
+
+        }
+      }
+
+      if (this.eventExists) {
+        this.details_data[index] = this.p[0];
+        this.eventExists = false;
+      }
+      else {
+        // this.events[index].title = this.p[0].subject_name + " " + this.p[0].venue;
+        this.details_data.push(this.p[0]);
+
+      }
+      this.p[0] = {
+        eventId: 0,
+        subject_name: "",
+        subject_code: 0,
+        venue: "",
+        facultyName: "",
+        subFacultyName: "",
+        start: "",
+        end: ""
+      }
+
+      this.selectedEvent[0] = {
+        eventId: 0,
+        subject_name: "",
+        subject_code: 0,
+        venue: "",
+        facultyName: "",
+        subFacultyName: "",
+        start: "",
+        end: ""
+      }
+    }
     this.modal.dismissAll();
-    console.log(this.details_data);
+    this.refresh();
+  }
 
+  convertToHoursMinutesIn24HourFormats(time) {
+    var timeObj = {
+      hrs: null,
+      min: null,
+      sec: null
+    }
+    var hours = Number(time.match(/^(\d+)/)[1]);
+    var minutes = Number(time.match(/:(\d+)/)[1]);
+    var AMPM = time.match(/\s(.*)$/)[1];
+    if (AMPM == "PM" && hours < 12) hours = hours + 12;
+    if (AMPM == "AM" && hours == 12) hours = hours - 12;
+    var sHours = hours.toString();
+    var sMinutes = minutes.toString();
+    if (hours < 10) sHours = "0" + sHours;
+    if (minutes < 10) sMinutes = "0" + sMinutes;
 
+    timeObj.hrs = hours;
+    timeObj.min = minutes;
+    timeObj.sec = 0;
+
+    return timeObj;
   }
 
   onChangeDetails($event) {
@@ -434,9 +481,8 @@ export class TimetableViewComponent implements OnInit {
 
   }
 
-  private refresh() {
+  refresh() {
     this.events = [...this.events];
     this.cdr.detectChanges();
   }
-
 }

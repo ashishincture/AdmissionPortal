@@ -1,0 +1,31 @@
+.cal-card {
+    max-width: 100%;
+    margin: 1rem;
+    margin-top: 1rem;
+    background-image: linear-gradient(45deg, #262626, #4d4d4d);
+    color: #e6e6e6;
+    box-shadow: inset 1px 1px 2px rgba(255, 255, 255, 0.3), 5px 5px 10px -4px rgba(0, 0, 0, 1) !important;
+}
+
+.mat-card-subtitle {
+    color: #e6e6e6;
+}
+
+.customButton {
+    background: #3f3a64;
+    background: -webkit-gradient(linear, 0 0, 0 0, from(#7b59d0), to(#3f3a64));
+    background: -moz-linear-gradient(#7b59d0, #3f3a64);
+    background: linear-gradient(#7b59d0, #3f3a64);
+    border-top: 1px solid #7b59d0;
+    color: #d9d9d9;
+    margin: 2rem;
+}
+
+.customButton:hover {
+    opacity: 0.9;
+    color: #f2f2f2;
+}
+
+.customCardActions {
+    width: 100%;
+}
