@@ -22,11 +22,13 @@ export class RegulationComponent implements OnInit {
   fetchRegulation(){
     this.service.getRegulationData().
     subscribe((data:any)=>{
-      this.regulations=data.data;
+      console.log(data.data.Regulation);
+      this.regulations=data.data.Regulation;
     });
   }
   onRegulationPress(data){
-    this.service.getRegulationDatabyID(data);
+    this.service.RId = data;
+    // this.service.getRegulationDatabyID(data);
     this.router.navigate(['regulationdetail']);
     console.log(data);
   }
@@ -34,6 +36,20 @@ export class RegulationComponent implements OnInit {
     this.service.eidtFlag = false;
     this.router.navigate(['add']);
     console.log("add");
+    this.service.getAllDeps().subscribe((data:any)=>{
+    console.log(data.data[0].courseDetails);
+    let coursearray = [];
+    var coursedetails = data.data[0].courseDetails;
+    for(var i=0;i<coursedetails.length;i++){
+    let courseobj = {
+      courseid:coursedetails[i].Course_id,
+      coursename:coursedetails[i].Course_name
+    }
+    coursearray.push(courseobj);
+    }
+    console.log(coursearray);
+    this.service.allDeps=coursearray;
+    });
   }
 
 }

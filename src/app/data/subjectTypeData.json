@@ -1,0 +1,120 @@
+[
+    {
+        "subject_type": "Theory",
+        "total_marks_subject": 100,
+        "passing_percentage": 40,
+        "subject_contributors": [
+            {
+                "sNo": 1,
+                "type_of_evaluation": "Attendance",
+                "total_marks": 10,
+                "individual_contribution": 5
+            },
+            {
+                "sNo": 2,
+                "type_of_evaluation": "Internal Assessment 1",
+                "total_marks": 15,
+                "individual_contribution": 7.5
+            },
+            {
+                "sNo": 3,
+                "type_of_evaluation": "Internal Assessment 2",
+                "total_marks": 15,
+                "individual_contribution": 7.5
+            },
+            {
+                "sNo": 4,
+                "type_of_evaluation": "Assignment",
+                "total_marks": 10,
+                "individual_contribution": 5
+            },
+            {
+                "sNo": 5,
+                "type_of_evaluation": "Final Evaluation",
+                "total_marks": 100,
+                "individual_contribution": 70
+            },
+            {
+                "sNo": 6,
+                "type_of_evaluation": "Custom Evaluation",
+                "total_marks": 10,
+                "individual_contribution": 5
+            }
+        ]
+    },
+    {
+        "subject_type": "Practical",
+        "total_marks_subject": 100,
+        "passing_percentage": 40,
+        "subject_contributors": [
+            {
+                "sNo": 1,
+                "type_of_evaluation": "Attendance",
+                "total_marks": 10,
+                "individual_contribution": 10
+            },
+            {
+                "sNo": 2,
+                "type_of_evaluation": "Practical Manual",
+                "total_marks": 20,
+                "individual_contribution": 20
+            },
+            {
+                "sNo": 3,
+                "type_of_evaluation": "Viva",
+                "total_marks": 40,
+                "individual_contribution": 20
+            },
+            {
+                "sNo": 4,
+                "type_of_evaluation": "Final Evaluation",
+                "total_marks": 100,
+                "individual_contribution": 50
+            }
+        ]
+    },
+    {
+        "subject_type": "Seminar",
+        "total_marks_subject": 70,
+        "passing_percentage": 40,
+        "subject_contributors": [
+            {
+                "sNo": 1,
+                "type_of_evaluation": "Attendance",
+                "total_marks": 5,
+                "individual_contribution": 5
+            },
+            {
+                "sNo": 2,
+                "type_of_evaluation": "Report Submission",
+                "total_marks": 15,
+                "individual_contribution": 15
+            },
+            {
+                "sNo": 3,
+                "type_of_evaluation": "Presentation",
+                "total_marks": 70,
+                "individual_contribution": 50
+            }
+        ]
+    },
+    {
+        "subject_type": "Project",
+        "total_marks_subject": 100,
+        "passing_percentage": 40,
+        "subject_contributors": [
+            {
+                "sNo": 1,
+                "type_of_evaluation": "Report Submission",
+                "total_marks": 50,
+                "individual_contribution": 30
+            },
+            {
+                "sNo": 2,
+                "type_of_evaluation": "Presentation",
+                "total_marks": 100,
+                "individual_contribution": 70
+            }
+        ]
+    }
+]

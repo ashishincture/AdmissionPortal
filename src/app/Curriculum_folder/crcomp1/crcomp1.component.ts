@@ -48,11 +48,13 @@ export class CRcomp1Component{
    */
   initData(data: {}[]){
     if(!data) return false;
-    debugger;
-    this.displayedColumns =['code','id','name','type','description','credits'];
+    //debugger;
+    this.displayedColumns =['Subject_Code','Subject_Name','Type','Credits'];
     this.initialData = this.localservice.coreData;
-    if(this.initialData[0].type!=="core"){
-      this.groupingColumn="groupNme";
+    if(this.initialData.length){
+      if(this.initialData[0].Type!=="CORE"){
+        this.groupingColumn="Group_Name";
+      }
     }
     return true;
   }

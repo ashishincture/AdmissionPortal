@@ -1,0 +1,126 @@
+<div style="
+background-color: #262626;
+position: absolute;
+height: 100%;
+width: 100%;
+">
+  <div class="main-content">
+
+    <div class="filter-bar">
+      <mat-form-field appearance="fill" class="form">
+        <mat-label>Select Institution</mat-label>
+        <mat-select [(value)]="selectedIns" (selectionChange)="onChangeIns()" class="select">
+          <mat-option *ngFor="let Ins of Institution" [value]="Ins.instituteID">{{Ins.instituteName}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <ng-template [ngIf]="InsSel">
+        <mat-form-field appearance="fill" class="form">
+          <mat-label>Select Regulation</mat-label>
+          <mat-select [(value)]="selectedReg" (selectionChange)="onChangeReg()">
+            <mat-option *ngFor="let reg of Regulation" [value]="reg">{{reg}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </ng-template>
+      <ng-template [ngIf]="RegSel">
+        <mat-form-field appearance="fill" class="form">
+          <mat-label>Select Department</mat-label>
+          <mat-select [(value)]="selectedDept" (selectionChange)="onChangeDept()">
+            <mat-option *ngFor="let dept of Department" [value]="dept.departmentID">{{dept.departmentName}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </ng-template>
+
+      <ng-template [ngIf]="deptSel">
+        <mat-form-field appearance="fill" class="form">
+          <mat-label>Select Curriculum</mat-label>
+          <mat-select [(value)]="selectedcurriculum" (selectionChange)="onChangeCurr()">
+            <mat-option *ngFor="let curr of Curriculum" [value]="curr.Curriculum">{{curr.Curriculum}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </ng-template>
+      <!-- <ng-template [ngIf]="currSel">
+    <mat-form-field appearance="fill" style="margin:20px">
+      <mat-label>Select Joining year</mat-label>
+      <mat-select [(value)]="selectedyear" (selectionChange)="onChangeYear()">
+        <mat-option *ngFor="let y of academicYear" [value]="y">{{y}}</mat-option>
+        
+      </mat-select>
+    </mat-form-field>
+  </ng-template> -->
+      <ng-template [ngIf]="yearSel">
+        <mat-form-field appearance="fill" class="form">
+          <mat-label>Select Semester</mat-label>
+          <mat-select [(value)]="selectedSemester" (selectionChange)="onChangeSem()">
+            <mat-option *ngFor="let sem of semester" [value]="sem">
+              {{sem}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </ng-template>
+
+      <ng-template [ngIf]="SemSel">
+        <mat-form-field appearance="fill" class="form">
+          <mat-label>Select Subject</mat-label>
+          <mat-select [(value)]="selectedSubject" (selectionChange)="onChangeSub()">
+            <mat-option *ngFor="let sB of Subjects" [value]="sB.Subject_Code">{{sB.Subject_Name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </ng-template>
+      <button mat-raised-button (click)="loadPanel()" [disabled]="getDet" class="action-button">Get Details</button>
+      <!-- <button mat-raised-button style="margin:20px" (click)="loadPanel()"></button> -->
+    </div>
+
+    <ng-template [ngIf]="hidePanel">
+      <div class="details-panel">
+        <mat-accordion class="example-headers-align" multi>
+          <mat-expansion-panel [expanded]=panelExpansion class="expPanel" (opened)="panelExpansion=true"
+            (closed)="panelExpansion=false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Subject
+              </mat-panel-title>
+              <mat-panel-description>
+                : {{selectedSubject}}
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <!-- <p>Course <span class="panelB">:  {{selectedCourse}}</span></p><br/>
+          <p>Branch <span class="panelB">: {{selectedBranch}}</span></p><br/>
+          <p>Semester<span class="panelB">: {{selectedSemester.num}}</span></p><br/>
+          <p>Subject Faculty<span class="panelB">: {{this.Faculty}}</span></p><br/>
+          <p>Marks Submission Status<span class="panelBS">: Not Submitted</span></p><br/> -->
+
+            <button mat-raised-button class="action-button" (click)="openDialog()">Upload Marks Excel</button>
+
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+    </ng-template>
+
+    <ng-template [ngIf]="subB">
+      <div class="preview-container">
+        <div class="preview-header">
+          <mat-label>Marks Preview</mat-label>
+          <button mat-raised-button class="action-button">Upload</button>
+        </div>
+        <div class="table-container">
+          <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+            <ng-container *ngFor="let col of displayedColumns">
+              <ng-container matColumnDef="{{ col }}">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                  {{ col | uppercase }}
+                </th>
+                <td mat-cell *matCellDef="let element">
+                  {{element[col] }}
+                </td>
+              </ng-container>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          </table>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</div>

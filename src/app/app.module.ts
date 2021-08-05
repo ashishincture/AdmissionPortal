@@ -18,10 +18,7 @@ import { CourseListComponent } from './course-list/course-list.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { RoundComponent } from './round/round.component';
 import { ListComponent } from './list/list.component';
-
 import { SignupComponent } from './signup/signup.component';
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
-
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -63,6 +60,38 @@ import { SubjDialogComponent } from './Curriculum_folder/subj-dialog/subj-dialog
 import { NewRegulationComponent } from './new-regulation/new-regulation.component';
 import { NewregTableComponent } from './newreg-table/newreg-table.component';
 import { DepartmentComponent } from './department/department.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSortModule} from '@angular/material/sort';
+import { DialogGradingComponent } from './dialog-grading/dialog-grading.component';
+
+import { LayoutModule } from '@angular/cdk/layout';
+import { SkeletonTableConfigureComponent } from './skeleton-table-configure/skeleton-table-configure.component';
+import { CourseComponent } from './course/course.component';
+import { AddContributorDialogComponent } from './add-contributor-dialog/add-contributor-dialog.component';
+import { MarksInsertionComponent } from './marks-insertion/marks-insertion.component';
+import { SkeletonSubjectHeaderComponent } from './skeleton-subject-header/skeleton-subject-header.component';
+import { MarksViewComponent } from './marks-view/marks-view.component';
+import { SkeletonTableDefaultComponent } from './skeleton-table-default/skeleton-table-default.component';
+
+
+//calendar
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CalendarViewComponent } from './calendar-view/calendar-view.component';
+import { CommonModule } from '@angular/common';
+
+import { FlatpickrModule } from 'angularx-flatpickr';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import 'flatpickr/dist/flatpickr.css';
+// import { CalendarHeaderComponent } from './calendar-header.component';
+// import { DemoUtilsModule } from '../demo-utils/module';
+
+import { TimetableViewComponent } from './timetable-view/timetable-view.component';
+import { DialogBodyComponent } from './dialog-body/dialog-body.component';
+import { DialogMarksUploadComponent } from './dialog-marks-upload/dialog-marks-upload.component';
+import { AddDefaultSkeletonDialogComponent } from './add-default-skeleton-dialog/add-default-skeleton-dialog.component';
+import { DialogExampleComponent } from './dialog-example/dialog-example.component';
 
 // Pass the fusioncharts library and chart modules
 FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
@@ -79,9 +108,7 @@ FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
     CarouselComponent,
     RoundComponent,
     ListComponent,
-
     SignupComponent,
-
     FaqComponent,
     SeatmatrixComponent,
     DialogNewComponent,
@@ -91,9 +118,7 @@ FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
     DialogNotApproveComponent,
     SubjectComponent,
     UpdateDialogComponent,
-
     DepartmentComponent,
-
     RegulationComponent,
     RegulationDetailsComponent,
     DepartmentDetailsComponent,
@@ -105,6 +130,20 @@ FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
     SubjDialogComponent,
     NewRegulationComponent,
     NewregTableComponent,
+    DialogGradingComponent,
+    SkeletonTableConfigureComponent,
+    CourseComponent,
+    AddContributorDialogComponent,
+    MarksInsertionComponent,
+    SkeletonSubjectHeaderComponent,
+    MarksViewComponent,
+    SkeletonTableDefaultComponent,
+    CalendarViewComponent,
+    TimetableViewComponent,
+    DialogBodyComponent,
+    DialogMarksUploadComponent,
+    AddDefaultSkeletonDialogComponent,
+    DialogExampleComponent,
   ],
   imports: [
     BrowserModule,
@@ -114,9 +153,6 @@ FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     MaterialModule,
-
-    Ng2SearchPipeModule,
-
     MatFormFieldModule,
     MatGridListModule,
     MatDividerModule,
@@ -129,6 +165,12 @@ FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
     MatInputModule,
     MatTableModule,
     MatIconModule,
+    MatPaginatorModule,
+    MatSortModule,
+    NgbModule,
+    NgbModalModule,
+    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
+    FlatpickrModule.forRoot()
   ],
   providers: [
     MatTabsModule,
@@ -138,9 +180,7 @@ FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
     MatNativeDateModule,
     Globals,
     FusionChartsModule,
-
     SubjectService,
-
     DocumentsServiceService,
   ],
   bootstrap: [AppComponent],

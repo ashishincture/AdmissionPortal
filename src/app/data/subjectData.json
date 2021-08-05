@@ -1,0 +1,82 @@
+[
+    {
+        "subject_name": "Data Analytics",
+        "subject_code": "TMC0001",
+        "subject_type": "Theory",
+        "total_marks_subject": 100,
+        "subject_credit": 4,
+        "passing_percentage": 40,
+        "subject_contributors": [
+            {
+                "sNo": 1,
+                "type_of_evaluation": "Attendance",
+                "total_marks": 10,
+                "individual_contribution": 5
+            },
+            {
+                "sNo": 2,
+                "type_of_evaluation": "Internal Assessment 1",
+                "total_marks": 15,
+                "individual_contribution": 7.5
+            },
+            {
+                "sNo": 3,
+                "type_of_evaluation": "Internal Assessment 2",
+                "total_marks": 15,
+                "individual_contribution": 7.5
+            },
+            {
+                "sNo": 4,
+                "type_of_evaluation": "Assignment",
+                "total_marks": 10,
+                "individual_contribution": 5
+            },
+            {
+                "sNo": 5,
+                "type_of_evaluation": "Final Evaluation",
+                "total_marks": 100,
+                "individual_contribution": 70
+            },
+            {
+                "sNo": 6,
+                "type_of_evaluation": "Custom Evaluation",
+                "total_marks": 10,
+                "individual_contribution": 5
+            }
+        ]
+    },
+    {
+        "subject_name": "Formal Languages and Automata Theory",
+        "subject_code": "TMC0002",
+        "subject_type": "Lab",
+        "total_marks_subject": 70,
+        "subject_credit": 2,
+        "passing_percentage": 40,
+        "subject_contributors": [
+            {
+                "sNo": 1,
+                "type_of_evaluation": "Attendance",
+                "total_marks": 10,
+                "individual_contribution": 5
+            },
+            {
+                "sNo": 2,
+                "type_of_evaluation": "Internal Assessment",
+                "total_marks": 15,
+                "individual_contribution": 7.5
+            },
+            {
+                "sNo": 3,
+                "type_of_evaluation": "Assignment",
+                "total_marks": 10,
+                "individual_contribution": 5
+            },
+            {
+                "sNo": 4,
+                "type_of_evaluation": "Final Evaluation",
+                "total_marks": 100,
+                "individual_contribution": 70
+            }
+        ]
+    }
+]

@@ -30,22 +30,35 @@
       </div>
     </div>
 
-    <div class="col-sm-4">
+    <div class="col-sm-2" style="height: 2rem; margin-top: 0.5rem">
+      <!-- <mat-form-field appearance="outline" class="paddingInput"> -->
+        <!-- <mat-label>Course Id</mat-label> -->
+        <input
+          [disabled]="isInputShown"
+          matInput
+          placeholder="Course Id"
+          style="margin-top: 0.5rem"
+          [(ngModel)]="courseID"
+          class="styleSelect"
+        />
+      <!-- </mat-form-field> -->
+    </div>
+    <div class="col-sm-1">
       <div class="adddiv">
-        <button mat-button class="Addbutton" (click)="toggle()">
+        <button mat-button class="Addbutton" (click)="OnClickAddQuota()">
           Add Quota
         </button>
       </div>
 
       <ng-container *ngIf="show">
-        <div style="text-align: left">
+        <!-- <div style="text-align: left">
           <div class="row borderIt">
             <mat-form-field appearance="outline" class="categoryinput">
               <mat-label class="categorylabel">Category name</mat-label>
               <input
                 matInput
                 class="categoryinput"
-                [(ngModel)]="dataTemplate.name"
+                [(ngModel)]="dataTemplate.Quota_name"
               />
             </mat-form-field>
 
@@ -55,11 +68,16 @@
                 matInput
                 type="number"
                 class="categoryinput"
-                [(ngModel)]="dataTemplate.percent"
+                [(ngModel)]="dataTemplate.Quota_percentage"
               />
             </mat-form-field>
+            <div class="adddiv">
+              <button mat-button class="Addbutton" (click)="onPressAddQuota()">
+                +
+              </button>
+            </div>
           </div>
-        </div>
+        </div> -->
       </ng-container>
     </div>
     <div class="col-sm-12">
@@ -88,6 +106,7 @@
             type="pie3d"
             width="600"
             height="330"
+            #chartid
             [dataSource]="dataSource"
           >
           </fusioncharts>

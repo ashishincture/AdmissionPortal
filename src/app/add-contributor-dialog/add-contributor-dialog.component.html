@@ -1,0 +1,38 @@
+<h1 mat-dialog-title>Mark Contributors</h1>
+<div></div>
+<div mat-dialog-content>
+    <!-- <mat-form-field *ngIf="action != 'Delete';"> -->
+    <!-- <div class="form-group"> -->
+    <mat-form-field style="width:100%;" *ngIf="action != 'Delete'; else elseTemplate">
+        <input class="form-control" placeholder="Type of Evaluation" matInput
+            [(ngModel)]="local_data.type_of_evaluation">
+    </mat-form-field>
+    <br />
+    <mat-form-field style="width:100%;" *ngIf="action != 'Delete';">
+        <input class="form-control" type="number" placeholder="Total Marks" matInput
+            [(ngModel)]="local_data.total_marks">
+        <span class="error" *ngIf="local_data.total_marks <= this.minTotal"> Total Marks should be greater than
+            {{this.minTotal}}! </span>
+        <span class="error" *ngIf="local_data.total_marks == '' "> Total Marks cannot be empty! </span>
+
+    </mat-form-field>
+    <br />
+    <mat-form-field style="width:100%" *ngIf="action != 'Delete';">
+        <input class="form-control" type="number" placeholder="Individual Contribution" matInput
+            [(ngModel)]="local_data.individual_contribution">
+        <span class="error" *ngIf="local_data.individual_contribution <= this.minTotal"> Individual contribution should
+            be greater than {{this.minIndContrib}}! </span>
+        <span class="error" *ngIf="local_data.individual_contribution == '' "> Individual contribution cannot be empty!
+        </span>
+
+    </mat-form-field>
+    <!-- </mat-form-field> -->
+
+    <ng-template #elseTemplate>
+        Sure you want to delete <b>{{local_data.type_of_evaluation}}</b>?
+    </ng-template>
+</div>
+<div mat-dialog-actions class="customDialog">
+    <button mat-button (click)="doAction()">{{action}}</button>
+    <button mat-button (click)="closeDialog()" mat-flat-button color="warn">Cancel</button>
+</div>
