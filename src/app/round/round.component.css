@@ -1,7 +1,9 @@
 /* Visit https://nicolaskadis.info/posts/pure-css-flip-cards-using-bootstrap-4-and-css-grid-no-js for an explanation */
 
 /* for demo purposes */
-
+.mat-drawer-content {
+  background-color: white;
+}
 table {
   width: 100%;
 }
@@ -12,6 +14,7 @@ th {
 td {
   font-size: medium;
 }
+
 .card {
   margin: 10px 10px;
 }
