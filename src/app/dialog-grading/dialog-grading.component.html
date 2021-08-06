@@ -1,0 +1,100 @@
+<body style="background-color: #333333;">
+<div class="dialog_header">
+    <h2 mat-dialog-title style="color: white;">Grading</h2>
+  </div>
+  <div class = "body">
+    <div class="dialog_content">
+      <div>
+       <mat-form-field appearance="fill">
+         <mat-label style="color: white;">Select Grading Type</mat-label>
+         <mat-select [formControl]="toppings" [(ngModel)] = "selectedToppings" multiple (selectionChange)="onGradeChange($event)">
+           <mat-option *ngFor="let topping of toppingList" [value]="topping">{{
+             topping
+           }}</mat-option>
+         </mat-select>
+       </mat-form-field>
+     </div> 
+   </div> 
+   <div class = "table_form">
+     <mat-card class="gradingTableclass">
+       <form [formGroup] = "gradingForm" (ngSubmit) = "onSubmit()">
+         <div class="row">
+           <div class="col-2"> 
+             <input  [class.is-invalid] = "gradingForm.get('points').invalid && gradingForm.get('points').touched" 
+                type="text" formControlName = "points" class="form-control form-control-sm" placeholder="Points" aria-label="First name">
+              <small class="text-danger" [class.d-none] = "gradingForm.get('points').valid || gradingForm.get('points').untouched">Points is required</small>
+
+              </div>
+           <div class="col-2">
+             <input [class.is-invalid] = "gradingForm.get('grade').invalid && gradingForm.get('grade').touched" 
+             type="text" formControlName = "grade" class="form-control form-control-sm" placeholder="Grade" aria-label="First name">
+             <small class="text-danger" [class.d-none] = "gradingForm.get('grade').valid || gradingForm.get('grade').untouched">Grade is required</small> 
+            </div>
+           <div class="col-2">
+             <input [class.is-invalid] = "gradingForm.get('percentage').invalid && gradingForm.get('percentage').touched"
+             type="text" formControlName = "percentage" class="form-control form-control-sm" placeholder="Percentage" aria-label="First name">
+             <small class="text-danger" [class.d-none] = "gradingForm.get('percentage').valid || gradingForm.get('percentage').untouched">Percentage is required</small> 
+            </div>
+           <div class="col-4">
+             <input [class.is-invalid] = "gradingForm.get('description').invalid && gradingForm.get('description').touched"
+             type="text" formControlName = "description" class="form-control form-control-sm" placeholder="Description" aria-label="First name">
+             <small class="text-danger" [class.d-none] = "gradingForm.get('description').valid || gradingForm.get('description').untouched">Percentage is required</small>
+            </div>
+           <div class="col-2">
+             <button mat-raised-button type = "submit" class="btnStyleBlack">Save</button>
+           </div>
+         </div>
+       </form>
+     </mat-card>
+   </div>
+     <div class="dialog_table">
+       <table mat-table #table [dataSource]="dataSource" class="mat-elevation-z8 gradingTableclass">
+         <!--- Note that these columns can be defined in any order.
+               The actual rendered columns are set as a property on the row definition" -->
+   
+         <!-- Position Column -->
+         <ng-container matColumnDef="Points">
+           <th mat-header-cell *matHeaderCellDef>Points</th>
+           <td mat-cell *matCellDef="let element">{{ element.points }}</td>
+         </ng-container>
+         <ng-container matColumnDef="Grade">
+           <th mat-header-cell *matHeaderCellDef>Grade</th>
+           <td mat-cell *matCellDef="let element">{{ element.grade }}</td>
+         </ng-container>
+         <ng-container matColumnDef="Percentage">
+           <th mat-header-cell *matHeaderCellDef>Percentage</th>
+           <td mat-cell *matCellDef="let element">{{ element.percentage }}</td>
+         </ng-container>
+         <ng-container matColumnDef="Description">
+           <th mat-header-cell *matHeaderCellDef>Description</th>
+           <td mat-cell *matCellDef="let element">{{ element.description }}</td>
+         </ng-container>
+         <ng-container matColumnDef="action">
+           <th mat-header-cell *matHeaderCellDef> Action </th>   
+           <td mat-cell *matCellDef="let element"> 
+             <button mat-raised-button (click) = "deleteRow(element.points)">Delete</button> 
+           </td>
+         </ng-container> 
+         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+         <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+       </table>
+     </div>
+  </div>
+   
+  
+  <div class="footer">
+    <mat-dialog-actions>
+      <button mat-button (click)="onCancel()" class="btnStyleRed">Cancel</button>
+      <button mat-raised-button (click)="onSave()" class="btnStyleBlue">Save</button>
+    </mat-dialog-actions>
+  </div>
+</body>
+  
+  
+  <!-- <h2 mat-dialog-title>Grading</h2>
+  <mat-dialog-content>
+      <p>Would you like to save ?</p>
+  </mat-dialog-content>
+  <button mat-button>Cancel</button>
+  <button mat-raised-button>Save</button> -->
+  

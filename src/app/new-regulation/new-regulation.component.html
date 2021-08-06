@@ -36,12 +36,11 @@
             <div class="regdetails form-group col">
                 <mat-form-field appearance="standard">
                     <mat-label style="color: white;">Select Grade Type</mat-label>
-                    <mat-select class="selectRegdetails" formControlName="gradeType">
+                    <mat-select class="selectRegdetails" formControlName="gradeType" (selectionChange)="openGradingDialog()">
                         <mat-option value="grading">Grading</mat-option>
                         <mat-option value="percentage">Percentage</mat-option>
                         <mat-option value="other">Other</mat-option>
                     </mat-select>
-
                 </mat-form-field>
             </div>
         </form>

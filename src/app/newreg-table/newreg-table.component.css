@@ -29,18 +29,15 @@
     height: 35px;
 }
 .regulationDetailsTable{
-  box-shadow: 1px 2px 8px #0b0b0b  !important;
+  box-shadow: 0px 6px 10px 0px #0b0b0b  !important;
   margin-left: 1rem;
   background-color: #333333;
 }
-th.mat-header-cell {
-  font-size: 0.8rem;
+.mat-header-cell {
   color: white;
-  /* border-bottom-color: #007bff; */
 }
-td.mat-cell{
+.mat-cell, .mat-footer-cell {
   color: white;
-  /* border-bottom-color: #007bff; */
 }
 @media screen and (max-width: 375px) {
   .department1 {

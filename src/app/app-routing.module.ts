@@ -26,6 +26,13 @@ import { DepartmentComponent } from './department/department.component';
 // import { Crcomp1Component } from './Curriculum_folder/crcomp1/crcomp1.component';
 // import { CreateCrComponent } from './Curriculum_folder/create-cr/create-cr.component';
 // import { SubjDialogComponent } from './Curriculum_folder/subj-dialog/subj-dialog.component';
+import { MarksViewComponent } from './marks-view/marks-view.component'
+import { MarksInsertionComponent } from './marks-insertion/marks-insertion.component'
+import { SkeletonTableConfigureComponent } from './skeleton-table-configure/skeleton-table-configure.component';
+import { SkeletonTableDefaultComponent } from './skeleton-table-default/skeleton-table-default.component'
+import { CalendarViewComponent } from './calendar-view/calendar-view.component';
+import { TimetableViewComponent} from './timetable-view/timetable-view.component';
+import { CalendarModuleComponent} from './calendar-module/calendar-module.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -36,9 +43,9 @@ const routes: Routes = [
   { path: 'masterdata', component: MasterDataComponent },
   { path: 'courseList', component: CourseListComponent },
   { path: 'clgList', component: ClgListComponent },
-  { path: 'list/:id', component: ListComponent },
+  { path: 'list/:courseId/:instId', component: ListComponent },
   { path: 'carousel', component: CarouselComponent },
-  { path: 'round', component: RoundComponent },
+  { path: 'round/:id', component: RoundComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'documents', component: DocumentsComponent },
   { path: 'status', component: StatusComponent },
@@ -53,6 +60,13 @@ const routes: Routes = [
   { path: 'add', component: NewRegulationComponent },
   { path: 'Curriculum', component: CurriculumComponent },
   { path: 'department', component: DepartmentComponent },
+  { path: 'skeletonView', component: SkeletonTableConfigureComponent },
+  { path: 'skeletonDefaults', component: SkeletonTableDefaultComponent },
+  { path: 'marksView', component: MarksViewComponent },
+  { path: 'marksInsertion', component: MarksInsertionComponent },
+  { path: 'calendarView', component: CalendarViewComponent },
+  { path: 'calendar', component: CalendarModuleComponent },
+  { path: 'timetable', component:  TimetableViewComponent}
 
   // {
   //   path: 'home',

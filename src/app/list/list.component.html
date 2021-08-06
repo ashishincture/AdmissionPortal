@@ -1,12 +1,20 @@
 <div class="subHeader mb-5">
   <div class="d-flex">
-    <div>
+    <div class="mb-2">
       <button mat-button type="button" (click)="onGoBack()">
         <i class="fa fa-arrow-left"></i>
       </button>
     </div>
-    <div class="mr-auto">Allocation / {{ subjectSelected }}</div>
-    <div>Available Seats : {{ availableSeats }}</div>
+    <div class="mr-auto">{{ showCourse }}</div>
+    <!-- <div>Available Seats : {{ availableSeats }}</div> -->
+    <select
+      class="form-control selectCollege w-25"
+      (change)="onChangeCollege($event)"
+    >
+      <option>None</option>
+      <option>B.Tech</option>
+      <option>M.Tech</option>
+    </select>
   </div>
 </div>
 <div class="container">
@@ -20,9 +28,9 @@
                 The actual rendered columns are set as a property on the row definition" -->
 
     <!-- Position Column -->
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>No.</th>
-      <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+    <ng-container matColumnDef="student_id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Student Id</th>
+      <td mat-cell *matCellDef="let element">{{ element.student_id }}</td>
     </ng-container>
 
     <!-- Name Column -->
@@ -30,26 +38,32 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
       <td mat-cell *matCellDef="let element">{{ element.name }}</td>
     </ng-container>
-    <ng-container matColumnDef="rank">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>
-        Rank
-        <!-- <i
-          class="fa fa-arrow-up"
-          aria-hidden="true"
-          (click)="onRankSort()"
-          style="cursor: pointer"
-        ></i> -->
-      </th>
-      <td mat-cell *matCellDef="let element">{{ element.rank }}</td>
+    <ng-container matColumnDef="Quota">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Quota</th>
+      <td mat-cell *matCellDef="let element">{{ element.Quota }}</td>
     </ng-container>
-    <!-- Weight Column -->
-    <ng-container matColumnDef="status">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+    <ng-container matColumnDef="Course_type">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Course Type</th>
+      <td mat-cell *matCellDef="let element">{{ element.Course_type }}</td>
+    </ng-container>
+    <!-- <ng-container matColumnDef="allocation_status">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        Allocation Status
+      </th>
       <td mat-cell *matCellDef="let element">
-        <div *ngIf="element.status === false">
+        {{ element.allocation_status }}
+      </td>
+    </ng-container> -->
+    <!-- Weight Column -->
+    <ng-container matColumnDef="allocation_status">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        Allocation Status
+      </th>
+      <td mat-cell *matCellDef="let element">
+        <div *ngIf="element.allocation_status === Allocated">
           <i class="fa fa-check-circle" style="font-size: 24px; color: red"></i>
         </div>
-        <div *ngIf="element.status === true">
+        <div *ngIf="element.allocation_status != Allocated">
           <i
             class="fa fa-check-circle"
             style="font-size: 24px; color: green"
@@ -64,46 +78,12 @@
     <tr mat-row *matRowDef="let row; columns: this.displayedColumns"></tr>
   </table>
 
-  <div class="mt-5 d-flex justify-content-end">
-    <button type="submit" class="btn btn-primary mr-2" (click)="onSeatAllot()">
+  <div class="m-5 d-flex justify-content-end">
+    <!-- <button type="submit" class="btn btn-primary mr-2" (click)="onSeatAllot()">
       Allot Seats
     </button>
     <button type="submit" class="btn btn-success" (click)="onSaveAllotment()">
       Save Allotment
-    </button>
-    <!-- <button
-      type="submit"
-      class="btn btn-outline-success"
-      (click)="popup = true"
-    >
-      Save Allotment
     </button> -->
   </div>
-
-  <div class="overlay" *ngIf="popup">
-    <div class="popup">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h2>Modal title</h2>
-          <!-- <h2>Here i am</h2> -->
-          <a class="close" (click)="popup = false">&times;</a>
-        </div>
-
-        <!-- <div class="container-fluid">Add rows here</div> -->
-
-        <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-secondary"
-            (click)="popup = false"
-          >
-            Close
-          </button>
-          <button type="button" class="btn btn-primary">Save</button>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
-
-<app-clg-list [hidden]="!goBack"></app-clg-list>

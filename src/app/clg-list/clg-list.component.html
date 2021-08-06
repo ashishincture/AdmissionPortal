@@ -15,7 +15,9 @@
         >
           <!-- <option disabled>Select Website</option> -->
           <option>None</option>
-          <option *ngFor="let clg of collegeList">{{ clg.name }}</option>
+          <option *ngFor="let clg of collegeList">
+            {{ clg.Institution_name }}
+          </option>
         </select>
         <!-- *ngFor="let clg of collegeList | filter: searchCollege" -->
         <!-- <div *ngFor="let clg of collegeList | filter: searchCollege">
@@ -38,4 +40,7 @@
   </div>
 </mat-toolbar>
 <app-carousel [hidden]="!hideCarousel"></app-carousel>
-<app-round [hidden]="!showRounds"></app-round>
+<!-- <app-round
+  [hidden]="!showRounds"
+  [collegeName]="this.searchCollege"
+></app-round> -->

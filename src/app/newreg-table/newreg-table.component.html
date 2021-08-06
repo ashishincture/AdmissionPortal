@@ -1,7 +1,7 @@
 <div style="width: 40%;">
     <form [formGroup]="form">
         <ng-container formArrayName="Credits_Details">
-            <mat-table [dataSource]="form.controls.Credits_Details.controls" class="mat-elevation-z8">
+            <mat-table [dataSource]="form.controls.Credits_Details.controls" class="mat-elevation-z8 regulationDetailsTable">
 
                 <ng-container matColumnDef="header-row-first-group">
                     <mat-header-cell *matHeaderCellDef [attr.colspan]="2" style="border-bottom: none;">
@@ -10,7 +10,7 @@
                 </ng-container>
 
                 <ng-container matColumnDef="header-row-second-group">
-                    <mat-header-cell *matHeaderCellDef [attr.colspan]="2" style="border-bottom: none;">
+                    <mat-header-cell *matHeaderCellDef [attr.colspan]="2" style="border-bottom: none;margin-left: 15px;">
                         <input matInput placeholder="Semesters" [value]="semNo">
                     </mat-header-cell>
                 </ng-container>
