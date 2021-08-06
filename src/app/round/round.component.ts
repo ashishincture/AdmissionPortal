@@ -26,6 +26,7 @@ export class RoundComponent implements OnInit {
   ) {}
   id;
   courses;
+  showCourses;
   freezeRound = [];
   showRounds;
   displayedColumns: string[] = [
@@ -39,6 +40,7 @@ export class RoundComponent implements OnInit {
   studentList;
   dataSource;
   ngOnInit(): void {
+    this.showCourses = false;
     let params: any = this.activatedRoute.snapshot.params;
     console.log(params.id);
     this.showRounds = true;
@@ -104,6 +106,7 @@ export class RoundComponent implements OnInit {
       cancelButtonText: 'Close',
     }).then((result) => {
       if (result.isConfirmed) {
+        this.showCourses = true;
         Swal.fire('Congrats', 'Seat alloted', 'success');
       } else if (result.isDismissed) {
         console.log('Clicked No, File is safe!');
