@@ -1,4 +1,4 @@
-<mat-tab-group mat-align-tabs="start">
+<mat-tab-group>
   <mat-tab label="Total Students">
     <!-- <p> -->
     <!-- <mat-toolbar> -->
@@ -68,7 +68,7 @@
     </div>
     <!-- </mat-toolbar> -->
   </mat-tab>
-  <mat-tab label="Courses"
+  <mat-tab label="Courses" [disabled]="!this.showCourses"
     ><section class="container">
       <div class="row mb-5">
         <!-- CSE -->
