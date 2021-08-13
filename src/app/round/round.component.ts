@@ -1,6 +1,7 @@
 import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { ViewEncapsulation } from '@angular/core';
 
 import { DetailsService } from '../details.service';
 import axios from 'axios';
@@ -16,6 +17,7 @@ export interface studentDetails {
   selector: 'app-round',
   templateUrl: './round.component.html',
   styleUrls: ['./round.component.css'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class RoundComponent implements OnInit {
   constructor(
