@@ -108,6 +108,10 @@ export class DataServiceService {
   getRegData(){
     return this.http.get(`${this.uri}/Regulation/getregulation/${this.instid}`);
   }
+  getInstitutionList(){
+    
+    return this.http.get(this.uri+"/institute/all/");
+  }
   getRegsDetails(reg_ID,dept_ID){
     this.getRegData().subscribe((data:any)=>{
       this.RegSData=data.data.Regulation;

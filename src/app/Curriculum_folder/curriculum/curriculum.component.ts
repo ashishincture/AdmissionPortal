@@ -48,6 +48,9 @@ export class CurriculumComponent implements OnInit,AfterViewInit {
     ViewFooter:false
   };
   CRCountModel;
+  selectedIns;
+  Institution;
+  detVisibility=false;
   constructor(
     private route:Router,
     private activatedRoute:ActivatedRoute,
@@ -68,22 +71,59 @@ export class CurriculumComponent implements OnInit,AfterViewInit {
       console.log(this.RegSData);
       this.service.RegSData=this.RegSData;
     });
+    this.service.getInstitutionList().subscribe((data:any)=>{
+      console.log(data);
+      this.Institution=data.insArray;
+      // for (const d of (data.insArray as any)) {
+      //   this.Institution.push({
+      //     instituteID: d.instituteID,
+      //     instituteName: d.instituteName
+      //   });
+      // }
+    } );
 
    }
 
   ngOnInit(): void {
-    this.CRdetails=this.fBuilder.group({
-          Regulation:['',[Validators.required]],
-          dept:['',[Validators.required]],
-          curriculum:['',[Validators.required]],
-          adYear:[],
-          semNo:[1,[Validators.required]]
-    });
-    //this.semData=this.service.semData;
-    this.subjecttypes=this.service.subjecttypes;
-    // this.deptData=this.service.getDeptData();
-    // this.CRData=this.service.getCRData();
     
+    this.CRdetails=this.fBuilder.group({
+      Regulation:['',[Validators.required]],
+      dept:['',[Validators.required]],
+      curriculum:['',[Validators.required]],
+      adYear:[],
+      semNo:[1,[Validators.required]]
+    });
+  }
+  onFetchInstitute(){
+    if(!this.selectedIns){
+      alert("Please select an institute");
+      return;
+    }
+    this.service.instid=this.selectedIns;
+    this.service.getRegData().subscribe((data:any)=>{
+
+      this.RegSData=data.data.Regulation;
+      //this.RegSData.pop();
+      //debugger;
+      console.log(this.RegSData);
+      this.service.RegSData=this.RegSData;
+      //this.semData=this.service.semData;
+      this.subjecttypes=this.service.subjecttypes;
+      // this.deptData=this.service.getDeptData();
+      // this.CRData=this.service.getCRData();
+    this.detVisibility=true;
+    },error=>{
+      this.detVisibility=false;
+      alert(error.error.error);
+      return;
+    });
+    
+    
+
+  }
+  ChangeIns(){
+    this.detVisibility=false;
+    this.selectedIns="";
   }
   ngAfterViewInit(){
     
