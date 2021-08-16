@@ -95,7 +95,9 @@ export class DataService {
   }
   ]
   constructor(private http: HttpClient) { }
-
+  getInstitutionList(){
+    return this.http.get(this.uri+"/institute/all/");
+  }
   getRegulationData() {
     // var instid = "IN0010";
     return this.http.get(`${this.uri}/Regulation/getregulation/${this.instid}`);
@@ -172,6 +174,7 @@ export class DataService {
   }
   postAddRegData(data:any){
   console.log(data);
+  console.log(this.instid);
   // const httpOptions = {
   //   headers: new this.HttpHeader({
   //     'Content-Type':  'application/json'

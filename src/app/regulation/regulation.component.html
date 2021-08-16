@@ -2,8 +2,22 @@
     <mat-toolbar class="matToolbar">
         <p class="verClass">Regulation</p>
     </mat-toolbar>
-    <div>
+    <div style="position: absolute;height: 100%;width: 100%;"  *ngIf="!detVisibility"> 
+        <div class="row">
+            <div class="col-sm-3 form-group" style="width:20%; margin-left: 1rem; margin-top: 0.7rem;">
+                <mat-label style="color:white;">Select Institution</mat-label>
+                <mat-select [(value)]="selectedIns"  class="styleSelect">
+                    <mat-option *ngFor="let Ins of Institution" [value]="Ins.instituteID">{{Ins.instituteName}}</mat-option>
+                </mat-select>
+            </div>
+            <div class="col form-group">
+                <button mat-raised-button  (click)="onFetchInstitute()" class="getDetailsClass">Get Details</button>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="detVisibility">
         <button mat-raised-button class="addRegulationClass" (click)="onAddRegulation()">+ Add</button>
+        <button mat-raised-button  (click)="ChangeIns()" class="addRegulationClass">Change Institute</button>
         <div class="regulationTiles">
             <div *ngFor="let regulation of regulations;let i=index">
                 <div class="regulationClass" id="regulationId" (click)="onRegulationPress(regulation.Regulation_ID)">
