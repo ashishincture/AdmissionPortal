@@ -1,4 +1,3 @@
-// import { PeriodicElement } from './../data/dataStr';
 import { DataSource } from '@angular/cdk/table';
 import { DialogMarksUploadComponent } from '../dialog-marks-upload/dialog-marks-upload.component';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -13,6 +12,7 @@ import { FormGroup, FormControl, FormBuilder, Validators, AbstractControl, FormA
 interface Semester {
   num: string;
 }
+
 export interface PeriodicElement {
   name: string;
   id: number;
@@ -34,11 +34,13 @@ export interface Subj {
   evalCriteria: any
   _id: string
 }
+
 @Component({
   selector: 'app-marks-insertion',
   templateUrl: './marks-insertion.component.html',
   styleUrls: ['./marks-insertion.component.css']
 })
+
 export class MarksInsertionComponent implements OnInit {
   getDet = true;
   buttonS = true;
@@ -65,29 +67,17 @@ export class MarksInsertionComponent implements OnInit {
   semester: Semester[] = [];
   // Branch:branch[]=[];
   Subjects: Subj[] = [];
-  displayedColumnsnew = ["id", "name", "assignment", "theory", "lab"];
-  dataSourcenew = [
-    { "id": 1401, "name": "Rohita", "max": 30, "assignment": 0, "lab": 0, "theory": 0, "attendance": 0, "total": 0 },
-    { "id": 1402, "name": "Harshita", "max": 30, "assignment": 0, "lab": 0, "theory": 0, "attendance": 0, "total": 0 },
-    { "id": 1403, "name": "Bhargav", "max": 30, "assignment": 0, "lab": 0, "theory": 0, "attendance": 0, "total": 0 },
-    { "id": 1404, "name": "Nourin", "max": 30, "assignment": 0, "lab": 0, "theory": 0, "attendance": 0, "total": 0 },
-    { "id": 1405, "name": "Sweety", "max": 30, "assignment": 0, "lab": 0, "theory": 0, "attendance": 0, "total": 0 },
-    { "id": 1406, "name": "Nivetha", "max": 30, "assignment": 0, "lab": 0, "theory": 0, "attendance": 0, "total": 0 },
-    { "id": 1407, "name": "Darshan", "max": 30, "assignment": 0, "lab": 0, "theory": 0, "attendance": 0, "total": 0 },
-    { "id": 1408, "name": "Dikshanth", "max": 30, "assignment": 0, "lab": 0, "theory": 0, "attendance": 0, "total": 0 },
-    { "id": 1409, "name": "Smruthi", "max": 30, "assignment": 0, "lab": 0, "theory": 0, "attendance": 0, "total": 0 },
-    { "id": 1410, "name": "Gayatri", "max": 30, "assignment": 0, "lab": 0, "theory": 0, "attendance": 0, "total": 0 }
-  ];
-  maxCol = [{ 'columnName': 'assignment', 'maxMarks': 30 }, { 'columnName': 'theory', 'maxMarks': 60 }, { 'columnName': 'lab', 'maxMarks': 10 }];
+
   // Courses:course[]=[];
   // year:yearT[]=[];
+
   constructor(private _ApiMarksUploadService: ApiMarksUploadService, private fBuilder: FormBuilder, public dialog: MatDialog) { }
   exampleFormControl = new FormControl('');
   title = 'new-Project';
-  subB = false;
+  showPreview = false;
   maxA: number = 0;
   maxAt: number = 0;
-  hidePanel = false;
+  showPanel = false;
   maxL: number = 0;
 
   maxT: number = 0;
@@ -99,16 +89,18 @@ export class MarksInsertionComponent implements OnInit {
   validate: boolean = false;
   ArrayP: PeriodicElement[] = [];
   subjectC: any[] = [];
+
   openDialog() {
 
     this.panelExpansion = false;
-
+    this.showPreview = false;
     this.displayedColumns = [];
-    this.displayedColumns = ["ID", "NAME"];
+
     let DialogRef = this.dialog.open(DialogMarksUploadComponent, {
       width: "500px",
       data: { aExcelData: this.ArrayP, payloadD: this.payloadDownload }
     });
+
     DialogRef.afterClosed().subscribe(result => {
       console.log(result);
       if (result.length == undefined) {
@@ -124,20 +116,22 @@ export class MarksInsertionComponent implements OnInit {
         this.subjectC.forEach(element => {
           this.displayedColumns.push(element.type_of_evaluation)
         })
-        this.subB = true;
+        this.showPreview = true;
       }
+
       else {
         this.dataSource = result;
       }
-      // debugger
-
     });
 
 
   }
+
   payload: object = {};
+
   loadPanel() {
-    this.hidePanel = true;
+    this.showPanel = true;
+    this.panelExpansion = true;
     this.payload = {
 
       "dept_id": "1",
@@ -171,31 +165,6 @@ export class MarksInsertionComponent implements OnInit {
   sw = "";
   max = 0;
 
-  addfile(event: any) {
-
-    this.subB = true;
-    this.file = event.target.files[0];
-    let fileReader = new FileReader();
-    fileReader.readAsArrayBuffer(this.file);
-    fileReader.onload = (e) => {
-      this.arrayBuffer = fileReader.result;
-      var data = new Uint8Array(this.arrayBuffer);
-      var arr = new Array();
-      for (var i = 0; i != data.length; ++i) arr[i] = String.fromCharCode(data[i]);
-      var bstr = arr.join("");
-      var workbook = XLSX.read(bstr, { type: "binary" });
-      var first_sheet_name = workbook.SheetNames[0];
-      var worksheet = workbook.Sheets[first_sheet_name];
-      console.log(XLSX.utils.sheet_to_json(worksheet, { raw: true }));
-      var arraylist = XLSX.utils.sheet_to_json(worksheet, { raw: true });
-      // this.filelist = [];    
-      // console.log(this.filelist);
-      // this.ELEMENT_DATA = XLSX.utils.sheet_to_json(worksheet,{raw:true});    
-      this.dataSource = XLSX.utils.sheet_to_json(worksheet, { raw: true });
-      // this.displayTable = true;
-
-    }
-  }
   Institution: any[] = []
 
   ngOnInit(): void {
@@ -203,15 +172,15 @@ export class MarksInsertionComponent implements OnInit {
       console.log(data);
       this.Institution = data.insArray;
     });
-
-
   }
+
   InsSel = false;
   RegSel = false;
   deptSel = false;
   currSel = false;
   yearSel = false;
   SemSel = false;
+
   onChangeIns() {
     this.InsSel = true
     this.payload = {
@@ -222,6 +191,7 @@ export class MarksInsertionComponent implements OnInit {
       this.Regulation = data;
     });
   }
+
   onChangeReg() {
     this.Department = [];
     this.RegSel = true;
@@ -237,7 +207,9 @@ export class MarksInsertionComponent implements OnInit {
     this.semester = [];
     this.Subjects = [];
   }
+
   BatchSel = false;
+
   onChangeDept() {
     this.Curriculum = [];
     this.deptSel = true;
@@ -254,6 +226,7 @@ export class MarksInsertionComponent implements OnInit {
     this.Subjects = [];
   }
   BranchSel = false;
+
   onChangeCurr() {
     // this.currSel=true;
     this.semester = [];
@@ -272,6 +245,7 @@ export class MarksInsertionComponent implements OnInit {
 
     this.Subjects = [];
   }
+
   // onChangeYear(){
   //   this.yearSel=true;
   //   this.payload = {
@@ -299,6 +273,7 @@ export class MarksInsertionComponent implements OnInit {
       this.Subjects = data.data.Subjects;
     });
   }
+
   onChangeSub() {
     // this.RegSel=true;
     // this.payload = {
@@ -313,6 +288,15 @@ export class MarksInsertionComponent implements OnInit {
       this.getDet = false;
     }
 
+  }
+
+  uploadData() {
+
+    this._ApiMarksUploadService.postExcelData(this.dataSource).subscribe(data => {
+      console.log(data);
+      alert("Marks uploaded successfully");
+    },
+      error => alert(error));
   }
 
 

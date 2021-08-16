@@ -72,7 +72,7 @@ width: 100%;
       <!-- <button mat-raised-button style="margin:20px" (click)="loadPanel()"></button> -->
     </div>
 
-    <ng-template [ngIf]="hidePanel">
+    <ng-template [ngIf]="showPanel">
       <div class="details-panel">
         <mat-accordion class="example-headers-align" multi>
           <mat-expansion-panel [expanded]=panelExpansion class="expPanel" (opened)="panelExpansion=true"
@@ -98,11 +98,11 @@ width: 100%;
       </div>
     </ng-template>
 
-    <ng-template [ngIf]="subB">
+    <ng-template [ngIf]="showPreview">
       <div class="preview-container">
         <div class="preview-header">
           <mat-label>Marks Preview</mat-label>
-          <button mat-raised-button class="action-button">Upload</button>
+          <button mat-raised-button class="action-button" (click)="uploadData()">Upload</button>
         </div>
         <div class="table-container">
           <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
