@@ -55,7 +55,6 @@ export class DataService {
   eidtFlag = false;
   instid = "IN0010";
   allDeps;
-
   regulationListData: regulationList[] = [
     { regulationName: 'R15' },
     { regulationName: 'R16' },
@@ -201,7 +200,7 @@ export class DataService {
     var dataobj = {
       Department_ID: dep[j].courseid,
       Department_Name:dep[j].coursename,
-      total_Credit:28,
+      Total_Credit:28,
       Semester_Count: sem,
       Credits_Details: sub
     }
