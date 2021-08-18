@@ -25,7 +25,10 @@ export class RoundComponent implements OnInit {
     service: DetailsService,
     public router: Router,
     private toastr: ToastrService
-  ) {}
+  ) {
+    this.aCourses = service.getCourses();
+  }
+  aCourses;
   id;
   courses;
   showCourses;
@@ -42,6 +45,7 @@ export class RoundComponent implements OnInit {
   studentList;
   dataSource;
   ngOnInit(): void {
+    console.log(this.aCourses);
     this.showCourses = false;
     let params: any = this.activatedRoute.snapshot.params;
     console.log(params.id);
@@ -57,6 +61,15 @@ export class RoundComponent implements OnInit {
         console.log(resp.data.data);
         this.courses = resp.data.data[0].courseDetails;
         console.log(resp.data.data[0].courseDetails);
+        for (var i = 0; i < this.courses.length; i++) {
+          for (var j = 0; j < this.aCourses.length; j++) {
+            if (this.courses[i].Course_name.includes(this.aCourses[j].name)) {
+              this.courses[i].desc = this.aCourses[j].desc;
+              this.courses[i].imgURL = this.aCourses[j].imgURL;
+              break;
+            }
+          }
+        }
       })
       .catch((err) => {
         this.courses = err;

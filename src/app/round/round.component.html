@@ -66,6 +66,7 @@
     </div>
     <!-- </mat-toolbar> -->
   </mat-tab>
+
   <mat-tab label="Courses" [disabled]="!this.showCourses"
     ><section class="container">
       <div class="row mb-5">
@@ -83,7 +84,7 @@
                 {{ course.Course_name }}
               </h4>
               <p class="text-muted text-justify">
-                {{ course.Course_description }}
+                {{ course.desc }}
               </p>
               <p class="card-title">Total Seats : {{ course.Seats }}</p>
               <div class="text-center">
