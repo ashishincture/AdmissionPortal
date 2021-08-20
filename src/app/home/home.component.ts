@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
 import { Globals } from '../globals';
 
 @Component({
@@ -62,6 +63,7 @@ export class HomeComponent implements OnInit {
     public router: Router,
     public global: Globals,
     public http: HttpClient,
+    private toastr: ToastrService
 
   ) {}
   onPressAddSubject() {
@@ -77,6 +79,7 @@ export class HomeComponent implements OnInit {
       Course_duration: '',
       SeatAlloted: [],
     };
+    this.toastr.success('Course Registered', 'Success');
     this.toggle();
   }
   toggle() {
@@ -99,6 +102,7 @@ export class HomeComponent implements OnInit {
       Course_duration: '',
       SeatAlloted: [],
     };
+    this.toastr.success('Course Registered', 'Success');
     this.toggle2();
   }
   toggle2() {
@@ -123,6 +127,7 @@ export class HomeComponent implements OnInit {
       ownershipType: this.dataTemplate.OwnershipType,
       courseDetails: this.dataTemplate.SubjectListCollege,
     });
+    this.toastr.success('College Added', 'Success');
     univ.subscribe((data: any) => console.log(data));
     this.dataTemplate = {
       college: '',
@@ -152,6 +157,7 @@ export class HomeComponent implements OnInit {
       ownershipType: this.dataTemplateDep.OwnershipType,
       courseDetails: this.dataTemplateDep.SubjectListDept,
     });
+    this.toastr.success('Department Added', 'Success');
     univ.subscribe((data: any) => console.log(data));
     this.dataTemplateDep = {
       dept: '',
