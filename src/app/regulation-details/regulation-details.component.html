@@ -1,4 +1,7 @@
-<body style="background-color: #333333;position: absolute;height: 100%;width: 100%;">
+<div style="background-color: #333333;">
+    <mat-toolbar class="matToolbar">
+        <p class="verClass">Regulation Details</p>
+    </mat-toolbar>
     <div class="regulationdetailscontainer">
         <form [formGroup]="myForm" class="row">
             <div class="regdetails form-group col">
@@ -38,14 +41,14 @@
         </form>
 
     </div>
-    <button mat-raised-button class="addRegulationClass" color="primary" (click)="onEditReg()">Edit</button>
+    <button mat-raised-button class="addRegulationClass" (click)="onDeleteReg()">Delete</button>
     <div class="containerDepartments">
         <div class="department1" *ngFor="let data of tableData">
             <table mat-table [dataSource]="data.Credits_Details" class="mat-elevation-z8 regulationDetailsTable"
-                style="width: 97%;" (click)="onClickTable(data.Department_ID)">
+                style="width: 97%;margin-bottom: 1rem;">
                 <ng-container matColumnDef="header-row-first-group">
                     <th mat-header-cell *matHeaderCellDef [attr.colspan]="1" style="border-bottom: none;">
-                        {{data.Department_ID}}
+                        {{data.Department_Name}}
                     </th>
                 </ng-container>
 
@@ -80,4 +83,4 @@
             <!-- </div> -->
         </div>
     </div>
-</body>
+</div>

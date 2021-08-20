@@ -10,6 +10,7 @@ export class NavbarComponent implements OnInit {
   events: string[] = [];
   opened: boolean;
   showMenu = false;
+  showSkeletonMenu = false;
 
   constructor(public router: Router) {}
 
@@ -59,5 +60,20 @@ export class NavbarComponent implements OnInit {
   }
   goToCurriculum() {
     this.router.navigate(['/Curriculum']);
+  }
+  goToMarksView() {
+    this.router.navigate(['/marksView']);
+  }
+  goToMarksInsertion() {
+    this.router.navigate(['/marksInsertion']);
+  }
+  goToSkeletonView() {
+    this.router.navigate(['/skeletonView']);
+  }
+  goToSkeletonDefaults() {
+    this.router.navigate(['/skeletonDefaults']);
+  }
+  toggleSkeletonMenu() {
+    this.showSkeletonMenu = !this.showSkeletonMenu;
   }
 }

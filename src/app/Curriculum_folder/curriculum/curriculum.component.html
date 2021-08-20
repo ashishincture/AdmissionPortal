@@ -1,150 +1,201 @@
-<div style="background-color:  rgb(0 0 0 / 93%);position: absolute;height: 100%;width: 100%;">
-<mat-toolbar style="justify-content: right; float: right; background-color: rgba(17, 17, 17, 0.87);">
-    <span style="width: inherit;"></span>
-    <button class="Btn" mat-raised-button *ngIf="showForm.viewCR" (click)="createCR()" color="primary" style="float: inline-end; width:7rem; font-size: 1.2rem;">Create</button>
-  </mat-toolbar>
-<div class="container-fluid " style="float: inherit; width:100%; height:fit-content; background-color: rgba(17, 17, 17, 0.87);">
-    <div *ngIf="showForm.viewCR">
-        <form [formGroup]="CRdetails" > 
-            <div class="row">
-                <div class="col form-group">
-                    <mat-form-field appearance="fill" >
-                        <mat-label style="color:white; font-size: 1rem;">Choose an Department</mat-label>
-                        <mat-select  class="dropdown" style="color:white"formControlName="dept" [class.is-invalid]="CRdetails.get('dept').invalid && CRdetails.get('dept').touched">
-                            <mat-option *ngFor="let dept of deptData" [value]="dept.Department_ID">{{dept.Department_Name}}</mat-option>
-                        </mat-select>
-                        <small class="text-danger" [class.d-none]="CRdetails.get('dept').valid || CRdetails.get('dept').untouched">Department is required</small>
-                    </mat-form-field> 
-                </div>
-                <div class="col form-group">
-                    <mat-form-field appearance="fill">
-                        <mat-label  style="color:white; font-size: 1rem;">Choose an curriculum</mat-label>
-                        <mat-select (selectionChange)="onSelectCR($event)" formControlName="curriculum" [class.is-invalid]="CRdetails.get('curriculum').invalid && CRdetails.get('curriculum').touched">
-                            <mat-option *ngFor="let CR of CRData" [value]="CR.code">{{CR.code}}</mat-option>
-                        </mat-select>
-                        <small class="text-danger" [class.d-none]="CRdetails.get('curriculum').valid || CRdetails.get('curriculum').untouched">curriculum is required</small>
-                    </mat-form-field>                 
-                </div>
-                <div class="col form-group">
-                    <mat-form-field appearance="fill">
-                        <mat-label  style="color:white; font-size: 1rem;">Choose an Academic year</mat-label>
-                        <mat-select formControlName="adYear" [class.is-invalid]="CRdetails.get('adYear').invalid && CRdetails.get('adYear').touched">
-                            <mat-option *ngFor="let Year of ADyears" [value]="Year.startYear">{{Year.startYear}}-{{Year.endYear}}</mat-option>
-                        </mat-select>
-                        <small class="text-danger" [class.d-none]="CRdetails.get('adYear').valid || CRdetails.get('adYear').untouched">academic Year is required</small>
-                    </mat-form-field>                  
-                </div>
-                <div class="col form-group">
-                    <mat-form-field appearance="fill">
-                        <mat-label>Choose an semester</mat-label>
-                        <mat-select formControlName="semNo" [class.is-invalid]="CRdetails.get('semNo').invalid && CRdetails.get('semNo').touched">
-                            <mat-option *ngFor="let sem of semData" [value]="sem.name">{{sem.name}}</mat-option>
-                        </mat-select>
-                        <small class="text-danger" [class.d-none]="CRdetails.get('semNo').valid || CRdetails.get('semNo').untouched">academic Year is required</small>
-                    </mat-form-field>                 
-                </div>
-            </div>  
-              
-        </form> 
-        <button class="Btn" style="font-size: 1.2rem; width: 6rem;" mat-raised-button *ngIf="showForm.viewCR" (click)="ViewCR()">Submit</button>
+<div style="background-color:  rgb(0 0 0 / 93%);position: absolute;height: 100%;width: 100%;"  *ngIf="!detVisibility"> 
+    <div class="row">
+        <div class="col-sm-3 form-group" style="width:20%">
+            <mat-label style="color:white;">Select Institution</mat-label>
+            <mat-select [(value)]="selectedIns"  class="styleSelect">
+                <mat-option *ngFor="let Ins of Institution" [value]="Ins.instituteID">{{Ins.instituteName}}</mat-option>
+            </mat-select>
+        </div>
+        <div class="col form-group">
+            <button mat-raised-button  (click)="onFetchInstitute()" class="example-icon" 
+            style="width:7rem; font-size: 1rem; margin-top: 18px;">Get Details</button>
+        </div>
     </div>
-   
-    <div *ngIf="showForm.createCR">
-        <form [formGroup]="CreateCRdetails" > 
-            <div class="row">
-                <div class="col form-group">
-                    <mat-form-field appearance="fill">
+</div>
+<div style="background-color:  rgb(0 0 0 / 93%);position: absolute;height: 100%;width: 100%;" *ngIf="detVisibility">
+    <mat-toolbar
+        style="justify-content: right; float: right; background-color: rgba(17, 17, 17, 0.87); margin-top: 0.5rem;">
+        <span style="width: inherit;"></span>
+        <button class="btnSearch" mat-raised-button *ngIf="showForm.viewCR" (click)="createCR()" color="primary"
+            style="float: inline-end; width:7rem; font-size: 1.2rem;">Create</button>
+        <button class="btnSearch" mat-raised-button  (click)="ChangeIns()" color="#2b2e31"
+            style="float: inline-end; width:11rem; font-size: 15px; color: white;
+            background-color: #2b2e31;">Change Institute</button>
+    </mat-toolbar>
+    <div class="container-fluid"
+        style="float: inherit; width:100%; height:fit-content; background-color: rgba(17, 17, 17, 0.87);">
+        <div *ngIf="showForm.viewCR">
+            <form [formGroup]="CRdetails">
+                <div class="row">
+                    <div class="col form-group">
+
                         <mat-label style="color:white;">Choose an Regulation</mat-label>
-                        <mat-select formControlName="Regulation" [class.is-invalid]="CreateCRdetails.get('Regulation').invalid && CreateCRdetails.get('Regulation').touched">
-                            <mat-option *ngFor="let Regulation of RegSData" [value]="Regulation.Regulation_Name">{{Regulation.Regulation_Name}}</mat-option>
+                        <mat-select formControlName="Regulation" class="styleSelect"
+                            [class.is-invalid]="CRdetails.get('Regulation').invalid && CRdetails.get('Regulation').touched"
+                            (selectionChange)="onSelectVReg()">
+                            <mat-option *ngFor="let Regulation of RegSData" [value]="Regulation.Regulation_Name">
+                                {{Regulation.Regulation_Name}}</mat-option>
                         </mat-select>
-                        <small class="text-danger" [class.d-none]="CreateCRdetails.get('Regulation').valid || CreateCRdetails.get('Regulation').untouched">Regulation is required</small>
-                    </mat-form-field> 
+                        <small class="text-danger"
+                            [class.d-none]="CRdetails.get('Regulation').valid || CRdetails.get('Regulation').untouched">Regulation
+                            is required</small>
+
+                    </div>
+                    <div class="col form-group">
+
+                        <mat-label style="color:white; font-size: 1rem;">Choose an Department</mat-label>
+                        <mat-select class="styleSelect" formControlName="dept"
+                            [class.is-invalid]="CRdetails.get('dept').invalid && CRdetails.get('dept').touched"
+                            (selectionChange)="onSelectVDept()">
+                            <mat-option *ngFor="let dept of deptData" [value]="dept.Department_ID">
+                                {{dept.Department_Name}}</mat-option>
+                        </mat-select>
+                        <small class="text-danger"
+                            [class.d-none]="CRdetails.get('dept').valid || CRdetails.get('dept').untouched">Department
+                            is required</small>
+
+                    </div>
+                    <div class="col form-group">
+
+                        <mat-label style="color:white; font-size: 1rem;">Choose an Batch year</mat-label>
+                        <mat-select class="styleSelect" (selectionChange)="onSelectCR($event)"
+                            formControlName="curriculum"
+                            [class.is-invalid]="CRdetails.get('curriculum').invalid && CRdetails.get('curriculum').touched">
+                            <mat-option *ngFor="let CR of CRData" [value]="CR.Batch_Year">{{CR.Batch_Year}}
+                            </mat-option>
+                        </mat-select>
+                        <small class="text-danger"
+                            [class.d-none]="CRdetails.get('curriculum').valid || CRdetails.get('curriculum').untouched">curriculum
+                            is required</small>
+
+                    </div>
+
+                    <div class="col form-group">
+
+                        <mat-label style="color:white; font-size: 1rem;">Choose an semester</mat-label>
+                        <mat-select class="styleSelect" formControlName="semNo"
+                            [class.is-invalid]="CRdetails.get('semNo').invalid && CRdetails.get('semNo').touched">
+                            <mat-option *ngFor="let sem of semData" [value]="sem.sNo">{{sem.sNo}}</mat-option>
+                        </mat-select>
+                        <small class="text-danger"
+                            [class.d-none]="CRdetails.get('semNo').valid || CRdetails.get('semNo').untouched">academic
+                            Year is required</small>
+
+                    </div>
                 </div>
-                <div class="col form-group">
-                    <mat-form-field appearance="fill">
+
+            </form>
+            <button class="example-icon" mat-raised-button *ngIf="showForm.viewCR" (click)="ViewCR()">Submit</button>
+        </div>
+
+        <div *ngIf="showForm.createCR">
+            <form [formGroup]="CreateCRdetails">
+                <div class="row">
+                    <div class="col form-group">
+                        <mat-label style="color:white;">Choose an Regulation</mat-label>
+                        <mat-select class="styleSelect" formControlName="Regulation"
+                            [class.is-invalid]="CreateCRdetails.get('Regulation').invalid && CreateCRdetails.get('Regulation').touched"
+                            (selectionChange)="onSelectReg()">
+                            <mat-option *ngFor="let Regulation of RegSData" [value]="Regulation.Regulation_Name">
+                                {{Regulation.Regulation_Name}}</mat-option>
+                        </mat-select>
+                        <small class="text-danger"
+                            [class.d-none]="CreateCRdetails.get('Regulation').valid || CreateCRdetails.get('Regulation').untouched">Regulation
+                            is required</small>
+
+                    </div>
+                    <div class="col form-group">
+
                         <mat-label style="color:white;">Choose an Department</mat-label>
-                        <mat-select formControlName="dept" [class.is-invalid]="CreateCRdetails.get('dept').invalid && CreateCRdetails.get('dept').touched">
-                            <mat-option *ngFor="let dept of deptData" [value]="dept.Department_ID">{{dept.Department_Name}}</mat-option>
+                        <mat-select class="styleSelect" formControlName="dept"
+                            [class.is-invalid]="CreateCRdetails.get('dept').invalid && CreateCRdetails.get('dept').touched">
+                            <mat-option *ngFor="let dept of deptData" [value]="dept.Department_ID">
+                                {{dept.Department_Name}}</mat-option>
                         </mat-select>
-                        <small class="text-danger" [class.d-none]="CreateCRdetails.get('dept').valid || CreateCRdetails.get('dept').untouched">Department is required</small>
-                    </mat-form-field> 
-                </div>
-                <div class="col form-group">
-                    <mat-form-field appearance="fill">
+                        <small class="text-danger"
+                            [class.d-none]="CreateCRdetails.get('dept').valid || CreateCRdetails.get('dept').untouched">Department
+                            is required</small>
+                    </div>
+                    <div class="col form-group">
+
                         <mat-label style="color:white;">Enter an curriculum</mat-label>
                         <!-- <mat-select (selectionChange)="onSelectCR($event)" formControlName="curriculum" [class.is-invalid]="CreateCRdetails.get('curriculum').invalid && CreateCRdetails.get('curriculum').touched">
                             <mat-option *ngFor="let CR of CRData" [value]="CR.code">{{CR.code}}</mat-option>
                         </mat-select> -->
-                        <input matInput formControlName="curriculum" [class.is-invalid]="CreateCRdetails.get('curriculum').invalid && CreateCRdetails.get('curriculum').touched">
-                        <small class="text-danger" [class.d-none]="CreateCRdetails.get('curriculum').valid || CreateCRdetails.get('curriculum').untouched">curriculum is required</small>
-                    </mat-form-field>                 
-                </div>
-                <div class="col form-group">
-                    <mat-form-field appearance="fill">
+                        <input class="styleSelect" matInput formControlName="curriculum"
+                            [class.is-invalid]="CreateCRdetails.get('curriculum').invalid && CreateCRdetails.get('curriculum').touched">
+                        <small class="text-danger"
+                            [class.d-none]="CreateCRdetails.get('curriculum').valid || CreateCRdetails.get('curriculum').untouched">curriculum
+                            is required</small>
+
+                    </div>
+                    <div class="col form-group">
+
                         <mat-label style="color:white;">Enter an CR Id</mat-label>
                         <!-- <mat-select (selectionChange)="onSelectCR($event)" formControlName="curriculum" [class.is-invalid]="CreateCRdetails.get('curriculum').invalid && CreateCRdetails.get('curriculum').touched">
                             <mat-option *ngFor="let CR of CRData" [value]="CR.code">{{CR.code}}</mat-option>
                         </mat-select> -->
-                        <input matInput formControlName="CRid" [class.is-invalid]="CreateCRdetails.get('CRid').invalid && CreateCRdetails.get('CRid').touched">
-                        <small class="text-danger" [class.d-none]="CreateCRdetails.get('CRid').valid || CreateCRdetails.get('CRid').untouched">curriculum is required</small>
-                    </mat-form-field>                 
-                </div>
-                <div class="col form-group">
-                    <mat-form-field appearance="fill">
+                        <input class="styleSelect" matInput formControlName="CRid"
+                            [class.is-invalid]="CreateCRdetails.get('CRid').invalid && CreateCRdetails.get('CRid').touched">
+                        <small class="text-danger"
+                            [class.d-none]="CreateCRdetails.get('CRid').valid || CreateCRdetails.get('CRid').untouched">curriculum
+                            is required</small>
+
+                    </div>
+                    <div class="col form-group">
+
                         <mat-label style="color:white;">Choose an Academic year</mat-label>
                         <!-- <mat-select formControlName="adYear" [class.is-invalid]="CreateCRdetails.get('adYear').invalid && CreateCRdetails.get('adYear').touched">
                             <mat-option *ngFor="let Year of ADyears" [value]="Year.startYear">{{Year.startYear}}-{{Year.endYear}}</mat-option>
                         </mat-select> -->
-                        <input matInput formControlName="adYear" [class.is-invalid]="CreateCRdetails.get('adYear').invalid && CreateCRdetails.get('adYear').touched">
-                        <small class="text-danger" [class.d-none]="CreateCRdetails.get('adYear').valid || CreateCRdetails.get('adYear').untouched">academic Year is required</small>
-                    </mat-form-field>                  
+                        <input class="styleSelect" matInput formControlName="adYear"
+                            [class.is-invalid]="CreateCRdetails.get('adYear').invalid && CreateCRdetails.get('adYear').touched">
+                        <small class="text-danger"
+                            [class.d-none]="CreateCRdetails.get('adYear').valid || CreateCRdetails.get('adYear').untouched">academic
+                            Year is required</small>
+
+                    </div>
+                    <div class="col form-group" *ngIf="showForm.createCR && showForm.ViewFooter">
+
+                        <mat-label style="color:white;">Semester No</mat-label>
+                        <p style="color:black; padding: 0.5rem; background-color: #b5b5b5; border-radius: 0.5rem; ">
+                            {{CreateCRdetails.value.semNo}}</p>
+
+                    </div>
                 </div>
-                <div class="col form-group" *ngIf="showForm.createCR && showForm.ViewFooter">
-                    
-                    <mat-label style="color:white;">Semester No</mat-label>
-                    <p style="color:white;">{{CreateCRdetails.value.semNo}}</p>
-                             
-            </div>
-            </div>  
-              
-        </form> 
-        <button mat-raised-button *ngIf="showForm.createCR && !showForm.ViewFooter" (click)="CreateCRinReg()" class="Btn">Create CR</button>
+            </form>
+            <button mat-raised-button *ngIf="showForm.createCR && !showForm.ViewFooter" (click)="CreateCRinReg()"
+                class="example-icon">Create CR</button>
+        </div>
+        <div style="margin-left:20px;margin-right:20px">
+            <mat-horizontal-stepper linear #stepper *ngIf="showForm.ViewFooter" class="styleStepper">
+
+                <mat-step *ngFor="let sem of CRCountModel" class="styleStep">
+
+                    <ng-template matStepLabel>
+                        <div class="row" style="color: white; margin-left: 0px;">
+                            Core : {{sem.subjCount.CoreCount}}
+                        </div>
+                        <div class="row" style="color: white; margin-left: 0px;">
+                            PE : {{sem.subjCount.PECount}}
+                        </div>
+                        <div class="row" style="color: white; margin-left: 0px;">
+                            OE : {{sem.subjCount.OECount}}
+                        </div>
+
+                    </ng-template>
+
+                    <footer *ngIf="showForm.ViewFooter" class="footer">
+                        <button mat-raised-button matStepperNext *ngIf="showForm.createCR" (click)="NextSem()"
+                            class="Btn">Next</button>
+                    </footer>
+                </mat-step>
+            </mat-horizontal-stepper>
+
+        </div>
+        <ng-container #container style="height: fit-content;"></ng-container>
+
+
+
     </div>
-    
-      
-    <ng-container #container style="height: fit-content;"></ng-container>   
-    <!-- <div *ngFor="let subj of subjects">
-        <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                Personal data
-              </mat-panel-title>
-              <mat-panel-description>
-                Type your name and age
-                <mat-icon>account_circle</mat-icon>
-              </mat-panel-description>
-            </mat-expansion-panel-header>
-        
-            <mat-form-field>
-              <mat-label>First name</mat-label>
-              <input matInput>
-            </mat-form-field>
-        
-            <mat-form-field>
-              <mat-label>Age</mat-label>
-              <input matInput type="number" min="1">
-            </mat-form-field>
-            <mat-action-row>
-              <button mat-button color="primary" (click)="nextStep()">Next</button>
-            </mat-action-row>
-          </mat-expansion-panel> -->
-        
-
-   
-    <footer *ngIf="showForm.ViewFooter" class="footer">
-        <button mat-raised-button *ngIf="showForm.createCR" (click)="NextSem()">Next</button> 
-    </footer>
-
 </div>
-

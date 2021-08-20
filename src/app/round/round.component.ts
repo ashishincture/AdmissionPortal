@@ -1,65 +1,131 @@
 import { ToastrService } from 'ngx-toastr';
-import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import { ViewEncapsulation } from '@angular/core';
 
 import { DetailsService } from '../details.service';
-
+import axios from 'axios';
+import Swal from 'sweetalert2';
+export interface studentDetails {
+  student_id: string;
+  name: string;
+  Quota: string;
+  Course_type: string;
+  allocation_status: string;
+}
 @Component({
   selector: 'app-round',
   templateUrl: './round.component.html',
   styleUrls: ['./round.component.css'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class RoundComponent implements OnInit {
   constructor(
-    private _router: Router,
+    private activatedRoute: ActivatedRoute,
     service: DetailsService,
+    public router: Router,
     private toastr: ToastrService
   ) {
-    this.courses = service.getCourses();
+    this.aCourses = service.getCourses();
   }
+  aCourses;
+  id;
   courses;
+  showCourses;
   freezeRound = [];
   showRounds;
+  displayedColumns: string[] = [
+    'student_id',
+    'name',
+    'Quota',
+    'Course_type',
+    'allocation_status',
+  ];
+  ELEMENT_DATA: studentDetails[];
+  studentList;
+  dataSource;
   ngOnInit(): void {
-    this.freezeRound[1] = false;
-    this.freezeRound[2] = false;
-    this.freezeRound[3] = false;
-
+    console.log(this.aCourses);
+    this.showCourses = false;
+    let params: any = this.activatedRoute.snapshot.params;
+    console.log(params.id);
     this.showRounds = true;
+    this.id = params.id;
+    this.getStudentList();
+    //
+    axios
+      .get(
+        'https://university-app-2021.herokuapp.com/institute/view/' + params.id
+      )
+      .then((resp) => {
+        console.log(resp.data.data);
+        this.courses = resp.data.data[0].courseDetails;
+        console.log(resp.data.data[0].courseDetails);
+        for (var i = 0; i < this.courses.length; i++) {
+          for (var j = 0; j < this.aCourses.length; j++) {
+            if (this.courses[i].Course_name.includes(this.aCourses[j].name)) {
+              this.courses[i].desc = this.aCourses[j].desc;
+              this.courses[i].imgURL = this.aCourses[j].imgURL;
+              break;
+            }
+          }
+        }
+      })
+      .catch((err) => {
+        this.courses = err;
+        console.log(err);
+      });
+
+    //
   }
-  goRound1() {
-    this.showRounds = false;
+  async getStudentList() {
+    let sUrl;
+
+    sUrl =
+      'https://university-app-2021.herokuapp.com/student/filterCourse/' +
+      this.id;
+
+    let res = await axios({ url: sUrl, method: 'GET' })
+      .then((resp) => {
+        console.log(resp.data.data);
+        if (resp.data.data.length > 0) {
+          console.log(resp.data.data);
+          this.studentList = resp.data.data;
+        } else {
+          console.log('List Not Found');
+          this.studentList = [];
+        }
+
+        console.log(this.studentList);
+        // this.studentList = resp.data.data;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    console.log(this.studentList);
+    this.ELEMENT_DATA = this.studentList;
+    this.dataSource = this.ELEMENT_DATA;
+    // return res;
   }
-  goRound2() {
-    this.showRounds = false;
+  selectStudentList(Course_id) {
+    console.log(Course_id);
+    this.router.navigateByUrl('/list/' + Course_id + '/' + this.id);
   }
-  goRound3() {
-    this.showRounds = false;
-  }
-  goFreeze1() {
-    this.freezeRound[1] = true;
-    this.toastr.warning('Round 1 is Freezed', 'Freeze');
-    if (this.freezeRound[3] && this.freezeRound[1] && this.freezeRound[2]) {
-      // this.toastr.success('All rounds is Freezed', 'Success');
-      window.location.reload();
-    }
-  }
-  goFreeze2() {
-    this.freezeRound[2] = true;
-    this.toastr.warning('Round 2 is Freezed', 'Freeze');
-    if (this.freezeRound[3] && this.freezeRound[1] && this.freezeRound[2]) {
-      window.location.reload();
-    }
-  }
-  goFreeze3() {
-    this.freezeRound[3] = true;
-    this.toastr.warning('Round 3 is Freezed', 'Freeze');
-    if (this.freezeRound[3] && this.freezeRound[1] && this.freezeRound[2]) {
-      window.location.reload();
-    }
-  }
-  selectStudentList(id) {
-    console.log(id);
-    this._router.navigateByUrl('/list/' + id);
+  onSeatAllot() {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'The seat will be alloted to the student. Do you wish to continue?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Allot',
+      cancelButtonText: 'Close',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.showCourses = true;
+        Swal.fire('Congrats', 'Seat alloted', 'success');
+      } else if (result.isDismissed) {
+        console.log('Clicked No, File is safe!');
+      }
+    });
   }
 }

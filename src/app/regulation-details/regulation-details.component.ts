@@ -28,8 +28,8 @@ export class RegulationDetailsComponent implements OnInit {
     private fBuilder: FormBuilder,
     private service:DataService) {
       this.service.getRegulationDetailsData(this.rid).subscribe((data: any) => {
-        this.RegData = data.data;
-        this.tableData = data.data.Department_Details;
+        this.RegData = data.data.Regulation[0];
+        this.tableData = data.data.Regulation[0].Department_Details;
         this.dataSource=this.tableData;
         console.log(this.RegData);
         console.log(this.tableData);
@@ -58,9 +58,14 @@ export class RegulationDetailsComponent implements OnInit {
     console.log(depId);
     this.router.navigate(['departmentdetail']);
   }
-  onEditReg(){
-    this.service.eidtFlag = true;
-    this.router.navigate(['add']);
+  onDeleteReg(){
+    this.service.onDelete().subscribe((data:any)=>{
+      console.log(data);
+      if(data.msg === "success"){
+        alert("Regulation Deleted Successfully");
+        this.router.navigate(['regulation']);
+      }
+    })
   }
 
 }

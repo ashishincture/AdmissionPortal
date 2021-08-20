@@ -70,588 +70,157 @@ export class DataServiceService {
   //   {code:'04',id:'subject04'},
   //   {code:'05',id:'subject05'}
   // ];
-  uri:string = 'https://hidden-sierra-56427.herokuapp.com';
+  uri:string = 'https://university-app-2021.herokuapp.com';
+  instid = "IN0010";
 
   constructor(private http: HttpClient) { }
-  RegulationData:RegulationClass[]=[
-    {semid:'sem1',totalcredits:24,types:[
-      {id:'Core',no:4},
-      {id:'PE',no:2},
-      {id:'OE',no:1}
-    ]},
-    {semid:'sem2',totalcredits:30,types:[
-      {id:'Core',no:4},
-      {id:'PE',no:2},
-      {id:'OE',no:1}
-    ]},
-    {semid:'sem3',totalcredits:26,types:[
-      {id:'Core',no:4},
-      {id:'PE',no:2},
-      {id:'OE',no:1}
-    ]},
-    {semid:'sem4',totalcredits:32,types:[
-      {id:'Core',no:4},
-      {id:'PE',no:2},
-      {id:'OE',no:1}
-    ]},
-    {semid:'sem5',totalcredits:28,types:[
-      {id:'Core',no:4},
-      {id:'PE',no:2},
-      {id:'OE',no:1}
-    ]},
-    {semid:'sem6',totalcredits:31,types:[
-      {id:'Core',no:4},
-      {id:'PE',no:2},
-      {id:'OE',no:1}
-    ]},
-    {semid:'sem7',totalcredits:18,types:[
-      {id:'Core',no:4},
-      {id:'PE',no:2},
-      {id:'OE',no:1}
-    ]},
-    {semid:'sem8',totalcredits:20,types:[
-      {id:'Core',no:4},
-      {id:'PE',no:2},
-      {id:'OE',no:1}
-    ]}
-  ];
-  regwithCR:crinReg[]=[{
-    regulationid:'r15',crs:['CR01','CR02']
-  }];
-  subjecttypes=['Core','PE','OE'];
-  semData=[{'name':'sem1'},{'name':'sem2'},{'name':'sem3'},{'name':'sem4'},{'name':'sem5'},{'name':'sem6'},{'name':'sem7'},{'name':'sem8'}]
-  departmentData:Department[]=[
-    {code:'Dept01',description:'description of Department 01',
-    Subjects:[
-      {code:'01',id:'subj01',type:'Core',name:'subject01',description:'desc of subj 01',credits:3},
-      {code:'02',id:'subj02',type:'Core',name:'subject01',description:'desc of subj 01',credits:3},
-      {code:'03',id:'subj03',type:'PE',name:'subject01',description:'desc of subj 01',credits:3},
-      {code:'04',id:'subj04',type:'PE',name:'subject01',description:'desc of subj 01',credits:3},
-      {code:'05',id:'subj05',type:'OE',name:'subject01',description:'desc of subj 01',credits:3},
-      {code:'06',id:'subj06',type:'OE',name:'subject01',description:'desc of subj 01',credits:3}
-    ]},
-    {code:'Dept02',description:'description of Department 02',
-    Subjects:[
-      {code:'01',id:'subj01',type:'Core',name:'subject01',description:'desc of subj 01',credits:3},
-      {code:'02',id:'subj02',type:'Core',name:'subject01',description:'desc of subj 01',credits:3},
-      {code:'03',id:'subj03',type:'PE',name:'subject01',description:'desc of subj 01',credits:3},
-      {code:'04',id:'subj04',type:'PE',name:'subject01',description:'desc of subj 01',credits:3},
-      {code:'05',id:'subj05',type:'OE',name:'subject01',description:'desc of subj 01',credits:3},
-      {code:'06',id:'subj06',type:'OE',name:'subject01',description:'desc of subj 01',credits:3}
-    ]}
-  ];
-  CRData:CrClass[]=[
-    {code:'CR01',id:'01',
-    academicYears:[
-      {startYear:2012,endYear:2016,
-      Departments:[
-       { id:'Dept01',sems:[
-         {id:'sem1',subjects:[
-          {code:'01',id:'subj01',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-          {code:'02',id:'subj02',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-          {code:'03',id:'subj03',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-          {code:'03',id:'subj07',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-          {code:'04',id:'subj04',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE2'},
-          {code:'05',id:'subj05',type:'OE',name:'subject01',description:'desc of subj 01 from dept2',credits:3,groupNme:'OE1'},
-          {code:'06',id:'subj06',type:'OE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'OE2'}
-         ]},
-         {id:'sem2',subjects:[
-          {code:'01',id:'subj01',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-          {code:'02',id:'subj02',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-          {code:'03',id:'subj03',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-          {code:'03',id:'subj07',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-          {code:'04',id:'subj04',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE2'},
-          {code:'05',id:'subj05',type:'OE',name:'subject01',description:'desc of subj 01 from dept2',credits:3,groupNme:'OE1'},
-          {code:'06',id:'subj06',type:'OE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'OE2'}
-         ]},
-         {id:'sem3',subjects:[
-          {code:'01',id:'subj01',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-          {code:'02',id:'subj02',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-          {code:'03',id:'subj03',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-          {code:'03',id:'subj07',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-          {code:'04',id:'subj04',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE2'},
-          {code:'05',id:'subj05',type:'OE',name:'subject01',description:'desc of subj 01 from dept2',credits:3,groupNme:'OE1'},
-          {code:'06',id:'subj06',type:'OE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'OE2'}
-         ]},
-         {id:'sem4',subjects:[
-          {code:'01',id:'subj01',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-          {code:'02',id:'subj02',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-          {code:'03',id:'subj03',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-          {code:'03',id:'subj07',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-          {code:'04',id:'subj04',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE2'},
-          {code:'05',id:'subj05',type:'OE',name:'subject01',description:'desc of subj 01 from dept2',credits:3,groupNme:'OE1'},
-          {code:'06',id:'subj06',type:'OE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'OE2'}
-         ]},
-         {id:'sem5',subjects:[
-          {code:'01',id:'subj01',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-          {code:'02',id:'subj02',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-          {code:'03',id:'subj03',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-          {code:'03',id:'subj07',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-          {code:'04',id:'subj04',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE2'},
-          {code:'05',id:'subj05',type:'OE',name:'subject01',description:'desc of subj 01 from dept2',credits:3,groupNme:'OE1'},
-          {code:'06',id:'subj06',type:'OE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'OE2'}
-         ]},
-         {id:'sem6',subjects:[
-          {code:'01',id:'subj01',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-          {code:'02',id:'subj02',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-          {code:'03',id:'subj03',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-          {code:'03',id:'subj07',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-          {code:'04',id:'subj04',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE2'},
-          {code:'05',id:'subj05',type:'OE',name:'subject01',description:'desc of subj 01 from dept2',credits:3,groupNme:'OE1'},
-          {code:'06',id:'subj06',type:'OE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'OE2'}
-         ]},
-         {id:'sem7',subjects:[
-          {code:'01',id:'subj01',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-          {code:'02',id:'subj02',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-          {code:'03',id:'subj03',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-          {code:'03',id:'subj07',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-          {code:'04',id:'subj04',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE2'},
-          {code:'05',id:'subj05',type:'OE',name:'subject01',description:'desc of subj 01 from dept2',credits:3,groupNme:'OE1'},
-          {code:'06',id:'subj06',type:'OE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'OE2'}
-         ]},
-         {id:'sem8',subjects:[
-          {code:'01',id:'subj01',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-          {code:'02',id:'subj02',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-          {code:'03',id:'subj03',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-          {code:'03',id:'subj07',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-          {code:'04',id:'subj04',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE2'},
-          {code:'05',id:'subj05',type:'OE',name:'subject01',description:'desc of subj 01 from dept2',credits:3,groupNme:'OE1'},
-          {code:'06',id:'subj06',type:'OE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'OE2'}
-         ]}
-       ]},
-       { id:'Dept02',sems:[
-        {id:'sem1',subjects:[
-         {code:'01',id:'subj01',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-         {code:'02',id:'subj02',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-         {code:'03',id:'subj03',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-         {code:'03',id:'subj07',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-         {code:'04',id:'subj04',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE2'},
-         {code:'05',id:'subj05',type:'OE',name:'subject01',description:'desc of subj 01 from dept2',credits:3,groupNme:'OE1'},
-         {code:'06',id:'subj06',type:'OE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'OE2'}
-        ]},
-        {id:'sem2',subjects:[
-         {code:'01',id:'subj01',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-         {code:'02',id:'subj02',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-         {code:'03',id:'subj03',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-         {code:'03',id:'subj07',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-         {code:'04',id:'subj04',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE2'},
-         {code:'05',id:'subj05',type:'OE',name:'subject01',description:'desc of subj 01 from dept2',credits:3,groupNme:'OE1'},
-         {code:'06',id:'subj06',type:'OE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'OE2'}
-        ]},
-        {id:'sem3',subjects:[
-         {code:'01',id:'subj01',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-         {code:'02',id:'subj02',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-         {code:'03',id:'subj03',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-         {code:'03',id:'subj07',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-         {code:'04',id:'subj04',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE2'},
-         {code:'05',id:'subj05',type:'OE',name:'subject01',description:'desc of subj 01 from dept2',credits:3,groupNme:'OE1'},
-         {code:'06',id:'subj06',type:'OE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'OE2'}
-        ]},
-        {id:'sem4',subjects:[
-         {code:'01',id:'subj01',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-         {code:'02',id:'subj02',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-         {code:'03',id:'subj03',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-         {code:'03',id:'subj07',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-         {code:'04',id:'subj04',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE2'},
-         {code:'05',id:'subj05',type:'OE',name:'subject01',description:'desc of subj 01 from dept2',credits:3,groupNme:'OE1'},
-         {code:'06',id:'subj06',type:'OE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'OE2'}
-        ]},
-        {id:'sem5',subjects:[
-         {code:'01',id:'subj01',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-         {code:'02',id:'subj02',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-         {code:'03',id:'subj03',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-         {code:'03',id:'subj07',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-         {code:'04',id:'subj04',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE2'},
-         {code:'05',id:'subj05',type:'OE',name:'subject01',description:'desc of subj 01 from dept2',credits:3,groupNme:'OE1'},
-         {code:'06',id:'subj06',type:'OE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'OE2'}
-        ]},
-        {id:'sem6',subjects:[
-         {code:'01',id:'subj01',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-         {code:'02',id:'subj02',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-         {code:'03',id:'subj03',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-         {code:'03',id:'subj07',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-         {code:'04',id:'subj04',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE2'},
-         {code:'05',id:'subj05',type:'OE',name:'subject01',description:'desc of subj 01 from dept2',credits:3,groupNme:'OE1'},
-         {code:'06',id:'subj06',type:'OE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'OE2'}
-        ]},
-        {id:'sem7',subjects:[
-         {code:'01',id:'subj01',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-         {code:'02',id:'subj02',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-         {code:'03',id:'subj03',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-         {code:'03',id:'subj07',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-         {code:'04',id:'subj04',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE2'},
-         {code:'05',id:'subj05',type:'OE',name:'subject01',description:'desc of subj 01 from dept2',credits:3,groupNme:'OE1'},
-         {code:'06',id:'subj06',type:'OE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'OE2'}
-        ]},
-        {id:'sem8',subjects:[
-         {code:'01',id:'subj01',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-         {code:'02',id:'subj02',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-         {code:'03',id:'subj03',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-         {code:'03',id:'subj07',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-         {code:'04',id:'subj04',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE2'},
-         {code:'05',id:'subj05',type:'OE',name:'subject01',description:'desc of subj 01 from dept2',credits:3,groupNme:'OE1'},
-         {code:'06',id:'subj06',type:'OE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'OE2'}
-        ]}
-      ]}
-      ]}
-    ]},
-    {code:'CR02',id:'02',
-    academicYears:[
-      
-      {startYear:2005,endYear:2009,
-        Departments:[
-          { id:'Dept01',sems:[
-            {id:'sem1',subjects:[
-             {code:'01',id:'subj01',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-             {code:'02',id:'subj02',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-             {code:'03',id:'subj03',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-             {code:'03',id:'subj07',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-             {code:'04',id:'subj04',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE2'},
-             {code:'05',id:'subj05',type:'OE',name:'subject01',description:'desc of subj 01 from dept2',credits:3,groupNme:'OE1'},
-             {code:'06',id:'subj06',type:'OE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'OE2'}
-            ]},
-            {id:'sem2',subjects:[
-             {code:'01',id:'subj01',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-             {code:'02',id:'subj02',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-             {code:'03',id:'subj03',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-             {code:'03',id:'subj07',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-             {code:'04',id:'subj04',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE2'},
-             {code:'05',id:'subj05',type:'OE',name:'subject01',description:'desc of subj 01 from dept2',credits:3,groupNme:'OE1'},
-             {code:'06',id:'subj06',type:'OE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'OE2'}
-            ]},
-            {id:'sem3',subjects:[
-             {code:'01',id:'subj01',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-             {code:'02',id:'subj02',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-             {code:'03',id:'subj03',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-             {code:'03',id:'subj07',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-             {code:'04',id:'subj04',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE2'},
-             {code:'05',id:'subj05',type:'OE',name:'subject01',description:'desc of subj 01 from dept2',credits:3,groupNme:'OE1'},
-             {code:'06',id:'subj06',type:'OE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'OE2'}
-            ]},
-            {id:'sem4',subjects:[
-             {code:'01',id:'subj01',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-             {code:'02',id:'subj02',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-             {code:'03',id:'subj03',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-             {code:'03',id:'subj07',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-             {code:'04',id:'subj04',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE2'},
-             {code:'05',id:'subj05',type:'OE',name:'subject01',description:'desc of subj 01 from dept2',credits:3,groupNme:'OE1'},
-             {code:'06',id:'subj06',type:'OE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'OE2'}
-            ]},
-            {id:'sem5',subjects:[
-             {code:'01',id:'subj01',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-             {code:'02',id:'subj02',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-             {code:'03',id:'subj03',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-             {code:'03',id:'subj07',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-             {code:'04',id:'subj04',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE2'},
-             {code:'05',id:'subj05',type:'OE',name:'subject01',description:'desc of subj 01 from dept2',credits:3,groupNme:'OE1'},
-             {code:'06',id:'subj06',type:'OE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'OE2'}
-            ]},
-            {id:'sem6',subjects:[
-             {code:'01',id:'subj01',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-             {code:'02',id:'subj02',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-             {code:'03',id:'subj03',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-             {code:'03',id:'subj07',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-             {code:'04',id:'subj04',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE2'},
-             {code:'05',id:'subj05',type:'OE',name:'subject01',description:'desc of subj 01 from dept2',credits:3,groupNme:'OE1'},
-             {code:'06',id:'subj06',type:'OE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'OE2'}
-            ]},
-            {id:'sem7',subjects:[
-             {code:'01',id:'subj01',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-             {code:'02',id:'subj02',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-             {code:'03',id:'subj03',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-             {code:'03',id:'subj07',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-             {code:'04',id:'subj04',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE2'},
-             {code:'05',id:'subj05',type:'OE',name:'subject01',description:'desc of subj 01 from dept2',credits:3,groupNme:'OE1'},
-             {code:'06',id:'subj06',type:'OE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'OE2'}
-            ]},
-            {id:'sem8',subjects:[
-             {code:'01',id:'subj01',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-             {code:'02',id:'subj02',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-             {code:'03',id:'subj03',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-             {code:'03',id:'subj07',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-             {code:'04',id:'subj04',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE2'},
-             {code:'05',id:'subj05',type:'OE',name:'subject01',description:'desc of subj 01 from dept2',credits:3,groupNme:'OE1'},
-             {code:'06',id:'subj06',type:'OE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'OE2'}
-            ]}
-          ]},
-          { id:'Dept02',sems:[
-           {id:'sem1',subjects:[
-            {code:'01',id:'subj01',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-            {code:'02',id:'subj02',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-            {code:'03',id:'subj03',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-            {code:'03',id:'subj07',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-            {code:'04',id:'subj04',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE2'},
-            {code:'05',id:'subj05',type:'OE',name:'subject01',description:'desc of subj 01 from dept2',credits:3,groupNme:'OE1'},
-            {code:'06',id:'subj06',type:'OE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'OE2'}
-           ]},
-           {id:'sem2',subjects:[
-            {code:'01',id:'subj01',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-            {code:'02',id:'subj02',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-            {code:'03',id:'subj03',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-            {code:'03',id:'subj07',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-            {code:'04',id:'subj04',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE2'},
-            {code:'05',id:'subj05',type:'OE',name:'subject01',description:'desc of subj 01 from dept2',credits:3,groupNme:'OE1'},
-            {code:'06',id:'subj06',type:'OE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'OE2'}
-           ]},
-           {id:'sem3',subjects:[
-            {code:'01',id:'subj01',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-            {code:'02',id:'subj02',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-            {code:'03',id:'subj03',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-            {code:'03',id:'subj07',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-            {code:'04',id:'subj04',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE2'},
-            {code:'05',id:'subj05',type:'OE',name:'subject01',description:'desc of subj 01 from dept2',credits:3,groupNme:'OE1'},
-            {code:'06',id:'subj06',type:'OE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'OE2'}
-           ]},
-           {id:'sem4',subjects:[
-            {code:'01',id:'subj01',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-            {code:'02',id:'subj02',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-            {code:'03',id:'subj03',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-            {code:'03',id:'subj07',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-            {code:'04',id:'subj04',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE2'},
-            {code:'05',id:'subj05',type:'OE',name:'subject01',description:'desc of subj 01 from dept2',credits:3,groupNme:'OE1'},
-            {code:'06',id:'subj06',type:'OE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'OE2'}
-           ]},
-           {id:'sem5',subjects:[
-            {code:'01',id:'subj01',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-            {code:'02',id:'subj02',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-            {code:'03',id:'subj03',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-            {code:'03',id:'subj07',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-            {code:'04',id:'subj04',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE2'},
-            {code:'05',id:'subj05',type:'OE',name:'subject01',description:'desc of subj 01 from dept2',credits:3,groupNme:'OE1'},
-            {code:'06',id:'subj06',type:'OE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'OE2'}
-           ]},
-           {id:'sem6',subjects:[
-            {code:'01',id:'subj01',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-            {code:'02',id:'subj02',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-            {code:'03',id:'subj03',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-            {code:'03',id:'subj07',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-            {code:'04',id:'subj04',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE2'},
-            {code:'05',id:'subj05',type:'OE',name:'subject01',description:'desc of subj 01 from dept2',credits:3,groupNme:'OE1'},
-            {code:'06',id:'subj06',type:'OE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'OE2'}
-           ]},
-           {id:'sem7',subjects:[
-            {code:'01',id:'subj01',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-            {code:'02',id:'subj02',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-            {code:'03',id:'subj03',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-            {code:'03',id:'subj07',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-            {code:'04',id:'subj04',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE2'},
-            {code:'05',id:'subj05',type:'OE',name:'subject01',description:'desc of subj 01 from dept2',credits:3,groupNme:'OE1'},
-            {code:'06',id:'subj06',type:'OE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'OE2'}
-           ]},
-           {id:'sem8',subjects:[
-            {code:'01',id:'subj01',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-            {code:'02',id:'subj02',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-            {code:'03',id:'subj03',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-            {code:'03',id:'subj07',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-            {code:'04',id:'subj04',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE2'},
-            {code:'05',id:'subj05',type:'OE',name:'subject01',description:'desc of subj 01 from dept2',credits:3,groupNme:'OE1'},
-            {code:'06',id:'subj06',type:'OE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'OE2'}
-           ]}
-         ]}
-         ]},
-      {startYear:2006,endYear:2010,
-        Departments:[
-          { id:'Dept01',sems:[
-            {id:'sem1',subjects:[
-             {code:'01',id:'subj01',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-             {code:'02',id:'subj02',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-             {code:'03',id:'subj03',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-             {code:'03',id:'subj07',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-             {code:'04',id:'subj04',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE2'},
-             {code:'05',id:'subj05',type:'OE',name:'subject01',description:'desc of subj 01 from dept2',credits:3,groupNme:'OE1'},
-             {code:'06',id:'subj06',type:'OE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'OE2'}
-            ]},
-            {id:'sem2',subjects:[
-             {code:'01',id:'subj01',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-             {code:'02',id:'subj02',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-             {code:'03',id:'subj03',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-             {code:'03',id:'subj07',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-             {code:'04',id:'subj04',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE2'},
-             {code:'05',id:'subj05',type:'OE',name:'subject01',description:'desc of subj 01 from dept2',credits:3,groupNme:'OE1'},
-             {code:'06',id:'subj06',type:'OE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'OE2'}
-            ]},
-            {id:'sem3',subjects:[
-             {code:'01',id:'subj01',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-             {code:'02',id:'subj02',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-             {code:'03',id:'subj03',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-             {code:'03',id:'subj07',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-             {code:'04',id:'subj04',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE2'},
-             {code:'05',id:'subj05',type:'OE',name:'subject01',description:'desc of subj 01 from dept2',credits:3,groupNme:'OE1'},
-             {code:'06',id:'subj06',type:'OE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'OE2'}
-            ]},
-            {id:'sem4',subjects:[
-             {code:'01',id:'subj01',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-             {code:'02',id:'subj02',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-             {code:'03',id:'subj03',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-             {code:'03',id:'subj07',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-             {code:'04',id:'subj04',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE2'},
-             {code:'05',id:'subj05',type:'OE',name:'subject01',description:'desc of subj 01 from dept2',credits:3,groupNme:'OE1'},
-             {code:'06',id:'subj06',type:'OE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'OE2'}
-            ]},
-            {id:'sem5',subjects:[
-             {code:'01',id:'subj01',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-             {code:'02',id:'subj02',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-             {code:'03',id:'subj03',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-             {code:'03',id:'subj07',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-             {code:'04',id:'subj04',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE2'},
-             {code:'05',id:'subj05',type:'OE',name:'subject01',description:'desc of subj 01 from dept2',credits:3,groupNme:'OE1'},
-             {code:'06',id:'subj06',type:'OE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'OE2'}
-            ]},
-            {id:'sem6',subjects:[
-             {code:'01',id:'subj01',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-             {code:'02',id:'subj02',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-             {code:'03',id:'subj03',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-             {code:'03',id:'subj07',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-             {code:'04',id:'subj04',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE2'},
-             {code:'05',id:'subj05',type:'OE',name:'subject01',description:'desc of subj 01 from dept2',credits:3,groupNme:'OE1'},
-             {code:'06',id:'subj06',type:'OE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'OE2'}
-            ]},
-            {id:'sem7',subjects:[
-             {code:'01',id:'subj01',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-             {code:'02',id:'subj02',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-             {code:'03',id:'subj03',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-             {code:'03',id:'subj07',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-             {code:'04',id:'subj04',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE2'},
-             {code:'05',id:'subj05',type:'OE',name:'subject01',description:'desc of subj 01 from dept2',credits:3,groupNme:'OE1'},
-             {code:'06',id:'subj06',type:'OE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'OE2'}
-            ]},
-            {id:'sem8',subjects:[
-             {code:'01',id:'subj01',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-             {code:'02',id:'subj02',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-             {code:'03',id:'subj03',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-             {code:'03',id:'subj07',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-             {code:'04',id:'subj04',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE2'},
-             {code:'05',id:'subj05',type:'OE',name:'subject01',description:'desc of subj 01 from dept2',credits:3,groupNme:'OE1'},
-             {code:'06',id:'subj06',type:'OE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'OE2'}
-            ]}
-          ]},
-          { id:'Dept02',sems:[
-           {id:'sem1',subjects:[
-            {code:'01',id:'subj01',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-            {code:'02',id:'subj02',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-            {code:'03',id:'subj03',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-            {code:'03',id:'subj07',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-            {code:'04',id:'subj04',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE2'},
-            {code:'05',id:'subj05',type:'OE',name:'subject01',description:'desc of subj 01 from dept2',credits:3,groupNme:'OE1'},
-            {code:'06',id:'subj06',type:'OE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'OE2'}
-           ]},
-           {id:'sem2',subjects:[
-            {code:'01',id:'subj01',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-            {code:'02',id:'subj02',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-            {code:'03',id:'subj03',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-            {code:'03',id:'subj07',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-            {code:'04',id:'subj04',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE2'},
-            {code:'05',id:'subj05',type:'OE',name:'subject01',description:'desc of subj 01 from dept2',credits:3,groupNme:'OE1'},
-            {code:'06',id:'subj06',type:'OE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'OE2'}
-           ]},
-           {id:'sem3',subjects:[
-            {code:'01',id:'subj01',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-            {code:'02',id:'subj02',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-            {code:'03',id:'subj03',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-            {code:'03',id:'subj07',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-            {code:'04',id:'subj04',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE2'},
-            {code:'05',id:'subj05',type:'OE',name:'subject01',description:'desc of subj 01 from dept2',credits:3,groupNme:'OE1'},
-            {code:'06',id:'subj06',type:'OE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'OE2'}
-           ]},
-           {id:'sem4',subjects:[
-            {code:'01',id:'subj01',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-            {code:'02',id:'subj02',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-            {code:'03',id:'subj03',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-            {code:'03',id:'subj07',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-            {code:'04',id:'subj04',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE2'},
-            {code:'05',id:'subj05',type:'OE',name:'subject01',description:'desc of subj 01 from dept2',credits:3,groupNme:'OE1'},
-            {code:'06',id:'subj06',type:'OE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'OE2'}
-           ]},
-           {id:'sem5',subjects:[
-            {code:'01',id:'subj01',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-            {code:'02',id:'subj02',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-            {code:'03',id:'subj03',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-            {code:'03',id:'subj07',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-            {code:'04',id:'subj04',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE2'},
-            {code:'05',id:'subj05',type:'OE',name:'subject01',description:'desc of subj 01 from dept2',credits:3,groupNme:'OE1'},
-            {code:'06',id:'subj06',type:'OE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'OE2'}
-           ]},
-           {id:'sem6',subjects:[
-            {code:'01',id:'subj01',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-            {code:'02',id:'subj02',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-            {code:'03',id:'subj03',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-            {code:'03',id:'subj07',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-            {code:'04',id:'subj04',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE2'},
-            {code:'05',id:'subj05',type:'OE',name:'subject01',description:'desc of subj 01 from dept2',credits:3,groupNme:'OE1'},
-            {code:'06',id:'subj06',type:'OE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'OE2'}
-           ]},
-           {id:'sem7',subjects:[
-            {code:'01',id:'subj01',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-            {code:'02',id:'subj02',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-            {code:'03',id:'subj03',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-            {code:'03',id:'subj07',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-            {code:'04',id:'subj04',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE2'},
-            {code:'05',id:'subj05',type:'OE',name:'subject01',description:'desc of subj 01 from dept2',credits:3,groupNme:'OE1'},
-            {code:'06',id:'subj06',type:'OE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'OE2'}
-           ]},
-           {id:'sem8',subjects:[
-            {code:'01',id:'subj01',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-            {code:'02',id:'subj02',type:'Core',name:'subject01',description:'desc of subj 01',credits:3,groupNme:''},
-            {code:'03',id:'subj03',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-            {code:'03',id:'subj07',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE1'},
-            {code:'04',id:'subj04',type:'PE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'PE2'},
-            {code:'05',id:'subj05',type:'OE',name:'subject01',description:'desc of subj 01 from dept2',credits:3,groupNme:'OE1'},
-            {code:'06',id:'subj06',type:'OE',name:'subject01',description:'desc of subj 01 from dept 2',credits:3,groupNme:'OE2'}
-           ]}
-         ]}
-         ]}
-    ]}];
+  
+  
+  subjecttypes=['CORE','PE','OE'];
+ 
+  
   
   newCRData={
-    code:"",
-    id:"",
-    regulationId:"",
-    batchYear:"",
-    deptId:"",
-    semData:[
+    Curriculum_Name:"",
+    Curriclum_Code:"",
+    Regulation_ID:"",
+    Batch_Year:"",
+    Department_ID:"",
+    Semester_Data:[
     {
-    sem:1,
-    subjects:[]
+    Semester_NO:1,
+    Subjects:[]
     }]
   };
-  getDeptData():Department[]{
-    return this.departmentData;
-    
-  }
-  getDeptSData(){
-    return this.http.get(`${this.uri}/Department`);
+  RegSData;
+  
+  getDeptSData(regId){
+    return this.getRegData().subscribe((data:any)=>{
+      this.RegSData=data.data.Regulation;
+      //this.RegSData.pop();
+      //debugger;
+      return this.RegSData.find(({Regulation_ID})=>Regulation_ID===regId).Department_Details      
+    });
+    //return this.RegSData.find(({Regulation_ID})=>Regulation_ID===regId).Department_Details
+
+    // return this.http.get(`${this.uri}/institute/view/${this.instid}/${regId}`);
   }
   getRegData(){
-    return this.http.get(`${this.uri}/Regulation`);
+    return this.http.get(`${this.uri}/Regulation/getregulation/${this.instid}`);
   }
-  getRegsDetails(reg_ID){
-    return this.http.get(`${this.uri}/Regulation/${reg_ID}`);
+  getInstitutionList(){
+    
+    return this.http.get(this.uri+"/institute/all/");
   }
-  getCRData():CrClass[]{
-    return this.CRData;
+  getRegsDetails(reg_ID,dept_ID){
+    this.getRegData().subscribe((data:any)=>{
+      this.RegSData=data.data.Regulation;
+      //this.RegSData.pop();
+      //debugger;
+      let deptdata=this.RegSData.find(({Regulation_ID})=>Regulation_ID===reg_ID).Department_Details;
+      let CreditDetails= deptdata.find(({Department_ID})=>Department_ID===dept_ID);
+      return CreditDetails;
+    });
+    // return this.http.get(`${this.uri}/Regulation/getregulation/${this.instid}/${reg_ID}`);
+  }
+  getCRDetails(reg,DeptID,BYr){
+    return this.http.get(`${this.uri}/curriculum/getcurriculum/${this.instid}/${reg}/${DeptID}/${BYr}`);
   }
   updateCRData(subjData,semNo){
    
-    for(var i=0;i<this.newCRData.semData.length;i++){
-      if(this.newCRData.semData[i].sem===semNo){
+    for(var i=0;i<this.newCRData.Semester_Data.length;i++){
+      if(this.newCRData.Semester_Data[i].Semester_NO===semNo){
         for(var j=0;j<subjData.length;j++){
           
-          let num=this.newCRData.semData[i].subjects.findIndex((subj)=>{
-            if(subj.Subject_ID===subjData[j].Subject_ID){
+          let num=this.newCRData.Semester_Data[i].Subjects.findIndex((subj)=>{
+            if(subj.Subject_Code===subjData[j].Subject_Code){
             return true
             }
             })
           if(num === -1){
            
-            this.newCRData.semData[i].subjects.push(subjData[j]);
+            this.newCRData.Semester_Data[i].Subjects.push(subjData[j]);
           }
         }
         //this.newCRData.semData[i].subjects=this.newCRData.semData[i].subjects.concat(subjData);
       }
     }
     
-
-    //console.log(this.newCRData.semData);
-    
   }
+  coreCount;PEcount;OEcount;
+  verifyCRwithReg(semNo){
+      let semData=this.newCRData.Semester_Data.find(({Semester_NO})=>Semester_NO===semNo);
+      let deptDetails=this.RegSData.find(({Regulation_ID})=>Regulation_ID===this.newCRData.Regulation_ID).Department_Details;
+      let CreditDetails= deptDetails.find(({Department_ID})=>Department_ID===this.newCRData.Department_ID);
+      let RegSemDetails=CreditDetails.Credits_Details.find(({sNo})=>sNo===semNo);
+      if(RegSemDetails.Core<this.coreCount||RegSemDetails.Core===0||RegSemDetails.Core>this.coreCount){
+        alert("Select appropriate number of CORE subjects");
+        return false;
+      }
+      if(RegSemDetails.PE<this.PEcount||RegSemDetails.PE>this.PEcount){
+        alert("Select appropriate number of PE subjects");
+        return false;
+      }
+      if(RegSemDetails.OE<this.OEcount||RegSemDetails.OE>this.OEcount){
+        alert("Select appropriate number of OE subjects");
+        return false;
+      }
+      return true;
+    }
+    verifyCRCreatewithReg(semNo,subtype){
+      let semData=this.newCRData.Semester_Data.find(({Semester_NO})=>Semester_NO===semNo);
+      let deptDetails=this.RegSData.find(({Regulation_ID})=>Regulation_ID===this.newCRData.Regulation_ID).Department_Details;
+      let CreditDetails= deptDetails.find(({Department_ID})=>Department_ID===this.newCRData.Department_ID);
+      let RegSemDetails=CreditDetails.Credits_Details.find(({sNo})=>sNo===semNo);
+      if(subtype==="CORE"){
+        if(RegSemDetails.Core<this.coreCount||RegSemDetails.Core===0){
+          alert("The required number of subjects are already selected");
+          return false;
+        }
+        return true;
+      }
+      if(subtype==="PE"){
+        if(RegSemDetails.PE<this.PEcount||RegSemDetails.PE===0){
+          alert("The required number of subjects are already selected");
+          return false;
+        }
+        return true;
+      }
+      if(subtype==="OE"){
+        if(RegSemDetails.OE<this.OEcount||RegSemDetails===0){
+          alert("The required number of subjects are already selected");
+          return false;
+        }
+        return true;
+      }
+
+    }
+    CRCountModel;
+    CRdataModelCreate(semCount){
+      let subjCount={
+        CoreCount:0,
+        PECount:0,
+        OECount:0
+      }
+      if(this.CRCountModel===undefined||this.CRCountModel===null){
+        this.CRCountModel=[];
+        for(let i=0;i<semCount;i++){
+          let semSubj={
+            sem:i+1,
+            status:"created",
+            subjCount:subjCount
+          }
+          this.CRCountModel.push(semSubj);
+        }
+      }
+    }
+    updateCRCountModel(semNo,subType){
+      //let SemCount=this.CRCountModel.find(({sem})=>sem===semNo).semSubj;
+      let subjCount={
+        CoreCount:this.coreCount,
+        PECount:this.PEcount,
+        OECount:this.OEcount
+      }
+      this.CRCountModel[semNo-1].subjCount=subjCount;
+    }
 }

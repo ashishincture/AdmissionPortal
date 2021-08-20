@@ -4,11 +4,13 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import Swal from 'sweetalert2';
 import { DetailsService } from '../details.service';
+import axios from 'axios';
 export interface studentDetails {
-  id: number;
+  student_id: string;
   name: string;
-  rank: number;
-  status: boolean;
+  Quota: string;
+  Course_type: string;
+  allocation_status: string;
 }
 
 @Component({
@@ -25,36 +27,97 @@ export class ListComponent implements OnInit {
     this.courses = service.getCourses();
     this.subject = service.getSubject();
   }
+  courses;
   popup = false;
   goBack = false;
   id;
   subject;
   status;
-  courses;
+  courseId;
+  institueId;
   subjectSelected;
   availableSeats;
+  showCourse;
   dataSource;
-  displayedColumns: string[] = ['id', 'name', 'rank', 'status'];
+  studentList = [];
+  selectCourse;
+  displayedColumns: string[] = [
+    'student_id',
+    'name',
+    'Quota',
+    'Course_type',
+    'allocation_status',
+  ];
   ELEMENT_DATA: studentDetails[];
   ngOnInit(): void {
     let params: any = this.activatedRoute.snapshot.params;
-    this.id = +params.id;
+    console.log(params);
+    this.courseId = params.courseId;
+    this.institueId = params.instId;
+    console.log(this.courseId);
+    console.log(this.institueId);
+    this.getStudentList('test');
+  }
 
-    for (let course of this.courses) {
-      if (this.id === course.id) {
-        this.subjectSelected = course.name;
-        this.availableSeats = course.seats;
-        for (var i = 0; i < this.subject.length; i++) {
-          if (this.id === this.subject[i].id) {
-            // console.log(this.subject[i].data);
-            this.ELEMENT_DATA = this.subject[i].data;
-            break;
-          }
-        }
-        break;
-      }
+  async getStudentList(courseName) {
+    let sUrl;
+    this.studentList = [];
+    if (courseName === 'B.Tech' || courseName === 'M.Tech') {
+      sUrl =
+        'https://university-app-2021.herokuapp.com/student/filterCourse/' +
+        this.institueId +
+        '/' +
+        courseName +
+        '/' +
+        this.courseId;
+    } else {
+      sUrl =
+        'https://university-app-2021.herokuapp.com/student/filterCourse/' +
+        this.institueId;
     }
+    let res = await axios({ url: sUrl, method: 'GET' })
+      .then((resp) => {
+        console.log(resp.data.data);
+        if (resp.data.data.length > 0) {
+          for (let i = 0; i < resp.data.data.length; i++) {
+            if (this.courseId === resp.data.data[i].Course_id) {
+              this.studentList.push(resp.data.data[i]);
+            }
+          }
+          for (let i = 0; i < this.studentList.length; i++) {
+            for (let j = 0; j < this.studentList[j].priority.length; j++) {
+              if (this.courseId === this.studentList[i].priority[j].Course_id) {
+                this.showCourse = this.studentList[i].priority[j].Course_name;
+
+                break;
+              }
+            }
+          }
+          console.log(this.showCourse);
+        } else {
+          console.log('List Not Found');
+          this.studentList = [];
+        }
+
+        console.log(this.studentList);
+        // this.studentList = resp.data.data;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    console.log(this.studentList);
+    this.ELEMENT_DATA = this.studentList;
     this.dataSource = this.ELEMENT_DATA;
+    // return res;
+  }
+  onChangeCollege(e) {
+    this.selectCourse = e.target.value;
+    if (this.selectCourse != 'None') {
+      console.log(this.selectCourse);
+      this.getStudentList(this.selectCourse);
+    } else {
+      console.log(this.selectCourse);
+    }
   }
   onSeatAllot() {
     Swal.fire({
@@ -137,8 +200,7 @@ export class ListComponent implements OnInit {
   onSaveAllotment() {
     Swal.fire({
       title: 'Are you sure?',
-      text:
-        'The seat will be alloted and saved for the student. Do you wish to continue?',
+      text: 'The seat will be alloted and saved for the student. Do you wish to continue?',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Save',

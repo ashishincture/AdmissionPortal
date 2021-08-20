@@ -42,7 +42,7 @@ export interface regulationDetails {
 })
 export class DataService {
 
-  uri: string = 'https://hidden-sierra-56427.herokuapp.com';
+  uri: string = 'https://university-app-2021.herokuapp.com';
 
   oldData;
   rownumber;
@@ -53,7 +53,8 @@ export class DataService {
   subjectsbyDepid;
   DataAddReg;
   eidtFlag = false;
-
+  instid = "IN0010";
+  allDeps;
   regulationListData: regulationList[] = [
     { regulationName: 'R15' },
     { regulationName: 'R16' },
@@ -93,9 +94,15 @@ export class DataService {
   }
   ]
   constructor(private http: HttpClient) { }
-
+  getInstitutionList(){
+    return this.http.get(this.uri+"/institute/all/");
+  }
   getRegulationData() {
-    return this.http.get(`${this.uri}/Regulation`);
+    // var instid = "IN0010";
+    return this.http.get(`${this.uri}/Regulation/getregulation/${this.instid}`);
+  }
+  getAllDeps(){
+    return this.http.get(`${this.uri}/institute/view/${this.instid}`);
   }
   getRegulationDatabyID(rID) {
     let Regulation_Id = rID;
@@ -121,7 +128,7 @@ export class DataService {
     // console.log(this.regulationDatabyId);
     // return this.regulationDatabyId;
     let Regulation_Id = rID;
-    return this.http.get(`${this.uri}/Regulation/${Regulation_Id}`);
+    return this.http.get(`${this.uri}/Regulation/getdepartmentdetailsbyid/${this.instid}/${Regulation_Id}`);
     // return rData.subscribe((data: any) => {
     //   // complete(){
     //   //   this.regulationDatabyId = data.data;
@@ -164,10 +171,26 @@ export class DataService {
   getAddRegData() {
     return this.data = [1];
   }
+  postAddRegData(data:any){
+  console.log(data);
+  console.log(this.instid);
+  // const httpOptions = {
+  //   headers: new this.HttpHeader({
+  //     'Content-Type':  'application/json'
+  //   })
+  // }
+   var a = this.http.post(`${this.uri}/Regulation/newregulations/${this.instid}`,data);
+   return a;
+  }
+  onDelete(){
+    var rId = this.RId;
+    return this.http.put(`${this.uri}/Regulation/deleteregulation/${this.instid}/${rId}`,"");
+  }
   getAddRegTableData(sem) {
     var finalData = [];
     var sub = [];
-    var dep = ["ECE", "CSE", "MECH", "IT" ];
+    // var dep = ["ECE", "CSE", "MECH", "IT" ];
+  var dep = this.allDeps;
     
     for (var i = 1; i <= sem; i++) {
       var subobj = { sNo: i, Core: 0, OE: 0, PE: 0};
@@ -175,11 +198,11 @@ export class DataService {
     }
     for(var j=0;j<dep.length;j++){
     var dataobj = {
-      Department_ID: dep[j],
-      Department_Name:dep[j],
-      total_Credit:28,
+      Department_ID: dep[j].courseid,
+      Department_Name:dep[j].coursename,
+      Total_Credit:28,
       Semester_Count: sem,
-      Credit_Details: sub
+      Credits_Details: sub
     }
     finalData.push(dataobj);
   }

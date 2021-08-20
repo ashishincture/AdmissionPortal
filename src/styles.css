@@ -6,3 +6,5 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 * {
     font-family: Noto Sans;
 }
+@import "../node_modules/angular-calendar/css/angular-calendar.css";
+@import '../node_modules/flatpickr/dist/flatpickr.min.css';

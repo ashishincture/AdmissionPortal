@@ -87,3 +87,9 @@ mat-sidenav {
 .example-icon:hover {
   color: #3f3a64;
 }
+
+.mat-drawer-content{
+  
+  background-color: #262626;
+ 
+}

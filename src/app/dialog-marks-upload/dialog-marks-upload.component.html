@@ -1,0 +1,16 @@
+<div class="upload-dialog">
+<h1 mat-dialog-title> Please download Excel Template first to enter marks</h1>
+
+<button mat-stroked-button class="download-button" (click)="onDownloadRequest()"><mat-icon>download</mat-icon> Download Excel Template</button><br/><br/>
+
+<div>
+<label class="custom-file-upload"
+>Choose file<input type="file"(change)="addfile($event)"  placeholder="Upload file"  accept=".csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+</label>{{fileName}}
+</div>
+
+<div class="dialog-footer">
+<button mat-raised-button class="action-button" [disabled]="disablePreviewButton" [mat-dialog-close]="data">Preview and Upload</button>
+<button mat-raised-button class="action-button" color="warn" (click)="uploadData()" [mat-dialog-close]="data.aExcelData" [disabled]="disableUploadButton">Upload</button>
+</div>
+</div>
