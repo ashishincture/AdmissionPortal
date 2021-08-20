@@ -55,7 +55,6 @@ export class DataService {
   eidtFlag = false;
   instid = "IN0010";
   allDeps;
-
   regulationListData: regulationList[] = [
     { regulationName: 'R15' },
     { regulationName: 'R16' },
@@ -95,7 +94,9 @@ export class DataService {
   }
   ]
   constructor(private http: HttpClient) { }
-
+  getInstitutionList(){
+    return this.http.get(this.uri+"/institute/all/");
+  }
   getRegulationData() {
     // var instid = "IN0010";
     return this.http.get(`${this.uri}/Regulation/getregulation/${this.instid}`);
@@ -172,6 +173,7 @@ export class DataService {
   }
   postAddRegData(data:any){
   console.log(data);
+  console.log(this.instid);
   // const httpOptions = {
   //   headers: new this.HttpHeader({
   //     'Content-Type':  'application/json'
@@ -198,7 +200,7 @@ export class DataService {
     var dataobj = {
       Department_ID: dep[j].courseid,
       Department_Name:dep[j].coursename,
-      total_Credit:28,
+      Total_Credit:28,
       Semester_Count: sem,
       Credits_Details: sub
     }

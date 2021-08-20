@@ -1,7 +1,5 @@
 <mat-tab-group>
   <mat-tab label="Total Students">
-    <!-- <p> -->
-    <!-- <mat-toolbar> -->
     <div class="container mt-5">
       <table
         mat-table
@@ -59,7 +57,7 @@
       <div class="m-5 d-flex justify-content-end">
         <button
           type="submit"
-          class="btn btn-primary mr-2"
+          class="btnAllot form-control"
           (click)="onSeatAllot()"
         >
           Allot Seats
@@ -68,6 +66,7 @@
     </div>
     <!-- </mat-toolbar> -->
   </mat-tab>
+
   <mat-tab label="Courses" [disabled]="!this.showCourses"
     ><section class="container">
       <div class="row mb-5">
@@ -85,15 +84,13 @@
                 {{ course.Course_name }}
               </h4>
               <p class="text-muted text-justify">
-                {{ course.Course_description }}
+                {{ course.desc }}
               </p>
-              <p style="font-weight: bolder">
-                Total Seats : {{ course.Seats }}
-              </p>
+              <p class="card-title">Total Seats : {{ course.Seats }}</p>
               <div class="text-center">
                 <button
                   type="submit"
-                  class="btn btnStudent"
+                  class="btnSearch form-control"
                   (click)="selectStudentList(course.Course_id)"
                 >
                   View Student List

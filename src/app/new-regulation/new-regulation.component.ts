@@ -36,7 +36,7 @@ export class NewRegulationComponent implements OnInit {
   displayedColumns: string[] = ['semNo', 'core', 'pe', 'oe'];
   dataSource;
   uri: string = 'https://university-app-2021.herokuapp.com';
-  instid = "IN0010";
+  // instid = "IN0010";
 
   data1 = null;
   data2 = {
@@ -157,13 +157,15 @@ export class NewRegulationComponent implements OnInit {
     var finalObj = {
       Regulation: addRegFinalArray
     }
-    var a = this.http.post(`${this.uri}/Regulation/newregulation/${this.instid}`, finalObj);
+    var a = this.http.post(`${this.uri}/Regulation/newregulation/${this.service.instid}`, finalObj);
     a.subscribe((data: any) => {
       console.log(data);
       if (data.msg === "Success") {
         alert("New Regulation Added Successfully");
         this.router.navigate(['regulation']);
       }
+    },error=>{
+      alert(error.error.error._message);
     });
     console.log(a);
     // this.service.postAddRegData(finalObj);

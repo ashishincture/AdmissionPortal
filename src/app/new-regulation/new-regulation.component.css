@@ -33,6 +33,16 @@
   margin-left: 1rem;
   background-color: #333333;
 }
+/* .selectRegdetails{
+  background: #b5b5b5;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  width: 100%;
+} */
+
+.selectRegdetails.mat-select-value {
+  color: #007bff !important;
+}
 th.mat-header-cell {
   font-size: 0.8rem;
   color: white;
