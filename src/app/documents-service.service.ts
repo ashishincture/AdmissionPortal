@@ -9,6 +9,7 @@ export class DocumentsServiceService {
 
   uri:string =  'https://university-app-2021.herokuapp.com';
 
+
  
   constructor(private http: HttpClient) { }
  
@@ -24,6 +25,11 @@ export class DocumentsServiceService {
 
   approveStudentUpdate(sId: String, data:any){
     return this.http.put(`${this.uri}/student/update/`+sId, data);
+  }
+
+  getApprovedStudents() {
+    //console.log(this.uri);
+    return this.http.get(`${this.uri}/student/filterStatus/approved`);
   }
 
  
