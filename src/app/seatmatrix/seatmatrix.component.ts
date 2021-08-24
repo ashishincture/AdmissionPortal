@@ -29,6 +29,7 @@ export interface DialogData {
   templateUrl: './seatmatrix.component.html',
   styleUrls: ['./seatmatrix.component.css'],
 })
+
 export class SeatmatrixComponent implements OnInit {
   @ViewChild('chartid', { read: ViewContainerRef, static: false })
   container!: ViewContainerRef;
@@ -38,7 +39,7 @@ export class SeatmatrixComponent implements OnInit {
     Quota_allocation: '',
   };
   uri = 'https://university-app-2021.herokuapp.com/institute/quota/';
-
+  public dataSeatArray = [];
   courseID = '';
   public show: boolean = false;
   public buttonName: any = 'Show';
@@ -411,11 +412,17 @@ export class SeatmatrixComponent implements OnInit {
    let dialogRef = this.dialog.open(DialogExampleComponent, {data: {Quota_name : this.Quota_name,Quota_percentage:this.Quota_percentage}});
    dialogRef.afterClosed().subscribe(result => {
     console.log('The dialog was closed');
-    this.Quota_name = result.Quota_name;
-    this.Quota_percentage=result.Quota_percentage;
-   this.onPressAddQuota();
-    
+    this.dataSeatArray =result;
+    // this.Quota_name = result.Quota_name;
+    // this.Quota_percentage=result.Quota_percentage;
+  //  this.onPressAddQuota();
+  for(var i=0;i<this.dataSeatArray.length;i++){
+    this.Quota_name =this.dataSeatArray[i].Quota_name;
+    this.Quota_percentage=this.dataSeatArray[i].Quota_percentage;
+    this.onPressAddQuota();
+   }
   });
+ 
 
   console.log(this.Quota_name);
     console.log(this.Quota_percentage);
