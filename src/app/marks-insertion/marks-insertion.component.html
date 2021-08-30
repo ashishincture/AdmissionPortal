@@ -14,7 +14,7 @@ width: 100%;
         </mat-select>
       </mat-form-field>
 
-      <ng-template [ngIf]="InsSel">
+      <ng-template [ngIf]="selectedIns">
         <mat-form-field appearance="fill" class="form">
           <mat-label>Select Regulation</mat-label>
           <mat-select [(value)]="selectedReg" (selectionChange)="onChangeReg()">
@@ -22,7 +22,7 @@ width: 100%;
           </mat-select>
         </mat-form-field>
       </ng-template>
-      <ng-template [ngIf]="RegSel">
+      <ng-template [ngIf]="selectedReg">
         <mat-form-field appearance="fill" class="form">
           <mat-label>Select Department</mat-label>
           <mat-select [(value)]="selectedDept" (selectionChange)="onChangeDept()">
@@ -32,7 +32,7 @@ width: 100%;
         </mat-form-field>
       </ng-template>
 
-      <ng-template [ngIf]="deptSel">
+      <ng-template [ngIf]="selectedDept">
         <mat-form-field appearance="fill" class="form">
           <mat-label>Select Curriculum</mat-label>
           <mat-select [(value)]="selectedcurriculum" (selectionChange)="onChangeCurr()">
@@ -49,7 +49,7 @@ width: 100%;
       </mat-select>
     </mat-form-field>
   </ng-template> -->
-      <ng-template [ngIf]="yearSel">
+      <ng-template [ngIf]="selectedcurriculum">
         <mat-form-field appearance="fill" class="form">
           <mat-label>Select Semester</mat-label>
           <mat-select [(value)]="selectedSemester" (selectionChange)="onChangeSem()">
@@ -60,7 +60,7 @@ width: 100%;
         </mat-form-field>
       </ng-template>
 
-      <ng-template [ngIf]="SemSel">
+      <ng-template [ngIf]="selectedSemester">
         <mat-form-field appearance="fill" class="form">
           <mat-label>Select Subject</mat-label>
           <mat-select [(value)]="selectedSubject" (selectionChange)="onChangeSub()">
@@ -68,7 +68,7 @@ width: 100%;
           </mat-select>
         </mat-form-field>
       </ng-template>
-      <button mat-raised-button (click)="loadPanel()" [disabled]="getDet" class="action-button">Get Details</button>
+      <button mat-raised-button (click)="loadPanel()" [disabled]="!selectedSubject" class="action-button">Get Details</button>
       <!-- <button mat-raised-button style="margin:20px" (click)="loadPanel()"></button> -->
     </div>
 

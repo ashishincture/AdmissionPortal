@@ -45,3 +45,20 @@
 input[type="file"]{
   display: none;
 }
+
+::ng-deep .snackBar .mat-simple-snackbar-action {
+  color: #7b59d0 ;
+}
+
+::ng-deep .snackBar .mat-simple-snackbar-action button {
+  font-weight: bold;
+}
+
+::ng-deep .snackBar.mat-snack-bar-container {
+  background: #25292C;
+  box-shadow: inset 0.75px 0.75px 2px rgba(255,255,255,0.3), 
+             inset 3px 15px 45px rgba(0,0,0,0.2),
+             inset -1px -1px 2px rgba(0,0,0,0.5), 
+             inset -3px -15px 45px rgba(255,255,255,0.1),
+             1px 5px 10px -4px rgba(0,0,0,1);
+}
