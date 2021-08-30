@@ -11,6 +11,9 @@ import { Globals } from '../globals';
 })
 export class HomeComponent implements OnInit {
   uri: string = ' https://university-app-2021.herokuapp.com/institute/add';
+  uri2: string = 'https://university-app-2021.herokuapp.com/counselling/add';
+  public CollegeCourses=[];
+  public DeptCourses=[];
   public colorToggle: string;
   public backGroundToggle: string;
   ngOnInit(): void {
@@ -33,7 +36,7 @@ export class HomeComponent implements OnInit {
     Course_type: '',
     Seats: '',
     Course_duration: '',
-    SeatAlloted: [],
+    Quotas: [],
   };
   dataTemplate = {
     college: '',
@@ -77,7 +80,7 @@ export class HomeComponent implements OnInit {
       Course_type: '',
       Seats: '',
       Course_duration: '',
-      SeatAlloted: [],
+      Quotas: [],
     };
     this.toastr.success('Course Registered', 'Success');
     this.toggle();
@@ -100,7 +103,7 @@ export class HomeComponent implements OnInit {
       Course_type: '',
       Seats: '',
       Course_duration: '',
-      SeatAlloted: [],
+      Quotas: [],
     };
     this.toastr.success('Course Registered', 'Success');
     this.toggle2();
@@ -116,6 +119,7 @@ export class HomeComponent implements OnInit {
     this.global.data.CollegeDetail.push(this.dataTemplate);
     let univ = this.http.post(`${this.uri}`, {
       Institution_id: this.dataTemplate.collegeCode,
+      University_id: this.global.data.InstitutionId,
       Institution_name: this.dataTemplate.college,
       Institution_strength: this.dataTemplate.collegeStrength,
       AICTE_Reg_ID: this.dataTemplate.AICTE_Reg_ID,
@@ -129,6 +133,14 @@ export class HomeComponent implements OnInit {
     });
     this.toastr.success('College Added', 'Success');
     univ.subscribe((data: any) => console.log(data));
+    // this.CollegeCourses=this.dataTemplate.SubjectListCollege;
+    // for(var i=0;i<this.dataTemplate.SubjectListCollege.length;i++){
+    //   this.uri2=this.uri2+"/"+this.global.data.InstitutionId+"/"+this.dataTemplate.SubjectListCollege[i].Course_type;
+    //   let univ2 = this.http.post<any>(`${this.uri2}`,{});
+    //   univ2.subscribe((data: any) => console.log(data));
+    // }
+    
+   
     this.dataTemplate = {
       college: '',
       collegeCode: '',
@@ -146,6 +158,7 @@ export class HomeComponent implements OnInit {
     this.global.data.DeptDetail.push(this.dataTemplateDep);
     let univ = this.http.post(`${this.uri}`, {
       Institution_id: this.dataTemplateDep.deptCode,
+      University_id: this.global.data.InstitutionId,
       Institution_name: this.dataTemplateDep.dept,
       Institution_strength: this.dataTemplateDep.deptStrength,
       AICTE_Reg_ID: this.dataTemplateDep.AICTE_Reg_ID,
@@ -159,6 +172,12 @@ export class HomeComponent implements OnInit {
     });
     this.toastr.success('Department Added', 'Success');
     univ.subscribe((data: any) => console.log(data));
+    // this.DeptCourses=this.dataTemplateDep.SubjectListDept;
+    // for(var i=0;i<this.dataTemplateDep.SubjectListDept.length;i++){
+    //   this.uri2=this.uri2+"/"+this.global.data.InstitutionId+"/"+this.dataTemplateDep.SubjectListDept[i].Course_type;
+    //   let univ2 = this.http.post<any>(`${this.uri2}`,{});
+    //   univ2.subscribe((data: any) => console.log(data));
+    // }
     this.dataTemplateDep = {
       dept: '',
       deptCode: '',
