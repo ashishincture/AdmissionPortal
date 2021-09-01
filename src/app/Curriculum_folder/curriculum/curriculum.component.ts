@@ -203,6 +203,18 @@ export class CurriculumComponent implements OnInit,AfterViewInit {
     });
     this.showForm.createCR=true;
     this.showForm.viewCR=false;
+    this.service.newCRData={
+      Curriculum_Name:"",
+      Curriclum_Code:"",
+      Regulation_ID:"",
+      Batch_Year:"",
+      Department_ID:"",
+      Semester_Data:[
+      {
+      Semester_NO:1,
+      Subjects:[]
+      }]
+    };
     
     
   }
@@ -212,6 +224,7 @@ export class CurriculumComponent implements OnInit,AfterViewInit {
       console.log("form invalid");
       return;
     }
+    
 
     this.container.clear();
     this.localservice.coreData=[];
@@ -244,6 +257,7 @@ export class CurriculumComponent implements OnInit,AfterViewInit {
     this.showForm.ViewFooter=true;   
     this.service.CRdataModelCreate(this.RegsDataDetails.Semester_Count);
     this.CRCountModel=this.service.CRCountModel;
+    
   }
   NextSem(){
     //this.CreateCRdetails.value.semNo++;
