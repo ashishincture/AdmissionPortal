@@ -223,4 +223,24 @@ export class DataServiceService {
       }
       this.CRCountModel[semNo-1].subjCount=subjCount;
     }
+    getStudentList(data){
+      return this.http.get(`${this.uri}/student/filterCourse/${this.instid}/${data.courseType}/${data.deptName}/${data.batchYear}`);
+    }
+    getCourselist(){
+      let data={
+        ins_id:this.instid
+      }
+      return this.http.post(`${this.uri}/institute/courses`,data);
+    }
+    getSTDeptlist(deptName){
+      let data={
+        ins_id:this.instid,
+        cor_id:deptName
+      }
+      return this.http.post(`${this.uri}/institute/branchListWithID`,data);
+    }
+    STmap(data){
+      return this.http.put(`${this.uri}/counselling/mapping/${this.instid}/${data.batchYear}/${data.deptName}/${data.courseType}`,"");
+    }
+   
 }

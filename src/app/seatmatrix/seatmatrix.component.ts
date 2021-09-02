@@ -29,6 +29,7 @@ export interface DialogData {
   templateUrl: './seatmatrix.component.html',
   styleUrls: ['./seatmatrix.component.css'],
 })
+
 export class SeatmatrixComponent implements OnInit {
   @ViewChild('chartid', { read: ViewContainerRef, static: false })
   container!: ViewContainerRef;
@@ -38,7 +39,10 @@ export class SeatmatrixComponent implements OnInit {
     Quota_allocation: '',
   };
   uri = 'https://university-app-2021.herokuapp.com/institute/quota/';
-
+  uri2 = 'https://university-app-2021.herokuapp.com/counselling/add';
+  public courseTypePayload: String;
+  public courseInstitutionID: String;
+  public dataSeatArray = [];
   courseID = '';
   public show: boolean = false;
   public buttonName: any = 'Show';
@@ -119,6 +123,7 @@ export class SeatmatrixComponent implements OnInit {
     for (var i = 0; i < this.global.data.CollegeDetail.length; i++) {
       if (filterValue == this.global.data.CollegeDetail[i].college) {
         this.code = 1;
+        this.courseInstitutionID = this.global.data.CollegeDetail[i].collegeCode;
         for (
           var j = 0;
           j < this.global.data.CollegeDetail[i].SubjectListCollege.length;
@@ -227,20 +232,20 @@ export class SeatmatrixComponent implements OnInit {
                 var k = 0;
                 k <
                 this.global.data.CollegeDetail[m].SubjectListCollege[n]
-                  .SeatAlloted.length;
+                  .Quotas.length;
                 k++
               ) {
                 this.graphvalue.label = '';
                 this.graphvalue.label =
                   this.global.data.CollegeDetail[m].SubjectListCollege[
                     n
-                  ].SeatAlloted[k].Quota_name;
+                  ].Quotas[k].Quota_name;
                 this.graphvalue.value = '';
                 this.graphvalue.value =
                   '' +
                   Math.round(
                     this.global.data.CollegeDetail[m].SubjectListCollege[n]
-                      .SeatAlloted[k].Quota_allocation
+                      .Quotas[k].Quota_allocation
                   );
                 graphdata = {
                   Value: this.graphvalue.value,
@@ -277,13 +282,13 @@ export class SeatmatrixComponent implements OnInit {
               for (
                 var k = 0;
                 k <
-                this.global.data.DeptDetail[m].SubjectListDept[n].SeatAlloted
+                this.global.data.DeptDetail[m].SubjectListDept[n].Quotas
                   .length;
                 k++
               ) {
                 this.graphvalue.label = '';
                 this.graphvalue.label =
-                  this.global.data.DeptDetail[m].SubjectListDept[n].SeatAlloted[
+                  this.global.data.DeptDetail[m].SubjectListDept[n].Quotas[
                     k
                   ].Quota_name;
                 this.graphvalue.value = '';
@@ -291,7 +296,7 @@ export class SeatmatrixComponent implements OnInit {
                   '' +
                   Math.round(
                     this.global.data.DeptDetail[m].SubjectListDept[n]
-                      .SeatAlloted[k].Quota_allocation
+                      .Quotas[k].Quota_allocation
                   );
                 graphdata = {
                   Value: this.graphvalue.value,
@@ -324,6 +329,7 @@ export class SeatmatrixComponent implements OnInit {
             this.courseID ==
             this.global.data.CollegeDetail[i].SubjectListCollege[j].Course_id
           ) {
+            
             this.dataTemplate.Quota_allocation =
               '' +
               Math.round(
@@ -336,7 +342,8 @@ export class SeatmatrixComponent implements OnInit {
               );
             this.global.data.CollegeDetail[i].SubjectListCollege[
               j
-            ].SeatAlloted.push(this.dataTemplate);
+            ].Quotas.push(this.dataTemplate);
+            this.courseTypePayload = this.global.data.CollegeDetail[i].SubjectListCollege[j].Course_type;
           }
         }
       }
@@ -349,20 +356,21 @@ export class SeatmatrixComponent implements OnInit {
         )
           if (
             this.courseID ==
-            this.global.data.DeptDetail[i].SubjectListCollege[j].Course_id
+            this.global.data.DeptDetail[i].SubjectListDept[j].Course_id
           ) {
             this.dataTemplate.Quota_allocation =
               '' +
               Math.round(
                 (parseInt(this.dataTemplate.Quota_percentage) *
                   parseInt(
-                    this.global.data.DeptDetail[i].SubjectListCollege[j].Seats
+                    this.global.data.DeptDetail[i].SubjectListDept[j].Seats
                   )) /
                   100
               );
-            this.global.data.DeptDetail[i].SubjectListCollege[
+            this.global.data.DeptDetail[i].SubjectListDept[
               j
-            ].SeatAlloted.push(this.dataTemplate);
+            ].Quotas.push(this.dataTemplate);
+            this.courseTypePayload = this.global.data.CollegeDetail[i].SubjectListCollege[j].Course_type;
           }
       }
     }
@@ -411,11 +419,23 @@ export class SeatmatrixComponent implements OnInit {
    let dialogRef = this.dialog.open(DialogExampleComponent, {data: {Quota_name : this.Quota_name,Quota_percentage:this.Quota_percentage}});
    dialogRef.afterClosed().subscribe(result => {
     console.log('The dialog was closed');
-    this.Quota_name = result.Quota_name;
-    this.Quota_percentage=result.Quota_percentage;
-   this.onPressAddQuota();
-    
+    this.dataSeatArray =result;
+    // this.Quota_name = result.Quota_name;
+    // this.Quota_percentage=result.Quota_percentage;
+  //  this.onPressAddQuota();
+  for(var i=0;i<this.dataSeatArray.length;i++){
+    this.Quota_name =this.dataSeatArray[i].Quota_name;
+    this.Quota_percentage=this.dataSeatArray[i].Quota_percentage;
+    this.onPressAddQuota();
+   }
+   
+    this.uri2=this.uri2+"/"+this.courseInstitutionID+"/"+this.courseTypePayload;
+    console.log(this.courseInstitutionID);
+    let univ2 = this.http.post<any>(`${this.uri2}`,{});
+    univ2.subscribe((data: any) => console.log(data));
+  
   });
+ 
 
   console.log(this.Quota_name);
     console.log(this.Quota_percentage);

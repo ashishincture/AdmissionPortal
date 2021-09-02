@@ -1,22 +1,20 @@
-<div class="subHeader mb-5">
+<div class="subHeader mb-5 p-2">
   <div class="d-flex">
-    <div class="mb-2">
+    <div>
       <button mat-button type="button" (click)="onGoBack()">
         <i class="fa fa-arrow-left"></i>
       </button>
     </div>
-    <div class="mr-auto">{{ showCourse }}</div>
-    <!-- <div>Available Seats : {{ availableSeats }}</div> -->
-    <select
-      class="form-control selectCollege w-25"
-      (change)="onChangeCollege($event)"
-    >
+    <div class="mr-auto pt-2">{{ showCourse }}</div>
+
+    <select class="form-control w-25" (change)="onChangeCollege($event)">
       <option>None</option>
       <option>B.Tech</option>
       <option>M.Tech</option>
     </select>
   </div>
 </div>
+
 <div class="container">
   <table
     mat-table

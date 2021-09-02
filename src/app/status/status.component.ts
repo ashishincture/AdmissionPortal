@@ -3,6 +3,19 @@ import {FormControl} from '@angular/forms';
 import{ MatDialog } from '@angular/material/dialog';
 import { DialogApproveComponent } from '../dialog-approve/dialog-approve.component';
 import { DialogNotApproveComponent } from '../dialog-not-approve/dialog-not-approve.component';
+import { DocumentsServiceService } from '../documents-service.service';
+
+export interface studentApproved{
+  XIIpercent: string;
+  Xpercent: number;
+  course: number;
+  name: string;
+  student_id: string;
+  __v: number;
+  _id: string;
+  profilePic: string;
+  status: string;
+}
 
 @Component({
   selector: 'app-status',
@@ -13,7 +26,7 @@ export class StatusComponent implements OnInit {
   background= 'primary';
   courses = new FormControl();
   courseList: string[] = ['Engineering', 'Medical', 'Management'];
-
+  studentsApproved : studentApproved[]=[];
   panelOpenState = false;
   public show: boolean = false;
   public buttonName: any = 'Show';
@@ -22,6 +35,7 @@ export class StatusComponent implements OnInit {
   arrRightBtn10 = [];
   arrHoldBtn12 = [];
   arrHoldBtn10 = [];
+  approvedStudents = [];
 
   studentDetails = [
     {
@@ -83,9 +97,11 @@ export class StatusComponent implements OnInit {
   ];
 
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, private DocumentsServiceService:DocumentsServiceService) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.fetchStudents();
+  }
   toggle() {
     this.show = !this.show;
 
@@ -95,6 +111,19 @@ export class StatusComponent implements OnInit {
     else
       this.buttonName = "Show";
   }
+
+  fetchStudents(){
+    this.DocumentsServiceService.getApprovedStudents().
+    subscribe((data:any)=>{
+      this.studentsApproved=data.data;
+      for(var i=this.studentsApproved.length-1;i>=0;i--){
+        this.approvedStudents.push(this.studentsApproved[i]);
+      }
+      console.log(this.approvedStudents);    
+    });
+  }
+
+
   onPressRightX(oEvent) {
 
     for (var b = 0; b < this.arrHoldBtn10.length; b++) {

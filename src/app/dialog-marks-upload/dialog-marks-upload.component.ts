@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import * as XLSX from 'xlsx';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ApiMarksUploadService } from '../data/api-marks-upload.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
@@ -19,13 +20,14 @@ export class DialogMarksUploadComponent implements OnInit {
   disableUploadButton = true;
   oSelectedFilterData = {};
 
-  constructor(private _ApiMarksUploadService: ApiMarksUploadService, public dialogRef: MatDialogRef<DialogMarksUploadComponent>,
+  constructor(private snackBar: MatSnackBar, private _ApiMarksUploadService: ApiMarksUploadService, public dialogRef: MatDialogRef<DialogMarksUploadComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
     this.oSelectedFilterData = data.payloadD;
 
   }
 
   onDownloadRequest() {
+    let that = this;
     let oPayload = this.oSelectedFilterData;
     console.log(oPayload);
 
@@ -43,8 +45,13 @@ export class DialogMarksUploadComponent implements OnInit {
     };
 
     this._ApiMarksUploadService.getResponseBlob(payload).subscribe(data => {
-      this.downloadFile(data, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "export.xlsx");
-
+      if (data) {
+        this.downloadFile(data, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "export.xlsx");
+        that.openSnackBar("Excel File Downloaded Successfully !", "OK");
+      }
+      else {
+        that.openSnackBar("Failed to Download Excel File", "OK");
+      }
     });
   }
 
@@ -93,15 +100,24 @@ export class DialogMarksUploadComponent implements OnInit {
   }
 
   uploadData() {
-
+    let that = this;
     this._ApiMarksUploadService.postExcelData(this.aExcelData).subscribe(data => {
       console.log(data);
-      alert("Marks uploaded successfully");
+      that.openSnackBar("Marks uploaded successfully!", "OK");
+      // alert("Marks uploaded successfully");
     },
-      error => alert(error));
-
+      error => {
+        that.openSnackBar("Failed To Upload Excel File.", "OK");
+        // alert(error);
+        console.log(error);
+      }
+    );
   }
 
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, { panelClass: ['snackBar'] });
+  }
 
   ngOnInit(): void {
   }

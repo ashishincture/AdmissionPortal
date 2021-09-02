@@ -1,6 +1,15 @@
 
 <h2 mat-dialog-title>Add Quota and percentage allocated</h2>
 <mat-dialog-content>
+  
+    <div class="row">
+      <div class="col-sm-7">
+        <a *ngFor="let quota of dataQuotaArray">
+          {{ quota.Quota_name }}  {{quota.Quota_percentage}}
+        </a>
+      </div>
+    </div>
+
     <div style="text-align: left">
         <div class="row borderIt">
           <mat-form-field appearance="outline" class="categoryinput">

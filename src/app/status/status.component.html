@@ -59,13 +59,13 @@
     <div class="card-deck" *ngFor="let detail of studentDetails;let i=index"> -->
   
       <div fxLayout="row wrap" fxLayoutGap="32px grid" class="card-deck">
-        <div fxFlex="33%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let detail of studentDetails;let i=index">
+        <div fxFlex="33%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let detail of approvedStudents;let i=index">
   
       <div class="card">
         <img src="{{detail.profilePic}}"
           class="rounded-circle container-fluid d-flex justify-content-center imgCard card-img-top" alt="...">
         <div class="card-body">
-          <h5 class="card-title container-fluid d-flex justify-content-center"><strong>{{detail.id}} -
+          <h5 class="card-title container-fluid d-flex justify-content-center"><strong>{{detail.student_id}} -
               {{detail.name}}</strong></h5>
   
           <div class="scrollable">

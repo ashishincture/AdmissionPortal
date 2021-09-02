@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { element } from 'protractor';
 import * as XLSX from 'xlsx';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Component, OnInit } from '@angular/core';
 import { ApiMarksUploadService } from './../data/api-marks-upload.service'
 import { FormGroup, FormControl, FormBuilder, Validators, AbstractControl, FormArray } from '@angular/forms';
@@ -71,13 +72,13 @@ export class MarksInsertionComponent implements OnInit {
   // Courses:course[]=[];
   // year:yearT[]=[];
 
-  constructor(private _ApiMarksUploadService: ApiMarksUploadService, private fBuilder: FormBuilder, public dialog: MatDialog) { }
+  constructor(private _ApiMarksUploadService: ApiMarksUploadService, private fBuilder: FormBuilder, public dialog: MatDialog, private snackBar: MatSnackBar) { }
   exampleFormControl = new FormControl('');
   title = 'new-Project';
+  showPanel = false;
   showPreview = false;
   maxA: number = 0;
   maxAt: number = 0;
-  showPanel = false;
   maxL: number = 0;
 
   maxT: number = 0;
@@ -150,27 +151,22 @@ export class MarksInsertionComponent implements OnInit {
     console.log(this.Faculty);
   }
 
-
-  // funAs(element:Number)
-  // {
-  //   if(element > this.maxA){
-  //     this.buttonS=false;
-  //     return true;
-  //   }
-  //   else{
-  //     this.buttonS=true;
-  //     return false;
-  //   }
-  // }
-  sw = "";
-  max = 0;
-
   Institution: any[] = []
 
   ngOnInit(): void {
+    let that = this;
     this._ApiMarksUploadService.getInstitutionList().subscribe(data => {
-      console.log(data);
-      this.Institution = data.insArray;
+      if (data.success == true) {
+        if (data.insArray.length == 0) {
+          that.openSnackBar("No Institutions in Dropdown", "OK");
+        }
+        console.log(data);
+        this.Institution = data.insArray;
+      }
+      else {
+        that.openSnackBar("Error in Retreving Data", "OK");
+      }
+
     });
   }
 
@@ -182,17 +178,35 @@ export class MarksInsertionComponent implements OnInit {
   SemSel = false;
 
   onChangeIns() {
-    this.InsSel = true
+    let that = this;
+    this.InsSel = true;
+    this.Regulation = [];
     this.payload = {
       "ins_id": this.selectedIns
     }
     this._ApiMarksUploadService.getRegulationList(this.payload).subscribe(data => {
-      console.log(data);
-      this.Regulation = data;
+      if (data.success == true) {
+        if (data.length == 0) {
+          that.openSnackBar("No Regulations in Dropdown", "OK");
+        }
+        console.log(data);
+        this.Regulation = data;
+      }
+      else {
+        that.openSnackBar("Error in Retreving Data", "OK");
+      }
     });
+
+    this.selectedReg = null;
+    this.selectedDept = null;
+    this.selectedcurriculum = null;
+    this.selectedSemester = null;
+    this.selectedSubject = null;
+    this.fnShowFilterBarOnly();
   }
 
   onChangeReg() {
+    let that = this;
     this.Department = [];
     this.RegSel = true;
     this.payload = {
@@ -200,17 +214,29 @@ export class MarksInsertionComponent implements OnInit {
       "reg_id": this.selectedReg
     };
     this._ApiMarksUploadService.getDepartmentList(this.payload).subscribe(data => {
-      console.log(data);
-      this.Department = data.depArray;
+      if (data.success == true) {
+        if (data.depArray.length == 0) {
+          that.openSnackBar("No Departments in Dropdown", "OK");
+        }
+        console.log(data);
+        this.Department = data.depArray;
+      }
+      else {
+        that.openSnackBar("Error in Retreving Data", "OK");
+      }
     });
-    this.Curriculum = [];
-    this.semester = [];
-    this.Subjects = [];
+
+    this.selectedDept = null;
+    this.selectedcurriculum = null;
+    this.selectedSemester = null;
+    this.selectedSubject = null;
+    this.fnShowFilterBarOnly();
   }
 
   BatchSel = false;
 
   onChangeDept() {
+    let that = this;
     this.Curriculum = [];
     this.deptSel = true;
     this.payload = {
@@ -219,15 +245,27 @@ export class MarksInsertionComponent implements OnInit {
       "dep_id": this.selectedDept
     };
     this._ApiMarksUploadService.getCurriculumList(this.payload).subscribe(data => {
-      console.log(data);
-      this.Curriculum = data.curArray;
+      if (data.success == true) {
+        if (data.curArray.length == 0) {
+          that.openSnackBar("No Curriculums in Dropdown", "OK");
+        }
+        console.log(data);
+        this.Curriculum = data.curArray;
+      }
+      else {
+        that.openSnackBar("Error in Retreving Data", "OK");
+      }
     });
-    this.semester = [];
-    this.Subjects = [];
+
+    this.selectedcurriculum = null;
+    this.selectedSemester = null;
+    this.selectedSubject = null;
+    this.fnShowFilterBarOnly();
   }
   BranchSel = false;
 
   onChangeCurr() {
+    let that = this;
     // this.currSel=true;
     this.semester = [];
     this.yearSel = true;
@@ -239,11 +277,21 @@ export class MarksInsertionComponent implements OnInit {
     };
 
     this._ApiMarksUploadService.getSemesterList(this.payload).subscribe(data => {
-      console.log(data);
-      this.semester = data.semesters;
+      if (data.success == true) {
+        if (data.semesters.length == 0) {
+          that.openSnackBar("No Semesters in Dropdown", "OK");
+        }
+        console.log(data);
+        this.semester = data.semesters;
+      }
+      else {
+        that.openSnackBar("Error in Retreving Data", "OK");
+      }
     });
 
-    this.Subjects = [];
+    this.selectedSemester = null;
+    this.selectedSubject = null;
+    this.fnShowFilterBarOnly();
   }
 
   // onChangeYear(){
@@ -259,6 +307,7 @@ export class MarksInsertionComponent implements OnInit {
   // }
 
   onChangeSem() {
+    let that = this;
     this.Subjects = [];
     this.SemSel = true;
     this.payload = {
@@ -269,34 +318,79 @@ export class MarksInsertionComponent implements OnInit {
       "sem_no": this.selectedSemester
     };
     this._ApiMarksUploadService.getSubjectList(this.payload).subscribe(data => {
-      console.log(data.data.Subjects);
-      this.Subjects = data.data.Subjects;
+      if (data.success == true) {
+        if (data.data.Subjects.length == 0) {
+          that.openSnackBar("No Subjects in Dropdown", "OK");
+        }
+        console.log(data.data.Subjects);
+        this.Subjects = data.data.Subjects;
+      }
+      else {
+        that.openSnackBar("Error in Retreving Data", "OK");
+      }
     });
+
+    this.selectedSubject = null;
+    this.fnShowFilterBarOnly();
   }
 
   onChangeSub() {
-    // this.RegSel=true;
-    // this.payload = {
-    //   "ins_id": "IN0010",
-    //   "reg_id": selectedReg
-    // }; 
-    // this._ApiMarksUploadService.getDepartmentList(this.payload).subscribe(data=>{
-    //   console.log(data);
-    //   this.Department=data;
-    // } );
     if (this.selectedSubject) {
       this.getDet = false;
     }
 
+    this.fnShowFilterBarOnly();
+
   }
 
   uploadData() {
-
+    let that = this;
     this._ApiMarksUploadService.postExcelData(this.dataSource).subscribe(data => {
       console.log(data);
-      alert("Marks uploaded successfully");
+      that.openSnackBar("Marks uploaded successfully!", "OK");
+      // alert("Marks uploaded successfully");
     },
-      error => alert(error));
+      error => {
+        that.openSnackBar("Failed To Upload Excel File.", "OK");
+        // alert(error);
+        console.log(error);
+      }
+    );
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, { duration: 2500, panelClass: ['snackBar'] });
+  }
+
+  fnShowFilterBarOnly() {
+    if (this.showPanel) {
+      this.showPanel = false;
+    }
+    if (this.showPreview) {
+      this.showPreview = false;
+    }
+  }
+
+  fnSetInitialScreen() {
+
+    this.selectedIns = null;
+    this.selectedReg = null;
+    this.selectedDept = null;
+    this.selectedcurriculum = null;
+    this.selectedSemester = null;
+    this.selectedSubject = null;
+
+    this.showPanel = false;
+    this.showPreview = false;
+
+    //called initially & after successful Excel Upload
+  }
+
+  fnCheckExcelMarks() {
+
+    //1st check marking criteria(columns)
+    // then check for max-marks validation 
+
   }
 
 

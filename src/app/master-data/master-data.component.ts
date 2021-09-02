@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Globals } from '../globals';
 @Component({
   selector: 'app-master-data',
@@ -15,7 +16,8 @@ export class MasterDataComponent implements OnInit {
   constructor(
     public router: Router,
     public global: Globals,
-    public http: HttpClient
+    public http: HttpClient,
+    private toastr: ToastrService
   ) {}
   onPressSubmit() {
     var data2 = {
@@ -34,6 +36,7 @@ export class MasterDataComponent implements OnInit {
     let univ = this.http.post(`${this.uri}` + '/add', data2);
     univ.subscribe((data: any) => console.log(data));
     console.log(this.univData);
+    this.toastr.success('Institution Registered', 'Success');
     this.router.navigate(['/home']);
   }
   ngOnInit(): void {}
