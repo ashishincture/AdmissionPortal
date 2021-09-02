@@ -51,6 +51,14 @@ export class CurriculumComponent implements OnInit,AfterViewInit {
   selectedIns;
   Institution;
   detVisibility=false;
+  STlistForm;
+  Stlist=[];
+  CourseList;
+  STdeptlist;
+  ADyearlist
+  StVisible=false;
+
+  STlistColumns: string[] = [ 'ID','Name','Batch year', 'Status'];
   constructor(
     private route:Router,
     private activatedRoute:ActivatedRoute,
@@ -93,6 +101,12 @@ export class CurriculumComponent implements OnInit,AfterViewInit {
       adYear:[],
       semNo:[1,[Validators.required]]
     });
+    this.STlistForm=this.fBuilder.group({
+      courseType:['',[Validators.required]],
+      deptName:['',[Validators.required]],
+      batchYear:['',[Validators.required]]
+      
+    })
   }
   onFetchInstitute(){
     if(!this.selectedIns){
@@ -311,6 +325,40 @@ export class CurriculumComponent implements OnInit,AfterViewInit {
     });
     }
     
+  }
+  TabChange(oEvent:any){
+    let tablabel=oEvent.tab.textLabel;
+    if(tablabel==="Student Allocation"){
+      this.service.getCourselist().subscribe((data:any)=>{
+        this.CourseList=data;
+        this.StVisible=false;
+      })
+    }
+    
+  }
+  onSelectSTCourse(){
+    this.service.getSTDeptlist(this.STlistForm.value.courseType).subscribe((data:any)=>{
+      this.STdeptlist=data;
+    })
+  }
+  ViewSTlist(){
+    if (this.STlistForm.invalid) {
+      console.log('form invalid');
+        return;
+    }
+    this.service.getStudentList(this.STlistForm.value).subscribe((data:any)=>{
+      
+      this.Stlist=data.data;
+      this.StVisible=true;
+
+
+    })
+  }
+  StMapping(){
+    this.service.STmap(this.STlistForm.value).subscribe((data:any)=>{
+      console.log(data);
+      alert(data.msg);
+    })
   }
 
 }
