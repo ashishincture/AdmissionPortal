@@ -94,14 +94,22 @@ export class DataService {
   }
   ]
   constructor(private http: HttpClient) { }
-  getInstitutionList(){
-    return this.http.get(this.uri+"/institute/all/");
+  getInstitutionList() {
+    return this.http.get(this.uri + "/institute/all/");
+  }
+  getCourseList() {
+    var payload =
+    {
+      "ins_id": this.instid
+    }
+    console.log(payload);
+    return this.http.post(`${this.uri}/institute/courses`,payload);
   }
   getRegulationData() {
     // var instid = "IN0010";
     return this.http.get(`${this.uri}/Regulation/getregulation/${this.instid}`);
   }
-  getAllDeps(){
+  getAllDeps() {
     return this.http.get(`${this.uri}/institute/view/${this.instid}`);
   }
   getRegulationDatabyID(rID) {
@@ -145,7 +153,7 @@ export class DataService {
     // );
     // return serData;
   }
-  getRegulationDataTable(){
+  getRegulationDataTable() {
     return this.regulationDataTable;
   }
   add(newdata: tableData) {
@@ -171,48 +179,48 @@ export class DataService {
   getAddRegData() {
     return this.data = [1];
   }
-  postAddRegData(data:any){
-  console.log(data);
-  console.log(this.instid);
-  // const httpOptions = {
-  //   headers: new this.HttpHeader({
-  //     'Content-Type':  'application/json'
-  //   })
-  // }
-   var a = this.http.post(`${this.uri}/Regulation/newregulations/${this.instid}`,data);
-   return a;
+  postAddRegData(data: any) {
+    console.log(data);
+    console.log(this.instid);
+    // const httpOptions = {
+    //   headers: new this.HttpHeader({
+    //     'Content-Type':  'application/json'
+    //   })
+    // }
+    var a = this.http.post(`${this.uri}/Regulation/newregulations/${this.instid}`, data);
+    return a;
   }
-  onDelete(){
+  onDelete() {
     var rId = this.RId;
-    return this.http.put(`${this.uri}/Regulation/deleteregulation/${this.instid}/${rId}`,"");
+    return this.http.put(`${this.uri}/Regulation/deleteregulation/${this.instid}/${rId}`, "");
   }
   getAddRegTableData(sem) {
     var finalData = [];
     var sub = [];
     // var dep = ["ECE", "CSE", "MECH", "IT" ];
-  var dep = this.allDeps;
-    
+    var dep = this.allDeps;
+
     for (var i = 1; i <= sem; i++) {
-      var subobj = { sNo: i, Core: 0, OE: 0, PE: 0};
+      var subobj = { sNo: i, Core: 0, OE: 0, PE: 0 };
       sub.push(subobj);
     }
-    for(var j=0;j<dep.length;j++){
-    var dataobj = {
-      Department_ID: dep[j].courseid,
-      Department_Name:dep[j].coursename,
-      Total_Credit:28,
-      Semester_Count: sem,
-      Credits_Details: sub
+    for (var j = 0; j < dep.length; j++) {
+      var dataobj = {
+        Department_ID: dep[j].courseid,
+        Department_Name: dep[j].coursename,
+        Total_Credit: 28,
+        Semester_Count: sem,
+        Credits_Details: sub
+      }
+      finalData.push(dataobj);
     }
-    finalData.push(dataobj);
-  }
-    
+
     return finalData;
   }
-  getAllAsFormArray(Subjects:any){
-  
-    let nArry=new FormArray([]);
-    let arry=Subjects.map((subject: any) => {
+  getAllAsFormArray(Subjects: any) {
+
+    let nArry = new FormArray([]);
+    let arry = Subjects.map((subject: any) => {
       // Maps all the albums into a formGroup defined in
       const fgs = Data.asFormGroup(subject);
       nArry.controls.push(fgs);

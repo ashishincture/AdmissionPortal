@@ -36,6 +36,7 @@ export class RegulationDetailsComponent implements OnInit {
         this.myForm = this.fBuilder.group({
           regulationName: [this.RegData.Regulation_Name, [Validators.required,]],
           regulationId: [this.RegData.Regulation_ID, [Validators.required,]],
+          courseName:[this.RegData.Course_Type, [Validators.required,]],
           // subType: ['', [Validators.required,]],
           // gradeType: ['', [Validators.required,]]
         })

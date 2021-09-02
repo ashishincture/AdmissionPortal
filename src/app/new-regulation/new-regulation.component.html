@@ -2,6 +2,14 @@
     <mat-toolbar class="matToolbar">
         <p class="verClass">New Regulation</p>
     </mat-toolbar>
+    <div class="row">
+        <div class="col-sm-3 form-group" style="width:20%; margin-left: 1rem; margin-top: 0.7rem;">
+            <mat-label style="color:white;">Select Course</mat-label>
+            <mat-select [(value)]="selectedCourse"  class="styleSelect">
+                <mat-option *ngFor="let course of courses" [value]="course">{{course}}</mat-option>
+            </mat-select>
+        </div>
+    </div>
     <div class="regulationdetailscontainer">
         <form [formGroup]="myForm" class="row">
             <div class="regdetails form-group col">
