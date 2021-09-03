@@ -1,14 +1,28 @@
 
 <h2 mat-dialog-title>Add Quota and percentage allocated</h2>
 <mat-dialog-content>
-  
-    <div class="row">
+<div class="row">
+  <!-- <div class="col-sm-6"> -->
+    <div class="listofcourses">
+      <div id="container">
+        <div class="abcd">
+          <!-- <div class="col-sm-7"> -->
+            <a *ngFor="let quota of dataQuotaArray">
+              <b>{{ quota.Quota_name }}</b>  : &nbsp; &nbsp; &nbsp;{{quota.Quota_percentage}}%  <br/>   
+            </a>
+          <!-- </div> -->
+        </div>
+      </div>
+    <!-- </div> -->
+  </div>
+</div>
+    <!-- <div class="row">
       <div class="col-sm-7">
         <a *ngFor="let quota of dataQuotaArray">
           {{ quota.Quota_name }}  {{quota.Quota_percentage}}
         </a>
       </div>
-    </div>
+    </div> -->
 
     <div style="text-align: left">
         <div class="row borderIt">
