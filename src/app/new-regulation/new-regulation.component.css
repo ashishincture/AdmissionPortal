@@ -111,6 +111,17 @@ td.mat-cell{
 background-color: #333333 !important;
 }
 
+.styleSelect{
+  background: #b5b5b5;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  width: 100%;
+}
+
+.styleSelect.mat-select-value {
+  color: #f8f9fa !important;
+}
+
 
 @media screen and (max-width: 375px) {
   .department1 {

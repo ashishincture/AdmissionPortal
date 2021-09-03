@@ -33,6 +33,9 @@ export class NewRegulationComponent implements OnInit {
   tableVisibility = true;
   eflag = this.service.eidtFlag;
 
+  courses;
+  selectedCourse;
+
   displayedColumns: string[] = ['semNo', 'core', 'pe', 'oe'];
   dataSource;
   uri: string = 'https://university-app-2021.herokuapp.com';
@@ -95,7 +98,13 @@ export class NewRegulationComponent implements OnInit {
     private componentFactoryResolver: ComponentFactoryResolver,
     private http: HttpClient,
     public dialog: MatDialog
-  ) { }
+  ) {
+    this.service.getCourseList().subscribe((data: any) => {
+      this.courses = data;
+    },error=>{
+      alert(error.error.error._message);
+    });
+   }
 
   ngOnInit(): void {
     if (this.eflag === true) {
@@ -122,6 +131,7 @@ export class NewRegulationComponent implements OnInit {
     // var curData = this.tableRow;
     // curData.push(this.tableRow.length+1);
     // this.service.data=curData;
+    console.log(this.selectedCourse);
     this.tableVisibility = false;
     // debugger;
     this.dataSource = this.service.getAddRegTableData(this.myForm.value.semesters);
@@ -147,7 +157,10 @@ export class NewRegulationComponent implements OnInit {
       Active: true,
       Regulation_ID: this.myForm.value.regulationId,
       Regulation_Name: this.myForm.value.regulationName,
-      Academic_Year: [parseInt(this.myForm.value.academicyear), parseInt(this.myForm.value.academicyear) + 4],
+      // Academic_Year: [parseInt(this.myForm.value.academicyear), parseInt(this.myForm.value.academicyear) + 4],
+      Academic_Start_Year:this.myForm.value.academicyear,
+      Academic_End_Year:this.myForm.value.academicyear,
+      Course_Type: this.selectedCourse,
       Grading: this.data2,
       Department_Details: depobj
     }

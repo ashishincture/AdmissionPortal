@@ -61,7 +61,7 @@ export class CreateCRComponent implements OnInit {
     //   });
       //this.deptSubj=this.deptData.Subject;
     let inputData = this.localservice.coreData;
-    if(this.localservice.subType!=='CORE'){
+    if(this.localservice.subType!=='CORE'&&this.localservice.subType!=='core'&&this.localservice.subType!=='Core'){
       this.showGroupfield=true;
       this.groupingColumn="Group_Name";
     }
@@ -121,7 +121,7 @@ export class CreateCRComponent implements OnInit {
       alert("Please select a GroupName of the elective");
       return;
     }
-    if(this.subType==="CORE"){
+    if(this.subType==="CORE"||this.subType==="Core"||this.subType==="core"){
       if(this.dataSource.length===this.RegSemDetails.Core)
       return;
     }
@@ -238,7 +238,7 @@ export class CreateCRComponent implements OnInit {
   buildDataSource(){
     this.dataSource = this.groupBy(this.groupingColumn,this.initialData,this.reducedGroups);
     this.service.updateCRData(this.initialData,this.semNo);
-    if(this.subType!=="CORE"){
+    if(this.subType!=="CORE"&&this.subType!=="core"&&this.subType!=="Core"){
       var nGrps=0;
       for(var i=0;i<this.dataSource.length;i++){
         if(this.dataSource[i].isGroup){

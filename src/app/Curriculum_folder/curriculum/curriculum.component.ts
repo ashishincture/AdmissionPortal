@@ -51,6 +51,14 @@ export class CurriculumComponent implements OnInit,AfterViewInit {
   selectedIns;
   Institution;
   detVisibility=false;
+  STlistForm;
+  Stlist=[];
+  CourseList;
+  STdeptlist;
+  ADyearlist
+  StVisible=false;
+
+  STlistColumns: string[] = [ 'ID','Name','Batch year', 'Status'];
   constructor(
     private route:Router,
     private activatedRoute:ActivatedRoute,
@@ -93,6 +101,12 @@ export class CurriculumComponent implements OnInit,AfterViewInit {
       adYear:[],
       semNo:[1,[Validators.required]]
     });
+    this.STlistForm=this.fBuilder.group({
+      courseType:['',[Validators.required]],
+      deptName:['',[Validators.required]],
+      batchYear:['',[Validators.required]]
+      
+    })
   }
   onFetchInstitute(){
     if(!this.selectedIns){
@@ -203,6 +217,18 @@ export class CurriculumComponent implements OnInit,AfterViewInit {
     });
     this.showForm.createCR=true;
     this.showForm.viewCR=false;
+    this.service.newCRData={
+      Curriculum_Name:"",
+      Curriclum_Code:"",
+      Regulation_ID:"",
+      Batch_Year:"",
+      Department_ID:"",
+      Semester_Data:[
+      {
+      Semester_NO:1,
+      Subjects:[]
+      }]
+    };
     
     
   }
@@ -212,6 +238,7 @@ export class CurriculumComponent implements OnInit,AfterViewInit {
       console.log("form invalid");
       return;
     }
+    
 
     this.container.clear();
     this.localservice.coreData=[];
@@ -244,6 +271,7 @@ export class CurriculumComponent implements OnInit,AfterViewInit {
     this.showForm.ViewFooter=true;   
     this.service.CRdataModelCreate(this.RegsDataDetails.Semester_Count);
     this.CRCountModel=this.service.CRCountModel;
+    
   }
   NextSem(){
     //this.CreateCRdetails.value.semNo++;
@@ -297,6 +325,40 @@ export class CurriculumComponent implements OnInit,AfterViewInit {
     });
     }
     
+  }
+  TabChange(oEvent:any){
+    let tablabel=oEvent.tab.textLabel;
+    if(tablabel==="Student Allocation"){
+      this.service.getCourselist().subscribe((data:any)=>{
+        this.CourseList=data;
+        this.StVisible=false;
+      })
+    }
+    
+  }
+  onSelectSTCourse(){
+    this.service.getSTDeptlist(this.STlistForm.value.courseType).subscribe((data:any)=>{
+      this.STdeptlist=data;
+    })
+  }
+  ViewSTlist(){
+    if (this.STlistForm.invalid) {
+      console.log('form invalid');
+        return;
+    }
+    this.service.getStudentList(this.STlistForm.value).subscribe((data:any)=>{
+      
+      this.Stlist=data.data;
+      this.StVisible=true;
+
+
+    })
+  }
+  StMapping(){
+    this.service.STmap(this.STlistForm.value).subscribe((data:any)=>{
+      console.log(data);
+      alert(data.msg);
+    })
   }
 
 }
