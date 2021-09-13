@@ -185,15 +185,22 @@ export class MarksInsertionComponent implements OnInit {
       "ins_id": this.selectedIns
     }
     this._ApiMarksUploadService.getRegulationList(this.payload).subscribe(data => {
-      if (data.success == true) {
-        if (data.length == 0) {
-          that.openSnackBar("No Regulations in Dropdown", "OK");
-        }
+      // if (data.success == true) {
+      if (data.length == 0) {
+        that.openSnackBar("No Regulations in Dropdown", "OK");
+      }
+      if (data.length) {
         console.log(data);
         this.Regulation = data;
       }
-      else {
-        that.openSnackBar("Error in Retreving Data", "OK");
+      // }
+      // else {
+      // that.openSnackBar("Error in Retreving Data", "OK");
+      // }
+      if (!data.success) {
+        if (data.message) {
+          that.openSnackBar(data.message, "OK");
+        }
       }
     });
 
@@ -214,7 +221,7 @@ export class MarksInsertionComponent implements OnInit {
       "reg_id": this.selectedReg
     };
     this._ApiMarksUploadService.getDepartmentList(this.payload).subscribe(data => {
-      if (data.success == true) {
+      if (data.msg == "sucess") {
         if (data.depArray.length == 0) {
           that.openSnackBar("No Departments in Dropdown", "OK");
         }
@@ -245,7 +252,7 @@ export class MarksInsertionComponent implements OnInit {
       "dep_id": this.selectedDept
     };
     this._ApiMarksUploadService.getCurriculumList(this.payload).subscribe(data => {
-      if (data.success == true) {
+      if (data.msg == "sucess") {
         if (data.curArray.length == 0) {
           that.openSnackBar("No Curriculums in Dropdown", "OK");
         }
@@ -277,7 +284,7 @@ export class MarksInsertionComponent implements OnInit {
     };
 
     this._ApiMarksUploadService.getSemesterList(this.payload).subscribe(data => {
-      if (data.success == true) {
+      if (data.msg == "sucess") {
         if (data.semesters.length == 0) {
           that.openSnackBar("No Semesters in Dropdown", "OK");
         }
@@ -318,7 +325,7 @@ export class MarksInsertionComponent implements OnInit {
       "sem_no": this.selectedSemester
     };
     this._ApiMarksUploadService.getSubjectList(this.payload).subscribe(data => {
-      if (data.success == true) {
+      if (data.msg == "sucess") {
         if (data.data.Subjects.length == 0) {
           that.openSnackBar("No Subjects in Dropdown", "OK");
         }
