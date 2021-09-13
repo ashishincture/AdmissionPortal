@@ -93,6 +93,7 @@ import { DialogMarksUploadComponent } from './dialog-marks-upload/dialog-marks-u
 import { AddDefaultSkeletonDialogComponent } from './add-default-skeleton-dialog/add-default-skeleton-dialog.component';
 import { CalendarModuleComponent } from './calendar-module/calendar-module.component';
 import { DialogExampleComponent } from './dialog-example/dialog-example.component';
+import { DialogUpdateComponent } from './dialog-update/dialog-update.component';
 
 // Pass the fusioncharts library and chart modules
 FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
@@ -146,6 +147,7 @@ FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
     AddDefaultSkeletonDialogComponent,
     CalendarModuleComponent,
     DialogExampleComponent,
+    DialogUpdateComponent,
   ],
   imports: [
     BrowserModule,

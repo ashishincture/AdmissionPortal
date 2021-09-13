@@ -1,0 +1,13 @@
+<h2 mat-dialog-title>Update Regulation</h2>
+
+<mat-dialog-content [formGroup]="form" class="row">
+        <mat-form-field>
+            <mat-label style="color: black;">End Year</mat-label>
+            <input matInput type="number" placeholder="Format - YYYY" style="color: #007bff;" formControlName="endyear">
+        </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button class="mat-raised-button btnStyleBlue" (click)="onUpdate()">Update</button>
+    <button class="mat-raised-button btnStyleRed" (click)="close()">Close</button>
+</mat-dialog-actions>

@@ -2,6 +2,10 @@
     <mat-toolbar class="matToolbar">
         <p class="verClass">Regulation Details</p>
     </mat-toolbar>
+    <div style="float: right;">
+        <button mat-raised-button class="updateRegulation" (click)="onUpdateRegDialog()">Update</button>
+        <button mat-raised-button class="addRegulationClass" (click)="onDeleteReg()">Delete</button>
+    </div>
     <div class="regulationdetailscontainer">
         <form [formGroup]="myForm" class="row">
             <div class="regdetails form-group col">
@@ -22,34 +26,35 @@
             <div class="regdetails form-group col">
                 <mat-form-field appearance="standard">
                     <mat-label style="color: white;">Course</mat-label>
-                    <input matInput placeholder="Course Name" style="color: #007bff;"
-                        formControlName="courseName">
+                    <input matInput placeholder="Course Name" style="color: #007bff;" formControlName="courseName">
 
                 </mat-form-field>
             </div>
-            <!-- <div class="regdetails form-group col">
-                <mat-form-field appearance="standard">
-                    <mat-label style="color: white;">Subject Type</mat-label>
-                    <input matInput placeholder="Enter Subject Type" style="color: #007bff;" formControlName="subType">
-
-                </mat-form-field>
-            </div>
-
             <div class="regdetails form-group col">
                 <mat-form-field appearance="standard">
-                    <mat-label style="color: white;">Select Grade Type</mat-label>
-                    <mat-select class="selectRegdetails" formControlName="gradeType">
-                        <mat-option value="grading">Grading</mat-option>
-                        <mat-option value="percentage">Percentage</mat-option>
-                        <mat-option value="other">Other</mat-option>
-                    </mat-select>
+                    <mat-label style="color: white;">Start Year</mat-label>
+                    <input matInput placeholder="Start year" style="color: #007bff;" formControlName="startyear">
 
                 </mat-form-field>
-            </div> -->
+            </div>
+            <div class="regdetails form-group col">
+                <mat-form-field appearance="standard">
+                    <mat-label style="color: white;">End Year</mat-label>
+                    <input matInput placeholder="End year" style="color: #007bff;" formControlName="endyear">
+
+                </mat-form-field>
+            </div>
         </form>
 
     </div>
-    <button mat-raised-button class="addRegulationClass" (click)="onDeleteReg()">Delete</button>
+    <!-- <div width="100%"> -->
+        <!-- <mat-toolbar class="matToolbar">
+            <div style="position: absolute;right: 0;top: -1.15rem;">
+            <button mat-raised-button class="updateRegulation" (click)="onUpdateRegDialog()">Update</button>
+            <button mat-raised-button class="addRegulationClass" (click)="onDeleteReg()">Delete</button>
+        </div>
+        </mat-toolbar> -->
+    <!-- </div> -->
     <div class="containerDepartments">
         <div class="department1" *ngFor="let data of tableData">
             <table mat-table [dataSource]="data.Credits_Details" class="mat-elevation-z8 regulationDetailsTable"

@@ -43,7 +43,7 @@ td.mat-cell{
   /* border-bottom-color: #007bff; */
 }
 .addRegulationClass{
-  float: right;
+  /* float: right; */
   margin-top: 1.5rem;
   margin-right: 2rem;
   background: #25292c;
@@ -95,6 +95,39 @@ td.mat-cell{
 .verClass{
   margin-top: 0.5rem;
     /* margin-left: 3.2rem; */
+}
+.updateRegulation{
+  /* float: right; */
+  margin-top: 1.5rem;
+  margin-right: 2rem;
+  background: #7b59d0;
+  /* color:rgba(10, 8, 8, 0.7); */
+  color: white;
+  text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.15);
+  box-shadow: inset 1px 1px 2px rgba(255, 255, 255, 0.3),
+    inset 3px 15px 45px rgba(0, 0, 0, 0.2),
+    inset -1px -1px 2px rgba(0, 0, 0, 0.5),
+    inset -3px -15px 45px rgba(255, 255, 255, 0.1),
+    1px 5px 10px -4px rgba(0, 0, 0, 1);
+
+  -webkit-transition: 0.1s ease-out;
+  -moz-transition: 0.1s ease-out;
+  -o-transition: 0.1s ease-out;
+  transition: 0.1s ease-out;
+
+}
+.updateRegulation:active {
+  color:#3f3a64;
+  text-shadow: -1px -1px 0px rgba(255, 255, 255, 0.8),
+    1px 1px 2px rgba(0, 0, 0, 1);
+  box-shadow: inset 1px 1px 2px rgba(255, 255, 255, 0.3),
+    inset 3px 15px 45px rgba(255, 255, 255, 0.1),
+    inset -1px -1px 2px rgba(0, 0, 0, 0.5),
+    inset -3px -15px 45px rgba(0, 0, 0, 0.2), 1px 5px 30px -4px rgba(0, 0, 0, 1);
+}
+
+.updateRegulation:hover {
+  color: white;
 }
 @media screen and (max-width: 375px) {
   .department1 {

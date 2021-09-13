@@ -184,7 +184,6 @@ export class NewRegulationComponent implements OnInit {
     // this.service.postAddRegData(finalObj);
   }
   openGradingDialog() {
-    console.log("okk");
     const dialogRef = this.dialog.open(DialogGradingComponent, {
       height: '600px',
       width: '800px',
