@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddContributorDialogComponent } from '../add-contributor-dialog/add-contributor-dialog.component'
 import { MatTable } from '@angular/material/table';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { DropdownService, Regulation, Department, Semester, Subject, Institutes, CurriculumPayload, Curriculum, SemesterPayload, SubjectPayload, UpdateSubjectParam, EvaluationCriteria } from '../data/apiServiceSkeletonConfigure';
+import { DropdownService, Regulation, Department, Semester, Subject, Institutes, CurriculumPayload, Curriculum, SemesterPayload, SubjectPayload, UpdateSubjectParam, EvaluationCriteria, patternUpdatePayload } from '../data/apiServiceSkeletonConfigure';
 import { RegulationPayload, DepartmentPayload } from '../data/apiServiceSkeletonConfigure';
 import { ApiServiceSkeletonDefault, DefaultContributors, DefaultSubject, DefaultSubjectPayload, DefaultSubjectUpdateParam } from '../data/apiServiceSkeletonDefault'
 
@@ -43,7 +43,7 @@ export class SkeletonTableConfigureComponent implements OnInit {
   hideSubject: boolean = true;
   displayedColumns: string[] = ['sNo', 'type_of_evaluation', 'total_marks', 'individual_contribution', 'action'];
 
-  displayedColumns2: string[] = ['id', 'subjectName', 'subjectCode', 'subjectType', 'credits', 'assignPattern', 'status'];
+  displayedColumns2: string[] = ['id', 'subjectName', 'subjectCode', 'subjectType', 'credits', 'assignPattern', 'status', 'actions'];
 
   selectedSubjectData: Subject;
   dataSource: Contributors[];
@@ -53,7 +53,10 @@ export class SkeletonTableConfigureComponent implements OnInit {
   curriculums: Curriculum[] = [];
   semesters: Semester[] = [];
   subjects: Subject[] = [];
+  subjectBackup: Subject[] = [];
   defaultSubjects: DefaultSubject[] = [];
+  changeDetectedInPattern: Boolean = true;
+  payloadForPatternUpdate: patternUpdatePayload;
 
   selectedPattern: string;
 
@@ -135,6 +138,8 @@ export class SkeletonTableConfigureComponent implements OnInit {
     this.curriculums = [];
     this.semesters = [];
     this.subjects = [];
+    this.subjectBackup = [];
+    // this.changeDetectedInPattern = true;
     var that = this;
     var payloadForRegulation: RegulationPayload = {
       ins_id: this.selectedInstitute
@@ -173,6 +178,7 @@ export class SkeletonTableConfigureComponent implements OnInit {
     this.curriculums = [];
     this.semesters = [];
     this.subjects = [];
+    this.subjectBackup = [];
     var that = this;
     var payloadForDepartment: DepartmentPayload = {
       ins_id: this.selectedInstitute,
@@ -210,6 +216,7 @@ export class SkeletonTableConfigureComponent implements OnInit {
     this.curriculums = [];
     this.semesters = [];
     this.subjects = [];
+    this.subjectBackup = [];
     var that = this;
     var payloadForCurriculum: CurriculumPayload = {
       ins_id: this.selectedInstitute,
@@ -246,6 +253,7 @@ export class SkeletonTableConfigureComponent implements OnInit {
     this.showData = false;
     this.semesters = [];
     this.subjects = [];
+    this.subjectBackup = [];
     var that = this;
     var payloadForSemester: SemesterPayload = {
       ins_id: this.selectedInstitute,
@@ -282,6 +290,7 @@ export class SkeletonTableConfigureComponent implements OnInit {
     this.selectedSubject = null;
     this.showData = false;
     this.subjects = [];
+    this.subjectBackup = [];
     var that = this;
     var payloadForSubject: SubjectPayload = {
       ins_id: this.selectedInstitute,
@@ -295,11 +304,10 @@ export class SkeletonTableConfigureComponent implements OnInit {
       (data => {
         if (data.msg == "sucess") {
           that.subjects = data.data.Subjects;
+          that.subjectBackup = JSON.parse(JSON.stringify(data.data.Subjects));
           if (data.data.Subjects.length == 0) {
             that.openSnackBar("No Subjects in Dropdown", "DISPLAY");
           }
-
-
         } else {
           that.openSnackBar("Error in Retreving Data", "DATA");
         }
@@ -309,6 +317,10 @@ export class SkeletonTableConfigureComponent implements OnInit {
   }
   onChangeSubject(evt){
 
+  }
+
+  onChangePattern($event){
+    this.changeDetectedInPattern = false;
   }
 
   switchSubject() {
@@ -329,6 +341,62 @@ export class SkeletonTableConfigureComponent implements OnInit {
     // } else {
     //   this.openSnackBar("No Data to Display", "DISPLAY");
     // }
+  }
+
+  onSubmitChangesInPatternAssignment(subject: Subject){
+    var that = this;
+    this.payloadForPatternUpdate = {
+      patternId: subject.patternId
+    }
+    var payloadForUpdate: patternUpdatePayload = this.payloadForPatternUpdate;
+    // this.contributorPayload = [];
+    // for (var i = 0; i < this.dataSource.length; i++) {
+    //   var contributorForPayload: Contributors = {
+    //     sNo: i + 1,
+    //     type_of_evaluation: this.dataSource[i].type_of_evaluation,
+    //     total_marks: this.dataSource[i].total_marks,
+    //     individual_contribution: this.dataSource[i].individual_contribution
+    //   }
+    //   this.contributorPayload.push(contributorForPayload);
+    // }
+    // this.payloadForSubject = {
+    //   subject_type: this.selectedSubjectData.evalCriteria.subject_type,
+    //   total_marks_subject: this.Total,
+    //   passing_percentage: this.selectedSubjectData.evalCriteria.passing_percentage,
+    //   subject_contributors: this.contributorPayload
+    // }
+
+    var param: UpdateSubjectParam = {
+      ins_id: that.selectedInstitute,
+      reg_id: this.selectedRegulation,
+      dep_id: this.selectedDepartment,
+      cur_no: this.selectedCurriculum,
+      sem_no: this.selectedSemester.toString(),
+      subject_id: subject.Subject_ID
+    }
+
+    this._dropdownService.subjectPatternUpdate(payloadForUpdate, param)
+      .subscribe
+      (data => {
+        that.openSnackBar("Update Succesful", "UPDATE");
+        that.onChangeSemester(that.selectedSemester);
+        that.selectedSubject = null;
+      }
+      );
+    this.changeDetectedInPattern = true;
+  }
+
+  onDiscardChangesInPatternAssignment(subject: any){
+    // console.log(subject);
+    for (var i = 0; i< this.subjects.length; i++){
+      if(this.subjects[i].Subject_ID === this.subjectBackup[i].Subject_ID){
+        this.subjects[i].patternId = this.subjectBackup[i].patternId;
+        break;
+      }
+    }
+    // this.subjects = JSON.parse(JSON.stringify(this.subjectBackup));
+    this.table.renderRows();
+    // this.changeDetectedInPattern = true;
   }
 
   openDialog(action: any, obj: any) {

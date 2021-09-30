@@ -43,7 +43,15 @@
     }
 
 #switchSubjectButton{
-    margin-left: 1rem;
+    margin: 0 0 20px 20px;
+}
+
+#submitChangesToPatternButton{
+    margin: 0rem 1rem 1rem 2rem;
+}
+
+#discardChangesToPatternButton{
+    margin: 0rem 1rem 1rem 0rem;
 }
 
 .bottomButtonGroup{

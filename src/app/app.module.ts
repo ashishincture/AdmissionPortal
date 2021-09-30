@@ -84,6 +84,7 @@ import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import 'flatpickr/dist/flatpickr.css';
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 // import { CalendarHeaderComponent } from './calendar-header.component';
 // import { DemoUtilsModule } from '../demo-utils/module';
 
@@ -147,7 +148,7 @@ FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
     AddDefaultSkeletonDialogComponent,
     CalendarModuleComponent,
     DialogExampleComponent,
-    DialogUpdateComponent,
+    DialogUpdateComponent
   ],
   imports: [
     BrowserModule,
@@ -173,6 +174,7 @@ FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
     MatSortModule,
     NgbModule,
     NgbModalModule,
+    NgxMaterialTimepickerModule,
     CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
     FlatpickrModule.forRoot()
   ],

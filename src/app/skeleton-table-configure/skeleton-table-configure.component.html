@@ -90,7 +90,7 @@ width: 100%;
 
             <ng-container matColumnDef="subjectCode">
                 <th mat-header-cell *matHeaderCellDef> Subject Code </th>
-                <td mat-cell *matCellDef="let subject"> {{subject.Subject_Code}} </td>
+                <td mat-cell *matCellDef="let subject"> {{subject.Subject_ID}} </td>
             </ng-container>
 
             <ng-container matColumnDef="subjectType">
@@ -100,7 +100,6 @@ width: 100%;
 
             <ng-container matColumnDef="credits">
                 <th mat-header-cell *matHeaderCellDef> Credits </th>
-
                 <td mat-cell *matCellDef="let subject"> {{subject.Credits}} </td>
             </ng-container>
 
@@ -109,34 +108,40 @@ width: 100%;
                 <td mat-cell *matCellDef="let subject"> {{subject.evalCriteria.passing_percentage}} </td>
             </ng-container> -->
 
-
             <ng-container matColumnDef="assignPattern">
                 <th mat-header-cell *matHeaderCellDef> Assign Pattern </th>
                 <td mat-cell *matCellDef="let subject">
                     <mat-form-field appearance="fill">
-                        <mat-select appearance="fill" required (valueChange)="onChangeSubject($event)"
-                            class="styleSelect">
-                            <mat-option [value]="subject.subject_type" *ngFor="let subject of defaultSubjects">{{
-                                subject.subject_type
+                        <mat-select appearance="fill" required (valueChange)="onChangePattern($event)"
+                            class="styleSelect" [(value)]="subject.patternId">
+                            <mat-option [value]="defaultSubject.patternId"
+                                *ngFor="let defaultSubject of defaultSubjects">{{
+                                defaultSubject.subject_type
                                 }}</mat-option>
                         </mat-select>
                     </mat-form-field>
                 </td>
             </ng-container>
 
-
             <ng-container matColumnDef="status">
                 <th mat-header-cell *matHeaderCellDef> Status </th>
-                <td mat-cell *matCellDef="" class="action-link">
+                <td mat-cell *matCellDef="let subject" class="action-link">
+                    <p style="color: #84f384;" *ngIf="subject.flag == false">NOT EDITED</p>
+                    <p style="color: #fff12e;" *ngIf="subject.flag == true">EDITED</p>
+                </td>
+            </ng-container>
 
-                    <p style="color: #84f384;"> Edited </p>
-                    <!-- <button mat-button class="green-icon" (click)="openDialog()">
-                        <mat-icon>edit</mat-icon>
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef> Actions </th>
+                <td mat-cell *matCellDef="let subject">
+                    <button class="customButton" mat-raised-button matTooltip="Submit Changes" color="primary"
+                        (click)="onSubmitChangesInPatternAssignment(subject)">
+                        <mat-icon>check</mat-icon>
                     </button>
-
-                    <button mat-button color="warn" (click)="openDialog()">
-                        <mat-icon>delete</mat-icon>
-                    </button> -->
+                    <button class="customButton" mat-raised-button matTooltip="Discard Changes" color="primary"
+                        (click)="onDiscardChangesInPatternAssignment(subject)">
+                        <mat-icon>clear</mat-icon>
+                    </button>
                 </td>
             </ng-container>
 
@@ -150,7 +155,5 @@ width: 100%;
             class="bottomButtonGroup">Submit</button>
         <button mat-raised-button id="addNewEvaluation" color="primary" class="floatingButtonAdd"
             (click)="openDialog('Add', {})">+</button> -->
-
-
     </div>
 </div>

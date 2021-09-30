@@ -1,7 +1,10 @@
 <h1 mat-dialog-title>Add Skeleton Pattern</h1>
 
 <mat-dialog-content style="width:100%;">
-
+    <mat-form-field>
+        <input matInput style="width:100%;" placeholder="Pattern Id" [(ngModel)]="local_data.patternId">
+        <span class="error" *ngIf="local_data.patternId == '' ">Pattern ID cannot be empty! </span>
+    </mat-form-field>
     <mat-form-field>
         <input matInput style="width:100%;" placeholder="Pattern Name" [(ngModel)]="local_data.pattern_name">
         <span class="error" *ngIf="local_data.pattern_name == '' ">Pattern Name cannot be empty! </span>
