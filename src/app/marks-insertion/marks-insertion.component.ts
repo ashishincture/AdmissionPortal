@@ -55,7 +55,6 @@ export class MarksInsertionComponent implements OnInit {
   panelExpansion = true;
 
   Faculty: string = "";
-  selectedYear: string = "";
   selectedBranch: string = "";
   selectedSemester: any = "";
   selectedSubject: string = "";
@@ -67,7 +66,7 @@ export class MarksInsertionComponent implements OnInit {
   dataSource: PeriodicElement[] = [];
   semester: Semester[] = [];
   // Branch:branch[]=[];
-  Subjects: Subj[] = [];
+  Subjects: any= [];
 
   // Courses:course[]=[];
   // year:yearT[]=[];
@@ -84,19 +83,34 @@ export class MarksInsertionComponent implements OnInit {
   maxT: number = 0;
   CourseSel = false;
   file: any;
-  payloadDownload = { "CourseName": "BTech", "AcademicYear": "2019-2020", "BranchName": "ComputerScience", "Semester": "1", "SubjectName": "Maths" }
+  payloadDownload :any;
   arrayBuffer: any
   filelist: any
   validate: boolean = false;
   ArrayP: PeriodicElement[] = [];
   subjectC: any[] = [];
-
+  selectedyear:any;
+  academicYear:any;
+  Subjectheaderpayload:object={};
+  payload:object={};
+  aSelSubj:any;
+  SubjectHeaders:any;
   openDialog() {
 
     this.panelExpansion = false;
     this.showPreview = false;
     this.displayedColumns = [];
-
+    this.displayedColumns=["ID","NAME"];
+    this.payloadDownload={
+      "reg_id": this.selectedReg,
+      "dep_id": this.selectedDept,
+      "ins_id": this.selectedIns,
+      "sem_no": this.selectedSemester,
+      "acad": this.selectedyear,
+      "cur_id":this.selectedcurriculum,
+      "patternId":this.aSelSubj[0].patternId,
+      "sub_code": this.aSelSubj[0].Subject_ID 
+  }
     let DialogRef = this.dialog.open(DialogMarksUploadComponent, {
       width: "500px",
       data: { aExcelData: this.ArrayP, payloadD: this.payloadDownload }
@@ -107,14 +121,8 @@ export class MarksInsertionComponent implements OnInit {
       if (result.length == undefined) {
         this.dataSource = result.aExcelData;
 
-        this.Subjects.forEach(element => {
-          if (element.Subject_Code === this.selectedSubject) {
-
-            this.subjectC = element.evalCriteria.subject_contributors
-            console.log(this.subjectC)
-          }
-        });
-        this.subjectC.forEach(element => {
+        this.SubjectHeaders.forEach(element=>{
+          debugger;
           this.displayedColumns.push(element.type_of_evaluation)
         })
         this.showPreview = true;
@@ -128,30 +136,24 @@ export class MarksInsertionComponent implements OnInit {
 
   }
 
-  payload: object = {};
-
+ 
   loadPanel() {
     this.showPanel = true;
     this.panelExpansion = true;
-    this.payload = {
-
-      "dept_id": "1",
-      "course_id": "1",
-      "ins_id": "1",
-      "sem_id": "1",
-      "sub_id": "1",
-      "acad_year": "2021"
-
+    this.aSelSubj=this.Subjects.filter(row=>{return row.Subject_ID==this.selectedSubject})
+    console.log(this.aSelSubj);
+    this.Subjectheaderpayload=
+    {
+      "patternId":this.aSelSubj[0].patternId
     };
-
-    this._ApiMarksUploadService.getCompDetails(this.payload).subscribe(data => {
-      console.log(data);
-      this.Faculty = data.facultyName;
-    });
-    console.log(this.Faculty);
+  
+    this._ApiMarksUploadService.getCompDetails(this.Subjectheaderpayload).subscribe(data=>{
+      this.SubjectHeaders=data.subPattern[0].subject_contributors
+    } );
   }
+  
 
-  Institution: any[] = []
+  Institution: any[] = [];
 
   ngOnInit(): void {
     let that = this;
@@ -205,6 +207,7 @@ export class MarksInsertionComponent implements OnInit {
     });
 
     this.selectedReg = null;
+    this.selectedyear = null;
     this.selectedDept = null;
     this.selectedcurriculum = null;
     this.selectedSemester = null;
@@ -213,6 +216,34 @@ export class MarksInsertionComponent implements OnInit {
   }
 
   onChangeReg() {
+    let that = this;
+    this.Department = [];
+    this.academicYear=[];
+    this.payload = {
+      "ins_id": this.selectedIns,
+      "reg_id": this.selectedReg
+    }; 
+    this._ApiMarksUploadService.getAcademicList(this.payload).subscribe(data => {
+      // if (data.msg == "sucess") {
+      // debugger
+      for(let i =data.academicStart;i<=data.academicEnd;i++)
+      {
+        this.academicYear.push({"year":i});
+      }
+      // }
+      // else {
+      //   that.openSnackBar("Error in Retreving Data", "OK");
+      // }
+    });
+
+    this.selectedDept = null;
+    this.selectedcurriculum = null;
+    this.selectedSemester = null;
+    this.selectedSubject = null;
+    this.fnShowFilterBarOnly();
+  }
+
+  onChangeYear(){
     let that = this;
     this.Department = [];
     this.RegSel = true;
@@ -233,13 +264,11 @@ export class MarksInsertionComponent implements OnInit {
       }
     });
 
-    this.selectedDept = null;
     this.selectedcurriculum = null;
     this.selectedSemester = null;
     this.selectedSubject = null;
     this.fnShowFilterBarOnly();
   }
-
   BatchSel = false;
 
   onChangeDept() {
@@ -263,7 +292,7 @@ export class MarksInsertionComponent implements OnInit {
         that.openSnackBar("Error in Retreving Data", "OK");
       }
     });
-
+    
     this.selectedcurriculum = null;
     this.selectedSemester = null;
     this.selectedSubject = null;

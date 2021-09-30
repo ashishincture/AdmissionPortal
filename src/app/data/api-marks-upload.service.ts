@@ -26,7 +26,7 @@ export class ApiMarksUploadService {
   }
   getCompDetails(data:object)
   {
-    this._url=this._base_url+"/subjectFaculty/getsubject"
+    this._url=this._base_url+"/Subject/getSubjectSkeleton"
     return this.http.post<any>(this._url,data);
   }
   getInstitutionList(){
@@ -37,6 +37,11 @@ export class ApiMarksUploadService {
   getRegulationList(data:object){
     this._url=""
     this._url= this._base_url + "/Regulation/all"
+    return this.http.post<any>(this._url, data, this.httpOptions);
+  }
+  getAcademicList(data:object){
+    this._url=""
+    this._url= this._base_url + "/Regulation/getAcademic"
     return this.http.post<any>(this._url, data, this.httpOptions);
   }
   getDepartmentList(data:object)
@@ -99,19 +104,20 @@ export class ApiMarksUploadService {
   postExcelData(dataP:any)
   {
     var data = 
-      {
-          
-          "reg_id": "R1",
-          "dep_id": "CR0001",
-          "ins_id": "IN0010", 
-          "sem_no": "1",
-          "acad": "2021",
-          "cur_no":"CR03",
-          "sub_code":"R1IT002"
-          
-      };
+    {
+
+      "reg_id": "I1",
+      "dep_id": "IIT001",
+      "ins_id": "02",
+      "sem_no": "1",
+      "acad": "2021",
+      "cur_id":"CR01",
+      "patternId":"pat",
+      "sub_code": "Maths"
+  
+  };
     this._url=""
-    this._url= this._base_url + "/student/updateStudentMarks/"+data.ins_id + "/"+data.reg_id+"/"+data.dep_id+"/"+data.cur_no+"/"+data.sem_no+"/"+data.sub_code
+    this._url= this._base_url + "/student/updateStudentMarks/"+data.ins_id + "/"+data.reg_id+"/"+data.dep_id+"/"+data.cur_id+"/"+data.sem_no+"/"+data.sub_code
     return this.http.put<any>(this._url,dataP).pipe(
       catchError(this.errorHandler)
     );

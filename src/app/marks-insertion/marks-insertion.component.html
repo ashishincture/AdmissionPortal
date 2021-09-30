@@ -24,6 +24,14 @@ width: 100%;
       </ng-template>
       <ng-template [ngIf]="selectedReg">
         <mat-form-field appearance="fill" class="form">
+          <mat-label>Select Joining Year</mat-label>
+          <mat-select [(value)]="selectedyear" (selectionChange)="onChangeYear()">
+            <mat-option *ngFor="let y of academicYear" [value]="y.year">{{y.year}} Batch</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </ng-template>
+      <ng-template [ngIf]="selectedyear">
+        <mat-form-field appearance="fill" class="form">
           <mat-label>Select Department</mat-label>
           <mat-select [(value)]="selectedDept" (selectionChange)="onChangeDept()">
             <mat-option *ngFor="let dept of Department" [value]="dept.departmentID">{{dept.departmentName}}
@@ -64,7 +72,7 @@ width: 100%;
         <mat-form-field appearance="fill" class="form">
           <mat-label>Select Subject</mat-label>
           <mat-select [(value)]="selectedSubject" (selectionChange)="onChangeSub()">
-            <mat-option *ngFor="let sB of Subjects" [value]="sB.Subject_Code">{{sB.Subject_Name}}</mat-option>
+            <mat-option *ngFor="let sB of Subjects" [value]="sB.Subject_ID">{{sB.Subject_Name}}</mat-option>
           </mat-select>
         </mat-form-field>
       </ng-template>

@@ -31,20 +31,7 @@ export class DialogMarksUploadComponent implements OnInit {
     let oPayload = this.oSelectedFilterData;
     console.log(oPayload);
 
-    var payload =
-    {
-
-      "reg_id": "R1",
-      "dep_id": "CR0001",
-      "ins_id": "IN0010",
-      "sem_no": "1",
-      "acad": "2021",
-      "cur_no": "CR03",
-      "sub_code": "R1IT002"
-
-    };
-
-    this._ApiMarksUploadService.getResponseBlob(payload).subscribe(data => {
+    this._ApiMarksUploadService.getResponseBlob(oPayload).subscribe(data => {
       if (data) {
         this.downloadFile(data, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "export.xlsx");
         that.openSnackBar("Excel File Downloaded Successfully !", "OK");
