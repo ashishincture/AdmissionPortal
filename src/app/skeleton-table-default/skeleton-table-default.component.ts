@@ -80,7 +80,7 @@ export class SkeletonTableDefaultComponent implements OnInit {
   }
 
   openDialog(action: any, obj: any) {
-    console.log(this._subjectService.getSubjects())
+    // console.log(this._subjectService.getSubjects())
     obj.action = action;
     const dialogRef = this.dialog.open(AddContributorDialogComponent, {
       width: '20rem',
@@ -232,7 +232,10 @@ export class SkeletonTableDefaultComponent implements OnInit {
         this.openSnackBar("Fields cannot be empty!", "DISPLAY");
       }
       else {
+        debugger;
         var payload:NewDefaultSubjectPayload = {
+          default: true,
+          patternId: result.data.patternId,
           subject_type: result.data.pattern_name,
           subject_contributors: [],
           total_marks_subject:  0,

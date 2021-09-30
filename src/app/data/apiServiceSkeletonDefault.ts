@@ -36,10 +36,12 @@ export interface DefaultSubjectPayload {
 }
 
 export interface NewDefaultSubjectPayload {
+    patternId: string,
     subject_type: string,
     total_marks_subject: number,
     passing_percentage: string,
-    subject_contributors: Contributors[]
+    subject_contributors: Contributors[],
+    default: boolean
 }
 
 @Injectable({

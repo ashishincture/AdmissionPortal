@@ -59,7 +59,10 @@ export interface Subject {
     Credits: number,
     Description: string,
     Group_Name: string,
-    evalCriteria: EvaluationCriteria
+    evalCriteria: EvaluationCriteria,
+    Subject_ID: string,
+    flag: boolean,
+    patternId: string
 }
 
 export interface RegulationPayload {
@@ -100,6 +103,10 @@ export interface UpdateSubjectParam {
     subject_id: string
 }
 
+export interface patternUpdatePayload {
+    patternId: string
+}
+
 @Injectable({
     providedIn: 'root'
 })
@@ -134,6 +141,12 @@ export class DropdownService {
     }
 
     submitSubjectDetails(payload: EvaluationCriteria, params: UpdateSubjectParam): Observable<any> {
+        var url = "https://university-app-2021.herokuapp.com/Subject/saveSkeletonToSubject/";
+        url = url + params.ins_id + "/" + params.reg_id + "/" + params.dep_id + "/" + params.cur_no + "/" + params.sem_no + "/" + params.subject_id;
+        return (this.http.patch(url, payload));
+    }
+
+    subjectPatternUpdate(payload: patternUpdatePayload, params: UpdateSubjectParam): Observable<any> {
         var url = "https://university-app-2021.herokuapp.com/Subject/saveSkeletonToSubject/";
         url = url + params.ins_id + "/" + params.reg_id + "/" + params.dep_id + "/" + params.cur_no + "/" + params.sem_no + "/" + params.subject_id;
         return (this.http.patch(url, payload));
