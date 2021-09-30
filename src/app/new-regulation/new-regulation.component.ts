@@ -51,37 +51,50 @@ export class NewRegulationComponent implements OnInit {
         points: 10,
         grade: "S",
         description: "Excellent",
-        percentage: 95
+        percentage: 95,
+        rangeHigh : 100,
+        rangeLow : 90
+
       },
       {
         points: 9,
         grade: "A",
         description: "Very Good",
-        percentage: 85
+        percentage: 85,
+        rangeHigh : 89,
+        rangeLow : 80
       },
       {
         points: 8,
         grade: "B",
         description: "Good",
-        percentage: 75
+        percentage: 75,
+        rangeHigh : 79,
+        rangeLow : 70
       },
       {
         points: 7,
         grade: "C",
         description: "Poor Performance",
-        percentage: 65
+        percentage: 65,
+        rangeHigh : 69,
+        rangeLow : 60
       },
       {
         points: 6,
         grade: "D",
         description: "Just Pass",
-        percentage: 55
+        percentage: 55,
+        rangeHigh : 59,
+        rangeLow : 35
       },
       {
         points: 5,
         grade: "F",
         description: "Fail",
-        percentage: 43
+        percentage: 43,
+        rangeHigh : 34,
+        rangeLow : 0
       }
     ]
   };
@@ -186,7 +199,7 @@ export class NewRegulationComponent implements OnInit {
   openGradingDialog() {
     const dialogRef = this.dialog.open(DialogGradingComponent, {
       height: '600px',
-      width: '800px',
+      width: '1000px',
       backdropClass:'dialogBackgroundClass',
       data: this.data2
     });
