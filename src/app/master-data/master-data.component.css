@@ -75,9 +75,14 @@
   padding-bottom: 30px;
   text-align: center;
 }
+.centralCard{
+  margin-top: 3% !important;
+  margin-left: 30% !important;
+  /* padding-bottom: 3%; */
+}
 
 .bgmd {
-  background: url(/assets/img/collegedept.jpg) no-repeat center;
+  /* background: url(/assets/img/collegedept.jpg) no-repeat center; */
   background-size: cover;
   -webkit-background-size: cover;
   -moz-background-size: cover;
