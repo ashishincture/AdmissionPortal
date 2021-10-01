@@ -88,7 +88,7 @@ export class DialogMarksUploadComponent implements OnInit {
 
   uploadData() {
     let that = this;
-    this._ApiMarksUploadService.postExcelData(this.aExcelData).subscribe(data => {
+    this._ApiMarksUploadService.postExcelData(this.aExcelData,this.oSelectedFilterData).subscribe(data => {
       console.log(data);
       that.openSnackBar("Marks uploaded successfully!", "OK");
       // alert("Marks uploaded successfully");

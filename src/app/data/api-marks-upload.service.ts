@@ -101,21 +101,21 @@ export class ApiMarksUploadService {
    return this.http.post<any>(this._url, data, this.httpOptions);
     
   }
-  postExcelData(dataP:any)
+  postExcelData(dataP:any,data:any)
   {
-    var data = 
-    {
+  //   var data = 
+  //   {
 
-      "reg_id": "I1",
-      "dep_id": "IIT001",
-      "ins_id": "02",
-      "sem_no": "1",
-      "acad": "2021",
-      "cur_id":"CR01",
-      "patternId":"pat",
-      "sub_code": "Maths"
+  //     "reg_id": "I1",
+  //     "dep_id": "IIT001",
+  //     "ins_id": "02",
+  //     "sem_no": "1",
+  //     "acad": "2021",
+  //     "cur_id":"CR01",
+  //     "patternId":"pat",
+  //     "sub_code": "CS01"
   
-  };
+  // };
     this._url=""
     this._url= this._base_url + "/student/updateStudentMarks/"+data.ins_id + "/"+data.reg_id+"/"+data.dep_id+"/"+data.cur_id+"/"+data.sem_no+"/"+data.sub_code
     return this.http.put<any>(this._url,dataP).pipe(

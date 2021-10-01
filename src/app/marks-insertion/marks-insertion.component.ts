@@ -122,7 +122,6 @@ export class MarksInsertionComponent implements OnInit {
         this.dataSource = result.aExcelData;
 
         this.SubjectHeaders.forEach(element=>{
-          debugger;
           this.displayedColumns.push(element.type_of_evaluation)
         })
         this.showPreview = true;
@@ -381,7 +380,7 @@ export class MarksInsertionComponent implements OnInit {
 
   uploadData() {
     let that = this;
-    this._ApiMarksUploadService.postExcelData(this.dataSource).subscribe(data => {
+    this._ApiMarksUploadService.postExcelData(this.dataSource,this.payloadDownload).subscribe(data => {
       console.log(data);
       that.openSnackBar("Marks uploaded successfully!", "OK");
       // alert("Marks uploaded successfully");
