@@ -4,158 +4,159 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ApiService } from '../data/apiServiceMarkView';
 import { branchListPayload, courseListPayload, regulationsPayload, departmentPayload, curriculumPayload, semesterPayload } from '../data/apiServiceMarkView';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import  {DialogBodyComponent} from 'src/app/dialog-body/dialog-body.component'
+import { DialogBodyComponent } from 'src/app/dialog-body/dialog-body.component'
+import { ApiServiceSkeletonDefault } from '../data/apiServiceSkeletonDefault';
 
 interface STUDENTS_DATA {
   RegistrationID: string;
   studentName: string;
   CGPA: number;
-  isExpanded:boolean;
-  institute_id:string,
-  institute:string;
-  regulation:string;
-  curriculum:string;
-  department:string;
-  semester:string;
-  course:string;
-  semesterData:[
+  isExpanded: boolean;
+  institute_id: string,
+  institute: string;
+  regulation: string;
+  curriculum: string;
+  department: string;
+  semester: string;
+  course: string;
+  semesterData: [
     {
-       "semesterNo":number,
-       "SGPA":number,
-       "isExpanded":boolean,
-       "subject1":{
-         "name":string,
-         "marks":number
-       },
-       "subject2":{
-         "name":string,
-         "marks":number
-       },
-       "subject3":{
-         "name":string,
-         "marks":number
-       }
+      "semesterNo": number,
+      "SGPA": number,
+      "isExpanded": boolean,
+      "subject1": {
+        "name": string,
+        "marks": number
+      },
+      "subject2": {
+        "name": string,
+        "marks": number
+      },
+      "subject3": {
+        "name": string,
+        "marks": number
+      }
     },
     {
-       "semesterNo":number,
-       "SGPA":number,
-       "isExpanded":boolean,
-       "subject1":{
-         "name":string,
-         "marks":number
-       },
-       "subject2":{
-         "name":string,
-         "marks":number
-       },
-       "subject3":{
-         "name":string,
-         "marks":number
-       }
+      "semesterNo": number,
+      "SGPA": number,
+      "isExpanded": boolean,
+      "subject1": {
+        "name": string,
+        "marks": number
+      },
+      "subject2": {
+        "name": string,
+        "marks": number
+      },
+      "subject3": {
+        "name": string,
+        "marks": number
+      }
     },
     {
-      "semesterNo":number,
-      "SGPA":number,
-      "isExpanded":boolean,
-      "subject1":{
-         "name":string,
-         "marks":number
-       },
-       "subject2":{
-         "name":string,
-         "marks":number
-       },
-       "subject3":{
-         "name":string,
-         "marks":number
-       }
+      "semesterNo": number,
+      "SGPA": number,
+      "isExpanded": boolean,
+      "subject1": {
+        "name": string,
+        "marks": number
+      },
+      "subject2": {
+        "name": string,
+        "marks": number
+      },
+      "subject3": {
+        "name": string,
+        "marks": number
+      }
     },
     {
-      "semesterNo":number,
-      "SGPA":number,
-      "isExpanded":boolean,
-      "subject1":{
-         "name":string,
-         "marks":number
-       },
-       "subject2":{
-         "name":string,
-         "marks":number
-       },
-       "subject3":{
-         "name":string,
-         "marks":number
-       }
+      "semesterNo": number,
+      "SGPA": number,
+      "isExpanded": boolean,
+      "subject1": {
+        "name": string,
+        "marks": number
+      },
+      "subject2": {
+        "name": string,
+        "marks": number
+      },
+      "subject3": {
+        "name": string,
+        "marks": number
+      }
     },
     {
-      "semesterNo":number,
-      "SGPA":number,
-      "isExpanded":boolean,
-      "subject1":{
-         "name":string,
-         "marks":number
-       },
-       "subject2":{
-         "name":string,
-         "marks":number
-       },
-       "subject3":{
-         "name":string,
-         "marks":number
-       }
+      "semesterNo": number,
+      "SGPA": number,
+      "isExpanded": boolean,
+      "subject1": {
+        "name": string,
+        "marks": number
+      },
+      "subject2": {
+        "name": string,
+        "marks": number
+      },
+      "subject3": {
+        "name": string,
+        "marks": number
+      }
     },
     {
-      "semesterNo":number,
-      "SGPA":number,
-      "isExpanded":boolean,
-      "subject1":{
-         "name":string,
-         "marks":number
-       },
-       "subject2":{
-         "name":string,
-         "marks":number
-       },
-       "subject3":{
-         "name":string,
-         "marks":number
-       }
+      "semesterNo": number,
+      "SGPA": number,
+      "isExpanded": boolean,
+      "subject1": {
+        "name": string,
+        "marks": number
+      },
+      "subject2": {
+        "name": string,
+        "marks": number
+      },
+      "subject3": {
+        "name": string,
+        "marks": number
+      }
     },
     {
-      "semesterNo":number,
-       "SGPA":number,
-       "isExpanded":boolean,
-       "subject1":{
-         "name":string,
-         "marks":number
-       },
-       "subject2":{
-         "name":string,
-         "marks":number
-       },
-       "subject3":{
-         "name":string,
-         "marks":number
-       }
+      "semesterNo": number,
+      "SGPA": number,
+      "isExpanded": boolean,
+      "subject1": {
+        "name": string,
+        "marks": number
+      },
+      "subject2": {
+        "name": string,
+        "marks": number
+      },
+      "subject3": {
+        "name": string,
+        "marks": number
+      }
     },
     {
-      "semesterNo":number,
-      "SGPA":number,
-      "isExpanded":boolean,
-      "subject1":{
-         "name":string,
-         "marks":number
-       },
-       "subject2":{
-         "name":string,
-         "marks":number
-       },
-       "subject3":{
-         "name":string,
-         "marks":number
-       }
+      "semesterNo": number,
+      "SGPA": number,
+      "isExpanded": boolean,
+      "subject1": {
+        "name": string,
+        "marks": number
+      },
+      "subject2": {
+        "name": string,
+        "marks": number
+      },
+      "subject3": {
+        "name": string,
+        "marks": number
+      }
     }
- ]
+  ]
 
 }
 
@@ -178,6 +179,7 @@ interface BATCH {
 export class MarksViewComponent implements OnInit {
 
   isTableExpanded = false;
+  defaultSubjects: any;
   selectedCourse: string = '';
   selectedStream: string = '';
   selectedBatch: string = '';
@@ -194,6 +196,7 @@ export class MarksViewComponent implements OnInit {
   studentDepartment: string = '';
   studentCurriculum: string = '';
   studentSemester: string = '';
+  defaultSubjectSelection: string = '';
 
   semesters: any = [];
   curriculums: any = [];
@@ -212,921 +215,926 @@ export class MarksViewComponent implements OnInit {
     "Batch": "2019-23"
   },];
 
-  students : STUDENTS_DATA[] =  [
+  students: STUDENTS_DATA[] = [
     {
-       "RegistrationID":"INC01346",
-       "studentName":"Dikshant",
-       "CGPA":8.8,
-       "isExpanded":false,
-       "institute_id":"IN0010",
-       "institute": "PSG ARTS",
-       "regulation": "R1",
-       "curriculum": "CR03",
-       "department":"Information Technology",
-       "semester":"1",
-       "course" : "B.Tech",
-       "semesterData":[
-          {
-             "semesterNo":1,
-             "SGPA":8.5,
-             "isExpanded":false,
-             "subject1":{
-               "name":"Physics",
-               "marks":98
-             },
-             "subject2":{
-               "name":"Maths",
-               "marks":86
-             },
-             "subject3":{
-               "name":"Chemistry",
-               "marks":91
-             }
+      "RegistrationID": "INC01346",
+      "studentName": "Dikshant",
+      "CGPA": 8.8,
+      "isExpanded": false,
+      "institute_id": "IN0010",
+      "institute": "IIT",
+      "regulation": "I1",
+      "curriculum": "CR02",
+      "department": "Information Technology",
+      "semester": "1",
+      "course": "B.Tech",
+      "semesterData": [
+        {
+          "semesterNo": 1,
+          "SGPA": 8.5,
+          "isExpanded": false,
+          "subject1": {
+            "name": "Physics",
+            "marks": 98
           },
-          {
-             "semesterNo":2,
-             "SGPA":9.2,
-             "isExpanded":false,
-             "subject1":{
-               "name":"Physics",
-               "marks":98
-             },
-             "subject2":{
-               "name":"Maths",
-               "marks":86
-             },
-             "subject3":{
-               "name":"Chemistry",
-               "marks":91
-             }
+          "subject2": {
+            "name": "Maths",
+            "marks": 86
           },
-          {
-             "semesterNo":3,
-             "SGPA":9.2,
-             "isExpanded":false,
-             "subject1":{
-               "name":"Physics",
-               "marks":98
-             },
-             "subject2":{
-               "name":"Maths",
-               "marks":86
-             },
-             "subject3":{
-               "name":"Chemistry",
-               "marks":91
-             }
-          },
-          {
-             "semesterNo":4,
-             "SGPA":9.2,
-             "isExpanded":false,
-             "subject1":{
-               "name":"Physics",
-               "marks":98
-             },
-             "subject2":{
-               "name":"Maths",
-               "marks":86
-             },
-             "subject3":{
-               "name":"Chemistry",
-               "marks":91
-             }
-          },
-          {
-             "semesterNo":5,
-             "SGPA":9.2,
-             "isExpanded":false,
-             "subject1":{
-               "name":"Physics",
-               "marks":98
-             },
-             "subject2":{
-               "name":"Maths",
-               "marks":86
-             },
-             "subject3":{
-               "name":"Chemistry",
-               "marks":91
-             }
-          },
-          {
-             "semesterNo":6,
-             "SGPA":9.2,
-             "isExpanded":false,
-             "subject1":{
-               "name":"Physics",
-               "marks":98
-             },
-             "subject2":{
-               "name":"Maths",
-               "marks":86
-             },
-             "subject3":{
-               "name":"Chemistry",
-               "marks":91
-             }
-          },
-          {
-             "semesterNo":7,
-             "SGPA":9.2,
-             "isExpanded":false,
-             "subject1":{
-               "name":"Physics",
-               "marks":98
-             },
-             "subject2":{
-               "name":"Maths",
-               "marks":86
-             },
-             "subject3":{
-               "name":"Chemistry",
-               "marks":91
-             }
-          },
-          {
-             "semesterNo":8,
-             "SGPA":9.2,
-             "isExpanded":false,
-             "subject1":{
-               "name":"Physics",
-               "marks":98
-             },
-             "subject2":{
-               "name":"Maths",
-               "marks":86
-             },
-             "subject3":{
-               "name":"Chemistry",
-               "marks":91
-             }
+          "subject3": {
+            "name": "Chemistry",
+            "marks": 91
           }
-       ]
+        },
+        {
+          "semesterNo": 2,
+          "SGPA": 9.2,
+          "isExpanded": false,
+          "subject1": {
+            "name": "Physics",
+            "marks": 98
+          },
+          "subject2": {
+            "name": "Maths",
+            "marks": 86
+          },
+          "subject3": {
+            "name": "Chemistry",
+            "marks": 91
+          }
+        },
+        {
+          "semesterNo": 3,
+          "SGPA": 9.2,
+          "isExpanded": false,
+          "subject1": {
+            "name": "Physics",
+            "marks": 98
+          },
+          "subject2": {
+            "name": "Maths",
+            "marks": 86
+          },
+          "subject3": {
+            "name": "Chemistry",
+            "marks": 91
+          }
+        },
+        {
+          "semesterNo": 4,
+          "SGPA": 9.2,
+          "isExpanded": false,
+          "subject1": {
+            "name": "Physics",
+            "marks": 98
+          },
+          "subject2": {
+            "name": "Maths",
+            "marks": 86
+          },
+          "subject3": {
+            "name": "Chemistry",
+            "marks": 91
+          }
+        },
+        {
+          "semesterNo": 5,
+          "SGPA": 9.2,
+          "isExpanded": false,
+          "subject1": {
+            "name": "Physics",
+            "marks": 98
+          },
+          "subject2": {
+            "name": "Maths",
+            "marks": 86
+          },
+          "subject3": {
+            "name": "Chemistry",
+            "marks": 91
+          }
+        },
+        {
+          "semesterNo": 6,
+          "SGPA": 9.2,
+          "isExpanded": false,
+          "subject1": {
+            "name": "Physics",
+            "marks": 98
+          },
+          "subject2": {
+            "name": "Maths",
+            "marks": 86
+          },
+          "subject3": {
+            "name": "Chemistry",
+            "marks": 91
+          }
+        },
+        {
+          "semesterNo": 7,
+          "SGPA": 9.2,
+          "isExpanded": false,
+          "subject1": {
+            "name": "Physics",
+            "marks": 98
+          },
+          "subject2": {
+            "name": "Maths",
+            "marks": 86
+          },
+          "subject3": {
+            "name": "Chemistry",
+            "marks": 91
+          }
+        },
+        {
+          "semesterNo": 8,
+          "SGPA": 9.2,
+          "isExpanded": false,
+          "subject1": {
+            "name": "Physics",
+            "marks": 98
+          },
+          "subject2": {
+            "name": "Maths",
+            "marks": 86
+          },
+          "subject3": {
+            "name": "Chemistry",
+            "marks": 91
+          }
+        }
+      ]
     },
     {
-       "RegistrationID":"INC01347",
-       "studentName":"Aditya Padhi",
-       "CGPA":8.8,
-       "isExpanded":false,
-       "institute_id":"IN0010",
-       "institute": "PSG ARTS",
-       "regulation": "R1",
-       "curriculum": "CR03",
-       "department":"Computer Science Engineering",
-       "semester":"2",
-       "course" : "B.Tech",
-       "semesterData":[
-          {
-             "semesterNo":1,
-             "SGPA":8.5,
-             "isExpanded":false,
-             "subject1":{
-               "name":"Physics",
-               "marks":98
-             },
-             "subject2":{
-               "name":"Maths",
-               "marks":86
-             },
-             "subject3":{
-               "name":"Chemistry",
-               "marks":91
-             }
+      "RegistrationID": "INC01347",
+      "studentName": "Aditya Padhi",
+      "CGPA": 8.8,
+      "isExpanded": false,
+      "institute_id": "IN0010",
+      "institute": "PSG ARTS",
+      "regulation": "R1",
+      "curriculum": "CR03",
+      "department": "Computer Science Engineering",
+      "semester": "2",
+      "course": "B.Tech",
+      "semesterData": [
+        {
+          "semesterNo": 1,
+          "SGPA": 8.5,
+          "isExpanded": false,
+          "subject1": {
+            "name": "Physics",
+            "marks": 98
           },
-          {
-             "semesterNo":2,
-             "SGPA":9.2,
-             "isExpanded":false,
-             "subject1":{
-               "name":"Physics",
-               "marks":98
-             },
-             "subject2":{
-               "name":"Maths",
-               "marks":86
-             },
-             "subject3":{
-               "name":"Chemistry",
-               "marks":91
-             }
+          "subject2": {
+            "name": "Maths",
+            "marks": 86
           },
-          {
-             "semesterNo":3,
-             "SGPA":9.2,
-             "isExpanded":false,
-             "subject1":{
-               "name":"Physics",
-               "marks":98
-             },
-             "subject2":{
-               "name":"Maths",
-               "marks":86
-             },
-             "subject3":{
-               "name":"Chemistry",
-               "marks":91
-             }
-          },
-          {
-             "semesterNo":4,
-             "SGPA":9.2,
-             "isExpanded":false,
-             "subject1":{
-               "name":"Physics",
-               "marks":98
-             },
-             "subject2":{
-               "name":"Maths",
-               "marks":86
-             },
-             "subject3":{
-               "name":"Chemistry",
-               "marks":91
-             }
-          },
-          {
-             "semesterNo":5,
-             "SGPA":9.2,
-             "isExpanded":false,
-             "subject1":{
-               "name":"Physics",
-               "marks":98
-             },
-             "subject2":{
-               "name":"Maths",
-               "marks":86
-             },
-             "subject3":{
-               "name":"Chemistry",
-               "marks":91
-             }
-          },
-          {
-             "semesterNo":6,
-             "SGPA":9.2,
-             "isExpanded":false,
-             "subject1":{
-               "name":"Physics",
-               "marks":98
-             },
-             "subject2":{
-               "name":"Maths",
-               "marks":86
-             },
-             "subject3":{
-               "name":"Chemistry",
-               "marks":91
-             }
-          },
-          {
-             "semesterNo":7,
-             "SGPA":9.2,
-             "isExpanded":false,
-             "subject1":{
-               "name":"Physics",
-               "marks":98
-             },
-             "subject2":{
-               "name":"Maths",
-               "marks":86
-             },
-             "subject3":{
-               "name":"Chemistry",
-               "marks":91
-             }
-          },
-          {
-             "semesterNo":8,
-             "SGPA":9.2,
-             "isExpanded":false,
-             "subject1":{
-               "name":"Physics",
-               "marks":98
-             },
-             "subject2":{
-               "name":"Maths",
-               "marks":86
-             },
-             "subject3":{
-               "name":"Chemistry",
-               "marks":91
-             }
+          "subject3": {
+            "name": "Chemistry",
+            "marks": 91
           }
-       ]
+        },
+        {
+          "semesterNo": 2,
+          "SGPA": 9.2,
+          "isExpanded": false,
+          "subject1": {
+            "name": "Physics",
+            "marks": 98
+          },
+          "subject2": {
+            "name": "Maths",
+            "marks": 86
+          },
+          "subject3": {
+            "name": "Chemistry",
+            "marks": 91
+          }
+        },
+        {
+          "semesterNo": 3,
+          "SGPA": 9.2,
+          "isExpanded": false,
+          "subject1": {
+            "name": "Physics",
+            "marks": 98
+          },
+          "subject2": {
+            "name": "Maths",
+            "marks": 86
+          },
+          "subject3": {
+            "name": "Chemistry",
+            "marks": 91
+          }
+        },
+        {
+          "semesterNo": 4,
+          "SGPA": 9.2,
+          "isExpanded": false,
+          "subject1": {
+            "name": "Physics",
+            "marks": 98
+          },
+          "subject2": {
+            "name": "Maths",
+            "marks": 86
+          },
+          "subject3": {
+            "name": "Chemistry",
+            "marks": 91
+          }
+        },
+        {
+          "semesterNo": 5,
+          "SGPA": 9.2,
+          "isExpanded": false,
+          "subject1": {
+            "name": "Physics",
+            "marks": 98
+          },
+          "subject2": {
+            "name": "Maths",
+            "marks": 86
+          },
+          "subject3": {
+            "name": "Chemistry",
+            "marks": 91
+          }
+        },
+        {
+          "semesterNo": 6,
+          "SGPA": 9.2,
+          "isExpanded": false,
+          "subject1": {
+            "name": "Physics",
+            "marks": 98
+          },
+          "subject2": {
+            "name": "Maths",
+            "marks": 86
+          },
+          "subject3": {
+            "name": "Chemistry",
+            "marks": 91
+          }
+        },
+        {
+          "semesterNo": 7,
+          "SGPA": 9.2,
+          "isExpanded": false,
+          "subject1": {
+            "name": "Physics",
+            "marks": 98
+          },
+          "subject2": {
+            "name": "Maths",
+            "marks": 86
+          },
+          "subject3": {
+            "name": "Chemistry",
+            "marks": 91
+          }
+        },
+        {
+          "semesterNo": 8,
+          "SGPA": 9.2,
+          "isExpanded": false,
+          "subject1": {
+            "name": "Physics",
+            "marks": 98
+          },
+          "subject2": {
+            "name": "Maths",
+            "marks": 86
+          },
+          "subject3": {
+            "name": "Chemistry",
+            "marks": 91
+          }
+        }
+      ]
     },
     {
-       "RegistrationID":"INC01348",
-       "studentName":"Ananya Mishra",
-       "CGPA":8.8,
-       "isExpanded":false,
-       "institute_id":"IN0010",
-       "institute": "PSG ARTS",
-       "regulation": "R1",
-       "curriculum": "CR03",
-       "department":"Data Science Engineering",
-       "semester":"1",
-       "course" : "B.Tech",
-       "semesterData":[
-          {
-             "semesterNo":1,
-             "SGPA":8.5,
-             "isExpanded":false,
-             "subject1":{
-               "name":"Physics",
-               "marks":98
-             },
-             "subject2":{
-               "name":"Maths",
-               "marks":86
-             },
-             "subject3":{
-               "name":"Chemistry",
-               "marks":91
-             }
+      "RegistrationID": "INC01348",
+      "studentName": "Ananya Mishra",
+      "CGPA": 8.8,
+      "isExpanded": false,
+      "institute_id": "IN0010",
+      "institute": "PSG ARTS",
+      "regulation": "R1",
+      "curriculum": "CR03",
+      "department": "Data Science Engineering",
+      "semester": "1",
+      "course": "B.Tech",
+      "semesterData": [
+        {
+          "semesterNo": 1,
+          "SGPA": 8.5,
+          "isExpanded": false,
+          "subject1": {
+            "name": "Physics",
+            "marks": 98
           },
-          {
-             "semesterNo":2,
-             "SGPA":9.2,
-             "isExpanded":false,
-             "subject1":{
-               "name":"Physics",
-               "marks":98
-             },
-             "subject2":{
-               "name":"Maths",
-               "marks":86
-             },
-             "subject3":{
-               "name":"Chemistry",
-               "marks":91
-             }
+          "subject2": {
+            "name": "Maths",
+            "marks": 86
           },
-          {
-             "semesterNo":3,
-             "SGPA":9.2,
-             "isExpanded":false,
-             "subject1":{
-               "name":"Physics",
-               "marks":98
-             },
-             "subject2":{
-               "name":"Maths",
-               "marks":86
-             },
-             "subject3":{
-               "name":"Chemistry",
-               "marks":91
-             }
-          },
-          {
-             "semesterNo":4,
-             "SGPA":9.2,
-             "isExpanded":false,
-             "subject1":{
-               "name":"Physics",
-               "marks":98
-             },
-             "subject2":{
-               "name":"Maths",
-               "marks":86
-             },
-             "subject3":{
-               "name":"Chemistry",
-               "marks":91
-             }
-          },
-          {
-             "semesterNo":5,
-             "SGPA":9.2,
-             "isExpanded":false,
-             "subject1":{
-               "name":"Physics",
-               "marks":98
-             },
-             "subject2":{
-               "name":"Maths",
-               "marks":86
-             },
-             "subject3":{
-               "name":"Chemistry",
-               "marks":91
-             }
-          },
-          {
-             "semesterNo":6,
-             "SGPA":9.2,
-             "isExpanded":false,
-             "subject1":{
-               "name":"Physics",
-               "marks":98
-             },
-             "subject2":{
-               "name":"Maths",
-               "marks":86
-             },
-             "subject3":{
-               "name":"Chemistry",
-               "marks":91
-             }
-          },
-          {
-             "semesterNo":7,
-             "SGPA":9.2,
-             "isExpanded":false,
-             "subject1":{
-               "name":"Physics",
-               "marks":98
-             },
-             "subject2":{
-               "name":"Maths",
-               "marks":86
-             },
-             "subject3":{
-               "name":"Chemistry",
-               "marks":91
-             }
-          },
-          {
-             "semesterNo":8,
-             "SGPA":9.2,
-             "isExpanded":false,
-             "subject1":{
-               "name":"Physics",
-               "marks":98
-             },
-             "subject2":{
-               "name":"Maths",
-               "marks":86
-             },
-             "subject3":{
-               "name":"Chemistry",
-               "marks":91
-             }
+          "subject3": {
+            "name": "Chemistry",
+            "marks": 91
           }
-       ]
+        },
+        {
+          "semesterNo": 2,
+          "SGPA": 9.2,
+          "isExpanded": false,
+          "subject1": {
+            "name": "Physics",
+            "marks": 98
+          },
+          "subject2": {
+            "name": "Maths",
+            "marks": 86
+          },
+          "subject3": {
+            "name": "Chemistry",
+            "marks": 91
+          }
+        },
+        {
+          "semesterNo": 3,
+          "SGPA": 9.2,
+          "isExpanded": false,
+          "subject1": {
+            "name": "Physics",
+            "marks": 98
+          },
+          "subject2": {
+            "name": "Maths",
+            "marks": 86
+          },
+          "subject3": {
+            "name": "Chemistry",
+            "marks": 91
+          }
+        },
+        {
+          "semesterNo": 4,
+          "SGPA": 9.2,
+          "isExpanded": false,
+          "subject1": {
+            "name": "Physics",
+            "marks": 98
+          },
+          "subject2": {
+            "name": "Maths",
+            "marks": 86
+          },
+          "subject3": {
+            "name": "Chemistry",
+            "marks": 91
+          }
+        },
+        {
+          "semesterNo": 5,
+          "SGPA": 9.2,
+          "isExpanded": false,
+          "subject1": {
+            "name": "Physics",
+            "marks": 98
+          },
+          "subject2": {
+            "name": "Maths",
+            "marks": 86
+          },
+          "subject3": {
+            "name": "Chemistry",
+            "marks": 91
+          }
+        },
+        {
+          "semesterNo": 6,
+          "SGPA": 9.2,
+          "isExpanded": false,
+          "subject1": {
+            "name": "Physics",
+            "marks": 98
+          },
+          "subject2": {
+            "name": "Maths",
+            "marks": 86
+          },
+          "subject3": {
+            "name": "Chemistry",
+            "marks": 91
+          }
+        },
+        {
+          "semesterNo": 7,
+          "SGPA": 9.2,
+          "isExpanded": false,
+          "subject1": {
+            "name": "Physics",
+            "marks": 98
+          },
+          "subject2": {
+            "name": "Maths",
+            "marks": 86
+          },
+          "subject3": {
+            "name": "Chemistry",
+            "marks": 91
+          }
+        },
+        {
+          "semesterNo": 8,
+          "SGPA": 9.2,
+          "isExpanded": false,
+          "subject1": {
+            "name": "Physics",
+            "marks": 98
+          },
+          "subject2": {
+            "name": "Maths",
+            "marks": 86
+          },
+          "subject3": {
+            "name": "Chemistry",
+            "marks": 91
+          }
+        }
+      ]
     },
     {
-       "RegistrationID":"INC01349",
-       "studentName":"Abhishek Mishra",
-       "CGPA":8.8,
-       "isExpanded":false,
-       "institute_id":"IN0010",
-       "institute": "PSG ARTS",
-       "regulation": "R1",
-       "curriculum": "CR03",
-       "department":"Mechanical Engineering",
-       "semester":"2",
-       "course" : "Mtech",
-       "semesterData":[
-          {
-             "semesterNo":1,
-             "SGPA":8.5,
-             "isExpanded":false,
-             "subject1":{
-               "name":"Physics",
-               "marks":98
-             },
-             "subject2":{
-               "name":"Maths",
-               "marks":86
-             },
-             "subject3":{
-               "name":"Chemistry",
-               "marks":91
-             }
+      "RegistrationID": "INC01349",
+      "studentName": "Abhishek Mishra",
+      "CGPA": 8.8,
+      "isExpanded": false,
+      "institute_id": "IN0010",
+      "institute": "PSG ARTS",
+      "regulation": "R1",
+      "curriculum": "CR03",
+      "department": "Mechanical Engineering",
+      "semester": "2",
+      "course": "Mtech",
+      "semesterData": [
+        {
+          "semesterNo": 1,
+          "SGPA": 8.5,
+          "isExpanded": false,
+          "subject1": {
+            "name": "Physics",
+            "marks": 98
           },
-          {
-             "semesterNo":2,
-             "SGPA":9.2,
-             "isExpanded":false,
-             "subject1":{
-               "name":"Physics",
-               "marks":98
-             },
-             "subject2":{
-               "name":"Maths",
-               "marks":86
-             },
-             "subject3":{
-               "name":"Chemistry",
-               "marks":91
-             }
+          "subject2": {
+            "name": "Maths",
+            "marks": 86
           },
-          {
-             "semesterNo":3,
-             "SGPA":9.2,
-             "isExpanded":false,
-             "subject1":{
-               "name":"Physics",
-               "marks":98
-             },
-             "subject2":{
-               "name":"Maths",
-               "marks":86
-             },
-             "subject3":{
-               "name":"Chemistry",
-               "marks":91
-             }
-          },
-          {
-             "semesterNo":4,
-             "SGPA":9.2,
-             "isExpanded":false,
-             "subject1":{
-               "name":"Physics",
-               "marks":98
-             },
-             "subject2":{
-               "name":"Maths",
-               "marks":86
-             },
-             "subject3":{
-               "name":"Chemistry",
-               "marks":91
-             }
-          },
-          {
-             "semesterNo":5,
-             "SGPA":9.2,
-             "isExpanded":false,
-             "subject1":{
-               "name":"Physics",
-               "marks":98
-             },
-             "subject2":{
-               "name":"Maths",
-               "marks":86
-             },
-             "subject3":{
-               "name":"Chemistry",
-               "marks":91
-             }
-          },
-          {
-             "semesterNo":6,
-             "SGPA":9.2,
-             "isExpanded":false,
-             "subject1":{
-               "name":"Physics",
-               "marks":98
-             },
-             "subject2":{
-               "name":"Maths",
-               "marks":86
-             },
-             "subject3":{
-               "name":"Chemistry",
-               "marks":91
-             }
-          },
-          {
-             "semesterNo":7,
-             "SGPA":9.2,
-             "isExpanded":false,
-             "subject1":{
-               "name":"Physics",
-               "marks":98
-             },
-             "subject2":{
-               "name":"Maths",
-               "marks":86
-             },
-             "subject3":{
-               "name":"Chemistry",
-               "marks":91
-             }
-          },
-          {
-             "semesterNo":8,
-             "SGPA":9.2,
-             "isExpanded":false,
-             "subject1":{
-               "name":"Physics",
-               "marks":98
-             },
-             "subject2":{
-               "name":"Maths",
-               "marks":86
-             },
-             "subject3":{
-               "name":"Chemistry",
-               "marks":91
-             }
+          "subject3": {
+            "name": "Chemistry",
+            "marks": 91
           }
-       ]
+        },
+        {
+          "semesterNo": 2,
+          "SGPA": 9.2,
+          "isExpanded": false,
+          "subject1": {
+            "name": "Physics",
+            "marks": 98
+          },
+          "subject2": {
+            "name": "Maths",
+            "marks": 86
+          },
+          "subject3": {
+            "name": "Chemistry",
+            "marks": 91
+          }
+        },
+        {
+          "semesterNo": 3,
+          "SGPA": 9.2,
+          "isExpanded": false,
+          "subject1": {
+            "name": "Physics",
+            "marks": 98
+          },
+          "subject2": {
+            "name": "Maths",
+            "marks": 86
+          },
+          "subject3": {
+            "name": "Chemistry",
+            "marks": 91
+          }
+        },
+        {
+          "semesterNo": 4,
+          "SGPA": 9.2,
+          "isExpanded": false,
+          "subject1": {
+            "name": "Physics",
+            "marks": 98
+          },
+          "subject2": {
+            "name": "Maths",
+            "marks": 86
+          },
+          "subject3": {
+            "name": "Chemistry",
+            "marks": 91
+          }
+        },
+        {
+          "semesterNo": 5,
+          "SGPA": 9.2,
+          "isExpanded": false,
+          "subject1": {
+            "name": "Physics",
+            "marks": 98
+          },
+          "subject2": {
+            "name": "Maths",
+            "marks": 86
+          },
+          "subject3": {
+            "name": "Chemistry",
+            "marks": 91
+          }
+        },
+        {
+          "semesterNo": 6,
+          "SGPA": 9.2,
+          "isExpanded": false,
+          "subject1": {
+            "name": "Physics",
+            "marks": 98
+          },
+          "subject2": {
+            "name": "Maths",
+            "marks": 86
+          },
+          "subject3": {
+            "name": "Chemistry",
+            "marks": 91
+          }
+        },
+        {
+          "semesterNo": 7,
+          "SGPA": 9.2,
+          "isExpanded": false,
+          "subject1": {
+            "name": "Physics",
+            "marks": 98
+          },
+          "subject2": {
+            "name": "Maths",
+            "marks": 86
+          },
+          "subject3": {
+            "name": "Chemistry",
+            "marks": 91
+          }
+        },
+        {
+          "semesterNo": 8,
+          "SGPA": 9.2,
+          "isExpanded": false,
+          "subject1": {
+            "name": "Physics",
+            "marks": 98
+          },
+          "subject2": {
+            "name": "Maths",
+            "marks": 86
+          },
+          "subject3": {
+            "name": "Chemistry",
+            "marks": 91
+          }
+        }
+      ]
     },
     {
-       "RegistrationID":"INC01350",
-       "studentName":"Smruti Padhi",
-       "CGPA":8.8,
-       "isExpanded":false,
-       "institute_id":"IN0010",
-       "institute": "PSG ARTS",
-       "regulation": "R1",
-       "curriculum": "CR03",
-       "department":"Electrical Engineering",
-       "semester":"1",
-       "course" : "Mtech",
-       "semesterData":[
-          {
-             "semesterNo":1,
-             "SGPA":8.5,
-             "isExpanded":false,
-             "subject1":{
-               "name":"Physics",
-               "marks":98
-             },
-             "subject2":{
-               "name":"Maths",
-               "marks":86
-             },
-             "subject3":{
-               "name":"Chemistry",
-               "marks":91
-             }
+      "RegistrationID": "INC01350",
+      "studentName": "Smruti Padhi",
+      "CGPA": 8.8,
+      "isExpanded": false,
+      "institute_id": "IN0010",
+      "institute": "PSG ARTS",
+      "regulation": "R1",
+      "curriculum": "CR03",
+      "department": "Electrical Engineering",
+      "semester": "1",
+      "course": "Mtech",
+      "semesterData": [
+        {
+          "semesterNo": 1,
+          "SGPA": 8.5,
+          "isExpanded": false,
+          "subject1": {
+            "name": "Physics",
+            "marks": 98
           },
-          {
-             "semesterNo":2,
-             "SGPA":9.2,
-             "isExpanded":false,
-             "subject1":{
-               "name":"Physics",
-               "marks":98
-             },
-             "subject2":{
-               "name":"Maths",
-               "marks":86
-             },
-             "subject3":{
-               "name":"Chemistry",
-               "marks":91
-             }
+          "subject2": {
+            "name": "Maths",
+            "marks": 86
           },
-          {
-             "semesterNo":3,
-             "SGPA":9.2,
-             "isExpanded":false,
-             "subject1":{
-               "name":"Physics",
-               "marks":98
-             },
-             "subject2":{
-               "name":"Maths",
-               "marks":86
-             },
-             "subject3":{
-               "name":"Chemistry",
-               "marks":91
-             }
-          },
-          {
-             "semesterNo":4,
-             "SGPA":9.2,
-             "isExpanded":false,
-             "subject1":{
-               "name":"Physics",
-               "marks":98
-             },
-             "subject2":{
-               "name":"Maths",
-               "marks":86
-             },
-             "subject3":{
-               "name":"Chemistry",
-               "marks":91
-             }
-          },
-          {
-             "semesterNo":5,
-             "SGPA":9.2,
-             "isExpanded":false,
-             "subject1":{
-               "name":"Physics",
-               "marks":98
-             },
-             "subject2":{
-               "name":"Maths",
-               "marks":86
-             },
-             "subject3":{
-               "name":"Chemistry",
-               "marks":91
-             }
-          },
-          {
-             "semesterNo":6,
-             "SGPA":9.2,
-             "isExpanded":false,
-             "subject1":{
-               "name":"Physics",
-               "marks":98
-             },
-             "subject2":{
-               "name":"Maths",
-               "marks":86
-             },
-             "subject3":{
-               "name":"Chemistry",
-               "marks":91
-             }
-          },
-          {
-             "semesterNo":7,
-             "SGPA":9.2,
-             "isExpanded":false,
-             "subject1":{
-               "name":"Physics",
-               "marks":98
-             },
-             "subject2":{
-               "name":"Maths",
-               "marks":86
-             },
-             "subject3":{
-               "name":"Chemistry",
-               "marks":91
-             }
-          },
-          {
-             "semesterNo":8,
-             "SGPA":9.2,
-             "isExpanded":false,
-             "subject1":{
-               "name":"Physics",
-               "marks":98
-             },
-             "subject2":{
-               "name":"Maths",
-               "marks":86
-             },
-             "subject3":{
-               "name":"Chemistry",
-               "marks":91
-             }
+          "subject3": {
+            "name": "Chemistry",
+            "marks": 91
           }
-       ]
+        },
+        {
+          "semesterNo": 2,
+          "SGPA": 9.2,
+          "isExpanded": false,
+          "subject1": {
+            "name": "Physics",
+            "marks": 98
+          },
+          "subject2": {
+            "name": "Maths",
+            "marks": 86
+          },
+          "subject3": {
+            "name": "Chemistry",
+            "marks": 91
+          }
+        },
+        {
+          "semesterNo": 3,
+          "SGPA": 9.2,
+          "isExpanded": false,
+          "subject1": {
+            "name": "Physics",
+            "marks": 98
+          },
+          "subject2": {
+            "name": "Maths",
+            "marks": 86
+          },
+          "subject3": {
+            "name": "Chemistry",
+            "marks": 91
+          }
+        },
+        {
+          "semesterNo": 4,
+          "SGPA": 9.2,
+          "isExpanded": false,
+          "subject1": {
+            "name": "Physics",
+            "marks": 98
+          },
+          "subject2": {
+            "name": "Maths",
+            "marks": 86
+          },
+          "subject3": {
+            "name": "Chemistry",
+            "marks": 91
+          }
+        },
+        {
+          "semesterNo": 5,
+          "SGPA": 9.2,
+          "isExpanded": false,
+          "subject1": {
+            "name": "Physics",
+            "marks": 98
+          },
+          "subject2": {
+            "name": "Maths",
+            "marks": 86
+          },
+          "subject3": {
+            "name": "Chemistry",
+            "marks": 91
+          }
+        },
+        {
+          "semesterNo": 6,
+          "SGPA": 9.2,
+          "isExpanded": false,
+          "subject1": {
+            "name": "Physics",
+            "marks": 98
+          },
+          "subject2": {
+            "name": "Maths",
+            "marks": 86
+          },
+          "subject3": {
+            "name": "Chemistry",
+            "marks": 91
+          }
+        },
+        {
+          "semesterNo": 7,
+          "SGPA": 9.2,
+          "isExpanded": false,
+          "subject1": {
+            "name": "Physics",
+            "marks": 98
+          },
+          "subject2": {
+            "name": "Maths",
+            "marks": 86
+          },
+          "subject3": {
+            "name": "Chemistry",
+            "marks": 91
+          }
+        },
+        {
+          "semesterNo": 8,
+          "SGPA": 9.2,
+          "isExpanded": false,
+          "subject1": {
+            "name": "Physics",
+            "marks": 98
+          },
+          "subject2": {
+            "name": "Maths",
+            "marks": 86
+          },
+          "subject3": {
+            "name": "Chemistry",
+            "marks": 91
+          }
+        }
+      ]
     },
     {
-       "RegistrationID":"INC01346",
-       "studentName":"Srinibas Mishra",
-       "CGPA":8.8,
-       "isExpanded":false,
-       "institute_id":"IN0010",
-       "institute": "PSG ARTS",
-       "regulation": "R1",
-       "curriculum": "CR03",
-       "department":"Information Technology",
-       "semester":"1",
-       "course" : "Mtech",
-       "semesterData":[
-          {
-             "semesterNo":1,
-             "SGPA":8.5,
-             "isExpanded":false,
-             "subject1":{
-               "name":"Physics",
-               "marks":98
-             },
-             "subject2":{
-               "name":"Maths",
-               "marks":86
-             },
-             "subject3":{
-               "name":"Chemistry",
-               "marks":91
-             }
+      "RegistrationID": "INC01346",
+      "studentName": "Srinibas Mishra",
+      "CGPA": 8.8,
+      "isExpanded": false,
+      "institute_id": "IN0010",
+      "institute": "PSG ARTS",
+      "regulation": "R1",
+      "curriculum": "CR03",
+      "department": "Information Technology",
+      "semester": "1",
+      "course": "Mtech",
+      "semesterData": [
+        {
+          "semesterNo": 1,
+          "SGPA": 8.5,
+          "isExpanded": false,
+          "subject1": {
+            "name": "Physics",
+            "marks": 98
           },
-          {
-             "semesterNo":2,
-             "SGPA":9.2,
-             "isExpanded":false,
-             "subject1":{
-               "name":"Physics",
-               "marks":98
-             },
-             "subject2":{
-               "name":"Maths",
-               "marks":86
-             },
-             "subject3":{
-               "name":"Chemistry",
-               "marks":91
-             }
+          "subject2": {
+            "name": "Maths",
+            "marks": 86
           },
-          {
-             "semesterNo":3,
-             "SGPA":9.2,
-             "isExpanded":false,
-             "subject1":{
-               "name":"Physics",
-               "marks":98
-             },
-             "subject2":{
-               "name":"Maths",
-               "marks":86
-             },
-             "subject3":{
-               "name":"Chemistry",
-               "marks":91
-             }
-          },
-          {
-             "semesterNo":4,
-             "SGPA":9.2,
-             "isExpanded":false,
-             "subject1":{
-               "name":"Physics",
-               "marks":98
-             },
-             "subject2":{
-               "name":"Maths",
-               "marks":86
-             },
-             "subject3":{
-               "name":"Chemistry",
-               "marks":91
-             }
-          },
-          {
-             "semesterNo":5,
-             "SGPA":9.2,
-             "isExpanded":false,
-             "subject1":{
-               "name":"Physics",
-               "marks":98
-             },
-             "subject2":{
-               "name":"Maths",
-               "marks":86
-             },
-             "subject3":{
-               "name":"Chemistry",
-               "marks":91
-             }
-          },
-          {
-             "semesterNo":6,
-             "SGPA":9.2,
-             "isExpanded":false,
-             "subject1":{
-               "name":"Physics",
-               "marks":98
-             },
-             "subject2":{
-               "name":"Maths",
-               "marks":86
-             },
-             "subject3":{
-               "name":"Chemistry",
-               "marks":91
-             }
-          },
-          {
-             "semesterNo":7,
-             "SGPA":9.2,
-             "isExpanded":false,
-             "subject1":{
-               "name":"Physics",
-               "marks":98
-             },
-             "subject2":{
-               "name":"Maths",
-               "marks":86
-             },
-             "subject3":{
-               "name":"Chemistry",
-               "marks":91
-             }
-          },
-          {
-             "semesterNo":8,
-             "SGPA":9.2,
-             "isExpanded":false,
-             "subject1":{
-               "name":"Physics",
-               "marks":98
-             },
-             "subject2":{
-               "name":"Maths",
-               "marks":86
-             },
-             "subject3":{
-               "name":"Chemistry",
-               "marks":91
-             }
+          "subject3": {
+            "name": "Chemistry",
+            "marks": 91
           }
-       ]
+        },
+        {
+          "semesterNo": 2,
+          "SGPA": 9.2,
+          "isExpanded": false,
+          "subject1": {
+            "name": "Physics",
+            "marks": 98
+          },
+          "subject2": {
+            "name": "Maths",
+            "marks": 86
+          },
+          "subject3": {
+            "name": "Chemistry",
+            "marks": 91
+          }
+        },
+        {
+          "semesterNo": 3,
+          "SGPA": 9.2,
+          "isExpanded": false,
+          "subject1": {
+            "name": "Physics",
+            "marks": 98
+          },
+          "subject2": {
+            "name": "Maths",
+            "marks": 86
+          },
+          "subject3": {
+            "name": "Chemistry",
+            "marks": 91
+          }
+        },
+        {
+          "semesterNo": 4,
+          "SGPA": 9.2,
+          "isExpanded": false,
+          "subject1": {
+            "name": "Physics",
+            "marks": 98
+          },
+          "subject2": {
+            "name": "Maths",
+            "marks": 86
+          },
+          "subject3": {
+            "name": "Chemistry",
+            "marks": 91
+          }
+        },
+        {
+          "semesterNo": 5,
+          "SGPA": 9.2,
+          "isExpanded": false,
+          "subject1": {
+            "name": "Physics",
+            "marks": 98
+          },
+          "subject2": {
+            "name": "Maths",
+            "marks": 86
+          },
+          "subject3": {
+            "name": "Chemistry",
+            "marks": 91
+          }
+        },
+        {
+          "semesterNo": 6,
+          "SGPA": 9.2,
+          "isExpanded": false,
+          "subject1": {
+            "name": "Physics",
+            "marks": 98
+          },
+          "subject2": {
+            "name": "Maths",
+            "marks": 86
+          },
+          "subject3": {
+            "name": "Chemistry",
+            "marks": 91
+          }
+        },
+        {
+          "semesterNo": 7,
+          "SGPA": 9.2,
+          "isExpanded": false,
+          "subject1": {
+            "name": "Physics",
+            "marks": 98
+          },
+          "subject2": {
+            "name": "Maths",
+            "marks": 86
+          },
+          "subject3": {
+            "name": "Chemistry",
+            "marks": 91
+          }
+        },
+        {
+          "semesterNo": 8,
+          "SGPA": 9.2,
+          "isExpanded": false,
+          "subject1": {
+            "name": "Physics",
+            "marks": 98
+          },
+          "subject2": {
+            "name": "Maths",
+            "marks": 86
+          },
+          "subject3": {
+            "name": "Chemistry",
+            "marks": 91
+          }
+        }
+      ]
     }
- ]
+  ]
 
- public dataStudentsList: MatTableDataSource<STUDENTS_DATA> = new MatTableDataSource(this.students);
-  displayedStudentsColumnsList: string[] = ['Registration ID', 'studentName', 'institute', 'course', 'department', 'semester', 'CGPA', 'actions'];
-  constructor(private api: ApiService, public dialog: MatDialog) { }
+  public dataStudentsList: MatTableDataSource<STUDENTS_DATA> = new MatTableDataSource(this.students);
+  displayedStudentsColumnsList: string[] = ['studentId', 'institute', "regulation", 'department', 'curriculum', 'semester', 'pattern', 'CGPA', 'actions'];
+  displayedStudentsFragmentList: string[] = ['Subject_ID', 'Subject_Name', 'Type', 'Subject_Grade', 'Subject_Percent', 'Subject_Pointer', 'Action'];
+  selectedPatternId: any;
+  studentAcademicYear: any;
+  studentMarksData: any;
+  constructor(private api: ApiService, private _defaultsService: ApiServiceSkeletonDefault, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.dataStudentsList.filterPredicate = this.getFilterPredicate();
+    var that = this;
     this.api.getAllInstituteList()
       .subscribe(data => {
         for (const d of (data.insArray as any)) {
@@ -1136,6 +1144,15 @@ export class MarksViewComponent implements OnInit {
           });
         }
       });
+    this._defaultsService.getSubjectSkeletonDefaults()
+      .subscribe(
+        data => {
+          that.defaultSubjects = [];
+          if (data.msg.toLowerCase() == "success") {
+            this.defaultSubjects = data.data;
+          }
+        }
+      );
   }
   getSemester() {
     var payloadForSemester: semesterPayload = {
@@ -1190,6 +1207,24 @@ export class MarksViewComponent implements OnInit {
             departmentName: d.departmentName,
           });
         }
+      });
+  }
+  getMarks() {
+    this.departments = [];
+    var payloadForMarks: any = {
+      ins_id: this.studentInstitute,
+      reg_id: this.studentRegulation,
+      dep_id: this.studentDepartment,
+      cur_id: this.studentCurriculum,
+      sem_no: this.studentSemester,
+      acad: this.studentAcademicYear,
+      patternId: this.defaultSubjectSelection
+    }
+
+    this.api.getStudentsMarkByPattern(payloadForMarks)
+      .subscribe(data => {
+        console.log(data);
+        this.studentMarksData = data;
       });
   }
   getCourse() {
@@ -1267,6 +1302,7 @@ export class MarksViewComponent implements OnInit {
     this.getCourse();
     this.selectedRegulation = event.source.triggerValue;
     this.dataStudentsList.filter = this.selectedRegulation.trim();
+    this.getDepartment();
   }
   selectInstitute(event: any) {
     debugger;
@@ -1294,6 +1330,11 @@ export class MarksViewComponent implements OnInit {
     debugger;
     this.selectedSection = event.source.triggerValue;
     this.dataStudentsList.filter = this.selectedSection.trim();
+  }
+  selectPattern(event: any) {
+    debugger;
+    this.selectedPatternId = event.source.triggerValue;
+    //this.dataStudentsList.filter = this.selectedSection.trim();
   }
 
 
@@ -1347,6 +1388,7 @@ export class MarksViewComponent implements OnInit {
     this.studentDepartment = '';
     this.studentCurriculum = '';
     this.studentSemester = '';
+    this.defaultSubjectSelection = '';
 
     this.selectedStream = '';
     this.selectedCourse = '';

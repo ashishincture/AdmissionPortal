@@ -30,17 +30,6 @@ width: 100%;
       </mat-form-field>
       &nbsp;&nbsp;
       <mat-form-field appearance="fill">
-        <mat-label style="color: white;">Course</mat-label>
-        <mat-select (selectionChange)="selectCourse($event)" [(ngModel)]="studentCourse" ngDefaultControl
-          class="styleSelect">
-          <mat-option *ngFor="let student of courses" value="{student.course}">
-            {{student.course}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      &nbsp;&nbsp;
-      <mat-form-field appearance="fill">
         <mat-label style="color: white;">Department</mat-label>
         <mat-select (selectionChange)="selectDepartment($event)" [(ngModel)]="studentDepartment" value=ngDefaultControl
           class="styleSelect">
@@ -67,12 +56,33 @@ width: 100%;
         <mat-label style="color: white;">Semester</mat-label>
         <mat-select (selectionChange)="selectSemester($event)" [(ngModel)]="studentSemester" ngDefaultControl
           class="styleSelect">
-          <mat-option *ngFor="let student of semesters" value="{student.semester}">
+          <mat-option *ngFor="let student of semesters" value="{{student.semester}}">
             {{student.semester}}
           </mat-option>
         </mat-select>
       </mat-form-field>
+
+      &nbsp;&nbsp;
+      <mat-form-field appearance="fill">
+        <mat-label style="color: white;">Pattern:</mat-label>
+        <mat-select (selectionChange)="selectPattern($event)" [(ngModel)]="defaultSubjectSelection" ngDefaultControl
+          class="styleSelect">
+          <mat-option *ngFor="let subject of defaultSubjects" value="{{subject.patternId}}">
+            {{subject.subject_type}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      &nbsp;&nbsp;
+      <mat-form-field appearance="fill">
+        <mat-label style="color: white;">Year:</mat-label>
+        <input matInput placeholder="Enter Year" [(ngModel)]="studentAcademicYear">
+      </mat-form-field>
+      <a mat-raised-button href="javascript:void(0)" (click)="getMarks()" color="primary"
+        class="Btn float-right">Search</a>
     </div>
+
+
+
     <!-- </ng-template> -->
     <!-- <p><span>You selected: </span><b>{{selectedStream}}</b></p>
     <p><span>You selected: </span><b>{{selectedBatch}}</b></p>
@@ -94,37 +104,48 @@ width: 100%;
     <a mat-raised-button href="javascript:void(0)" (click)="toggleTableRows()" color="primary" class="Btn">Toggle Rows</a>
   </div> -->
 
-    <table style="margin: 2rem;" mat-table [dataSource]="dataStudentsList" multiTemplateDataRows
+    <table style="margin: 2rem;" mat-table [dataSource]="studentMarksData" multiTemplateDataRows
       class="mat-elevation-z8 departmentTableClass customTable">
-      <ng-container matColumnDef="Registration ID">
-        <th class="customHeader" mat-header-cell *matHeaderCellDef style="border-bottom: none;"> Registration ID </th>
-        <td mat-cell *matCellDef="let element"> {{element.RegistrationID}} </td>
+      <ng-container matColumnDef="studentId">
+        <th class="customHeader" mat-header-cell *matHeaderCellDef style="border-bottom: none;"> Student ID </th>
+        <td mat-cell *matCellDef="let element"> {{element.student_id}} </td>
       </ng-container>
 
-      <ng-container matColumnDef="studentName">
+      <!-- <ng-container matColumnDef="studentName">
         <th class="customHeader" mat-header-cell *matHeaderCellDef style="border-bottom: none;"> Name </th>
         <td mat-cell *matCellDef="let element"> {{element.studentName}} </td>
-      </ng-container>
+      </ng-container> -->
 
       <ng-container matColumnDef="institute">
         <th class="customHeader" mat-header-cell *matHeaderCellDef style="border-bottom: none;"> Institute </th>
-        <td mat-cell *matCellDef="let element"> {{element.institute}} </td>
+        <td mat-cell *matCellDef="let element"> {{studentInstitute}} </td>
       </ng-container>
 
-      <ng-container matColumnDef="course">
-        <th class="customHeader" mat-header-cell *matHeaderCellDef style="border-bottom: none;"> Course </th>
-        <td mat-cell *matCellDef="let element"> {{element.course}} </td>
+      <ng-container matColumnDef="regulation">
+        <th class="customHeader" mat-header-cell *matHeaderCellDef style="border-bottom: none;"> Regulation </th>
+        <td mat-cell *matCellDef="let element"> {{studentRegulation}} </td>
       </ng-container>
 
       <ng-container matColumnDef="department">
         <th class="customHeader" mat-header-cell *matHeaderCellDef style="border-bottom: none;"> Department </th>
-        <td mat-cell *matCellDef="let element"> {{element.department}} </td>
+        <td mat-cell *matCellDef="let element"> {{studentDepartment}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="curriculum">
+        <th class="customHeader" mat-header-cell *matHeaderCellDef style="border-bottom: none;"> Curriculum </th>
+        <td mat-cell *matCellDef="let element"> {{studentCurriculum}} </td>
       </ng-container>
 
       <ng-container matColumnDef="semester">
         <th class="customHeader" mat-header-cell *matHeaderCellDef style="border-bottom: none;"> Semester </th>
-        <td mat-cell *matCellDef="let element"> {{element.semester}} </td>
+        <td mat-cell *matCellDef="let element"> {{studentSemester}} </td>
       </ng-container>
+
+      <ng-container matColumnDef="pattern">
+        <th class="customHeader" mat-header-cell *matHeaderCellDef style="border-bottom: none;"> Pattern </th>
+        <td mat-cell *matCellDef="let element"> {{defaultSubjectSelection}}} </td>
+      </ng-container>
+
       <!-- <ng-container matColumnDef="Batch">
         <th mat-header-cell *matHeaderCellDef> Batch </th>
         <td mat-cell *matCellDef="let element"> {{element.Batch}} </td>
@@ -136,14 +157,16 @@ width: 100%;
 
       <ng-container matColumnDef="CGPA">
         <th class="customHeader" mat-header-cell *matHeaderCellDef style="border-bottom: none;"> CGPA </th>
-        <td mat-cell *matCellDef="let element"> {{element.CGPA}} </td>
+        <td mat-cell *matCellDef="let element"> </td>
       </ng-container>
 
       <ng-container matColumnDef="actions">
         <th class="customHeader" mat-header-cell *matHeaderCellDef style="border-bottom: none;"> Actions </th>
         <td mat-cell *matCellDef="let element">
+          <!-- <button mat-button class="Btn" (click)="openDialog(element)"
+                style="position:relative;left:4rem;top:0.3rem">Open dialog</button> -->
           <button mat-button href="javascript:void()" (click)="element.isExpanded = !element.isExpanded"
-            class="Btn">Individual SGPA</button>
+            class="Btn">Details</button>
         </td>
       </ng-container>
 
@@ -153,7 +176,7 @@ width: 100%;
       <ng-container matColumnDef="expandedDetail">
         <td mat-cell *matCellDef="let element" [attr.colspan]="displayedStudentsColumnsList.length">
           <div class="row student-element-detail" [@detailExpand]="element.isExpanded ? 'expanded' : 'collapsed'">
-            <mat-list>
+            <!-- <mat-list>
               <button mat-button class="Btn" (click)="openDialog(element)"
                 style="position:relative;left:4rem;top:0.3rem">Open dialog</button>
               <div mat-subheader style="color: white;">Semester Details of {{element.studentName}}</div>
@@ -161,7 +184,74 @@ width: 100%;
                 <div style="color: white;" mat-subheader>Semester Number - {{subject.semesterNo}} | Grade:
                   {{subject.SGPA}}</div>
               </mat-list-item>
-            </mat-list>
+            </mat-list> -->
+            <table mat-table [dataSource]="element.data" multiTemplateDataRows
+              class="mat-elevation-z8 departmentTableClass">
+
+              <ng-container matColumnDef="Subject_ID">
+                <th mat-header-cell *matHeaderCellDef> Subject_ID </th>
+                <td mat-cell *matCellDef="let element"> {{element.Subject_ID}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="Subject_Name">
+                <th mat-header-cell *matHeaderCellDef> Subject Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.Subject_Name}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="Type">
+                <th mat-header-cell *matHeaderCellDef> Type </th>
+                <td mat-cell *matCellDef="let element"> {{element.Type}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="Subject_Grade">
+                <th mat-header-cell *matHeaderCellDef> Subject Grade </th>
+                <td mat-cell *matCellDef="let element"> {{element.Subject_Grade}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="Subject_Percent">
+                <th mat-header-cell *matHeaderCellDef> Subject Percent </th>
+                <td mat-cell *matCellDef="let element"> {{element.Subject_Percent}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="Subject_Pointer">
+                <th mat-header-cell *matHeaderCellDef> Subject Pointer </th>
+                <td mat-cell *matCellDef="let element"> {{element.Subject_Pointer}} </td>
+              </ng-container>
+
+              <!-- <ng-container matColumnDef="Subject_Marks">
+                  <th mat-header-cell *matHeaderCellDef> Subject Marks </th>
+                  <td mat-cell *matCellDef="let element"> {{element.Subject_Marks}} </td>
+                </ng-container> -->
+
+              <ng-container matColumnDef="Action">
+                <th mat-header-cell *matHeaderCellDef> Actions </th>
+                <td mat-cell *matCellDef="let element">
+                  <button mat-button class="Btn" (click)="openDialog(element.Subject_Marks)"
+                    style="position:relative;left:4rem;top:0.3rem">View Marks</button>
+                </td>
+              </ng-container>
+
+
+              <!-- Template for details row -->
+              <!-- <ng-container matColumnDef="expandedDetail">
+                <td mat-cell *matCellDef="let element" [attr.colspan]="3">
+                  <div class="row student-element-detail" [@detailExpand]="element.isExpanded ?  'expanded' :'collapsed' ">
+                    <mat-list>
+                      <div mat-subheader>{{element.subject1.name}} Marks: {{element.subject1.marks}}</div>
+                      <div mat-subheader>{{element.subject2.name}} Marks: {{element.subject2.marks}}</div>
+                      <div mat-subheader>{{element.subject3.name}} Marks: {{element.subject3.marks}}</div>
+                    </mat-list>
+                  </div> -->
+
+              <!-- </td>
+              </ng-container> -->
+
+              <tr mat-header-row *matHeaderRowDef="displayedStudentsFragmentList"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedStudentsFragmentList;" class="student-element-row">
+              </tr>
+
+              <!-- <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="student-detail-row"></tr> -->
+            </table>
           </div>
 
         </td>
