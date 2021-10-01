@@ -48,6 +48,27 @@
             <div class="col-2">
               <input
                 [class.is-invalid]="
+                  gradingForm.get('rangeLow').invalid &&
+                  gradingForm.get('rangeLow').touched
+                "
+                type="text"
+                formControlName="rangeLow"
+                class="form-control form-control-sm"
+                placeholder="RangeLow"
+                aria-label="rangeLow"
+              />
+              <small
+                class="text-danger"
+                [class.d-none]="
+                  gradingForm.get('rangeLow').valid ||
+                  gradingForm.get('rangeLow').untouched
+                "
+                >Required!</small
+              >
+            </div>
+            <div class="col-2">
+              <input
+                [class.is-invalid]="
                   gradingForm.get('points').invalid &&
                   gradingForm.get('points').touched
                 "
@@ -108,7 +129,7 @@
                 >Required!</small
               >
             </div>
-            <div class="col-4">
+            <div class="col-4 div__description">
               <input
                 [class.is-invalid]="
                   gradingForm.get('description').invalid &&
@@ -130,29 +151,9 @@
               >
             </div>
             
-            <div class="col-2">
-              <input
-                [class.is-invalid]="
-                  gradingForm.get('rangeLow').invalid &&
-                  gradingForm.get('rangeLow').touched
-                "
-                type="text"
-                formControlName="rangeLow"
-                class="form-control form-control-sm"
-                placeholder="RangeLow"
-                aria-label="rangeLow"
-              />
-              <small
-                class="text-danger"
-                [class.d-none]="
-                  gradingForm.get('rangeLow').valid ||
-                  gradingForm.get('rangeLow').untouched
-                "
-                >Required!</small
-              >
-            </div>
-            <div class="col-2">
-              <button mat-raised-button type="submit" class="btnStyleBlack">
+            
+            <div class="col-2 div_button">
+              <button mat-raised-button type="submit" color = "primary" class="btnStyleBlack">
                 Add
               </button>
             </div>
