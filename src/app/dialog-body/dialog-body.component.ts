@@ -17,14 +17,21 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 })
 export class DialogBodyComponent implements OnInit {
 
-  constructor(public dialogRef: MatDialogRef<DialogBodyComponent>, @Inject(MAT_DIALOG_DATA) public data: any) { }
+  constructor(public dialogRef: MatDialogRef<DialogBodyComponent>, @Inject(MAT_DIALOG_DATA) public marksData: any) { }
 
-  dataStudentsListFragment = new MatTableDataSource();
-  displayedStudentsFragmentList: string[] = ['semesterNo', 'SGPA', 'Action'];
-
-  dataSources = this.data.semesterData;
+  // dataStudentsListFragment = new MatTableDataSource();
+  displayedStudentsFragmentList: string[] = ['evaluation_name', 'evaluation_marks']; 
+  dataSources: any[];
 
   ngOnInit(): void {
+    var data = [];
+    for (var key in this.marksData) {
+      data.push({
+        "evaluationName": key,
+        "evaluationMarks": this.marksData[key]
+      })
+    }
+    this.dataSources = data;
 
   }
   close() {

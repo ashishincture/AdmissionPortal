@@ -38,6 +38,7 @@ const localUrlGetAllInstitutes = ' https://university-app-2021.herokuapp.com/ins
 const localUrlRegulation = 'https://university-app-2021.herokuapp.com/Regulation/all';
 const localUrlDepartment = 'https://university-app-2021.herokuapp.com/Regulation/departments';
 const localUrlCurriculum = 'https://university-app-2021.herokuapp.com/Regulation/departments/curriculums';
+const localUrlMarks = 'https://university-app-2021.herokuapp.com/student/getStudentMarksDataForCourse';
 const localUrlSemester = 'https://university-app-2021.herokuapp.com/institute/semesters/';
 @Injectable({
   providedIn: 'root'
@@ -66,5 +67,8 @@ export class ApiService {
   }
   getSemesterList(payload: semesterPayload): Observable<any> {
     return (this.http.post(localUrlSemester, payload));
+  }
+  getStudentsMarkByPattern(payload: any): Observable<any> {
+    return (this.http.post(localUrlMarks, payload));
   }
 }
