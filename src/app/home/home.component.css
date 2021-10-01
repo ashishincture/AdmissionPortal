@@ -1,4 +1,4 @@
-.mat-tab-label {
+/* .mat-tab-label {
   background-color: blue;
 }
 
@@ -8,8 +8,13 @@
 
 [aria-label="accent"] {
   background-color: aqua;
+} */
+.helloTab{
+  color:white !important;
 }
-
+.classRes{
+  margin-top: 10% !important;
+}
 .styleinput.mat-form-field-appearance-outline
   .mat-form-field-wrapper
   .mat-form-field-flex {
@@ -52,7 +57,7 @@
 }
 
 .bgclg {
-  background: url(/assets/img/homebooks.jpg) no-repeat center;
+  /* background: url(/assets/img/homebooks.jpg) no-repeat center; */
   background-size: cover;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -106,7 +111,9 @@
   white-space: nowrap;
   color: white !important;
 }
-
+.hello.mat-tab-label {
+  color: rgb(255 255 255 / 87%) !important;
+}
 .collegetab {
   font-family: Roboto, "Helvetica Neue", sans-serif;
   font-size: 14px;
@@ -125,10 +132,10 @@
   padding-left: 1rem;
   padding-right: 1rem;
 }
-.mat-tab-group.mat-primary .mat-ink-bar,
+/* .mat-tab-group.mat-primary .mat-ink-bar,
 .mat-tab-nav-bar.mat-primary .mat-ink-bar {
   background-color: #000000 !important;
-}
+} */
 /* .example-small-box {
     height: 100px;
     width: 100px;
@@ -187,10 +194,20 @@ section {
   margin-left: 8px;
   min-width: 120px;
 }
-
+.hell {
+ 
+  color: white !important;
+}
 .example-button-row {
   display: table-cell;
   width: 490px;
+}
+.matToolbar {
+  background:#3f3a64;
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 .example-button-row .mat-button-base {
@@ -205,19 +222,19 @@ section {
 /* .greenOne{
     background-color: #79da77;
   } */
-.mat-tab-group-dynamic-height .mat-tab-body-content {
+/* .mat-tab-group-dynamic-height .mat-tab-body-content {
   overflow: hidden;
   background-color: white !important;
-}
+} */
 
-.mat-tab-header {
+/* .mat-tab-header {
   display: flex;
   overflow: hidden;
   position: relative;
   flex-shrink: 0;
 
-  /* background-color: #79da77 !important; */
-}
+  background-color: #79da77 !important; */
+/* } */
 .Addbutton {
   position: relative;
     cursor: pointer;
