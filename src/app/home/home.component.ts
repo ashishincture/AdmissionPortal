@@ -89,8 +89,15 @@ export class HomeComponent implements OnInit {
     this.show = !this.show;
 
     // CHANGE THE NAME OF THE BUTTON.
-    if (this.show) this.buttonName = 'Hide';
-    else this.buttonName = 'Show';
+    if (this.show){ this.buttonName = 'Hide';
+    // var element = document.getElementById('dynamicRes');
+    // element.classList.remove('classRes'); 
+  }
+    else {this.buttonName = 'Show';
+    // var element = document.getElementById('dynamicRes');
+    // element.classList.add('classRes'); 
+  }
+
   }
   onPressAddSubject2() {
     this.dataTemplateDep.SubjectListDept.push(this.dataTemplate2);
