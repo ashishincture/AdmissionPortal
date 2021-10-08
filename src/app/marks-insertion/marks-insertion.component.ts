@@ -177,10 +177,19 @@ export class MarksInsertionComponent implements OnInit {
   currSel = false;
   yearSel = false;
   SemSel = false;
-
+  disableallComboBOX()
+  {
+  this.InsSel = false;
+  this.RegSel = false;
+  this.deptSel = false;
+  this.currSel = false;
+  this.yearSel = false;
+  this.SemSel = false;
+  }
   onChangeIns() {
+    
     let that = this;
-    this.InsSel = true;
+    that.disableallComboBOX();
     this.Regulation = [];
     this.payload = {
       "ins_id": this.selectedIns
@@ -191,6 +200,7 @@ export class MarksInsertionComponent implements OnInit {
         that.openSnackBar("No Regulations in Dropdown", "OK");
       }
       if (data.length) {
+        this.InsSel = true;
         console.log(data);
         this.Regulation = data;
       }
@@ -223,6 +233,7 @@ export class MarksInsertionComponent implements OnInit {
       "reg_id": this.selectedReg
     }; 
     this._ApiMarksUploadService.getAcademicList(this.payload).subscribe(data => {
+      this.RegSel = true;
       // if (data.msg == "sucess") {
       // debugger
       for(let i =data.academicStart;i<=data.academicEnd;i++)
@@ -245,7 +256,7 @@ export class MarksInsertionComponent implements OnInit {
   onChangeYear(){
     let that = this;
     this.Department = [];
-    this.RegSel = true;
+    
     this.payload = {
       "ins_id": this.selectedIns,
       "reg_id": this.selectedReg
@@ -256,6 +267,7 @@ export class MarksInsertionComponent implements OnInit {
           that.openSnackBar("No Departments in Dropdown", "OK");
         }
         console.log(data);
+        this.yearSel=true;
         this.Department = data.depArray;
       }
       else {
@@ -273,7 +285,7 @@ export class MarksInsertionComponent implements OnInit {
   onChangeDept() {
     let that = this;
     this.Curriculum = [];
-    this.deptSel = true;
+    
     this.payload = {
       "ins_id": this.selectedIns,
       "reg_id": this.selectedReg,
@@ -285,6 +297,7 @@ export class MarksInsertionComponent implements OnInit {
           that.openSnackBar("No Curriculums in Dropdown", "OK");
         }
         console.log(data);
+        this.deptSel = true;
         this.Curriculum = data.curArray;
       }
       else {
@@ -317,6 +330,7 @@ export class MarksInsertionComponent implements OnInit {
           that.openSnackBar("No Semesters in Dropdown", "OK");
         }
         console.log(data);
+        this.currSel=true;
         this.semester = data.semesters;
       }
       else {
@@ -344,7 +358,7 @@ export class MarksInsertionComponent implements OnInit {
   onChangeSem() {
     let that = this;
     this.Subjects = [];
-    this.SemSel = true;
+    
     this.payload = {
       "ins_id": this.selectedIns,
       "reg_id": this.selectedReg,
@@ -357,6 +371,7 @@ export class MarksInsertionComponent implements OnInit {
         if (data.data.Subjects.length == 0) {
           that.openSnackBar("No Subjects in Dropdown", "OK");
         }
+        this.SemSel = true;
         console.log(data.data.Subjects);
         this.Subjects = data.data.Subjects;
       }

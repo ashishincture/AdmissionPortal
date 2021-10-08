@@ -27,7 +27,7 @@ width: 100%;
         </mat-select>
       </mat-form-field>
 
-      <ng-template [ngIf]="selectedIns">
+      <ng-template [ngIf]="InsSel">
         <mat-form-field appearance="fill" class="form">
           <mat-label>Select Regulation</mat-label>
           <mat-select [(value)]="selectedReg" (selectionChange)="onChangeReg()">
@@ -35,7 +35,7 @@ width: 100%;
           </mat-select>
         </mat-form-field>
       </ng-template>
-      <ng-template [ngIf]="selectedReg">
+      <ng-template [ngIf]="RegSel">
         <mat-form-field appearance="fill" class="form">
           <mat-label>Select Joining Year</mat-label>
           <mat-select [(value)]="selectedyear" (selectionChange)="onChangeYear()">
@@ -43,7 +43,7 @@ width: 100%;
           </mat-select>
         </mat-form-field>
       </ng-template>
-      <ng-template [ngIf]="selectedyear">
+      <ng-template [ngIf]="yearSel">
         <mat-form-field appearance="fill" class="form">
           <mat-label>Select Department</mat-label>
           <mat-select [(value)]="selectedDept" (selectionChange)="onChangeDept()">
@@ -53,7 +53,7 @@ width: 100%;
         </mat-form-field>
       </ng-template>
 
-      <ng-template [ngIf]="selectedDept">
+      <ng-template [ngIf]="deptSel">
         <mat-form-field appearance="fill" class="form">
           <mat-label>Select Curriculum</mat-label>
           <mat-select [(value)]="selectedcurriculum" (selectionChange)="onChangeCurr()">
@@ -70,7 +70,7 @@ width: 100%;
       </mat-select>
     </mat-form-field>
   </ng-template> -->
-      <ng-template [ngIf]="selectedcurriculum">
+      <ng-template [ngIf]="currSel">
         <mat-form-field appearance="fill" class="form">
           <mat-label>Select Semester</mat-label>
           <mat-select [(value)]="selectedSemester" (selectionChange)="onChangeSem()">
@@ -81,7 +81,7 @@ width: 100%;
         </mat-form-field>
       </ng-template>
 
-      <ng-template [ngIf]="selectedSemester">
+      <ng-template [ngIf]="SemSel">
         <mat-form-field appearance="fill" class="form">
           <mat-label>Select Subject</mat-label>
           <mat-select [(value)]="selectedSubject" (selectionChange)="onChangeSub()">
