@@ -125,7 +125,7 @@ export class ApiMarksUploadService {
 
   }
   errorHandler(error: HttpErrorResponse) {
-    return throwError(error.message || "Server Error");
+    return throwError(error.error.message || "Server Error");
   }
   getStudentsL()
   {

@@ -1,8 +1,11 @@
+import { InterceptorService } from './loader/interceptor.service';
 import { MaterialModule } from './material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -39,7 +42,7 @@ import { DocumentsComponent } from './documents/documents.component';
 import { StatusComponent } from './status/status.component';
 import { DialogApproveComponent } from './dialog-approve/dialog-approve.component';
 import { DialogNotApproveComponent } from './dialog-not-approve/dialog-not-approve.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { DocumentsServiceService } from './documents-service.service';
 
 import { SubjectComponent } from './subject/subject.component';
@@ -154,6 +157,8 @@ FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
@@ -188,6 +193,7 @@ FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
     FusionChartsModule,
     SubjectService,
     DocumentsServiceService,
+    {provide:HTTP_INTERCEPTORS,useClass:InterceptorService,multi:true}
   ],
   bootstrap: [AppComponent],
 })

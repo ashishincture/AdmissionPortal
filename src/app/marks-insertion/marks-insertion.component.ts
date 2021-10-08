@@ -1,3 +1,4 @@
+import { LoaderService } from './../loader/loader.service';
 import { DataSource } from '@angular/cdk/table';
 import { DialogMarksUploadComponent } from '../dialog-marks-upload/dialog-marks-upload.component';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -71,7 +72,7 @@ export class MarksInsertionComponent implements OnInit {
   // Courses:course[]=[];
   // year:yearT[]=[];
 
-  constructor(private _ApiMarksUploadService: ApiMarksUploadService, private fBuilder: FormBuilder, public dialog: MatDialog, private snackBar: MatSnackBar) { }
+  constructor(private _ApiMarksUploadService: ApiMarksUploadService, public loaderService: LoaderService, private fBuilder: FormBuilder, public dialog: MatDialog, private snackBar: MatSnackBar) { }
   exampleFormControl = new FormControl('');
   title = 'new-Project';
   showPanel = false;
@@ -100,7 +101,7 @@ export class MarksInsertionComponent implements OnInit {
     this.panelExpansion = false;
     this.showPreview = false;
     this.displayedColumns = [];
-    this.displayedColumns=["ID","NAME"];
+    this.displayedColumns=["id","name"];
     this.payloadDownload={
       "reg_id": this.selectedReg,
       "dep_id": this.selectedDept,
@@ -111,19 +112,18 @@ export class MarksInsertionComponent implements OnInit {
       "patternId":this.aSelSubj[0].patternId,
       "sub_code": this.aSelSubj[0].Subject_ID 
   }
+  this.SubjectHeaders.forEach(element=>{
+    this.displayedColumns.push(element.type_of_evaluation)
+  })
     let DialogRef = this.dialog.open(DialogMarksUploadComponent, {
       width: "500px",
-      data: { aExcelData: this.ArrayP, payloadD: this.payloadDownload }
+      data: { aExcelData: this.ArrayP, payloadD: this.payloadDownload ,subjectHeaders:this.displayedColumns}
     });
 
     DialogRef.afterClosed().subscribe(result => {
       console.log(result);
       if (result.length == undefined) {
         this.dataSource = result.aExcelData;
-
-        this.SubjectHeaders.forEach(element=>{
-          this.displayedColumns.push(element.type_of_evaluation)
-        })
         this.showPreview = true;
       }
 
@@ -383,14 +383,15 @@ export class MarksInsertionComponent implements OnInit {
     this._ApiMarksUploadService.postExcelData(this.dataSource,this.payloadDownload).subscribe(data => {
       console.log(data);
       that.openSnackBar("Marks uploaded successfully!", "OK");
+      this.panelExpansion = false;
+      this.showPreview = false;
       // alert("Marks uploaded successfully");
     },
       error => {
-        that.openSnackBar("Failed To Upload Excel File.", "OK");
+        that.openSnackBar(error, "OK");
         // alert(error);
         console.log(error);
-      }
-    );
+      });
   }
 
   openSnackBar(message: string, action: string) {

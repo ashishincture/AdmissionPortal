@@ -19,11 +19,11 @@ export class DialogMarksUploadComponent implements OnInit {
   disablePreviewButton = true;
   disableUploadButton = true;
   oSelectedFilterData = {};
-
+  subjectHeaders:any;
   constructor(private snackBar: MatSnackBar, private _ApiMarksUploadService: ApiMarksUploadService, public dialogRef: MatDialogRef<DialogMarksUploadComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
     this.oSelectedFilterData = data.payloadD;
-
+    this.subjectHeaders=data.subjectHeaders;
   }
 
   onDownloadRequest() {
@@ -70,7 +70,7 @@ export class DialogMarksUploadComponent implements OnInit {
     fileReader.readAsArrayBuffer(this.file);
     fileReader.onload = (e) => {
       this.arrayBuffer = fileReader.result;
-      var data = new Uint8Array(this.arrayBuffer);
+      var data = new Uint8Array(this.arrayBuffer); 
       var arr = new Array();
       for (var i = 0; i != data.length; ++i) arr[i] = String.fromCharCode(data[i]);
       var bstr = arr.join("");
@@ -79,6 +79,15 @@ export class DialogMarksUploadComponent implements OnInit {
       var worksheet = workbook.Sheets[first_sheet_name];
       // console.log(XLSX.utils.sheet_to_json(worksheet,{raw:true}));    
       this.aExcelData = XLSX.utils.sheet_to_json(worksheet, { raw: true });
+      
+       
+        for(var j=0;j<this.aExcelData.length;j++){
+          for(var i=2;i<this.subjectHeaders.length;i++){
+            if(this.aExcelData[j][this.subjectHeaders[i]]==undefined){
+              this.aExcelData[j][this.subjectHeaders[i]]="";
+            }
+      }
+    }
       this.dialogRef.componentInstance.data = { aExcelData: this.aExcelData }
       this.disablePreviewButton = false;
       this.disableUploadButton = false;
@@ -94,7 +103,7 @@ export class DialogMarksUploadComponent implements OnInit {
       // alert("Marks uploaded successfully");
     },
       error => {
-        that.openSnackBar("Failed To Upload Excel File.", "OK");
+        that.openSnackBar(error, "OK");
         // alert(error);
         console.log(error);
       }
